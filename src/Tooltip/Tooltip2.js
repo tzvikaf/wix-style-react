@@ -64,19 +64,16 @@ export default class Tooltip2 extends Component {
     const target = this.refs.target.children[0];
     const content = this.refs.content.children[0];
 
-    this.moveBy = moveBy;
-
     this.popper = new Popper(target, content, {
       placement,
-      onUpdate: this.handlePopperUpdate,
-      modifiers: [this.updateOffsetModifier.bind(this), 'applyStyle']
+      modifiersIgnored: ['applyStyle']
     });
+
+    this.popper.onUpdate(this.handlePopperUpdate);
   }
 
-  updateOffsetModifier(data) {
-    // data.offsets.popper.top += this.moveBy.y;
-    // data.offsets.popper.left += this.moveBy.x;
-    return data;
+  componentWillUnmount() {
+    this.popper.destroy();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -113,8 +110,12 @@ export default class Tooltip2 extends Component {
     const hasChangedPlacement = data.placement !== this.state.placement;
 
     if (hasChangedPlacement) {
-      this.setState({ placement: data.placement });
+      this.setState({
+        placement: data.placement,
+      });
     }
+
+    this.setState({popperData: data});
   }
 
   handleToggleTrigger(triggerType) {
@@ -166,6 +167,27 @@ export default class Tooltip2 extends Component {
     return placement.replace(/\-.*/, '');
   }
 
+  getPopperStyle() {
+    const data = this.state.popperData;
+
+    if (!data) {
+      return {};
+    }
+
+    const left = Math.round(data.offsets.popper.left);
+    const top = Math.round(data.offsets.popper.top);
+
+    const transform = `translate3d(${left}px, ${top}px, 0)`;
+
+    return {
+      position: data.offsets.popper.position,
+      transform,
+      WebkitTransform: transform,
+      top: this.props.moveBy.x,
+      left: this.props.moveBy.y
+    };
+  }
+
   render() {
     const {arrowStyle, theme, bounce, disabled, maxWidth, zIndex, textAlign} = this.props;
     const placement = this.placementWithoutAlignment(this.state.placement);
@@ -183,6 +205,13 @@ export default class Tooltip2 extends Component {
       onBlur: () => this.handleToggleTrigger('blur'),
     });
 
+    const popperTooltipStyle = {
+      position: 'absolute',
+      transform: 'translate3d()'
+    };
+
+    const popperStyle = this.getPopperStyle();
+
     return (
       <div className={styles.root}>
         <div ref='target'>
@@ -192,7 +221,8 @@ export default class Tooltip2 extends Component {
           <div className={classNames(styles.tooltip, {
             [styles.active]: active,
           })}
-          style={{maxWidth, zIndex, textAlign}}
+          style={{maxWidth, zIndex, textAlign, ...popperStyle}}
+          data-hook='tooltip'
         >
           <div className={classNames({
             [styles[`bounce-on-${arrowPlacement}`]]: bounce

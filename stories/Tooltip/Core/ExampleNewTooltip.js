@@ -26,15 +26,13 @@ export default class TooltipExample extends Component {
     return (
       <div ref='wrapper'>
         <div style={{width: 600, height: this.state.height}}/>
-        <div style={{overflowY: 'scroll', height: 100, width :400, paddingTop: 100}}>
-          <Tooltip2 content='שלום עולם שלום עולם' placement='right' alignment='top' theme='dark' showTrigger='custom' hideTrigger='custom' active moveBy={this.state.offset} zIndex={30} textAlign='center'>
+          <Tooltip2 content='שלום עולם שלום עולם' placement='bottom' alignment='right' theme='dark' showTrigger='custom' hideTrigger='custom' active moveBy={this.state.offset} zIndex={30} textAlign='center'>
             {/* <button onClick={() => this.setState({offset: {x: 100, y: 100}})}>set offset</button> */}
             <div style={{width: 300, height: 200, background: 'gray'}}>
               <button onClick={() => this.setState({showTooltip2: !this.state.showTooltip2})}>show/hide</button>
               <button onClick={() => this.setState({offset: {x: 100, y: 100}})}>set offset</button>
             </div>
           </Tooltip2>
-        </div>
 
         <div style={{overflowY: 'scroll', height: 200, width :400}}>
           <Tooltip bounce content={this.state.message} showTrigger='custom' hideTrigger='custom' active>
