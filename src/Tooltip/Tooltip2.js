@@ -66,20 +66,35 @@ export default class Tooltip2 extends Component {
 
     this.popper = new Popper(target, content, {
       placement,
-      modifiersIgnored: ['applyStyle'],
-      onUpdate: this.handlePopperUpdate
+      modifiers: {
+        applyStyle: { enabled: false },
+      },
+      onUpdate: this.handlePopperUpdate,
+      onCreate: this.handlePopperUpdate
     });
-
-    setInterval(() => this.popper.scheduleUpdate(), 100);
   }
 
   componentWillUnmount() {
     this.popper.destroy();
+    clearInterval(this.scheduleInterval);
   }
 
   componentWillReceiveProps(nextProps) {
     this.handleNextActive(nextProps);
     this.handleNextMoveBy(nextProps);
+  }
+
+  //Schedule popper updates periodically, only when the tooltip is visible (for
+  //tooltip repositioning - e.g. when the target dimensions change).
+  componentDidUpdate() {
+    if (this.state.active && !this.scheduleInterval) {
+      this.scheduleInterval = setInterval(() => {
+        this.popper.scheduleUpdate();
+      }, 100);
+    } else if (!this.state.active) {
+      clearInterval(this.scheduleInterval);
+      this.scheduleInterval = null;
+    }
   }
 
   toggleActive(active) {

@@ -27,7 +27,7 @@ export default class TooltipExample extends Component {
     return (
       <div ref='wrapper'>
         <div style={{width: 600, height: this.state.height}}/>
-          <Tooltip2 content='שלום עולם שלום עולם' placement='bottom' alignment='center' theme='dark' showTrigger='custom' hideTrigger='custom' active moveBy={this.state.offset} zIndex={30} textAlign='center'>
+          <Tooltip2 content='שלום עולם שלום עולם' placement='bottom' alignment='center' theme='dark' showTrigger='mouseenter' hideTrigger='mouseleave' moveBy={this.state.offset} zIndex={30} textAlign='center'>
             {/* <button onClick={() => this.setState({offset: {x: 100, y: 100}})}>set offset</button> */}
             <div style={{width: this.state.width, height: 200, background: 'gray'}}>
               <button onClick={() => this.setState({showTooltip2: !this.state.showTooltip2})}>show/hide</button>
