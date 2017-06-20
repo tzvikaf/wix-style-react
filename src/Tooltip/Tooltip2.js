@@ -5,6 +5,8 @@ import styles from './Tooltip2.scss';
 import Popper from 'popper.js';
 import classNames from 'classnames';
 
+const TooltipRefreshRate = 20;
+
 export default class Tooltip2 extends Component {
   static propTypes = {
     content: PropTypes.any.isRequired,
@@ -24,7 +26,8 @@ export default class Tooltip2 extends Component {
     maxWidth: PropTypes.string,
     zIndex: PropTypes.number,
     textAlign: PropTypes.string,
-    moveArrowTo: PropTypes.number
+    moveArrowTo: PropTypes.number,
+    bounce: PropTypes.bool
   };
 
   static defaultProps = {
@@ -60,14 +63,13 @@ export default class Tooltip2 extends Component {
 
   componentDidMount() {
     const {placement} = this.state;
-    const {moveBy} = this.props;
     const target = this.refs.target.children[0];
     const content = this.refs.content.children[0];
 
     this.popper = new Popper(target, content, {
       placement,
       modifiers: {
-        applyStyle: { enabled: false },
+        applyStyle: {enabled: false},
       },
       onUpdate: this.handlePopperUpdate,
       onCreate: this.handlePopperUpdate
@@ -90,7 +92,7 @@ export default class Tooltip2 extends Component {
     if (this.state.active && !this.scheduleInterval) {
       this.scheduleInterval = setInterval(() => {
         this.popper.scheduleUpdate();
-      }, 100);
+      }, TooltipRefreshRate);
     } else if (!this.state.active) {
       clearInterval(this.scheduleInterval);
       this.scheduleInterval = null;
@@ -180,29 +182,29 @@ export default class Tooltip2 extends Component {
   }
 
   placementWithoutAlignment(placement) {
-    return placement.replace(/\-.*/, '');
+    return placement.replace(/-.*/, '');
   }
 
   getPopperStyle() {
     const data = this.state.popperData;
 
-    if (!data) {
+    if (!data) {
       return {};
     }
 
-    const left = Math.round(data.offsets.popper.left);
-    const top = Math.round(data.offsets.popper.top);
+    const left = Math.round(data.offsets.popper.left);
+    const top = Math.round(data.offsets.popper.top);
 
-    const transform = `translate3d(${left}px, ${top}px, 0)`;
+    const transform = `translate3d(${left}px, ${top}px, 0)`;
 
-    return {
-      position: data.offsets.popper.position,
-      transform,
-      WebkitTransform: transform,
-      top: this.props.moveBy.x,
-      left: this.props.moveBy.y
-    };
-  }
+    return {
+      position: data.offsets.popper.position,
+      transform,
+      WebkitTransform: transform,
+      left: this.props.moveBy.x,
+      top: this.props.moveBy.y
+    };
+  }
 
   getArrowStyle() {
     const {moveArrowTo, arrowStyle} = this.props;
@@ -257,39 +259,40 @@ export default class Tooltip2 extends Component {
       onBlur: () => this.handleToggleTrigger('blur'),
     });
 
-    const popperTooltipStyle = {
-      position: 'absolute',
-      transform: 'translate3d()'
-    };
-
     const popperStyle = this.getPopperStyle();
     const arrowStyle = this.getArrowStyle();
 
     return (
       <div className={styles.root}>
-        <div ref='target'>
+        <div ref="target">
           {clonedTarget}
         </div>
-        <div ref='content'>
-          <div className={classNames(styles.tooltip, {
+        <div ref="content">
+          <div
+            className={classNames(styles.tooltip, {
               [styles.active]: active,
             })}
-            style={{maxWidth, zIndex, textAlign, ...popperStyle}}
-            data-hook='tooltip'
-          >
-            <div className={classNames({
-              [styles[`bounce-on-${arrowPlacement}`]]: bounce
-            })}>
-              <div className={classNames(styles.tooltipInner, styles[theme], styles[placement], {
-                [styles.active]: active,
-              })}>
+            style={{zIndex, textAlign, ...popperStyle}}
+            data-hook="tooltip"
+            >
+            <div
+              className={classNames({
+                [styles[`bounce-on-${arrowPlacement}`]]: bounce
+              })}
+              >
+              <div
+                className={classNames(styles.tooltipInner, styles[theme], styles[placement], {
+                  [styles.active]: active,
+                })}
+                style={{maxWidth}}
+                >
                 <div>
                   {this.props.content}
                 </div>
                 <div
                   className={classNames(styles.arrow, styles[arrowPlacement])}
                   style={arrowStyle}
-                />
+                  />
               </div>
             </div>
           </div>
