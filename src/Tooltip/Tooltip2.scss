@@ -10,8 +10,6 @@ $shadow-color-arrow: rgba(0, 0, 0, .1);
 $shadow: 0 0 11px 0 $shadow-color;
 
 .root {
-  position: absolute;
-  z-index: $zIndex;
 }
 
 .tooltip {

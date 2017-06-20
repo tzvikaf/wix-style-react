@@ -19,6 +19,12 @@ export default class Tooltip2 extends Component {
     active: PropTypes.bool,
     arrowPlacement: PropTypes.string,
     arrowStyle: PropTypes.object,
+    moveBy: PropTypes.object,
+    disabled: PropTypes.bool,
+    maxWidth: PropTypes.string,
+    zIndex: PropTypes.number,
+    textAlign: PropTypes.string,
+    moveArrowTo: PropTypes.number
   };
 
   static defaultProps = {
@@ -28,7 +34,12 @@ export default class Tooltip2 extends Component {
     hideDelay: 500,
     showTrigger: 'mouseenter',
     hideTrigger: 'mouseleave',
-    active: false
+    active: false,
+    moveBy: {x: 0, y: 0},
+    disabled: false,
+    maxWidth: '1200px',
+    zIndex: 2000,
+    textAlign: 'center'
   };
 
   constructor(props) {
@@ -49,23 +60,53 @@ export default class Tooltip2 extends Component {
 
   componentDidMount() {
     const {placement} = this.state;
+    const {moveBy} = this.props;
     const target = this.refs.target.children[0];
     const content = this.refs.content.children[0];
 
-    new Popper(target, content, {placement, onUpdate: this.handlePopperUpdate});
+    this.moveBy = moveBy;
+
+    this.popper = new Popper(target, content, {
+      placement,
+      onUpdate: this.handlePopperUpdate,
+      modifiers: [this.updateOffsetModifier.bind(this), 'applyStyle']
+    });
+  }
+
+  updateOffsetModifier(data) {
+    // data.offsets.popper.top += this.moveBy.y;
+    // data.offsets.popper.left += this.moveBy.x;
+    return data;
   }
 
   componentWillReceiveProps(nextProps) {
-    debugger;
-    if (nextProps.showTrigger === 'custom' && nextProps.active && !this.props.active) {
-      this.toggleActive(true);
-    } else if (nextProps.hideTrigger === 'custom' && !nextProps.active && this.props.active) {
-      this.toggleActive(false);
-    }
+    this.handleNextActive(nextProps);
+    this.handleNextMoveBy(nextProps);
   }
 
   toggleActive(active) {
     this.setState({active});
+  }
+
+  handleNextMoveBy(nextProps) {
+    const hasChanged = nextProps.moveBy.x !== this.props.moveBy.x ||
+                       nextProps.moveBy.y !== this.props.moveBy.y;
+
+    if (hasChanged) {
+      this.moveBy = nextProps.moveBy;
+      this.popper.update();
+    }
+  }
+
+  handleNextActive(nextProps) {
+    const {active: nextActive} = nextProps;
+    const {active: currentlyActive} = this.props;
+
+    if (nextProps.showTrigger === 'custom' && nextActive && !currentlyActive) {
+      this.toggleActive(true);
+    } else if (nextProps.hideTrigger === 'custom' && !nextActive && currentlyActive) {
+      this.toggleActive(false);
+    }
   }
 
   handlePopperUpdate(data) {
@@ -126,16 +167,20 @@ export default class Tooltip2 extends Component {
   }
 
   render() {
-    const {arrowStyle, theme} = this.props;
+    const {arrowStyle, theme, bounce, disabled, maxWidth, zIndex, textAlign} = this.props;
     const placement = this.placementWithoutAlignment(this.state.placement);
     const arrowPlacement = this.getArrowPlacement(placement);
 
     let {active} = this.state;
 
+    active = active && !disabled;
+
     const clonedTarget = React.cloneElement(this.props.children, {
       onMouseEnter: () => this.handleToggleTrigger('mouseenter'),
       onMouseLeave: () => this.handleToggleTrigger('mouseleave'),
-      onClick: () => this.handleToggleTrigger('click')
+      onClick: () => this.handleToggleTrigger('click'),
+      onFocus: () => this.handleToggleTrigger('focus'),
+      onBlur: () => this.handleToggleTrigger('blur'),
     });
 
     return (
@@ -145,10 +190,15 @@ export default class Tooltip2 extends Component {
         </div>
         <div ref='content'>
           <div className={classNames(styles.tooltip, {
-            [styles.active]: active
+            [styles.active]: active,
+          })}
+          style={{maxWidth, zIndex, textAlign}}
+        >
+          <div className={classNames({
+            [styles[`bounce-on-${arrowPlacement}`]]: bounce
           })}>
             <div className={classNames(styles.tooltipInner, styles[theme], styles[placement], {
-              [styles.active]: active
+              [styles.active]: active,
             })}>
               <div>
                 {this.props.content}
@@ -159,6 +209,7 @@ export default class Tooltip2 extends Component {
               />
             </div>
           </div>
+        </div>
         </div>
       </div>
     );
