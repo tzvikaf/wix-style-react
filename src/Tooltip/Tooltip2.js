@@ -66,10 +66,11 @@ export default class Tooltip2 extends Component {
 
     this.popper = new Popper(target, content, {
       placement,
-      modifiersIgnored: ['applyStyle']
+      modifiersIgnored: ['applyStyle'],
+      onUpdate: this.handlePopperUpdate
     });
 
-    this.popper.onUpdate(this.handlePopperUpdate);
+    setInterval(() => this.popper.scheduleUpdate(), 100);
   }
 
   componentWillUnmount() {
@@ -188,8 +189,44 @@ export default class Tooltip2 extends Component {
     };
   }
 
+  getArrowStyle() {
+    const {moveArrowTo, arrowStyle} = this.props;
+    const placement = this.placementWithoutAlignment(this.props.placement);
+    const isVertical = placement === 'top' || placement === 'bottom';
+    const isHorizontal = placement === 'left' || placement === 'right';
+
+    if (moveArrowTo) {
+      const repositionStyle = {};
+
+      if (isVertical) {
+        if (moveArrowTo > 0) {
+          repositionStyle.left = moveArrowTo;
+          repositionStyle.right = 'inherit';
+        } else {
+          repositionStyle.right = -1 * moveArrowTo;
+          repositionStyle.left = 'inherit';
+        }
+      } else if (isHorizontal) {
+        if (moveArrowTo > 0) {
+          repositionStyle.top = moveArrowTo;
+          repositionStyle.bottom = 'inherit';
+        } else {
+          repositionStyle.bottom = -1 * moveArrowTo;
+          repositionStyle.top = 'inherit';
+        }
+      }
+
+      return {
+        ...repositionStyle,
+        ...arrowStyle
+      };
+    }
+
+    return arrowStyle;
+  }
+
   render() {
-    const {arrowStyle, theme, bounce, disabled, maxWidth, zIndex, textAlign} = this.props;
+    const {theme, bounce, disabled, maxWidth, zIndex, textAlign} = this.props;
     const placement = this.placementWithoutAlignment(this.state.placement);
     const arrowPlacement = this.getArrowPlacement(placement);
 
@@ -211,6 +248,7 @@ export default class Tooltip2 extends Component {
     };
 
     const popperStyle = this.getPopperStyle();
+    const arrowStyle = this.getArrowStyle();
 
     return (
       <div className={styles.root}>
@@ -219,27 +257,27 @@ export default class Tooltip2 extends Component {
         </div>
         <div ref='content'>
           <div className={classNames(styles.tooltip, {
-            [styles.active]: active,
-          })}
-          style={{maxWidth, zIndex, textAlign, ...popperStyle}}
-          data-hook='tooltip'
-        >
-          <div className={classNames({
-            [styles[`bounce-on-${arrowPlacement}`]]: bounce
-          })}>
-            <div className={classNames(styles.tooltipInner, styles[theme], styles[placement], {
               [styles.active]: active,
+            })}
+            style={{maxWidth, zIndex, textAlign, ...popperStyle}}
+            data-hook='tooltip'
+          >
+            <div className={classNames({
+              [styles[`bounce-on-${arrowPlacement}`]]: bounce
             })}>
-              <div>
-                {this.props.content}
+              <div className={classNames(styles.tooltipInner, styles[theme], styles[placement], {
+                [styles.active]: active,
+              })}>
+                <div>
+                  {this.props.content}
+                </div>
+                <div
+                  className={classNames(styles.arrow, styles[arrowPlacement])}
+                  style={arrowStyle}
+                />
               </div>
-              <div
-                className={classNames(styles.arrow, styles[arrowPlacement])}
-                style={arrowStyle}
-              />
             </div>
           </div>
-        </div>
         </div>
       </div>
     );

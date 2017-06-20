@@ -14,7 +14,8 @@ export default class TooltipExample extends Component {
       message: 'just a message',
       height: 0,
       showTooltip2: true,
-      offset: {x: 0, y: 0}
+      offset: {x: 0, y: 0},
+      width: 300
     };
   }
 
@@ -26,11 +27,12 @@ export default class TooltipExample extends Component {
     return (
       <div ref='wrapper'>
         <div style={{width: 600, height: this.state.height}}/>
-          <Tooltip2 content='שלום עולם שלום עולם' placement='bottom' alignment='right' theme='dark' showTrigger='custom' hideTrigger='custom' active moveBy={this.state.offset} zIndex={30} textAlign='center'>
+          <Tooltip2 content='שלום עולם שלום עולם' placement='bottom' alignment='center' theme='dark' showTrigger='custom' hideTrigger='custom' active moveBy={this.state.offset} zIndex={30} textAlign='center'>
             {/* <button onClick={() => this.setState({offset: {x: 100, y: 100}})}>set offset</button> */}
-            <div style={{width: 300, height: 200, background: 'gray'}}>
+            <div style={{width: this.state.width, height: 200, background: 'gray'}}>
               <button onClick={() => this.setState({showTooltip2: !this.state.showTooltip2})}>show/hide</button>
               <button onClick={() => this.setState({offset: {x: 100, y: 100}})}>set offset</button>
+              <button onClick={() => this.setState({width: 600})}>set width</button>
             </div>
           </Tooltip2>
 
