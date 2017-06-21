@@ -1,13 +1,14 @@
 import _ from 'lodash';
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import WixComponent from '../WixComponent';
 import styles from './Tooltip2.scss';
 import Popper from 'popper.js';
 import classNames from 'classnames';
 
 const TooltipRefreshRate = 20;
 
-export default class Tooltip2 extends Component {
+export default class Tooltip2 extends WixComponent {
   static propTypes = {
     content: PropTypes.any.isRequired,
     children: PropTypes.any.isRequired,
@@ -27,7 +28,9 @@ export default class Tooltip2 extends Component {
     zIndex: PropTypes.number,
     textAlign: PropTypes.string,
     moveArrowTo: PropTypes.number,
-    bounce: PropTypes.bool
+    bounce: PropTypes.bool,
+    shouldCloseOnClickOutside: PropTypes.bool,
+    onClickOutside: PropTypes.func
   };
 
   static defaultProps = {
@@ -42,7 +45,8 @@ export default class Tooltip2 extends Component {
     disabled: false,
     maxWidth: '1200px',
     zIndex: 2000,
-    textAlign: 'center'
+    textAlign: 'center',
+    onClickOutside: _.noop
   };
 
   constructor(props) {
@@ -61,7 +65,13 @@ export default class Tooltip2 extends Component {
     this.handleShowTrigger = this.handleShowTrigger.bind(this);
   }
 
+  componentElements() {
+    return [this.refs.target.children[0], this.refs.content.children[0]];
+  }
+
   componentDidMount() {
+    super.componentDidMount();
+
     const {placement} = this.state;
     const target = this.refs.target.children[0];
     const content = this.refs.content.children[0];
@@ -77,6 +87,7 @@ export default class Tooltip2 extends Component {
   }
 
   componentWillUnmount() {
+    super.componentWillUnmount();
     this.popper.destroy();
     clearInterval(this.scheduleInterval);
   }
@@ -97,6 +108,18 @@ export default class Tooltip2 extends Component {
       clearInterval(this.scheduleInterval);
       this.scheduleInterval = null;
     }
+  }
+
+  onClickOutside(e) {
+    if (this.props.shouldCloseOnClickOutside) {
+      this.hide();
+    } else {
+      this.props.onClickOutside(e);
+    }
+  }
+
+  hide() {
+    this.toggleActive(false);
   }
 
   toggleActive(active) {
