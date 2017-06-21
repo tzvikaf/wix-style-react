@@ -2,42 +2,35 @@ import React from 'react';
 import ReactTestUtils from 'react-dom/test-utils';
 import ReactDOM from 'react-dom';
 import Tooltip from './Tooltip';
-import last from 'lodash.last';
-
-const arrowDirectionToPlacement = {
-  top: 'bottom',
-  bottom: 'top',
-  left: 'right',
-  right: 'left'
-};
+import $ from 'jquery';
 
 const tooltipDriverFactory = ({element, wrapper}) => {
+  const target = $(element).find('[data-hook=\'target\']').children(0)[0];
+  const tooltipInner = $(element).find('[data-hook=\'tooltip-inner\']');
+  const tooltipContent = tooltipInner.find('[data-hook=\'tooltip-content\']');
+
   return {
-    isShown: () => !!document.body.querySelector('.tooltip'),
-    focus: () => ReactTestUtils.Simulate.focus(element),
-    blur: () => ReactTestUtils.Simulate.blur(element),
-    click: () => ReactTestUtils.Simulate.click(element),
-    mouseEnter: () => ReactTestUtils.Simulate.mouseEnter(element),
-    mouseLeave: () => ReactTestUtils.Simulate.mouseLeave(element),
-    hasErrorTheme: () => !!document.body.querySelector('.error'),
-    hasDarkTheme: () => !!document.body.querySelector('.dark'),
-    hasLightTheme: () => !!document.body.querySelector('.light'),
-    getTooltipWrapper: () => document.body.querySelector('.tooltip'),
+    isShown: () => tooltipInner.hasClass('active'),
+    focus: () => ReactTestUtils.Simulate.focus(target),
+    blur: () => ReactTestUtils.Simulate.blur(target),
+    click: () => ReactTestUtils.Simulate.click(target),
+    mouseEnter: () => ReactTestUtils.Simulate.mouseEnter(target),
+    mouseLeave: () => ReactTestUtils.Simulate.mouseLeave(target),
+    hasErrorTheme: () => !!wrapper.querySelector('.error'),
+    hasDarkTheme: () => !!wrapper.querySelector('.dark'),
+    hasLightTheme: () => !!wrapper.querySelector('.light'),
+    getTooltipWrapper: () => wrapper.querySelector('[data-hook=\'tooltip\']'),
     getChildren: () => element.innerHTML,
     getPlacement: () => {
-      const arrowDirection = last(document.querySelectorAll('.arrow')).className.split(' ')[1];
-      return arrowDirectionToPlacement[arrowDirection];
+      return tooltipInner.attr('class').split(' ')[2];
     },
     getContent: () => {
-      let content = document.body.querySelector('.tooltip');
-      while (content.children.length > 0) {
-        content = content.children[0];
-      }
-      return content.innerHTML;
+      return tooltipContent.html();
     },
     setProps: props => {
-      ReactDOM.render(<div ref={r => element = r}><Tooltip {...props}/></div>, wrapper);
-    }
+      ReactDOM.render(<div ref={r => element = r}><Tooltip {...props}><div/></Tooltip></div>, wrapper);
+    },
+    getWrapper: () => wrapper
   };
 };
 

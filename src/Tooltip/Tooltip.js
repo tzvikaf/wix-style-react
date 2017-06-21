@@ -1,34 +1,17 @@
-import React, {cloneElement} from 'react';
+import _ from 'lodash';
+import React from 'react';
 import PropTypes from 'prop-types';
-import ReactDOM from 'react-dom';
-
 import WixComponent from '../WixComponent';
-import TooltipContent from './TooltipContent';
-import position from './TooltipPosition';
+import styles from './Tooltip.scss';
+import Popper from 'popper.js';
+import classNames from 'classnames';
 
-import styles from './TooltipContent.scss';
+const TooltipRefreshRate = 100;
 
-const renderSubtreeIntoContainer = ReactDOM.unstable_renderSubtreeIntoContainer;
-
-class Tooltip extends WixComponent {
-
-  componentElements() {
-    const elements = super.componentElements();
-    return this._mountNode ? elements.concat(this._mountNode) : elements;
-  }
-
-  onClickOutside(e) {
-    if (this.props.shouldCloseOnClickOutside) {
-      this.hide();
-    } else if (this.props.onClickOutside) {
-      this.props.onClickOutside && this.props.onClickOutside(e);
-    }
-  }
-
+export default class Tooltip extends WixComponent {
   static propTypes = {
-    textAlign: PropTypes.string,
-    children: PropTypes.node,
-    content: PropTypes.node.isRequired,
+    content: PropTypes.any.isRequired,
+    children: PropTypes.node.isRequired,
     placement: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
     alignment: PropTypes.oneOf(['top', 'right', 'bottom', 'left', 'center']),
     theme: PropTypes.oneOf(['light', 'dark', 'error']),
@@ -37,365 +20,316 @@ class Tooltip extends WixComponent {
     showTrigger: PropTypes.oneOf(['custom', 'mouseenter', 'mouseleave', 'click', 'focus', 'blur']),
     hideTrigger: PropTypes.oneOf(['custom', 'mouseenter', 'mouseleave', 'click', 'focus', 'blur']),
     active: PropTypes.bool,
-    bounce: PropTypes.bool,
+    arrowPlacement: PropTypes.string,
+    arrowStyle: PropTypes.object,
+    moveBy: PropTypes.object,
     disabled: PropTypes.bool,
     maxWidth: PropTypes.string,
-    onClickOutside: PropTypes.func,
-
-    /**
-     * Callback to be called when the tooltip has been shown
-     */
-    onShow: PropTypes.func,
     zIndex: PropTypes.number,
-
-    /**
-     * By default tooltip is appended to a body, to avoid CSS collisions.
-     * But if you want your tooltip to scroll with a content, append tooltip to a parent.
-     * Just make sure the CSS are not leaked.
-     */
-    appendToParent: PropTypes.bool,
-
-    /**
-     * Allows to shift the tooltip position by x and y pixels.
-     * Both positive and negative values are accepted.
-     */
-    moveBy: PropTypes.shape({
-      x: PropTypes.number,
-      y: PropTypes.number
-    }),
-
-    /**
-     * Allows to position the arrow relative to tooltip.
-     * Positive value calculates position from left/top.
-     * Negative one calculates position from right/bottom.
-     */
+    textAlign: PropTypes.string,
     moveArrowTo: PropTypes.number,
-    size: PropTypes.oneOf(['normal', 'large']),
+    bounce: PropTypes.bool,
     shouldCloseOnClickOutside: PropTypes.bool,
-    relative: PropTypes.bool
+    onClickOutside: PropTypes.func,
+    onShow: PropTypes.func,
+    size: PropTypes.oneOf(['normal', 'large']),
   };
 
   static defaultProps = {
     placement: 'top',
-    alignment: 'center',
-    showTrigger: 'mouseenter',
-    hideTrigger: 'mouseleave',
+    theme: 'light',
     showDelay: 200,
     hideDelay: 500,
-    zIndex: 2000,
-    maxWidth: '1200px',
-    onClickOutside: null,
-    onShow: null,
+    showTrigger: 'mouseenter',
+    hideTrigger: 'mouseleave',
     active: false,
-    theme: 'light',
+    moveBy: {x: 0, y: 0},
     disabled: false,
-    children: null,
-    size: 'normal',
-    shouldCloseOnClickOutside: false,
+    maxWidth: '1200px',
+    zIndex: 2000,
     textAlign: 'center',
-    relative: false
+    onClickOutside: _.noop,
+    onShow: _.noop,
+    size: 'normal'
   };
 
-  _childNode = null;
-  _mountNode = null;
-  _showTimeout = null;
-  _hideTimeout = null;
-  _unmounted = false;
+  constructor(props) {
+    super(props);
 
-  state = {
-    visible: false,
-    hidden: true
-  };
+    this.placementFlipMap = {top: 'bottom', left: 'right', right: 'left', bottom: 'top'};
+    this.alignmentMap = {top: 'start', right: 'end', bottom: 'end', left: 'start', center: ''};
 
-  componentDidUpdate() {
-    if (this._mountNode && this.state.visible) {
-      const arrowPlacement = {top: 'bottom', left: 'right', right: 'left', bottom: 'top'};
-      const position = this.props.relative ? 'relative' : 'absolute';
-      const tooltip = (
-        <TooltipContent
-          onMouseEnter={() => this._onTooltipContentEnter()}
-          onMouseLeave={() => this._onTooltipContentLeave()}
-          ref={ref => {
-            if (this.props.relative) {
-              this.tooltipContent = ref.tooltip;
-            } else {
-              this.tooltipContent = ref;
-            }
-          }}
-          theme={this.props.theme}
-          bounce={this.props.bounce}
-          arrowPlacement={arrowPlacement[this.props.placement]}
-          style={{zIndex: this.props.zIndex, position}}
-          arrowStyle={this.state.arrowStyle}
-          maxWidth={this.props.maxWidth}
-          size={this.props.size}
-          textAlign={this.props.textAlign}
-          >
-          {this.props.content}
-        </TooltipContent>);
+    this.state = {
+      placement: this.getPopperPlacement(props.placement, props.alignment),
+      active: props.active
+    };
 
-      renderSubtreeIntoContainer(this, tooltip, this._mountNode);
-    }
+    this.handlePopperUpdate = this.handlePopperUpdate.bind(this);
+    this.handleHideTrigger = this.handleHideTrigger.bind(this);
+    this.handleShowTrigger = this.handleShowTrigger.bind(this);
+  }
+
+  componentElements() {
+    return [this.refs.target.children[0], this.refs.content.children[0]];
+  }
+
+  componentDidMount() {
+    super.componentDidMount();
+
+    const {placement} = this.state;
+    const target = this.refs.target.children[0];
+    const content = this.refs.content.children[0];
+
+    this.popper = new Popper(target, content, {
+      placement,
+      modifiers: {
+        applyStyle: {enabled: false},
+      },
+      onUpdate: this.handlePopperUpdate,
+      onCreate: this.handlePopperUpdate
+    });
   }
 
   componentWillUnmount() {
-    super.componentWillUnmount && super.componentWillUnmount();
-    this._unmounted = true;
-    this._getContainer() && this.hide();
-  }
-
-  componentWillMount() {
-    super.componentWillMount && super.componentWillMount();
-    if (this.props.active) {
-      this.show();
-    }
+    super.componentWillUnmount();
+    this.popper.destroy();
+    clearInterval(this.scheduleInterval);
   }
 
   componentWillReceiveProps(nextProps) {
-    super.componentWillReceiveProps && super.componentWillReceiveProps(nextProps);
-    if (nextProps.active !== this.props.active) {
-      if (this.state.visible && this.props.hideTrigger === 'custom') {
-        if (!nextProps.active) {
-          this.hide();
-        }
-      }
-      if (!this.state.visible && this.props.showTrigger === 'custom') {
-        if (nextProps.active) {
-          this.show();
-        }
-      }
+    this.handleNextActive(nextProps);
+    this.handleNextMoveBy(nextProps);
+  }
+
+  //Schedule popper updates periodically, only when the tooltip is visible (for
+  //tooltip repositioning - e.g. when the target dimensions change).
+  componentDidUpdate() {
+    if (this.state.active && !this.scheduleInterval) {
+      this.scheduleInterval = setInterval(() => {
+        this.popper.scheduleUpdate();
+      }, TooltipRefreshRate);
+
+      this.props.onShow();
+    } else if (!this.state.active) {
+      clearInterval(this.scheduleInterval);
+      this.scheduleInterval = null;
     }
   }
 
-  render() {
-    const child = this.props.children;
-    if (child) {
-      return cloneElement(child, {
-        ref: ref => this._childNode = ReactDOM.findDOMNode(ref),
-        onClick: this._chainCallbacks(child.props ? child.props.onClick : null, this._onClick),
-        onMouseEnter: this._chainCallbacks(child.props ? child.props.onMouseEnter : null, this._onMouseEnter),
-        onMouseLeave: this._chainCallbacks(child.props ? child.props.onMouseLeave : null, this._onMouseLeave),
-        onFocus: this._chainCallbacks(child.props ? child.props.onFocus : null, this._onFocus),
-        onBlur: this._chainCallbacks(child.props ? child.props.onBlur : null, this._onBlur)
-      });
+  onClickOutside(e) {
+    if (this.props.shouldCloseOnClickOutside) {
+      this.hide();
     } else {
-      return (<div/>);
-    }
-  }
-
-  _chainCallbacks = (first, second) => {
-    return args => {
-      if (first) {
-        first.apply(this, args);
-      }
-      if (second) {
-        second.apply(this, args);
-      }
-    };
-  };
-
-  _getContainer() {
-    if (typeof document === 'undefined') {
-      return null;
-    }
-
-    return this.props.appendToParent ? this._childNode.parentElement : document ? document.body : null;
-  }
-
-  show() {
-    if (this.props.disabled) {
-      return;
-    }
-    if (this._unmounted) {
-      return;
-    }
-    this.setState({hidden: false});
-    if (this._hideTimeout) {
-      clearTimeout(this._hideTimeout);
-      this._hideTimeout = null;
-    }
-    if (this._showTimeout) {
-      return;
-    }
-    if (!this.state.visible) {
-      this._showTimeout = setTimeout(() => {
-        if (this.props.onShow) {
-          this.props.onShow();
-        }
-
-        this.setState({visible: true}, () => {
-          if (!this._mountNode) {
-            this._mountNode = document.createElement('div');
-            this._getContainer() && this._getContainer().appendChild(this._mountNode);
-          }
-          this._showTimeout = null;
-
-          let fw = 0;
-          let sw = 0;
-          do {
-            this.componentDidUpdate();
-            const tooltipNode = ReactDOM.findDOMNode(this.tooltipContent);
-            fw = this._getRect(tooltipNode).width;
-            this._updatePosition(this.tooltipContent);
-            sw = this._getRect(tooltipNode).width;
-          } while (!this.props.appendToParent && fw !== sw);
-        });
-      }, this.props.showDelay);
+      this.props.onClickOutside(e);
     }
   }
 
   hide() {
-    this.setState({hidden: true});
-    if (this._showTimeout) {
-      clearTimeout(this._showTimeout);
-      this._showTimeout = null;
-    }
+    this.toggleActive(false);
+  }
 
-    if (this._hideTimeout) {
-      return;
-    }
+  toggleActive(active) {
+    this.setState({active});
+  }
 
-    if (this.state.visible) {
-      this._hideTimeout = setTimeout(() => {
-        if (this._mountNode) {
-          ReactDOM.unmountComponentAtNode(this._mountNode);
-          this._getContainer() && this._getContainer().removeChild(this._mountNode);
-          this._mountNode = null;
-        }
-        this._hideTimeout = null;
-        if (!this._unmounted) {
-          this.setState({visible: false});
-        }
-      }, this._unmounted ? 0 : this.props.hideDelay);
+  handleNextMoveBy(nextProps) {
+    const hasChanged = nextProps.moveBy.x !== this.props.moveBy.x ||
+                       nextProps.moveBy.y !== this.props.moveBy.y;
+
+    if (hasChanged) {
+      this.moveBy = nextProps.moveBy;
+      this.popper.update();
     }
   }
 
-  _hideOrShow(event) {
-    if (this.props.hideTrigger === event && !this.state.hidden) {
-      this.hide();
-    } else if (this.props.showTrigger === event) {
-      this.show();
+  handleNextActive(nextProps) {
+    const {active: nextActive} = nextProps;
+    const {active: currentlyActive} = this.props;
+
+    if (nextProps.showTrigger === 'custom' && nextActive && !currentlyActive) {
+      this.toggleActive(true);
+    } else if (nextProps.hideTrigger === 'custom' && !nextActive && currentlyActive) {
+      this.toggleActive(false);
     }
   }
 
-  _onBlur() {
-    this._hideOrShow('blur');
-  }
+  handlePopperUpdate(data) {
+    const hasChangedPlacement = data.placement !== this.state.placement;
 
-  _onFocus() {
-    this._hideOrShow('focus');
-  }
-
-  _onClick() {
-    this._hideOrShow('click');
-  }
-
-  _onMouseEnter() {
-    this._hideOrShow('mouseenter');
-  }
-
-  _onMouseLeave() {
-    this._hideOrShow('mouseleave');
-  }
-
-  _calculatePosition(ref, tooltipNode) {
-    if (!ref || !tooltipNode) {
-      return {
-        top: -1,
-        left: -1
-      };
+    if (hasChangedPlacement) {
+      this.setState({
+        placement: data.placement,
+      });
     }
-    return this._adjustPosition(position(
-      this._getRect(this._childNode),
-      this._getRect(tooltipNode),
-      {
-        placement: this.props.placement,
-        alignment: this.props.alignment,
-        margin: 10
-      },
-      this.props.relative
-    ));
+
+    this.setState({popperData: data});
   }
 
-  _updatePosition(ref) {
-    if (ref && this._childNode) {
-      const tooltipNode = ReactDOM.findDOMNode(ref);
+  handleToggleTrigger(originalCallback = _.noop, triggerType) {
+    const {active} = this.state;
 
-      const style = this._calculatePosition(ref, tooltipNode);
+    if (active) {
+      this.handleHideTrigger(triggerType);
+    } else {
+      this.handleShowTrigger(triggerType);
+    }
 
-      if (this.props.relative) {
-        tooltipNode.style.top = `${style.top}px`;
-        tooltipNode.style.left = `${style.left}px`;
-      } else {
-        tooltipNode.style.top = `${style.top}px`;
-        tooltipNode.style.left = `${Math.max(style.left, 0)}px`;
-      }
+    originalCallback();
+  }
 
-      const arrowStyles = this._adjustArrowPosition(this.props.placement, this.props.moveArrowTo);
-      if (Object.keys(arrowStyles).length) {
-        const arrow = tooltipNode.querySelector(`.${styles.arrow}`);
-        arrow && Object.keys(arrowStyles).forEach(key => {
-          arrow.style[key] = arrowStyles[key];
-        });
-      }
+  handleHideTrigger(triggerType) {
+    if (this.props.hideTrigger === triggerType) {
+      this.handleToggleWithDelay(false);
     }
   }
 
-  _adjustArrowPosition(placement, moveTo) {
-    if (moveTo) {
-      const isPositive = moveTo > 0;
-      const pixels = isPositive ? moveTo : -moveTo;
-      if (['top', 'bottom'].includes(placement)) {
-        return isPositive ? {left: `${pixels}px`} : {left: 'auto', right: `${pixels}px`};
-      }
-      return isPositive ? {top: `${pixels}px`} : {top: 'auto', bottom: `${pixels}px`};
+  handleShowTrigger(triggerType) {
+    if (this.props.showTrigger === triggerType) {
+      this.handleToggleWithDelay(true);
     }
-    return {};
   }
 
-  _getRect(el) {
-    if (this.props.appendToParent) {
-      // TODO: Once thoroughly tested, we could use the same approach in both cases.
-      return {
-        left: el.offsetLeft,
-        top: el.offsetTop,
-        width: el.offsetWidth,
-        height: el.offsetHeight
-      };
-    }
-    return el.getBoundingClientRect();
+  handleToggleWithDelay(toggle) {
+    clearTimeout(this.mouseTimeout);
+
+    this.mouseTimeout = setTimeout(() => {
+      this.toggleActive(toggle);
+    }, toggle ? this.props.showDelay : this.props.hideDelay);
   }
 
-  _adjustPosition(originalPosition) {
-    let {x = 0, y = 0} = this.props.moveBy || {};
-    // TODO: Once thoroughly tested, and converted to using offsetX props, we could remove this one.
-    if (!this.props.appendToParent) {
-      x += (window.scrollX || 0);
-      y += (window.scrollY || 0);
+  getPopperPlacement(placement, alignment) {
+    const popperAlignment = this.alignmentMap[alignment];
+
+    if (alignment) {
+      return `${placement}-${popperAlignment}`;
     }
+
+    return placement;
+  }
+
+  getArrowPlacement(popperPlacement) {
+    const overrideArrowPlacement = this.props.arrowPlacement;
+    return overrideArrowPlacement || this.placementFlipMap[popperPlacement];
+  }
+
+  placementWithoutAlignment(placement) {
+    return placement.replace(/-.*/, '');
+  }
+
+  getPopperStyle() {
+    const data = this.state.popperData;
+
+    if (!data) {
+      return {};
+    }
+
+    const left = Math.round(data.offsets.popper.left);
+    const top = Math.round(data.offsets.popper.top);
+
+    const transform = `translate3d(${left}px, ${top}px, 0)`;
+
     return {
-      left: originalPosition.left + x,
-      top: originalPosition.top + y
+      position: data.offsets.popper.position,
+      transform,
+      WebkitTransform: transform,
+      left: this.props.moveBy.x,
+      top: this.props.moveBy.y
     };
   }
 
-  _onTooltipContentEnter() {
-    if (this.props.showTrigger === 'custom') {
-      return;
+  getArrowStyle() {
+    const {moveArrowTo, arrowStyle} = this.props;
+    const placement = this.placementWithoutAlignment(this.props.placement);
+    const isVertical = placement === 'top' || placement === 'bottom';
+    const isHorizontal = placement === 'left' || placement === 'right';
+
+    if (moveArrowTo) {
+      const repositionStyle = {};
+
+      if (isVertical) {
+        if (moveArrowTo > 0) {
+          repositionStyle.left = moveArrowTo;
+          repositionStyle.right = 'inherit';
+        } else {
+          repositionStyle.right = -1 * moveArrowTo;
+          repositionStyle.left = 'inherit';
+        }
+      } else if (isHorizontal) {
+        if (moveArrowTo > 0) {
+          repositionStyle.top = moveArrowTo;
+          repositionStyle.bottom = 'inherit';
+        } else {
+          repositionStyle.bottom = -1 * moveArrowTo;
+          repositionStyle.top = 'inherit';
+        }
+      }
+
+      return {
+        ...repositionStyle,
+        ...arrowStyle
+      };
     }
-    this.show();
+
+    return arrowStyle;
   }
 
-  _onTooltipContentLeave() {
-    if (this.props.hideTrigger === 'custom') {
-      return;
-    }
-    this._onMouseLeave();
-  }
+  render() {
+    const {theme, bounce, disabled, maxWidth, zIndex, textAlign, size} = this.props;
+    const placement = this.placementWithoutAlignment(this.state.placement);
+    const arrowPlacement = this.getArrowPlacement(placement);
 
-  isShown() {
-    return this.state.visible;
+    let {active} = this.state;
+
+    active = active && !disabled;
+
+    const clonedTarget = React.cloneElement(this.props.children, {
+      onMouseEnter: () => this.handleToggleTrigger(this.props.children.props.onMouseEnter, 'mouseenter'),
+      onMouseLeave: () => this.handleToggleTrigger(this.props.children.props.onMouseLeave, 'mouseleave'),
+      onClick: () => this.handleToggleTrigger(this.props.children.props.onClick, 'click'),
+      onFocus: () => this.handleToggleTrigger(this.props.children.props.onFocus, 'focus'),
+      onBlur: () => this.handleToggleTrigger(this.props.children.props.onBlur, 'blur'),
+    });
+
+    const popperStyle = this.getPopperStyle();
+    const arrowStyle = this.getArrowStyle();
+
+    return (
+      <div className={styles.root}>
+        <div ref="target" data-hook="target">
+          {clonedTarget}
+        </div>
+        <div ref="content">
+          <div
+            className={classNames(styles.tooltip, {
+              [styles.active]: active,
+            })}
+            style={{zIndex, textAlign, ...popperStyle}}
+            data-hook="tooltip"
+            >
+            <div
+              className={classNames({
+                [styles[`bounce-on-${arrowPlacement}`]]: bounce
+              })}
+              >
+              <div
+                className={classNames(styles.tooltipInner, styles[theme], styles[placement], styles[size], {
+                  [styles.active]: active,
+                })}
+                style={{maxWidth}}
+                data-hook="tooltip-inner"
+                >
+                <div data-hook="tooltip-content">
+                  {this.props.content}
+                </div>
+                <div
+                  className={classNames(styles.arrow, styles[arrowPlacement])}
+                  style={arrowStyle}
+                  />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
   }
 }
-
-export default Tooltip;
