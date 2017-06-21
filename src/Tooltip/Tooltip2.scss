@@ -13,6 +13,7 @@ $shadow: 0 0 11px 0 $shadow-color;
 }
 
 .tooltip {
+  transition: transform 0.1s linear;
 }
 
 .tooltipInner {

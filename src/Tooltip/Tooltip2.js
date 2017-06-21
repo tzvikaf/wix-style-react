@@ -1,17 +1,17 @@
 import _ from 'lodash';
-import React, {Component} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import WixComponent from '../WixComponent';
 import styles from './Tooltip2.scss';
 import Popper from 'popper.js';
 import classNames from 'classnames';
 
-const TooltipRefreshRate = 20;
+const TooltipRefreshRate = 100;
 
 export default class Tooltip2 extends WixComponent {
   static propTypes = {
     content: PropTypes.any.isRequired,
-    children: PropTypes.any.isRequired,
+    children: PropTypes.node.isRequired,
     placement: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
     alignment: PropTypes.oneOf(['top', 'right', 'bottom', 'left', 'center']),
     theme: PropTypes.oneOf(['light', 'dark', 'error']),
@@ -30,7 +30,9 @@ export default class Tooltip2 extends WixComponent {
     moveArrowTo: PropTypes.number,
     bounce: PropTypes.bool,
     shouldCloseOnClickOutside: PropTypes.bool,
-    onClickOutside: PropTypes.func
+    onClickOutside: PropTypes.func,
+    onShow: PropTypes.func,
+    size: PropTypes.oneOf(['normal', 'large']),
   };
 
   static defaultProps = {
@@ -46,7 +48,9 @@ export default class Tooltip2 extends WixComponent {
     maxWidth: '1200px',
     zIndex: 2000,
     textAlign: 'center',
-    onClickOutside: _.noop
+    onClickOutside: _.noop,
+    onShow: _.noop,
+    size: 'normal'
   };
 
   constructor(props) {
@@ -104,6 +108,8 @@ export default class Tooltip2 extends WixComponent {
       this.scheduleInterval = setInterval(() => {
         this.popper.scheduleUpdate();
       }, TooltipRefreshRate);
+
+      this.props.onShow();
     } else if (!this.state.active) {
       clearInterval(this.scheduleInterval);
       this.scheduleInterval = null;
@@ -159,7 +165,7 @@ export default class Tooltip2 extends WixComponent {
     this.setState({popperData: data});
   }
 
-  handleToggleTrigger(triggerType) {
+  handleToggleTrigger(originalCallback = _.noop, triggerType) {
     const {active} = this.state;
 
     if (active) {
@@ -167,6 +173,8 @@ export default class Tooltip2 extends WixComponent {
     } else {
       this.handleShowTrigger(triggerType);
     }
+
+    originalCallback();
   }
 
   handleHideTrigger(triggerType) {
@@ -266,7 +274,7 @@ export default class Tooltip2 extends WixComponent {
   }
 
   render() {
-    const {theme, bounce, disabled, maxWidth, zIndex, textAlign} = this.props;
+    const {theme, bounce, disabled, maxWidth, zIndex, textAlign, size} = this.props;
     const placement = this.placementWithoutAlignment(this.state.placement);
     const arrowPlacement = this.getArrowPlacement(placement);
 
@@ -275,11 +283,11 @@ export default class Tooltip2 extends WixComponent {
     active = active && !disabled;
 
     const clonedTarget = React.cloneElement(this.props.children, {
-      onMouseEnter: () => this.handleToggleTrigger('mouseenter'),
-      onMouseLeave: () => this.handleToggleTrigger('mouseleave'),
-      onClick: () => this.handleToggleTrigger('click'),
-      onFocus: () => this.handleToggleTrigger('focus'),
-      onBlur: () => this.handleToggleTrigger('blur'),
+      onMouseEnter: () => this.handleToggleTrigger(this.props.children.props.onMouseEnter, 'mouseenter'),
+      onMouseLeave: () => this.handleToggleTrigger(this.props.children.props.onMouseLeave, 'mouseleave'),
+      onClick: () => this.handleToggleTrigger(this.props.children.props.onClick, 'click'),
+      onFocus: () => this.handleToggleTrigger(this.props.children.props.onFocus, 'focus'),
+      onBlur: () => this.handleToggleTrigger(this.props.children.props.onBlur, 'blur'),
     });
 
     const popperStyle = this.getPopperStyle();
@@ -287,7 +295,7 @@ export default class Tooltip2 extends WixComponent {
 
     return (
       <div className={styles.root}>
-        <div ref="target">
+        <div ref="target" data-hook="target">
           {clonedTarget}
         </div>
         <div ref="content">
@@ -304,10 +312,11 @@ export default class Tooltip2 extends WixComponent {
               })}
               >
               <div
-                className={classNames(styles.tooltipInner, styles[theme], styles[placement], {
+                className={classNames(styles.tooltipInner, styles[theme], styles[placement], styles[size], {
                   [styles.active]: active,
                 })}
                 style={{maxWidth}}
+                data-hook="tooltip-inner"
                 >
                 <div>
                   {this.props.content}
