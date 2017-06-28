@@ -1,6 +1,6 @@
 # Button Testkits
 
-> General Buttons
+> General Buttons for TPA
 
 ## Button TestKit API
 
@@ -8,8 +8,6 @@
 |--------|-----------|----------------|-------------|
 | getButtonTextContent | - | string | returns the button text |
 | isButtonDisabled | - | bool | fulfilled if button disabled |
-| isPrefixIconExists | - | bool | fulfilled if button prefix icon appeared |
-| isSuffixIconExists | - | bool | fulfilled if button suffix icon appeared |
 | click | - | - | clicks on the button |
 | exists (Only in Unit Test) | - | bool | fulfilled if element in the DOM |
 | element (Only in E2E) | - | element | returns the driver element |
@@ -19,16 +17,16 @@
 > Unit Testing Example
 ```javascript
   import React from 'react';
-  import {buttonTestkitFactory} from 'wix-style-react/dist/testkit';
-  import {buttonTestkitFactory as enzymeButtonTestkitFactory} from 'wix-style-react/dist/testkit/enzyme';
+  import {tpaButtonTestkitFactory} from 'wix-style-react/dist/testkit';
+  import {tpaButtonTestkitFactory as enzymeTpaButtonTestkitFactory} from 'wix-style-react/dist/testkit/enzyme';
 
   /***************
    enzyme example
   ***************/
 
   const dataHook = 'myDataHook';
-  const wrapper = mount(<div/><Button dataHook={dataHook}/></div>);
-  const testkit = enzymeButtonTestkitFactory({wrapper, dataHook});
+  const wrapper = mount(<div><Button dataHook={dataHook}/></div>);
+  const testkit = enzymeTpaButtonTestkitFactory({wrapper, dataHook});
 
   //Do tests
   expect(testkit.exists()).toBeTruthy();
@@ -40,9 +38,9 @@
   const div = document.createElement('div');
   const dataHook = 'myDataHook';
   const wrapper = div.appendChild(
-    ReactTestUtils.renderIntoDocument(<div/><Button dataHook={dataHook}/></div>, {dataHook})
+    ReactTestUtils.renderIntoDocument(<div><Button dataHook={dataHook}/></div>, {dataHook})
   );
-  const testkit = buttonTestkitFactory({wrapper, dataHook});
+  const testkit = tpaButtonTestkitFactory({wrapper, dataHook});
 
   //Do tests
   expect(testkit.exists()).toBeTruthy();
@@ -58,10 +56,10 @@
    Protractor example
   **********************/
 
-  import {buttonTestkitFactory, waitForVisibilityOf} from 'wix-style-react/dist/testkit/protractor';
+  import {tpaButtonTestkitFactory, waitForVisibilityOf} from 'wix-style-react/dist/testkit/protractor';
 
   //Create an element testkit via the data-hook attribute
-  const testkit = buttonTestkitFactory({dataHook: 'myDataHook'});
+  const testkit = tpaButtonTestkitFactory({dataHook: 'myDataHook'});
 
   browser.get(appUrl);  //Your application url
 
