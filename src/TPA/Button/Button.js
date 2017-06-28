@@ -3,7 +3,7 @@ import {any, oneOf, string} from 'prop-types';
 import omit from 'lodash/omit';
 import classNames from 'classnames';
 import WixComponent from '../../BaseComponents/WixComponent';
-import styles from '!css?modules!sass!./Button.scss';
+import styles from '!css?modules&localIdentName="[path][name]__[local]__[hash:base64:5]"!sass!./Button.scss';
 
 class Button extends WixComponent {
   static propTypes = {
