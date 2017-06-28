@@ -136,3 +136,6 @@ export {toastTestkitFactory} from '../src/Toast/testkit/Toast';
 
 import dividerDriverFactory from '../src/Viewer/Divider/Divider.driver';
 export const dividerTestkitFactory = testkitFactoryCreator(dividerDriverFactory);
+
+import tpaButtonDriverFactory from '../src/TPA/Button/Button.driver';
+export const tpaButtonTestkitFactory = testkitFactoryCreator(tpaButtonDriverFactory);

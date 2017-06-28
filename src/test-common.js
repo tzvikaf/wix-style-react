@@ -22,7 +22,7 @@ export const testkitFactoryCreator = driverFactory => ({wrapper, dataHook}) => {
 export const enzymeTestkitFactoryCreator = driverFactory => ({wrapper, dataHook}) => {
   const regexp = new RegExp(`^<[^>]+data-hook="${dataHook}"`);
   const component = wrapper.findWhere(n => !n.props().dataHook && (regexp).test(n.html()));
-  return driverFactory({element: component.node, wrapper});
+  return driverFactory({element: component.node || component.root, wrapper});
 };
 
 // protractor
