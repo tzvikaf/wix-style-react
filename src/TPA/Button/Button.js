@@ -3,7 +3,12 @@ import {any, oneOf, string} from 'prop-types';
 import omit from 'lodash/omit';
 import classNames from 'classnames';
 import WixComponent from '../../BaseComponents/WixComponent';
-import styles from '!css?modules&localIdentName="[path][name]__[local]__[hash:base64:5]"!sass!./Button.scss';
+import tpaStyleInjector from '../TpaStyleInjector';
+
+let styles = {locals: {}};
+try {
+  styles = require('!css-loader?modules&camelCase&localIdentName="[path][name]__[local]__[hash:base64:5]"!sass-loader!./Button.scss');
+} catch (e) {}
 
 class Button extends WixComponent {
   static propTypes = {
@@ -16,18 +21,6 @@ class Button extends WixComponent {
     theme: 'fill',
     disabled: false
   };
-
-  componentDidMount() {
-    if (typeof styles.toString === 'function') {
-      const style = document.createElement('style');
-      style.setAttribute('wix-style', true);
-      style.setAttribute('wix-style-react-button', true);
-      style.innerText = styles.toString();
-      document.head.insertBefore(style, document.head.firstChild);
-    }
-
-    super.componentDidMount();
-  }
 
   render() {
     const {children, theme, className} = this.props;
@@ -47,4 +40,4 @@ class Button extends WixComponent {
 
 Button.displayName = 'Button';
 
-export default Button;
+export default tpaStyleInjector(Button, styles);
