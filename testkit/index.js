@@ -27,6 +27,9 @@ export const dropdownLayoutTestkitFactory = testkitFactoryCreator(dropdownLayout
 import inputWithOptionsDriverFactory from '../src/InputWithOptions/InputWithOptions.driver';
 export const inputWithOptionsTestkitFactory = testkitFactoryCreator(inputWithOptionsDriverFactory);
 
+import buttonWithOptionsDriverFactory from '../src/ButtonWithOptions/ButtonWithOptions.driver';
+export const buttonWithOptionsTestkitFactory = testkitFactoryCreator(buttonWithOptionsDriverFactory);
+
 import autoCompleteDriverFactory from '../src/AutoComplete/AutoComplete.driver';
 export const autoCompleteTestkitFactory = testkitFactoryCreator(autoCompleteDriverFactory);
 

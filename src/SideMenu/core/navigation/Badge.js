@@ -3,15 +3,19 @@ import styles from './styles.scss';
 import {bool} from 'prop-types';
 import classnames from 'classnames';
 
-const Badge = ({inline}) => {
-  const className = classnames({
-    [styles.linkBadge]: true,
-    [styles.inlineLinkBadge]: inline,
-    [styles.fixedLinkBadge]: !inline
-  });
+class Badge extends React.Component {
+  render() {
+    const {inline, ...rest} = this.props;
 
-  return <span className={className} data-hook="menu-navigation-badge"/>;
-};
+    const className = classnames({
+      [styles.linkBadge]: true,
+      [styles.inlineLinkBadge]: inline,
+      [styles.fixedLinkBadge]: !inline
+    });
+
+    return <span className={className} data-hook="menu-navigation-badge" {...rest}/>;
+  }
+}
 
 Badge.defaultProps = {
   inline: false

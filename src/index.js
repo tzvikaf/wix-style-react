@@ -8,6 +8,7 @@ export {default as ButtonSelection} from './ButtonSelection';
 export {default as Input} from './Input';
 export {default as InputArea} from './InputArea';
 export {default as InputWithOptions} from './InputWithOptions';
+export {default as ButtonWithOptions} from './ButtonWithOptions';
 export {default as Checkbox} from './Checkbox';
 export {default as ToggleSwitch} from './ToggleSwitch';
 export {default as Modal} from './Modal';

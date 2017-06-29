@@ -2,25 +2,25 @@ import React from 'react';
 import {
   SideMenuDrill,
   SideMenu,
-  Button
+  Button,
+  Tooltip
 } from 'wix-style-react';
 import {
   Help as HelpIcon,
   Chat as ChatIcon,
   Trash3 as TrashIcon
 } from 'wix-style-react/Icons';
-
 let counter = 3;
 
 const items = [
   { type: 'link', to: '//wix.com', title: 'link #0_1' },
-  { type: 'link', to: '//wix.com', title: 'link #0_2', badge: true },
-  { type: 'menu', title: 'Sub Menu #1', badge: true, items: [
+  { type: 'link', to: '//wix.com', title: 'link #0_2', badge: true, badgeTooltip: true},
+  { type: 'menu', title: 'Sub Menu #1', badge: true, badgeTooltip: true, items: [
     { type: 'link', to: '//wix.com', title: 'link #1_1' },
     { type: 'link', to: '//wix.com', title: 'link #1_2' },
-    { type: 'link', to: '//wix.com', title: 'link #1_3' }
+    { type: 'link', to: '//wix.com', title: 'link #1_3', badge: true }
   ] },
-  { type: 'menu', title: 'Sub Menu #2', items: [
+  { type: 'menu', title: 'Sub Menu #2', badge: true , items: [
     { type: 'link', to: '//wix.com', title: 'link #2_1' },
     { type: 'link', to: '//wix.com', title: 'link #2_2' },
     { type: 'link', to: '//wix.com', title: 'link #2_3' },
@@ -59,11 +59,16 @@ class ExampleSideMenuDrill extends React.Component {
   }
 
   renderLink(link) {
+    const {badge, badgeTooltip} = link;
+    const badgeElement = badge && <SideMenu.NavigationBadge />;
+    const element = badgeTooltip ?
+      <Tooltip placement="right" alignment="center" content="Hi there!">
+        {badgeElement}
+      </Tooltip> : badgeElement;
     return (
-      <SideMenuDrill.Link key={link.title} isActive={link.isActive}>
+      <SideMenuDrill.Link key={link.title} isActive={link.isActive} badge={element}>
         <a href={link.to} onClick={e => this.onMenuSelected(e, link)}>
           {link.title}
-          {link.badge && <SideMenu.NavigationBadge/>}
         </a>
       </SideMenuDrill.Link>
     );
@@ -71,9 +76,16 @@ class ExampleSideMenuDrill extends React.Component {
 
   renderMenu(menu) {
     const showCategory = menu.title !== 'Sub Menu #3';
+    const {badge, badgeTooltip} = menu;
+    const badgeElement = badge && <SideMenu.NavigationBadge inline />;
+    const element = badgeTooltip ?
+      <Tooltip placement="right" alignment="center" content="Hi there!">
+        {badgeElement}
+      </Tooltip> : badgeElement;
 
     return (
-      <SideMenuDrill.SubMenu key={menu.title} menuKey={menu.title} title={menu.title} showCategory={showCategory} withBadge={menu.badge}>
+      <SideMenuDrill.SubMenu key={menu.title} menuKey={menu.title} title={menu.title} showCategory={showCategory}
+                             badge={element}>
         <SideMenu.Header>
           <div onClick={() => console.log('Header clicked')}>
             <TrashIcon size="5em"/>
