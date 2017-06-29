@@ -18,6 +18,11 @@
     background-color: "{{ color-7 }}";
     border-color: "{{ color-7 }}";
   }
+
+  &:active {
+    background-color: "{{ color-8 }}";
+    border: 1px "{{ color-8 }}" solid;
+  }
 }
 
 .wix-style-react-button-outline {
@@ -33,5 +38,10 @@
   &:disabled {
     color: "{{ color-7 }}";
     border-color: "{{ color-7 }}";
+  }
+
+  &:active {
+    background-color: "{{ color-8 }}";
+    color: "{{ color-1 }}";
   }
 }
