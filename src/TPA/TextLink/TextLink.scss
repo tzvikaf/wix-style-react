@@ -1,0 +1,7 @@
+.wix-style-react-text-link {
+  color: "{{ color-1 }}";
+
+  &:hover {
+    color: "{{ color-5 }}";
+  }
+}
