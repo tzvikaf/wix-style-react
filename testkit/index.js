@@ -139,3 +139,6 @@ export {toastTestkitFactory} from '../src/Toast/testkit/Toast';
 
 import tpaButtonDriverFactory from '../src/TPA/Button/Button.driver';
 export const tpaButtonTestkitFactory = testkitFactoryCreator(tpaButtonDriverFactory);
+
+import tpaFloatingTabsDriverFactory from '../src/TPA/FloatingTabs/FloatingTabs.driver';
+export const tpaFloatingTabsTestkitFactory = testkitFactoryCreator(tpaFloatingTabsDriverFactory);
