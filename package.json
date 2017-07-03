@@ -74,7 +74,7 @@
     "react-test-utils": "0.0.1",
     "sinon": "^1.17.6",
     "svg2react-icon": "^1.0.0",
-    "wait-for-cond": "^1.0.3",
+    "wait-for-cond": "^1.2.0",
     "webpack": "^2.3.2",
     "yoshi": "latest"
   },
@@ -114,6 +114,7 @@
     "lodash.trim": "^4.5.1",
     "lodash.uniqueid": "^4.0.1",
     "lodash.values": "^4.3.0",
+    "popper.js": "^1.10.2",
     "prop-types": "^15.5.8",
     "rc-slider": "^8.0.2",
     "react-autosuggest": "^7.0.1",

@@ -10,11 +10,12 @@ $shadow-color-arrow: rgba(0, 0, 0, .1);
 $shadow: 0 0 11px 0 $shadow-color;
 
 .root {
-  position: absolute;
-  z-index: $zIndex;
 }
 
 .tooltip {
+}
+
+.tooltipInner {
   @include FontRoman;
   position: relative;
   display: inline-block;
@@ -25,28 +26,51 @@ $shadow: 0 0 11px 0 $shadow-color;
   box-shadow: $shadow;
   word-wrap: break-word;
   -webkit-font-smoothing: antialiased;
-  &.light {
-    color: $D10;
-    background: $D80;
-  }
-  &.dark {
-    color: $D80;
-    background: $D10;
-  }
-  &.error {
-    color: white;
-    background: $R00;
-  }
-  &.normal {
-    font-size: 14px;
-    line-height: 18px;
-    text-align: center;
-  }
-  &.large {
-    font-size: 16px;
-    line-height: 24px;
-    text-align: center;
-  }
+  visibility: hidden;
+
+   &.bottom {
+     top: 10px !important;
+   }
+
+   &.top {
+     top: -10px !important;
+   }
+
+   &.right {
+     left: 10px !important;
+   }
+
+   &.left {
+     left: -10px !important;
+   }
+
+   &.light {
+     color: $D10;
+     background: $D80;
+   }
+   &.dark {
+     color: $D80;
+     background: $D10;
+   }
+   &.error {
+     color: white;
+     background: $R00;
+   }
+   &.normal {
+     font-size: 14px;
+     line-height: 18px;
+     text-align: center;
+   }
+   &.large {
+     font-size: 16px;
+     line-height: 24px;
+     text-align: center;
+   }
+
+   &.active {
+     visibility: visible;
+     animation: fadeIn .3s cubic-bezier(0.23, 1, 0.32, 1) both; 
+   }
 }
 
 .arrow {

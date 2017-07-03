@@ -73,6 +73,7 @@ class RichTextAreaButton extends Component {
         alignment="center"
         moveBy={{x: 2, y: 2}}
         hideDelay={0}
+        showDelay={0}
         disabled={isTooltipDisabled}
         >
         <button

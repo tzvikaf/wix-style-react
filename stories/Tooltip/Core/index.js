@@ -36,4 +36,4 @@ storiesOf('Core', module)
         <ExampleMove/>
       </CodeExample>
     </div>
-  ));
+    ));
