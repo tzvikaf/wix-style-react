@@ -307,7 +307,7 @@ export default class Tooltip extends WixComponent {
             className={classNames(styles.tooltip, {
               [styles.active]: active,
             })}
-            style={{zIndex, textAlign, ...popperStyle}}
+            style={{zIndex, ...popperStyle}}
             data-hook="tooltip"
             >
             <div
@@ -322,7 +322,7 @@ export default class Tooltip extends WixComponent {
                 style={{maxWidth}}
                 data-hook="tooltip-inner"
                 >
-                <div data-hook="tooltip-content">
+                <div data-hook="tooltip-content" style={{textAlign}}>
                   {this.props.content}
                 </div>
                 <div
