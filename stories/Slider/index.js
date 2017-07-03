@@ -1,16 +1,16 @@
 import React from 'react';
-import {storiesOf} from '@kadira/storybook';
+import {storiesOf} from '@storybook/react';
 import Markdown from '../utils/Components/Markdown';
 import CodeExample from '../utils/Components/CodeExample';
 import Readme from '../../src/Slider/README.md';
 
 import ExampleStandard from './ExampleStandard';
-import ExampleStandardRaw from '!raw!./ExampleStandard';
+import ExampleStandardRaw from '!raw-loader!./ExampleStandard';
 
 import ExampleControlled from './ExampleControlled';
-import ExampleControlledRaw from '!raw!./ExampleControlled';
+import ExampleControlledRaw from '!raw-loader!./ExampleControlled';
 import ExampleRtl from './ExampleRtl';
-import ExampleRtlRaw from '!raw!./ExampleRtl';
+import ExampleRtlRaw from '!raw-loader!./ExampleRtl';
 
 storiesOf('Core', module)
   .add('Slider', () => (

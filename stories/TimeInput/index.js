@@ -1,13 +1,13 @@
 import React from 'react';
-import {storiesOf} from '@kadira/storybook';
+import {storiesOf} from '@storybook/react';
 import Markdown from '../utils/Components/Markdown';
 import CodeExample from '../utils/Components/CodeExample';
 import Readme from '../../src/TimeInput/README.md';
 
 import ExampleUncontrolled from './ExampleUncontrolled';
-import ExampleUncontrolledRaw from '!raw!./ExampleUncontrolled';
+import ExampleUncontrolledRaw from '!raw-loader!./ExampleUncontrolled';
 import ExampleUncontrolled24h from './ExampleUncontrolled24h';
-import ExampleUncontrolledRaw24h from '!raw!./ExampleUncontrolled24h';
+import ExampleUncontrolledRaw24h from '!raw-loader!./ExampleUncontrolled24h';
 import moment from 'moment';
 
 storiesOf('Core', module)
