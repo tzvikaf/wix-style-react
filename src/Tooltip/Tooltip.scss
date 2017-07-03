@@ -10,10 +10,14 @@ $shadow-color-arrow: rgba(0, 0, 0, .1);
 $shadow: 0 0 11px 0 $shadow-color;
 
 .root {
+  display: inline-block;
 }
 
 .tooltip {
   visibility: hidden;
+}
+
+.targetWrapper {
 }
 
 .tooltipInner {

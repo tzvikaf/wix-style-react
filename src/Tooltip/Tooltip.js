@@ -298,8 +298,8 @@ export default class Tooltip extends WixComponent {
     const arrowStyle = this.getArrowStyle();
 
     return (
-      <div className={styles.root}>
-        <div ref="target" data-hook="target" style={targetStyle}>
+      <div className={styles.root} style={targetStyle}>
+        <div ref="target" data-hook="target" className="targetWrapper">
           {clonedTarget}
         </div>
         <div ref="content">
