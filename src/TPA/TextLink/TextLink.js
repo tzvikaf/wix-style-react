@@ -1,8 +1,9 @@
 import React from 'react';
-import {any, oneOf, string} from 'prop-types';
+import {any, oneOf, string, bool} from 'prop-types';
 import classNames from 'classnames';
 import WixComponent from '../../BaseComponents/WixComponent';
 import tpaStyleInjector from '../TpaStyleInjector';
+import omit from 'lodash/omit';
 
 let styles = {locals: {}};
 try {
@@ -13,10 +14,7 @@ class TextLink extends WixComponent {
   static propTypes = {
     link: string.isRequired,
     id: string,
-    children: string,
-    disabled: bool,
-    rel: string,
-    target: oneOf(['_blank', '_parent', '_self', '_top', 'framename'])
+    children: string
   };
 
   static defaultProps = {
@@ -26,19 +24,12 @@ class TextLink extends WixComponent {
   };
 
   render() {
-    const {children, className, disabled, rel, target, link} = this.props;
+    const {children, className, link} = this.props;
     const {locals} = styles;
     const classes = (classNames([locals['wix-style-react-text-link']], className)).trim();
 
-    const props = {
-      href: link,
-      onClick: event => disabled && event.preventDefault(),
-      rel,
-      target
-    };
-
     return (
-      <a className={classes} {...props}>
+      <a className={classes} href={link} {...omit(this.props, 'children', 'className', 'link', 'dataHook', 'href')}>
         {children}
       </a>
     );

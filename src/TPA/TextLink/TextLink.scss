@@ -1,6 +1,6 @@
 .wix-style-react-text-link {
-  color: "{{ color-1 }}";
-
+  color: "{{ color-8 }}";
+  text-decoration: none;
   &:hover {
     color: "{{ color-5 }}";
   }
