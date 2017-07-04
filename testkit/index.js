@@ -142,3 +142,6 @@ export const dividerTestkitFactory = testkitFactoryCreator(dividerDriverFactory)
 
 import tpaButtonDriverFactory from '../src/TPA/Button/Button.driver';
 export const tpaButtonTestkitFactory = testkitFactoryCreator(tpaButtonDriverFactory);
+
+import tpaTextLinkDriverFactory from '../src/TPA/TextLink/TextLink.driver';
+export const tpaTextLinkTestkitFactory = testkitFactoryCreator(tpaTextLinkDriverFactory);
