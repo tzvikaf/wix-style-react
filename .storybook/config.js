@@ -54,6 +54,7 @@ function loadStories() {
 
   //TPA
   require('../stories/TPA/Button');
+  require('../stories/TPA/TextLink');
 
   // Common
   require('../stories/Composite');
