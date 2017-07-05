@@ -3,5 +3,6 @@
   text-decoration: none;
   &:hover {
     color: "{{ color-5 }}";
+    cursor: pointer;
   }
 }
