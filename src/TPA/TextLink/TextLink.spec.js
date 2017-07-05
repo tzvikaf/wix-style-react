@@ -1,12 +1,10 @@
 import React from 'react';
-import ReactTestUtils from 'react-dom/test-utils';
 import textLinkDriverFactory from './TextLink.driver';
 import TextLink from './TextLink';
 import {createDriverFactory} from '../../test-common';
 import {tpaTextLinkTestkitFactory as textLinkTestkitFactory} from '../../../testkit';
 import {tpaTextLinkTestkitFactory as enzymeTextLinkTestkitFactory} from '../../../testkit/enzyme';
 import {isTestkitExists, isEnzymeTestkitExists} from '../../../testkit/test-common';
-
 
 describe('TextLink', () => {
 

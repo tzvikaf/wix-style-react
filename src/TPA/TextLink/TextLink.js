@@ -27,9 +27,10 @@ class TextLink extends WixComponent {
     const {children, className, link} = this.props;
     const {locals} = styles;
     const classes = (classNames([locals['wix-style-react-text-link']], className)).trim();
+    const propsToOmit = ['children', 'className', 'link', 'href', 'dataHook'];
 
     return (
-      <a className={classes} href={link} {...omit(this.props, 'children', 'className', 'link', 'dataHook', 'href')}>
+      <a className={classes} href={link} {...omit(this.props, propsToOmit)}>
         {children}
       </a>
     );
