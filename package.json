@@ -30,7 +30,11 @@
     },
     "externals": {
       "react": "React"
-    }
+    },
+    "externalUnprocessedModules": [
+      "get-own-enumerable-property-symbols",
+      "stringify-object"
+    ]
   },
   "repository": {
     "type": "git",
@@ -45,6 +49,7 @@
     "@kadira/storybook-deployer": "^1.2.0",
     "@storybook/addon-options": "3.1.6",
     "@storybook/react": "3.1.7",
+    "@storybook/storybook-deployer": "^2.0.0",
     "autosuggest-highlight": "^3.1.0",
     "babel-cli": "^6.18.0",
     "babel-core": "^6.18.2",
