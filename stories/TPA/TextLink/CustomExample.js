@@ -1,5 +1,6 @@
 import React from 'react';
 import TextLink from '../../../src/TPA/TextLink';
+import styles from './styles.scss';
 
 const style = {
   display: 'inline-block',
@@ -8,18 +9,11 @@ const style = {
   lineHeight: '22px'
 };
 
-const someCustomStyle = {
-  'color': '#000000',
-  'background': '#ff0000',
-  'text-decoration': 'underline',
-  'font-size': '20px'
-};
-
 function Example() {
   return (
     <div>
       <div className="ltr" style={style}>
-        <TextLink link="https://www.wix.com" target="_blank" style={someCustomStyle}>Click me</TextLink>
+        <TextLink link="https://www.wix.com" target="_blank" className={styles.someCustomClass}>Click me</TextLink>
       </div>
     </div>
   );
