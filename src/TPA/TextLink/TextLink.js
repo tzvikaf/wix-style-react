@@ -1,5 +1,5 @@
 import React from 'react';
-import {any, oneOf, string, bool} from 'prop-types';
+import {string} from 'prop-types';
 import classNames from 'classnames';
 import WixComponent from '../../BaseComponents/WixComponent';
 import tpaStyleInjector from '../TpaStyleInjector';
