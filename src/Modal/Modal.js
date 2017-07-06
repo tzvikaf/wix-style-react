@@ -25,6 +25,7 @@ class Modal extends WixComponent {
 
   static defaultProps = {
     onOk: () => { },
+    borderRadius: 0,
     theme: colors.blue,
     shouldCloseOnOverlayClick: false,
     horizontalPosition: 'center',
@@ -39,6 +40,7 @@ class Modal extends WixComponent {
 
     const justifyContent = positions[props.horizontalPosition];
     const alignItems = positions[props.verticalPosition];
+    const maxHeight = props.scrollableContent ? (props.maxHeight || '100vh') : 'auto';
 
     const modalStyles = {
       overlay: {
@@ -60,10 +62,10 @@ class Modal extends WixComponent {
         // Overriding defaults
         border: 'none',
         overflow: props.scrollableContent ? 'auto' : 'initial',
-        maxHeight: props.scrollableContent ? '100vh' : 'auto',
+        maxHeight,
         WebkitOverflowScrolling: 'touch',
         outline: 'none',
-        borderRadius: '0px',
+        borderRadius: props.borderRadius,
         padding: '0px',
         boxShadow: '0 0 14px 0 rgba(22, 45, 60, 0.3)',
         // Overriding defaults - END

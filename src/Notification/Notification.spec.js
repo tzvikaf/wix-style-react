@@ -1,12 +1,13 @@
 import React from 'react';
 import {mount} from 'enzyme';
-import {isTestkitExists, isEnzymeTestkitExists} from '../../testkit/test-common';
+import {isTestkitExists} from '../../testkit/test-common';
 import notificationDriverFactory from './Notification.driver';
 import {createDriverFactory} from '../test-common';
 import {notificationTestkitFactory} from '../../testkit';
-import {notificationTestkitFactory as enzymeNotificationTestkitFactory} from '../../testkit/enzyme';
+import {notificationTestkitFactory as enzymeNotificationTestkitFactory, buttonTestkitFactory as enzymeButtonTestkitFactory} from '../../testkit/enzyme';
 
 import Notification from './Notification';
+import Button from '../../src/Button';
 
 const renderNotificationWithProps = (props = {}) => (
   <Notification {...props}>
@@ -280,8 +281,17 @@ describe('Notification', () => {
 
   describe('enzyme testkit', () => {
     it('should exist', () => {
-      const component = renderNotificationWithProps({show: true});
-      expect(isEnzymeTestkitExists(component, enzymeNotificationTestkitFactory)).toBeTruthy();
+      const component = mount(<ControlledNotification/>);
+
+      const enzymeNotificationTestkit = enzymeNotificationTestkitFactory({wrapper: component, dataHook: 'notification_dh'});
+      const enzymeButtonTestkit = enzymeButtonTestkitFactory({wrapper: component, dataHook: 'button_dh'});
+
+      expect(enzymeNotificationTestkit.visible()).toBeFalsy();
+      expect(enzymeButtonTestkit.exists()).toBeTruthy();
+
+      enzymeButtonTestkit.click();
+
+      expect(enzymeNotificationTestkit.visible()).toBeTruthy();
     });
   });
 
@@ -317,3 +327,27 @@ describe('Notification', () => {
     });
   });
 });
+
+class ControlledNotification extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {showNotification: false};
+  }
+
+  render() {
+    return (
+      <div>
+        <Button dataHook="button_dh" onClick={() => this.setState({showNotification: !this.state.showNotification})}>
+          button
+        </Button>
+        <Notification dataHook="notification_dh" show={this.state.showNotification}>
+          <Notification.TextLabel>
+            label
+          </Notification.TextLabel>
+          <Notification.CloseButton/>
+        </Notification>
+      </div>
+    );
+  }
+}

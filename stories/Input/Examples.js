@@ -4,28 +4,28 @@ import PropTypes from 'prop-types';
 import CodeExample from '../utils/Components/CodeExample';
 
 import ExampleStandard from './ExampleStandard';
-import ExampleStandardRaw from '!raw!./ExampleStandard';
+import ExampleStandardRaw from '!raw-loader!./ExampleStandard';
 
 import ExampleError from './ExampleError';
-import ExampleErrorRaw from '!raw!./ExampleError';
+import ExampleErrorRaw from '!raw-loader!./ExampleError';
 
 import ExampleUnit from './ExampleUnit';
-import ExampleUnitRaw from '!raw!./ExampleUnit';
+import ExampleUnitRaw from '!raw-loader!./ExampleUnit';
 
 import ExampleMagnifyingGlass from './ExampleMagnifyingGlass';
-import ExampleMagnifyingGlassRaw from '!raw!./ExampleMagnifyingGlass';
+import ExampleMagnifyingGlassRaw from '!raw-loader!./ExampleMagnifyingGlass';
 
 import ExampleControlled from './ExampleControlled';
-import ExampleControlledRaw from '!raw!./ExampleControlled';
+import ExampleControlledRaw from '!raw-loader!./ExampleControlled';
 
 import ExampleRefs from './ExampleRefs';
-import ExampleRefsRaw from '!raw!./ExampleRefs';
+import ExampleRefsRaw from '!raw-loader!./ExampleRefs';
 
 import ExampleSizes from './ExampleSizes';
-import ExampleSizesRaw from '!raw!./ExampleSizes';
+import ExampleSizesRaw from '!raw-loader!./ExampleSizes';
 
 import ExampleRoundInput from './ExampleRoundInput';
-import ExampleRoundInputRaw from '!raw!./ExampleRoundInput';
+import ExampleRoundInputRaw from '!raw-loader!./ExampleRoundInput';
 
 const Examples = ({theme}) =>
   <div>

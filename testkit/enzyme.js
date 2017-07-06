@@ -48,9 +48,6 @@ export const checkboxTestkitFactory = enzymeTestkitFactoryCreator(checkboxDriver
 import buttonDriverFactory from '../src/Backoffice/Button/Button.driver';
 export const buttonTestkitFactory = enzymeTestkitFactoryCreator(buttonDriverFactory);
 
-import viewerButtonDriverFactory from '../src/Viewer/Button/Button.driver';
-export const viewerButtonTestkitFactory = enzymeTestkitFactoryCreator(viewerButtonDriverFactory);
-
 import textLinkDriverFactory from '../src/BaseComponents/TextLink/TextLink.driver';
 export const textLinkTestkitFactory = enzymeTestkitFactoryCreator(textLinkDriverFactory);
 
@@ -133,9 +130,6 @@ export const imageViewerTestkitFactory = enzymeTestkitFactoryCreator(imageViewer
 
 import textDriverFactory from '../src/Text/Text.driver';
 export const textTestkitFactory = enzymeTestkitFactoryCreator(textDriverFactory);
-
-import dividerDriverFactory from '../src/Viewer/Divider/Divider.driver';
-export const dividerTestkitFactory = enzymeTestkitFactoryCreator(dividerDriverFactory);
 
 import sideMenuDriverFactory from '../src/SideMenu/core/SideMenu.driver';
 export const sideMenuTestkitFactory = enzymeTestkitFactoryCreator(sideMenuDriverFactory);

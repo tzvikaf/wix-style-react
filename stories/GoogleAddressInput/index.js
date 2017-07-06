@@ -1,14 +1,14 @@
 import React from 'react';
-import {storiesOf} from '@kadira/storybook';
+import {storiesOf} from '@storybook/react';
 import Markdown from '../utils/Components/Markdown';
 import CodeExample from '../utils/Components/CodeExample';
 import Readme from '../../src/GoogleAddressInput/README.md';
 
 import ExampleControlled from './ExampleControlled';
-import ExampleControlledRaw from '!raw!./ExampleControlled';
+import ExampleControlledRaw from '!raw-loader!./ExampleControlled';
 
 import ExampleControlledWithFooter from './ExampleControlledWithFooter';
-import ExampleControlledWithFooterRaw from '!raw!./ExampleControlledWithFooter';
+import ExampleControlledWithFooterRaw from '!raw-loader!./ExampleControlledWithFooter';
 
 storiesOf('Core', module)
   .add('GoogleAddressInput', () => (

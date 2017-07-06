@@ -61,6 +61,11 @@ class SideMenuDrill extends WixComponent {
   navigateToMenu(nextMenuId, slideDirection) {
     const previousMenuId = this.state.currentMenuId;
     const showMenuA = !this.state.showMenuA;
+
+    if (nextMenuId === previousMenuId) {
+      return;
+    }
+
     this.setState({currentMenuId: nextMenuId, previousMenuId, showMenuA, slideDirection});
   }
 

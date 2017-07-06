@@ -48,9 +48,6 @@ export const checkboxTestkitFactory = testkitFactoryCreator(checkboxDriverFactor
 import buttonDriverFactory from '../src/Backoffice/Button/Button.driver';
 export const buttonTestkitFactory = testkitFactoryCreator(buttonDriverFactory);
 
-import viewerButtonDriverFactory from '../src/Viewer/Button/Button.driver';
-export const viewerButtonTestkitFactory = testkitFactoryCreator(viewerButtonDriverFactory);
-
 import textLinkDriverFactory from '../src/BaseComponents/TextLink/TextLink.driver';
 export const textLinkTestkitFactory = testkitFactoryCreator(textLinkDriverFactory);
 
@@ -136,9 +133,6 @@ import sideMenuDrillDriverFactory from '../src/SideMenu/DrillView/DrillView.driv
 export const sideMenuDrillTestkitFactory = testkitFactoryCreator(sideMenuDrillDriverFactory);
 
 export {toastTestkitFactory} from '../src/Toast/testkit/Toast';
-
-import dividerDriverFactory from '../src/Viewer/Divider/Divider.driver';
-export const dividerTestkitFactory = testkitFactoryCreator(dividerDriverFactory);
 
 import tpaButtonDriverFactory from '../src/TPA/Button/Button.driver';
 export const tpaButtonTestkitFactory = testkitFactoryCreator(tpaButtonDriverFactory);

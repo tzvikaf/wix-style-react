@@ -1,14 +1,14 @@
 import React from 'react';
-import {storiesOf} from '@kadira/storybook';
+import {storiesOf} from '@storybook/react';
 import Markdown from '../utils/Components/Markdown';
 import CodeExample from '../utils/Components/CodeExample';
 import Readme from '../../src/DatePicker/README.md';
 import ExampleControlled from './ExampleControlled';
-import ExampleControlledRaw from '!raw!./ExampleControlled';
+import ExampleControlledRaw from '!raw-loader!./ExampleControlled';
 import ExampleControlledRtl from './ExampleControlledRtl';
-import ExampleControlledRawRtl from '!raw!./ExampleControlledRtl';
+import ExampleControlledRawRtl from '!raw-loader!./ExampleControlledRtl';
 import ExampleControlledExcludePast from './ExampleControlledExcludePast';
-import ExampleControlledRawExcludePast from '!raw!./ExampleControlledExcludePast';
+import ExampleControlledRawExcludePast from '!raw-loader!./ExampleControlledExcludePast';
 
 storiesOf('Core', module)
   .add('DatePicker', () => (
