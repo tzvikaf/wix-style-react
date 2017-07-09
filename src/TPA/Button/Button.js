@@ -31,7 +31,7 @@ class Button extends WixComponent {
     ], className)).trim();
 
     return (
-      <button className={classes} {...omit(this.props, 'children', 'theme', 'className')}>
+      <button className={classes} data-theme={theme} {...omit(this.props, 'children', 'theme', 'className')}>
         {children}
       </button>
     );
