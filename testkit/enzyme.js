@@ -145,3 +145,6 @@ export const tpaButtonTestkitFactory = nativeEnzymeTestkitFactoryCreator(tpaButt
 
 import tpaTextLinkDriverFactory from '../src/TPA/TextLink/TextLink.driver';
 export const tpaTextLinkTestkitFactory = nativeEnzymeTestkitFactoryCreator(tpaTextLinkDriverFactory);
+
+import tpaFloatingTabsDriverFactory from '../src/TPA/FloatingTabs/FloatingTabs.driver';
+export const tpaFloatingTabsTestkitFactory = enzymeTestkitFactoryCreator(tpaFloatingTabsDriverFactory, true);

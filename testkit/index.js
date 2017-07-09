@@ -142,3 +142,6 @@ export const tpaButtonTestkitFactory = testkitFactoryCreator(tpaButtonDriverFact
 
 import tpaTextLinkDriverFactory from '../src/TPA/TextLink/TextLink.driver';
 export const tpaTextLinkTestkitFactory = testkitFactoryCreator(tpaTextLinkDriverFactory);
+
+import tpaFloatingTabsDriverFactory from '../src/TPA/FloatingTabs/FloatingTabs.driver';
+export const tpaFloatingTabsTestkitFactory = testkitFactoryCreator(tpaFloatingTabsDriverFactory);
