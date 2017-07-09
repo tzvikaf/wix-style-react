@@ -26,6 +26,7 @@ function loadStories() {
   require('../stories/InputArea');
   require('../stories/InputWithOptions');
   require('../stories/ButtonWithOptions');
+  require('../stories/LanguagePicker');
   require('../stories/Label');
   require('../stories/Loader');
   require('../stories/MessageBox');
@@ -42,10 +43,12 @@ function loadStories() {
 
   //BackOffice
   require('../stories/Backoffice/Button');
-  require('../stories/Backoffice/TextLink'); 
+  require('../stories/Backoffice/TextLink');
 
   //TPA
   require('../stories/TPA/Button');
+  require('../stories/TPA/FloatingTabs');
+  require('../stories/TPA/TextLink');
 
   // Common
   require('../stories/Composite');

@@ -35,6 +35,12 @@ export const checkboxTestkitFactory = protractorTestkitFactoryCreator(checkboxDr
 import dropdownDriverFactory from '../src/Dropdown/Dropdown.protractor.driver';
 export const dropdownTestkitFactory = protractorTestkitFactoryCreator(dropdownDriverFactory);
 
+import buttonWithOptionsDriverFactory from '../src/ButtonWithOptions/ButtonWithOptions.protractor.driver';
+export const buttonWithOptionsTestkitFactory = protractorTestkitFactoryCreator(buttonWithOptionsDriverFactory);
+
+import languagePickerDriverFactory from '../src/LanguagePicker/LanguagePicker.protractor.driver';
+export const languagePickerTestkitFactory = protractorTestkitFactoryCreator(languagePickerDriverFactory);
+
 import filePickerDriverFactory from '../src/FilePicker/FilePicker.protractor.driver';
 export const filePickerTestkitFactory = protractorTestkitFactoryCreator(filePickerDriverFactory);
 
@@ -69,3 +75,6 @@ import textDriverFactory from '../src/Text/Text.protractor.driver';
 export const textTestkitFactory = protractorTestkitFactoryCreator(textDriverFactory);
 
 export {protractorToastTestkitFactory} from '../src/Toast/testkit/Toast.protractor';
+
+import tpaTextLinkDriverFactory from '../src/TPA/TextLink/TextLink.protractor.driver';
+export const tpaTextLinkTestkitFactory = protractorTestkitFactoryCreator(tpaTextLinkDriverFactory);

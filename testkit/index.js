@@ -30,6 +30,9 @@ export const inputWithOptionsTestkitFactory = testkitFactoryCreator(inputWithOpt
 import buttonWithOptionsDriverFactory from '../src/ButtonWithOptions/ButtonWithOptions.driver';
 export const buttonWithOptionsTestkitFactory = testkitFactoryCreator(buttonWithOptionsDriverFactory);
 
+import languagePickerDriverFactory from '../src/LanguagePicker/LanguagePicker.driver';
+export const languagePickerTestkitFactory = testkitFactoryCreator(languagePickerDriverFactory);
+
 import autoCompleteDriverFactory from '../src/AutoComplete/AutoComplete.driver';
 export const autoCompleteTestkitFactory = testkitFactoryCreator(autoCompleteDriverFactory);
 
@@ -136,3 +139,9 @@ export {toastTestkitFactory} from '../src/Toast/testkit/Toast';
 
 import tpaButtonDriverFactory from '../src/TPA/Button/Button.driver';
 export const tpaButtonTestkitFactory = testkitFactoryCreator(tpaButtonDriverFactory);
+
+import tpaTextLinkDriverFactory from '../src/TPA/TextLink/TextLink.driver';
+export const tpaTextLinkTestkitFactory = testkitFactoryCreator(tpaTextLinkDriverFactory);
+
+import tpaFloatingTabsDriverFactory from '../src/TPA/FloatingTabs/FloatingTabs.driver';
+export const tpaFloatingTabsTestkitFactory = testkitFactoryCreator(tpaFloatingTabsDriverFactory);

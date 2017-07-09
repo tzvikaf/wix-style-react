@@ -30,6 +30,9 @@ export const inputWithOptionsTestkitFactory = enzymeTestkitFactoryCreator(inputW
 import buttonWithOptionsDriverFactory from '../src/ButtonWithOptions/ButtonWithOptions.driver';
 export const buttonWithOptionsTestkitFactory = enzymeTestkitFactoryCreator(buttonWithOptionsDriverFactory);
 
+import languagePickerDriverFactory from '../src/LanguagePicker/LanguagePicker.driver';
+export const languagePickerTestkitFactory = enzymeTestkitFactoryCreator(languagePickerDriverFactory);
+
 import autoCompleteDriverFactory from '../src/AutoComplete/AutoComplete.driver';
 export const autoCompleteTestkitFactory = enzymeTestkitFactoryCreator(autoCompleteDriverFactory);
 
@@ -139,3 +142,9 @@ export const sideMenuDrillTestkitFactory = enzymeTestkitFactoryCreator(sideMenuD
 
 import tpaButtonDriverFactory from '../src/TPA/Button/Button.driver';
 export const tpaButtonTestkitFactory = nativeEnzymeTestkitFactoryCreator(tpaButtonDriverFactory, true);
+
+import tpaTextLinkDriverFactory from '../src/TPA/TextLink/TextLink.driver';
+export const tpaTextLinkTestkitFactory = nativeEnzymeTestkitFactoryCreator(tpaTextLinkDriverFactory);
+
+import tpaFloatingTabsDriverFactory from '../src/TPA/FloatingTabs/FloatingTabs.driver';
+export const tpaFloatingTabsTestkitFactory = enzymeTestkitFactoryCreator(tpaFloatingTabsDriverFactory, true);
