@@ -1,0 +1,208 @@
+// Defaults
+///////////
+
+// Cubic Bezier
+///////////////
+
+$easeOutQuint: cubic-bezier(0.23, 1, 0.32, 1);
+$easeOutCubic: cubic-bezier(0.215, 0.61, 0.355, 1);
+$easeInOutQuint: cubic-bezier(0.86, 0, 0.07, 1);
+
+// Duration
+///////////
+
+.micro {
+  transition-duration: .12s
+}
+
+;
+.small {
+  transition-duration: .15s
+}
+
+;
+.medium {
+  transition-duration: .2s
+}
+
+;
+.large {
+  transition-duration: .3s
+}
+
+;
+.debug {
+  transition-duration: 10s
+}
+
+;
+
+// TimingFunction
+/////////////////
+
+@mixin timingFunction() {
+  .micro, .small {
+    transition-timing-function: $easeOutCubic;
+  }
+;
+  .medium, .large {
+    transition-timing-function: $easeOutQuint;
+  }
+;
+}
+
+// Gradual Delay
+////////////////
+$sequence-delay-duration: .08s;
+$sequence-delay-max-child: 100;
+
+.sequenceDelay {
+  @for $i from 1 through $sequence-delay-max-child {
+    span:nth-child(#{$i}) {
+      .child {
+        transition-delay: $i * $sequence-delay-duration;
+      }
+
+      .translate {
+        transition-delay: $i * $sequence-delay-duration;
+      }
+    }
+  }
+}
+
+// Opacity
+//////////
+
+@mixin opacityEnter() {
+  &.opacity {
+    &.micro {
+      opacity: .9;
+    }
+    &.small, &.medium {
+      opacity: .5;
+    }
+    &.large {
+      opacity: .66;
+    }
+    &.debug {
+      opacity: 0;
+    }
+  }
+}
+
+@mixin opacityEnterActive() {
+  &.opacity {
+    &.micro, &.small, &.medium, &.large, &.debug {
+      opacity: 1;
+    }
+  }
+}
+
+@mixin opacityLeave() {
+  &.opacity {
+    opacity: 1;
+  }
+}
+
+@mixin opacityLeaveActive() {
+  &.opacity {
+    opacity: 0;
+  }
+}
+
+// Scale
+////////
+
+@mixin scaleMinimum() {
+  &.scale {
+    &.micro, &.large {
+      transform: scale(0.9);
+    }
+  ;
+    &.small, &.medium {
+      transform: scale(0.75);
+    }
+  ;
+    &.debug {
+      transform: scale(0);
+    }
+  ;
+  }
+}
+
+@mixin scaleMaximum() {
+  &.scale {
+    &.micro, &.small, &.medium, &.large, &.debug {
+      transform: scale(1);
+    }
+  ;
+  }
+}
+
+// Translate
+////////////
+
+@mixin translateShow() {
+  transform: translate(0, 0);
+}
+
+@mixin translateHide() {
+  transform: translate(0, 50px);
+}
+
+@mixin translateEnter() {
+  .translate {
+    transition: all .3s $easeOutCubic;
+    @include translateHide();
+  }
+}
+
+@mixin translateEnterActive() {
+  .translate {
+    @include translateShow();
+  }
+}
+
+@mixin translateLeave() {
+  .translate {
+    transition: all .3s $easeInOutQuint;
+    @include translateShow();
+  }
+}
+
+@mixin translateLeaveActive() {
+  .translate {
+    @include translateHide();
+  }
+}
+
+// Animation classes
+////////////////////
+
+.enter {
+  transition-property: all;
+  @include timingFunction();
+  @include opacityEnter();
+  @include scaleMinimum();
+  @include translateEnter();
+}
+
+.enter-active {
+  @include opacityEnterActive();
+  @include scaleMaximum();
+  @include translateEnterActive();
+}
+
+.leave {
+  transition-property: all;
+  @include timingFunction();
+  @include opacityLeave();
+  @include scaleMaximum();
+  @include translateLeave();
+}
+
+.leave-active {
+  @include opacityLeaveActive();
+  @include scaleMinimum();
+  @include translateLeaveActive();
+}

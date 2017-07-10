@@ -73,7 +73,7 @@ function loadStories() {
   require('../stories/Notification');
 
   // Animations
-  // require('../stories/Animations');
+  require('../stories/Animations');
 }
 
 configure(loadStories, module);

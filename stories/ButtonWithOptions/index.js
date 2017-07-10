@@ -5,6 +5,7 @@ import Readme from '../../src/ButtonWithOptions/README.md';
 import ExampleStandardComp from './ButtonWithOptionsStandard';
 import InteractiveCodeExample from '../utils/Components/InteractiveCodeExample/InteractiveCodeExample';
 import TabbedView from '../utils/Components/TabbedView';
+import ReadmeTestkit from '../../src/ButtonWithOptions/README.TESTKIT.md';
 
 storiesOf('4. Selection', module)
   .add('4.2 ButtonWithOptions', () => {
@@ -15,6 +16,9 @@ storiesOf('4. Selection', module)
           <InteractiveCodeExample title="Customize a <ButtonWithOptions/>">
             <ExampleStandardComp/>
           </InteractiveCodeExample>
+        </div>
+        <div>
+          <Markdown source={ReadmeTestkit}/>
         </div>
       </TabbedView>
     );
