@@ -1,10 +1,9 @@
 import React from 'react';
-import { any, bool } from 'prop-types';
+import {any, bool} from 'prop-types';
 import WixComponent from '../../BaseComponents/WixComponent';
-import Button from '../Button/Button';
 import tpaStyleInjector from '../TpaStyleInjector';
 
-let styles = { locals: {} };
+let styles = {locals: {}};
 try {
   styles = require('!css-loader?modules&camelCase&localIdentName="[path][name]__[local]__[hash:base64:5]"!sass-loader!./FloatingTabItem.scss');
 } catch (e) { }

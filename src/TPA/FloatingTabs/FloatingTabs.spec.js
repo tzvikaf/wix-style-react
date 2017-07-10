@@ -1,12 +1,8 @@
 import React from 'react';
 import ReactTestUtils from 'react-dom/test-utils';
-// import floatingTabsDriverFactory from './FloatingTabs.driver';
 import FloatingTabs from './FloatingTabs';
 import FloatingTabItem from '../FloatingTabItem/FloatingTabItem';
-// import {createDriverFactory} from '../../test-common';
-import { tpaFloatingTabsTestkitFactory as floatingTabsTestkitFactory } from '../../../testkit';
-// import {tpaFloatingTabsTestkitFactory as enzymeFloatingTabsTestkitFactory} from '../../../testkit/enzyme';
-// import {mount} from 'enzyme';
+import {tpaFloatingTabsTestkitFactory as floatingTabsTestkitFactory} from '../../../testkit';
 
 describe('FloatingTabs', () => {
 
@@ -25,7 +21,7 @@ describe('FloatingTabs', () => {
           </FloatingTabs>
         </div>
       ));
-      const floatingTabsTestkit = floatingTabsTestkitFactory({ wrapper, dataHook });
+      const floatingTabsTestkit = floatingTabsTestkitFactory({wrapper, dataHook});
       expect(floatingTabsTestkit.exists()).toBeTruthy();
       expect(floatingTabsTestkit.activeContent()).toEqual('1');
     });
@@ -42,7 +38,7 @@ describe('FloatingTabs', () => {
           </FloatingTabs>
         </div>
       ));
-      const floatingTabsTestkit = floatingTabsTestkitFactory({ wrapper, dataHook });
+      const floatingTabsTestkit = floatingTabsTestkitFactory({wrapper, dataHook});
       expect(floatingTabsTestkit.isButtonByIdExists('first')).toBe(true);
       expect(floatingTabsTestkit.isButtonByIdExists('second')).toBe(true);
       expect(floatingTabsTestkit.getButtonTextById('first')).toBe('Tab One');
@@ -60,7 +56,7 @@ describe('FloatingTabs', () => {
           </FloatingTabs>
         </div>
       ));
-      const floatingTabsTestkit = floatingTabsTestkitFactory({ wrapper, dataHook });
+      const floatingTabsTestkit = floatingTabsTestkitFactory({wrapper, dataHook});
       expect(floatingTabsTestkit.isButtonActive('first')).toBe(true);
       expect(floatingTabsTestkit.isButtonActive('second')).toBe(false);
     });
@@ -77,7 +73,7 @@ describe('FloatingTabs', () => {
           </FloatingTabs>
         </div>
       ));
-      const floatingTabsTestkit = floatingTabsTestkitFactory({ wrapper, dataHook });
+      const floatingTabsTestkit = floatingTabsTestkitFactory({wrapper, dataHook});
       expect(floatingTabsTestkit.isButtonActive('first')).toBe(true);
       expect(floatingTabsTestkit.isButtonActive('second')).toBe(false);
       expect(floatingTabsTestkit.activeContent()).toEqual('1');
@@ -95,7 +91,7 @@ describe('FloatingTabs', () => {
           </FloatingTabs>
         </div>
       ));
-      const floatingTabsTestkit = floatingTabsTestkitFactory({ wrapper, dataHook });
+      const floatingTabsTestkit = floatingTabsTestkitFactory({wrapper, dataHook});
       floatingTabsTestkit.clickButtonById('second');
       expect(onChangeMock).toHaveBeenCalledWith('second');
     });
