@@ -1,3 +1,14 @@
 .wix-style-react-floating-tabs {
-  position: relative;
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.wix-style-react-floating-tabs-buttons{
+  display: flex;
+  direction: row;
+}
+.wix-style-react-floating-tabs-buttons-item{
+  flex:1;
 }

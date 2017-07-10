@@ -1,3 +1,11 @@
 .wix-style-react-floating-tab-item {
-  position: relative;
+  width:100%;
+  display: none;
+}
+
+:global {
+  .active > * {
+    width:100%;
+    display: block;
+  }
 }

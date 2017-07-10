@@ -1,12 +1,8 @@
 import React from 'react';
 import ReactTestUtils from 'react-dom/test-utils';
-// import floatingTabsDriverFactory from './FloatingTabs.driver';
 import FloatingTabs from './FloatingTabs';
 import FloatingTabItem from '../FloatingTabItem/FloatingTabItem';
-// import {createDriverFactory} from '../../test-common';
 import {tpaFloatingTabsTestkitFactory as floatingTabsTestkitFactory} from '../../../testkit';
-// import {tpaFloatingTabsTestkitFactory as enzymeFloatingTabsTestkitFactory} from '../../../testkit/enzyme';
-// import {mount} from 'enzyme';
 
 describe('FloatingTabs', () => {
 
@@ -14,20 +10,91 @@ describe('FloatingTabs', () => {
 
   describe('testkit', () => {
     it('should exist', () => {
+
       const div = document.createElement('div');
       const dataHook = 'myDataHook';
-      const onClick1 = jest.fn();
-      const onClick2 = jest.fn();
       const wrapper = div.appendChild(ReactTestUtils.renderIntoDocument(
         <div>
           <FloatingTabs dataHook={dataHook}>
-            <FloatingTabItem onClick={onClick1} active={true}>1</FloatingTabItem>
-            <FloatingTabItem onClick={onClick2}>2</FloatingTabItem>
+            <FloatingTabItem>1</FloatingTabItem>
+            <FloatingTabItem>2</FloatingTabItem>
           </FloatingTabs>
         </div>
       ));
       const floatingTabsTestkit = floatingTabsTestkitFactory({wrapper, dataHook});
       expect(floatingTabsTestkit.exists()).toBeTruthy();
+      expect(floatingTabsTestkit.activeContent()).toEqual('1');
     });
+
+    it('should first button have proper title', () => {
+
+      const div = document.createElement('div');
+      const dataHook = 'myDataHook';
+      const wrapper = div.appendChild(ReactTestUtils.renderIntoDocument(
+        <div>
+          <FloatingTabs dataHook={dataHook}>
+            <FloatingTabItem id="first" title="Tab One">1</FloatingTabItem>
+            <FloatingTabItem id="second" title="Tab Two">2</FloatingTabItem>
+          </FloatingTabs>
+        </div>
+      ));
+      const floatingTabsTestkit = floatingTabsTestkitFactory({wrapper, dataHook});
+      expect(floatingTabsTestkit.isButtonByIdExists('first')).toBe(true);
+      expect(floatingTabsTestkit.isButtonByIdExists('second')).toBe(true);
+      expect(floatingTabsTestkit.getButtonTextById('first')).toBe('Tab One');
+    });
+
+    it('should have active and inactive buttons', () => {
+
+      const div = document.createElement('div');
+      const dataHook = 'myDataHook';
+      const wrapper = div.appendChild(ReactTestUtils.renderIntoDocument(
+        <div>
+          <FloatingTabs activeId="first" dataHook={dataHook}>
+            <FloatingTabItem id="first" title="Tab One">1</FloatingTabItem>
+            <FloatingTabItem id="second" title="Tab Two">2</FloatingTabItem>
+          </FloatingTabs>
+        </div>
+      ));
+      const floatingTabsTestkit = floatingTabsTestkitFactory({wrapper, dataHook});
+      expect(floatingTabsTestkit.isButtonActive('first')).toBe(true);
+      expect(floatingTabsTestkit.isButtonActive('second')).toBe(false);
+    });
+
+    it('should have default selected tab', () => {
+
+      const div = document.createElement('div');
+      const dataHook = 'myDataHook';
+      const wrapper = div.appendChild(ReactTestUtils.renderIntoDocument(
+        <div>
+          <FloatingTabs dataHook={dataHook}>
+            <FloatingTabItem id="first" title="Tab One">1</FloatingTabItem>
+            <FloatingTabItem id="second" title="Tab Two">2</FloatingTabItem>
+          </FloatingTabs>
+        </div>
+      ));
+      const floatingTabsTestkit = floatingTabsTestkitFactory({wrapper, dataHook});
+      expect(floatingTabsTestkit.isButtonActive('first')).toBe(true);
+      expect(floatingTabsTestkit.isButtonActive('second')).toBe(false);
+      expect(floatingTabsTestkit.activeContent()).toEqual('1');
+    });
+
+    it('should be able to click and select tab', () => {
+      const onChangeMock = jest.fn();
+      const div = document.createElement('div');
+      const dataHook = 'myDataHook';
+      const wrapper = div.appendChild(ReactTestUtils.renderIntoDocument(
+        <div>
+          <FloatingTabs dataHook={dataHook} onChange={onChangeMock}>
+            <FloatingTabItem id="first" title="Tab One">1</FloatingTabItem>
+            <FloatingTabItem id="second" title="Tab Two">2</FloatingTabItem>
+          </FloatingTabs>
+        </div>
+      ));
+      const floatingTabsTestkit = floatingTabsTestkitFactory({wrapper, dataHook});
+      floatingTabsTestkit.clickButtonById('second');
+      expect(onChangeMock).toHaveBeenCalledWith('second');
+    });
+
   });
 });
