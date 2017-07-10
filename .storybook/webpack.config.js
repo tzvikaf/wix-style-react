@@ -7,6 +7,7 @@ module.exports = (config, env) => {
   const newConfig = wixStorybookConfig(genDefaultConfig(config, env));
 
   return _.merge(newConfig, {
+    context: path.resolve(__dirname, '../src'),
     resolve: {
       alias: {
         'wix-style-react': path.resolve(__dirname, '../src')
