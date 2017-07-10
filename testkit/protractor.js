@@ -75,3 +75,6 @@ import textDriverFactory from '../src/Text/Text.protractor.driver';
 export const textTestkitFactory = protractorTestkitFactoryCreator(textDriverFactory);
 
 export {protractorToastTestkitFactory} from '../src/Toast/testkit/Toast.protractor';
+
+import tpaTextLinkDriverFactory from '../src/TPA/TextLink/TextLink.protractor.driver';
+export const tpaTextLinkTestkitFactory = protractorTestkitFactoryCreator(tpaTextLinkDriverFactory);
