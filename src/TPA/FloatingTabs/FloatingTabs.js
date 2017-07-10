@@ -1,10 +1,11 @@
 import React from 'react';
-import {any} from 'prop-types';
+import { any } from 'prop-types';
+import classNames from 'classnames';
 import WixComponent from '../../BaseComponents/WixComponent';
 import Button from '../Button/Button';
 import tpaStyleInjector from '../TpaStyleInjector';
 
-let styles = {locals: {}};
+let styles = { locals: {} };
 try {
   styles = require('!css-loader?modules&camelCase&localIdentName="[path][name]__[local]__[hash:base64:5]"!sass-loader!./FloatingTabs.scss');
 } catch (e) { }
@@ -32,19 +33,30 @@ class FloatingTabs extends WixComponent {
   handleTabClick(id) {
     this.props.onChange(id);
   }
+  getButtonClassName(index, count) {
+    if (index === 0) {
+      return 'wix-style-react-floating-tabs-button-first';
+    }
+    if (index === count) {
+      return 'wix-style-react-floating-tabs-button-last';
+    }
+    return 'wix-style-react-floating-tabs-button';
+  }
 
   renderButtons() {
-    const {children, activeId} = this.props;
-    const tabButtons = React.Children.map(children, child => {
+    const { children, activeId } = this.props;
+    const childrenArray = React.Children.toArray(children);
+    const tabButtons = childrenArray.map((child, index) => {
       const _activeId = this.getActiveId(activeId, children);
       const theme = (_activeId === child.props.id) ? 'fill' : 'outline';
+      const buttonClassName = this.getButtonClassName(index, childrenArray.length - 1);
       return (
         <Button
           onClick={() => this.handleTabClick(child.props.id)}
-          className={styles.locals['wix-style-react-floating-tabs-buttons-item']}
+          className={classNames(styles.locals[buttonClassName], styles.locals['wix-style-react-floating-tabs-buttons-item'])}
           dataHook={`floating-tab-item-button-${child.props.id}`}
           theme={theme}
-          >
+        >
           {child.props.title}
         </Button>
       );
@@ -53,7 +65,7 @@ class FloatingTabs extends WixComponent {
   }
 
   renderContent() {
-    const {children, activeId} = this.props;
+    const { children, activeId } = this.props;
     return React.Children.map(children, child => {
       const _activeId = this.getActiveId(activeId, children);
       const className = child.props.id === _activeId ? 'active' : '';
