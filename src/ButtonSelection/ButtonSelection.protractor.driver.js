@@ -10,7 +10,7 @@ const buttonSelectionDriverFactory = component => {
     getSelectedButton: () => {
       return component.$$('span').getAttribute('class')
           .then(classes => {
-            const selectedBtnClass = classes.filter(i => styles['selected'] === i)[0];
+            const selectedBtnClass = classes.filter(i => styles.selected === i)[0];
             return component.$(`.${selectedBtnClass}`).getText();
           });
     },

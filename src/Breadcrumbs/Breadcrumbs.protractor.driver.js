@@ -9,7 +9,7 @@ const breadcrumbsDriverFactory = component => {
     clickBreadcrumbAt: position => component.$$('[data-hook="breadcrumb-clickable"]').get(position).click(),
     getActiveItemId: () => component.all(by.xpath('./div')).getAttribute('class')
       .then(classes => {
-        const activeItems = classes.map(cls => cls.split(' ').some(c => styles['active'] === c));
+        const activeItems = classes.map(cls => cls.split(' ').some(c => styles.active === c));
         return activeItems.indexOf(true);
       }),
     isLarge: () => hasClass('large'),
