@@ -30,6 +30,9 @@ export const inputWithOptionsTestkitFactory = testkitFactoryCreator(inputWithOpt
 import buttonWithOptionsDriverFactory from '../src/ButtonWithOptions/ButtonWithOptions.driver';
 export const buttonWithOptionsTestkitFactory = testkitFactoryCreator(buttonWithOptionsDriverFactory);
 
+import languagePickerDriverFactory from '../src/LanguagePicker/LanguagePicker.driver';
+export const languagePickerTestkitFactory = testkitFactoryCreator(languagePickerDriverFactory);
+
 import autoCompleteDriverFactory from '../src/AutoComplete/AutoComplete.driver';
 export const autoCompleteTestkitFactory = testkitFactoryCreator(autoCompleteDriverFactory);
 
@@ -47,9 +50,6 @@ export const checkboxTestkitFactory = testkitFactoryCreator(checkboxDriverFactor
 
 import buttonDriverFactory from '../src/Backoffice/Button/Button.driver';
 export const buttonTestkitFactory = testkitFactoryCreator(buttonDriverFactory);
-
-import viewerButtonDriverFactory from '../src/Viewer/Button/Button.driver';
-export const viewerButtonTestkitFactory = testkitFactoryCreator(viewerButtonDriverFactory);
 
 import textLinkDriverFactory from '../src/BaseComponents/TextLink/TextLink.driver';
 export const textLinkTestkitFactory = testkitFactoryCreator(textLinkDriverFactory);
@@ -137,8 +137,11 @@ export const sideMenuDrillTestkitFactory = testkitFactoryCreator(sideMenuDrillDr
 
 export {toastTestkitFactory} from '../src/Toast/testkit/Toast';
 
-import dividerDriverFactory from '../src/Viewer/Divider/Divider.driver';
-export const dividerTestkitFactory = testkitFactoryCreator(dividerDriverFactory);
-
 import tpaButtonDriverFactory from '../src/TPA/Button/Button.driver';
 export const tpaButtonTestkitFactory = testkitFactoryCreator(tpaButtonDriverFactory);
+
+import tpaTextLinkDriverFactory from '../src/TPA/TextLink/TextLink.driver';
+export const tpaTextLinkTestkitFactory = testkitFactoryCreator(tpaTextLinkDriverFactory);
+
+import tpaFloatingTabsDriverFactory from '../src/TPA/FloatingTabs/FloatingTabs.driver';
+export const tpaFloatingTabsTestkitFactory = testkitFactoryCreator(tpaFloatingTabsDriverFactory);

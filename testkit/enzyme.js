@@ -30,6 +30,9 @@ export const inputWithOptionsTestkitFactory = enzymeTestkitFactoryCreator(inputW
 import buttonWithOptionsDriverFactory from '../src/ButtonWithOptions/ButtonWithOptions.driver';
 export const buttonWithOptionsTestkitFactory = enzymeTestkitFactoryCreator(buttonWithOptionsDriverFactory);
 
+import languagePickerDriverFactory from '../src/LanguagePicker/LanguagePicker.driver';
+export const languagePickerTestkitFactory = enzymeTestkitFactoryCreator(languagePickerDriverFactory);
+
 import autoCompleteDriverFactory from '../src/AutoComplete/AutoComplete.driver';
 export const autoCompleteTestkitFactory = enzymeTestkitFactoryCreator(autoCompleteDriverFactory);
 
@@ -47,9 +50,6 @@ export const checkboxTestkitFactory = enzymeTestkitFactoryCreator(checkboxDriver
 
 import buttonDriverFactory from '../src/Backoffice/Button/Button.driver';
 export const buttonTestkitFactory = enzymeTestkitFactoryCreator(buttonDriverFactory);
-
-import viewerButtonDriverFactory from '../src/Viewer/Button/Button.driver';
-export const viewerButtonTestkitFactory = enzymeTestkitFactoryCreator(viewerButtonDriverFactory);
 
 import textLinkDriverFactory from '../src/BaseComponents/TextLink/TextLink.driver';
 export const textLinkTestkitFactory = enzymeTestkitFactoryCreator(textLinkDriverFactory);
@@ -134,9 +134,6 @@ export const imageViewerTestkitFactory = enzymeTestkitFactoryCreator(imageViewer
 import textDriverFactory from '../src/Text/Text.driver';
 export const textTestkitFactory = enzymeTestkitFactoryCreator(textDriverFactory);
 
-import dividerDriverFactory from '../src/Viewer/Divider/Divider.driver';
-export const dividerTestkitFactory = enzymeTestkitFactoryCreator(dividerDriverFactory);
-
 import sideMenuDriverFactory from '../src/SideMenu/core/SideMenu.driver';
 export const sideMenuTestkitFactory = enzymeTestkitFactoryCreator(sideMenuDriverFactory);
 
@@ -145,3 +142,9 @@ export const sideMenuDrillTestkitFactory = enzymeTestkitFactoryCreator(sideMenuD
 
 import tpaButtonDriverFactory from '../src/TPA/Button/Button.driver';
 export const tpaButtonTestkitFactory = nativeEnzymeTestkitFactoryCreator(tpaButtonDriverFactory, true);
+
+import tpaTextLinkDriverFactory from '../src/TPA/TextLink/TextLink.driver';
+export const tpaTextLinkTestkitFactory = nativeEnzymeTestkitFactoryCreator(tpaTextLinkDriverFactory);
+
+import tpaFloatingTabsDriverFactory from '../src/TPA/FloatingTabs/FloatingTabs.driver';
+export const tpaFloatingTabsTestkitFactory = enzymeTestkitFactoryCreator(tpaFloatingTabsDriverFactory, true);

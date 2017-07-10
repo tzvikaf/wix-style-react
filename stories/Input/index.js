@@ -1,5 +1,5 @@
 import React from 'react';
-import {storiesOf} from '@kadira/storybook';
+import {storiesOf} from '@storybook/react';
 import Markdown from '../utils/Components/Markdown';
 import CodeExample from '../utils/Components/CodeExample';
 import Readme from '../../src/Input/README.md';
@@ -9,7 +9,7 @@ import TabbedView from '../utils/Components/TabbedView';
 import Examples from './Examples';
 
 import ExamplePaneltitleStyle from './ExamplePaneltitleStyle';
-import ExamplePaneltitleStyleRaw from '!raw!./ExamplePaneltitleStyle';
+import ExamplePaneltitleStyleRaw from '!raw-loader!./ExamplePaneltitleStyle';
 
 storiesOf('Core', module)
   .add('Input', () => (

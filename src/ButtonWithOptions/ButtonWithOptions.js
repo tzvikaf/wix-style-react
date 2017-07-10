@@ -28,8 +28,7 @@ class ButtonWithOptions extends WixComponent {
     this.closeOnSelect = this.closeOnSelect.bind(this);
 
     if (props.children) {
-      this.buttonElement = props.children.find(element => element.type === ButtonWithOptions.Button);
-      this.optionsElement = props.children.filter(element => element.type !== ButtonWithOptions.Button);
+      [this.buttonElement, ...this.optionsElement] = React.Children.toArray(props.children);
     }
   }
 
@@ -148,21 +147,16 @@ ButtonWithOptions.propTypes = {
   dropdownWidth: PropTypes.string,
   dropdownOffsetLeft: PropTypes.string,
   children: PropTypes.arrayOf((propValue, key) => {
-    if (propValue[key].type === ButtonWithOptions.Button) {
-      propValue.forEach((child, anotherKey) => {
-        if (anotherKey !== key && propValue.type === ButtonWithOptions.Button) {
-          return new Error(`ButtonWithOptions: Invalid Prop children, more than one ButtonWithOptions.Button was given`);
-        }
-      });
-      return;
+    if (key === 0 && propValue[key].type !== ButtonWithOptions.Button) {
+      return new Error(`ButtonWithOptions: Invalid Prop children, first child must be ButtonWithOptions.Button`);
     }
-    if (propValue[key].type !== ButtonWithOptions.Option) {
-      const optionsValidator = React.Children.map(propValue[key], item => item.type === ButtonWithOptions.Option);
-      if (optionsValidator.some(optionValid => !optionValid)) {
+
+    React.Children.forEach(propValue[key], item => {
+      if (item.type !== ButtonWithOptions.Option) {
         return new Error(`ButtonWithOptions: Invalid Prop children was given. Validation failed on child number ${key}`);
       }
-    }
-  }),
+    });
+  })
 };
 
 ButtonWithOptions.Option = () => null;
