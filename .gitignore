@@ -13,4 +13,3 @@ storybook-e2e
 *.iml
 .vscode
 test/e2e
-yarn.lock
