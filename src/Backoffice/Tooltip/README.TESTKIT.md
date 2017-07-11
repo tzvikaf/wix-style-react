@@ -4,6 +4,12 @@
 
 ## Tooltip TestKit API
 
+### Polyfills
+Tooltip driver might need polyfills, two polyfills are supported via the library
+```
+import 'wix-style-react/dist/src/Backoffice/Tooltip/RangePolyfill.js';
+import 'wix-style-react/dist/src/Backoffice/Tooltip/CancelAnimationPolyfill.js';
+```
 
 ### Enzyme / ReactTestUtils
 | method | arguments | returned value | description |

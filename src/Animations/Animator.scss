@@ -51,8 +51,9 @@ $easeInOutQuint: cubic-bezier(0.86, 0, 0.07, 1);
 ;
 }
 
-// Gradual Delay
-////////////////
+// Sequence Delay
+/////////////////
+
 $sequence-delay-duration: .08s;
 $sequence-delay-max-child: 100;
 
@@ -143,11 +144,32 @@ $sequence-delay-max-child: 100;
 ////////////
 
 @mixin translateShow() {
-  transform: translate(0, 0);
+  &:not(.enter):not(.leave) {
+    transform: translate(0, 0);
+  }
 }
 
 @mixin translateHide() {
-  transform: translate(0, 50px);
+  @for $i from 1 through 10 {
+    $size: $i * 10%;
+    &.translate-#{$i * 10} {
+      &.translate-top {
+        transform: translate(0, $size);
+      }
+
+      &.translate-bottom {
+        transform: translate(0, -$size);
+      }
+
+      &.translate-left {
+        transform: translate($size, 0);
+      }
+
+      &.translate-right {
+        transform: translate(-$size, 0);
+      }
+    }
+  }
 }
 
 @mixin translateEnter() {

@@ -1,6 +1,6 @@
 import React from 'react';
 import DataTable from 'wix-style-react/DataTable';
-import s from './Example.scss'
+import s from './Example.scss';
 
 const style = {
   width: '50%',
