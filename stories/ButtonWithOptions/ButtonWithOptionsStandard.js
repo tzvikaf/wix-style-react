@@ -57,7 +57,6 @@ class ButtonWithOptionsStandard extends Component {
             <Label>Icon Only</Label>
             <div className={styles.flex}>
               <RadioGroup
-                display="horizontal"
                 value={this.state.theme}
                 onChange={theme => this.setState({theme, iconOnly: true, restrainDropdownSize: false})}
                 >
@@ -137,7 +136,7 @@ class ButtonWithOptionsStandard extends Component {
                 value={this.state.dropdownTheme}
                 onChange={dropdownTheme => this.setState({dropdownTheme})}
                 >
-                <RadioGroup.Radio >No Theme</RadioGroup.Radio>
+                <RadioGroup.Radio value="none">No Theme</RadioGroup.Radio>
                 <RadioGroup.Radio value="b2b">b2b</RadioGroup.Radio>
               </RadioGroup>
             </div>
