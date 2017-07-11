@@ -18,17 +18,27 @@ class CssClass {
     }
   }
 
-  getChild(props) {
+  getCssList(props, cssProps) {
     return Object.entries(props)
-      .filter(([key]) => this.filter(this.childCssProps, key))
+      .filter(([key]) => this.filter(cssProps, key));
+  }
+
+  getChild(props) {
+    return this.getCssList(props, this.childCssProps)
       .concat(this.baseCss)
       .map(([key, value]) => this.map(key, value))
       .join(' ');
   }
 
+  getChildTranslate(props) {
+    const {translate} = props;
+    const {to = 'TOP', size = 100} = translate;
+    const cssList = translate ? [css.translate, css[`translate-${to.toLowerCase()}`], css[`translate-${size}`]] : [];
+    return cssList.join(' ');
+  }
+
   getParent(props) {
-    return Object.entries(props)
-      .filter(([key]) => this.filter(this.parentCssProps, key))
+    return this.getCssList(props, this.parentCssProps)
       .map(([key, value]) => this.map(key, value))
       .join(' ');
   }
