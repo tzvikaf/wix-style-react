@@ -34,7 +34,7 @@ class Input extends WixComponent {
 
   render() {
     const errorClassName = this.props.error === true ? this.errorClassName : '';
-    return (<input className={classNames(styles.locals.error, this.props.inputClassName, errorClassName)} {...this.props}/>);
+    return (<input className={classNames(styles.locals.input, this.props.inputClassName, errorClassName)} {...this.props}/>);
   }
 }
 
