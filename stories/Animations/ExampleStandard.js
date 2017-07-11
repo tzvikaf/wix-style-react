@@ -20,12 +20,12 @@ class AnimatedExample extends React.Component {
       showComponents: true,
       opacity: true,
       scale: false,
-      sequenceDelay: false,
-      translate: true,
+      sequenceDelay: true,
+      translate: false,
       translateSize: 100,
       direction: 'left',
       timing: 'large',
-      show: true
+      show: false
     };
 
     this.options = [

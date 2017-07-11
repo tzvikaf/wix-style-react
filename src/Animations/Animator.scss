@@ -56,17 +56,46 @@ $easeInOutQuint: cubic-bezier(0.86, 0, 0.07, 1);
 
 $sequence-delay-duration: .08s;
 $sequence-delay-max-child: 100;
+//
+//.sequenceDelay {
+//  @for $i from 1 through $sequence-delay-max-child {
+//    $delay: $i * $sequence-delay-duration;
+//    span:nth-child(#{$i}) {
+//      .child {
+//        transition-delay: $delay;
+//      }
+//
+//      .translate {
+//        transition-delay: $delay;
+//      }
+//    }
+//  }
+//}
 
-.sequenceDelay {
+@mixin delayEnter() {
   @for $i from 1 through $sequence-delay-max-child {
-    span:nth-child(#{$i}) {
+    &.childSequenceDelay-#{$i} {
+      $delay: $i * $sequence-delay-duration;
+      transition: opacity 0s linear $delay;
+      opacity: 0;
+
       .child {
-        transition-delay: $i * $sequence-delay-duration;
+        transition-delay: $delay;
       }
 
       .translate {
-        transition-delay: $i * $sequence-delay-duration;
+        transition-delay: $delay;
       }
+
+    }
+
+  }
+}
+
+@mixin delayEnterActive() {
+  @for $i from 1 through $sequence-delay-max-child {
+    &.childSequenceDelay-#{$i} {
+      opacity: 1;
     }
   }
 }
@@ -75,7 +104,7 @@ $sequence-delay-max-child: 100;
 //////////
 
 @mixin opacityEnter() {
-  &.opacity {
+  .opacity {
     &.micro {
       opacity: .9;
     }
@@ -92,7 +121,7 @@ $sequence-delay-max-child: 100;
 }
 
 @mixin opacityEnterActive() {
-  &.opacity {
+  .opacity {
     &.micro, &.small, &.medium, &.large, &.debug {
       opacity: 1;
     }
@@ -100,13 +129,13 @@ $sequence-delay-max-child: 100;
 }
 
 @mixin opacityLeave() {
-  &.opacity {
+  .opacity {
     opacity: 1;
   }
 }
 
 @mixin opacityLeaveActive() {
-  &.opacity {
+  .opacity {
     opacity: 0;
   }
 }
@@ -115,7 +144,7 @@ $sequence-delay-max-child: 100;
 ////////
 
 @mixin scaleMinimum() {
-  &.scale {
+  .scale {
     &.micro, &.large {
       transform: scale(0.9);
     }
@@ -132,7 +161,7 @@ $sequence-delay-max-child: 100;
 }
 
 @mixin scaleMaximum() {
-  &.scale {
+  .scale {
     &.micro, &.small, &.medium, &.large, &.debug {
       transform: scale(1);
     }
@@ -174,7 +203,9 @@ $sequence-delay-max-child: 100;
 
 @mixin translateEnter() {
   .translate {
-    transition: all .3s $easeOutCubic;
+    transition-property: all;
+    transition-duration: .3s;
+    transition-timing-function: $easeOutCubic;
     @include translateHide();
   }
 }
@@ -187,7 +218,9 @@ $sequence-delay-max-child: 100;
 
 @mixin translateLeave() {
   .translate {
-    transition: all .3s $easeInOutQuint;
+    transition-property: all;
+    transition-duration: .3s;
+    transition-timing-function: $easeInOutQuint;
     @include translateShow();
   }
 }
@@ -207,12 +240,14 @@ $sequence-delay-max-child: 100;
   @include opacityEnter();
   @include scaleMinimum();
   @include translateEnter();
+  @include delayEnter();
 }
 
 .enter-active {
   @include opacityEnterActive();
   @include scaleMaximum();
   @include translateEnterActive();
+  @include delayEnterActive();
 }
 
 .leave {
