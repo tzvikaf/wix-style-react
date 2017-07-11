@@ -2,11 +2,11 @@ import React from 'react';
 import ReactTestUtils from 'react-dom/test-utils';
 import tooltipDriverFactory from './Tooltip.driver';
 import Tooltip from './Tooltip';
-import {createDriverFactory} from '../test-common';
-import {buttonTestkitFactory, tooltipTestkitFactory} from '../../testkit';
-import {tooltipTestkitFactory as enzymeTooltipTestkitFactory} from '../../testkit/enzyme';
+import {createDriverFactory} from '../../test-common';
+import {buttonTestkitFactory, backofficeTooltipTestkitFactory as tooltipTestkitFactory} from '../../../testkit';
+import {backofficeTooltipTestkitFactory as enzymeTooltipTestkitFactory} from '../../../testkit/enzyme';
 import {mount} from 'enzyme';
-import {Button} from '../../src/Backoffice';
+import {Button} from '../../../src/Backoffice';
 import waitForCond from 'wait-for-cond';
 
 describe('Tooltip', () => {

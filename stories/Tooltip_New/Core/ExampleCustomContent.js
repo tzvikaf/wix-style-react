@@ -1,5 +1,5 @@
 import React from 'react';
-import {Tooltip, Button} from 'wix-style-react';
+import {Tooltip, Button} from 'wix-style-react/Backoffice';
 
 import styles from './Example.scss';
 

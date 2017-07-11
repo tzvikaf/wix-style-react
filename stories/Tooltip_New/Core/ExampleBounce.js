@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import {Tooltip} from 'wix-style-react';
-import {Button} from 'wix-style-react/Backoffice';
+import {Tooltip, Button} from 'wix-style-react/Backoffice';
 import styles from './Example.scss';
 
 class ExampleBounce extends Component {

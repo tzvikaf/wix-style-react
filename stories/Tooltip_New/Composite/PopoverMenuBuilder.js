@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import IconChooser from '../../BackOffice/Button/IconChooser';
+import IconChooser from '../../Backoffice/Button/IconChooser';
 import Input from 'wix-style-react/Input';
 import {Button} from 'wix-style-react/Backoffice';
 

@@ -14,7 +14,7 @@ export default class Example extends React.Component {
   }
   render() {
     return (
-      <div style={{display: 'flex', alignItems: 'center', marginLeft: '30px'}}>
+      <div style={{display: 'flex', alignItems: 'center', marginLeft: '30px'}} className="ltr">
         <LanguagePicker dataHook="story-languagePicker" onSelect={languageKey => this.setState({languageKey})}>
           <LanguagePicker.Option languageKey="en">English</LanguagePicker.Option>
           <LanguagePicker.Option languageKey="fr">French</LanguagePicker.Option>

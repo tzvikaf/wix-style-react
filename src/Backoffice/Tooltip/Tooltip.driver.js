@@ -21,12 +21,8 @@ const tooltipDriverFactory = ({element, wrapper}) => {
     hasLightTheme: () => !!wrapper.querySelector('.light'),
     getTooltipWrapper: () => wrapper.querySelector('[data-hook=\'tooltip\']'),
     getChildren: () => element.innerHTML,
-    getPlacement: () => {
-      return tooltipInner.attr('class').split(' ')[2];
-    },
-    getContent: () => {
-      return tooltipContent.html();
-    },
+    getPlacement: () => tooltipInner.attr('class').split(' ')[2],
+    getContent: () => tooltipContent.html(),
     setProps: props => {
       ReactDOM.render(<div ref={r => element = r}><Tooltip {...props}><div/></Tooltip></div>, wrapper);
     },

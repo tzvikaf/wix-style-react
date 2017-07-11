@@ -12,6 +12,9 @@ export const inputAreaTestkitFactory = enzymeTestkitFactoryCreator(inputAreaDriv
 import tooltipDriverFactory from '../src/Tooltip/Tooltip.driver';
 export const tooltipTestkitFactory = enzymeTestkitFactoryCreator(tooltipDriverFactory);
 
+import backofficeTooltipDriverFactory from '../src/Backoffice/Tooltip/Tooltip.driver';
+export const backofficeTooltipTestkitFactory = enzymeTestkitFactoryCreator(backofficeTooltipDriverFactory);
+
 import labelDriverFactory from '../src/Label/Label.driver';
 export const labelTestkitFactory = enzymeTestkitFactoryCreator(labelDriverFactory);
 

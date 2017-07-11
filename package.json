@@ -119,6 +119,7 @@
     "lodash.trim": "^4.5.1",
     "lodash.uniqueid": "^4.0.1",
     "lodash.values": "^4.3.0",
+    "popper.js": "^1.10.8",
     "prop-types": "^15.5.8",
     "rc-slider": "^8.0.2",
     "react-autosuggest": "^7.0.1",

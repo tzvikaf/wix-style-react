@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
 import reactElementToJSXString from 'react-element-to-jsx-string';
-import PopoverMenu from '../../../src/PopoverMenu';
-import PopoverMenuItem from '../../../src/PopoverMenuItem';
+import PopoverMenu from '../../../src/Backoffice/PopoverMenu';
+import PopoverMenuItem from '../../../src/Backoffice/PopoverMenuItem';
 import * as Icons from 'wix-style-react/Icons';
 
 class PopoverMenuTemplate extends Component {
