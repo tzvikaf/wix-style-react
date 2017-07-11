@@ -49,6 +49,7 @@ function loadStories() {
   require('../stories/TPA/Button');
   require('../stories/TPA/FloatingTabs');
   require('../stories/TPA/TextLink');
+  require('../stories/TPA/Input');
 
   // Common
   require('../stories/Composite');
