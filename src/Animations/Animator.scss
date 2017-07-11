@@ -56,21 +56,6 @@ $easeInOutQuint: cubic-bezier(0.86, 0, 0.07, 1);
 
 $sequence-delay-duration: .08s;
 $sequence-delay-max-child: 100;
-//
-//.sequenceDelay {
-//  @for $i from 1 through $sequence-delay-max-child {
-//    $delay: $i * $sequence-delay-duration;
-//    span:nth-child(#{$i}) {
-//      .child {
-//        transition-delay: $delay;
-//      }
-//
-//      .translate {
-//        transition-delay: $delay;
-//      }
-//    }
-//  }
-//}
 
 @mixin delayEnter() {
   @for $i from 1 through $sequence-delay-max-child {
@@ -97,6 +82,24 @@ $sequence-delay-max-child: 100;
     &.childSequenceDelay-#{$i} {
       opacity: 1;
     }
+  }
+}
+
+@mixin delayLeave() {
+  @for $i from 1 through $sequence-delay-max-child {
+    $delay: $i * $sequence-delay-duration;
+    &.childSequenceDelay-#{$i} {
+
+      .child {
+        transition-delay: $delay;
+      }
+
+      .translate {
+        transition-delay: $delay;
+      }
+
+    }
+
   }
 }
 
@@ -256,6 +259,7 @@ $sequence-delay-max-child: 100;
   @include opacityLeave();
   @include scaleMaximum();
   @include translateLeave();
+  @include delayLeave();
 }
 
 .leave-active {

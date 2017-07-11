@@ -13,7 +13,6 @@ class AnimatorChild extends Component {
   }
 
   render() {
-
     const {children, translate} = this.props;
 
     return this.wrapWithSequence(

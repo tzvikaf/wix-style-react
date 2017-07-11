@@ -36,10 +36,14 @@ class CssClass {
     const cssList = translate ? [css.translate, css[`translate-${to.toLowerCase()}`], css[`translate-${size}`]] : [];
     return cssList.join(' ');
   }
+  getSequenceIndex(props) {
+    const {index, sequenceDelay, childrenLength} = props;
+    return sequenceDelay === 'reverse' ? childrenLength - index - 1 : index;
+  }
 
   getChildSequence(props) {
-    const {index, sequenceDelay} = props;
-    return sequenceDelay ? css[`childSequenceDelay-${index}`] : '';
+    const {sequenceDelay} = props;
+    return sequenceDelay ? css[`childSequenceDelay-${this.getSequenceIndex(props)}`] : '';
   }
 
   getParent(props) {
