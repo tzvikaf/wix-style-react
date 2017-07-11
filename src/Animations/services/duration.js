@@ -17,7 +17,7 @@ class Duration {
   get(props) {
     const {timing, sequenceDelay, children} = props;
     const duration = timing ? this.durationMap[timing] : this.defaults.duration;
-    const sequenceDelayDuration = timing && sequenceDelay && children.length > 1 ? children.length * this.defaults.sequenceDelayDuration : 0;
+    const sequenceDelayDuration = timing && sequenceDelay && children.length > 1 ? (children.length - 1) * this.defaults.sequenceDelayDuration : 0;
     return duration + sequenceDelayDuration;
   }
 }

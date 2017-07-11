@@ -37,6 +37,11 @@ class CssClass {
     return cssList.join(' ');
   }
 
+  getChildSequence(props) {
+    const {index, sequenceDelay} = props;
+    return sequenceDelay ? css[`childSequenceDelay-${index}`] : '';
+  }
+
   getParent(props) {
     return this.getCssList(props, this.parentCssProps)
       .map(([key, value]) => this.map(key, value))
