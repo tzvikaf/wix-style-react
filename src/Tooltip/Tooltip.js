@@ -14,7 +14,9 @@ class Tooltip extends WixComponent {
 
   constructor(params) {
     super(params);
-    console.warn('wix-style-react/Tooltip is deprecated and will be removed, please use wix-style-react/Backoffice/Tooltip instead');
+    console.warn('wix-style-react/Tooltip is deprecated and will be removed, please use wix-style-react/Backoffice/Tooltip instead. ' +
+      'for drivers use import {backofficeTooltipTestkitFactory} from \'wix-style-react/dist/testkit\' ' +
+      'or import {backofficeTooltipTestkitFactory} from \'wix-style-react/dist/testkit/enzyme\'');
   }
 
   componentElements() {
