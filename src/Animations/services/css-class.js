@@ -3,7 +3,7 @@ import css from './../Animator.scss';
 class CssClass {
 
   constructor() {
-    this.childCssProps = ['opacity', 'scale', 'timing'];
+    this.childCssProps = ['opacity', 'scale', 'height', 'timing'];
     this.parentCssProps = ['sequenceDelay'];
     this.baseCss = Object.entries({child: true});
   }

@@ -172,6 +172,23 @@ $sequence-delay-max-child: 100;
   }
 }
 
+// Height
+////////
+
+@mixin heightMinimum() {
+  .height {
+    overflow: hidden;
+    max-height: 0;
+  }
+}
+
+@mixin heightMaximum() {
+  .height {
+    overflow: hidden;
+    max-height: 100%;
+  }
+}
+
 // Translate
 ////////////
 
@@ -244,6 +261,7 @@ $sequence-delay-max-child: 100;
   @include scaleMinimum();
   @include translateEnter();
   @include delayEnter();
+  @include heightMinimum();
 }
 
 .enter-active {
@@ -251,6 +269,7 @@ $sequence-delay-max-child: 100;
   @include scaleMaximum();
   @include translateEnterActive();
   @include delayEnterActive();
+  @include heightMaximum();
 }
 
 .leave {
@@ -260,10 +279,12 @@ $sequence-delay-max-child: 100;
   @include scaleMaximum();
   @include translateLeave();
   @include delayLeave();
+  @include heightMaximum();
 }
 
 .leave-active {
   @include opacityLeaveActive();
   @include scaleMinimum();
   @include translateLeaveActive();
+  @include heightMinimum();
 }
