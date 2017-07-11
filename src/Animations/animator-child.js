@@ -8,27 +8,31 @@ class AnimatorChild extends Component {
   constructor(props) {
     super(props);
     this.cssClass = new CssClass();
-    this.dom = new DomManager();
     this.state = {
-      height: 0
+      height: 0,
+      width: 0
     };
   }
 
   componentDidMount() {
-    const {height} = this.props;
-    this.setState({height: this.dom.getHeight(this.refs.child, height)});
+    const dom = new DomManager(this.refs.child, this.props);
+
+    //Requires Timeout - when goint to the DOM without timeout the animation does not work on enter
+    setTimeout(() => {
+      this.setState(dom.getStyle());
+    }, 0);
   }
 
   createWrapper(node) {
-    const {height} = this.state;
-    return <div className={this.cssClass.getChildSequence(this.props)} style={{height}}>{node}</div>;
+    const {height, width} = this.state;
+    return <div className={this.cssClass.getChildSequence(this.props)} style={{height, width}}>{node}</div>;
   }
 
   render() {
     const {children, translate} = this.props;
     return this.createWrapper(
-      <div className={this.cssClass.getChild(this.props)} ref="child">
-        {translate ? <div className={this.cssClass.getChildTranslate(this.props)}>{children}</div> : children}
+      <div className={this.cssClass.getChild(this.props)}>
+        {translate ? <div className={this.cssClass.getChildTranslate(this.props)} ref="child">{children}</div> : <div ref="child">{children}</div>}
       </div>
     );
   }
@@ -37,6 +41,7 @@ class AnimatorChild extends Component {
 AnimatorChild.propTypes = {
   children: node,
   height: bool,
+  width: bool,
   translate: oneOfType([object, bool]),
 };
 

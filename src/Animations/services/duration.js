@@ -7,7 +7,8 @@ class Duration {
       micro: 120,
       small: 150,
       medium: 200,
-      large: 300
+      large: 300,
+      debug: 10000
     };
 
     this.defaults = {
@@ -15,7 +16,7 @@ class Duration {
       sequenceDelayDuration: 80
     };
 
-    this.validAnimationProps = ['opacity', 'scale', 'height', 'translate'];
+    this.validAnimationProps = ['opacity', 'scale', 'height', 'translate', 'width'];
   }
 
   isMoreThanOneChild() {

@@ -21,16 +21,17 @@ class AnimatedExample extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      opacity: false,
+      opacity: true,
       scale: false,
-      height: true,
+      height: false,
+      width: false,
       translate: false,
       sequenceDelay: true,
       reverse: false,
       translateSize: 100,
       direction: 'left',
       timing: 'large',
-      show: true
+      show: false
     };
 
     this.options = [
@@ -38,6 +39,7 @@ class AnimatedExample extends React.Component {
       {id: 'small', value: 'Small'},
       {id: 'medium', value: 'Medium'},
       {id: 'large', value: 'Large'},
+      {id: 'debug', value: 'Debug'},
       {id: 'none', value: 'None'}
     ];
 
@@ -88,6 +90,9 @@ class AnimatedExample extends React.Component {
                 {this.myToggle('height')}
               </Row>
               <Row>
+                {this.myToggle('width')}
+              </Row>
+              <Row>
                 {this.myToggle('translate')}
               </Row>
               {this.state.translate && <Row>
@@ -131,6 +136,7 @@ class AnimatedExample extends React.Component {
                 {this.state.opacity ? ' opacity' : ''}
                 {this.state.scale ? ' scale' : ''}
                 {this.state.height ? ' height' : ''}
+                {this.state.width ? ' width' : ''}
                 {this.state.translate ? ` translate={{size: ${this.state.translateSize}, to: "${this.state.direction}"}}` : ''}
                 {this.state.sequenceDelay ? ' sequenceDelay' : ''}{this.state.sequenceDelay && this.state.reverse ? '="reverse"' : ''}
                 &gt;&lt;/Animator&gt;</pre>
@@ -138,6 +144,7 @@ class AnimatedExample extends React.Component {
               <Animator opacity={this.state.opacity}
                         scale={this.state.scale}
                         height={this.state.height}
+                        width={this.state.width}
                         translate={this.state.translate ? {
                             to: this.state.direction,
                             size: this.state.translateSize
