@@ -36,6 +36,15 @@ const floatingTabsDriverFactory = ({element}) => {
       }
       return undefined;
     },
+    isButtonHasClass: (id, className) => {
+      const button = getButtonById(id);
+
+      if (button) {
+        const buttonFactory = buttonDriverFactory({element: button});
+        return buttonFactory.hasClass(className);
+      }
+      return undefined;
+    },
     clickButtonById: id => {
       const button = getButtonById(id);
       if (button) {

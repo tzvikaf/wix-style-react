@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import FloatingTabs from '../../../src/TPA/FloatingTabs';
 import FloatingTabItem from '../../../src/TPA/FloatingTabItem';
+import styles from './styles.scss';
 
 const style = {
   padding: '0 5px'
 };
 
-class FloatingTabsExample extends Component {
+class FloatingTabsCustomClassesExample extends Component {
 
   state = { id: 'first' }
 
@@ -20,7 +21,7 @@ class FloatingTabsExample extends Component {
         <div className="ltr" style={style}>
           Floating Tabs<br />
           <div>
-            <FloatingTabs activeId={this.state.id} onChange={(id) => this.handleTabChange(id)}>
+            <FloatingTabs activeId={this.state.id} onChange={(id) => this.handleTabChange(id)} contentClassName={styles.contentStyle} tabClassName={styles.tabStyle} activeTabClassName={styles.activeTab}>
               <FloatingTabItem id="first" title="Tab One">
                 <h1>This is a first tab</h1>
                 <p>Some text could go here...</p>
@@ -41,6 +42,6 @@ class FloatingTabsExample extends Component {
   }
 }
 
-FloatingTabsExample.displayName = 'FloatingTabs Example';
+FloatingTabsCustomClassesExample.displayName = 'FloatingTabs with custom classes example';
 
-export default FloatingTabsExample;
+export default FloatingTabsCustomClassesExample;
