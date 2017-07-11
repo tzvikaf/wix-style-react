@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactTestUtils from 'react-dom/test-utils';
 import Input from './Input';
-import { tpaInputTestkitFactory as inputTestkitFactory } from '../../../testkit';
+import {tpaInputTestkitFactory as inputTestkitFactory} from '../../../testkit';
 
 describe('Input', () => {
   it('should exist', () => {
@@ -9,10 +9,10 @@ describe('Input', () => {
     const dataHook = 'input-hook';
     const wrapper = div.appendChild(ReactTestUtils.renderIntoDocument(
       <div>
-        <Input dataHook={dataHook} />
+        <Input dataHook={dataHook}/>
       </div>
     ));
-    const inputTestkit = inputTestkitFactory({ wrapper, dataHook });
+    const inputTestkit = inputTestkitFactory({wrapper, dataHook});
     expect(inputTestkit.exists()).toBeTruthy();
   });
 
@@ -21,10 +21,10 @@ describe('Input', () => {
     const dataHook = 'input-hook';
     const wrapper = div.appendChild(ReactTestUtils.renderIntoDocument(
       <div>
-        <Input defaultValue="some default value" dataHook={dataHook} />
+        <Input defaultValue="some default value" dataHook={dataHook}/>
       </div>
     ));
-    const inputTestkit = inputTestkitFactory({ wrapper, dataHook });
+    const inputTestkit = inputTestkitFactory({wrapper, dataHook});
     expect(inputTestkit.getValue()).toEqual('some default value');
   });
   it('should return passed value', () => {
@@ -32,10 +32,10 @@ describe('Input', () => {
     const dataHook = 'input-hook';
     const wrapper = div.appendChild(ReactTestUtils.renderIntoDocument(
       <div>
-        <Input value="the value" defaultValue="some default value" dataHook={dataHook} />
+        <Input value="the value" defaultValue="some default value" dataHook={dataHook}/>
       </div>
     ));
-    const inputTestkit = inputTestkitFactory({ wrapper, dataHook });
+    const inputTestkit = inputTestkitFactory({wrapper, dataHook});
     expect(inputTestkit.getValue()).toEqual('the value');
   });
 
@@ -44,10 +44,10 @@ describe('Input', () => {
     const dataHook = 'input-hook';
     const wrapper = div.appendChild(ReactTestUtils.renderIntoDocument(
       <div>
-        <Input styles={{ locals: { input: 'input' } }} dataHook={dataHook} />
+        <Input styles={{locals: {input: 'input'}}} dataHook={dataHook}/>
       </div>
     ));
-    const inputTestkit = inputTestkitFactory({ wrapper, dataHook });
+    const inputTestkit = inputTestkitFactory({wrapper, dataHook});
     expect(inputTestkit.hasClass('input')).toBeTruthy();
     expect(inputTestkit.hasClass('error')).toBeFalsy();
   });
@@ -57,10 +57,10 @@ describe('Input', () => {
     const dataHook = 'input-hook';
     const wrapper = div.appendChild(ReactTestUtils.renderIntoDocument(
       <div>
-        <Input error={true} styles={{ locals: { input: 'input', error: 'error' } }} dataHook={dataHook} />
+        <Input error={true} styles={{locals: {input: 'input', error: 'error'}}} dataHook={dataHook}/>
       </div>
     ));
-    const inputTestkit = inputTestkitFactory({ wrapper, dataHook });
+    const inputTestkit = inputTestkitFactory({wrapper, dataHook});
     expect(inputTestkit.hasClass('error')).toBeTruthy();
   });
 
@@ -69,10 +69,10 @@ describe('Input', () => {
     const dataHook = 'input-hook';
     const wrapper = div.appendChild(ReactTestUtils.renderIntoDocument(
       <div>
-        <Input error={true} errorClassName="customErrorClassName" styles={{ locals: { input: 'input', error: 'error' } }} dataHook={dataHook} />
+        <Input error={true} errorClassName="customErrorClassName" styles={{locals: {input: 'input', error: 'error'}}} dataHook={dataHook}/>
       </div>
     ));
-    const inputTestkit = inputTestkitFactory({ wrapper, dataHook });
+    const inputTestkit = inputTestkitFactory({wrapper, dataHook});
     expect(inputTestkit.hasClass('customErrorClassName')).toBeTruthy();
   });
 
@@ -81,10 +81,10 @@ describe('Input', () => {
     const dataHook = 'input-hook';
     const wrapper = div.appendChild(ReactTestUtils.renderIntoDocument(
       <div>
-        <Input error={true} inputClassName="customInputClassName" styles={{ locals: { input: 'input', error: 'error' } }} dataHook={dataHook} />
+        <Input error={true} inputClassName="customInputClassName" styles={{locals: {input: 'input', error: 'error'}}} dataHook={dataHook}/>
       </div>
     ));
-    const inputTestkit = inputTestkitFactory({ wrapper, dataHook });
+    const inputTestkit = inputTestkitFactory({wrapper, dataHook});
     expect(inputTestkit.hasClass('customInputClassName')).toBeTruthy();
   });
 

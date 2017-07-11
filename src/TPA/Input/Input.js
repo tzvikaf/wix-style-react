@@ -1,10 +1,10 @@
 import React from 'react';
-import { any, string } from 'prop-types';
+import {string} from 'prop-types';
 import classNames from 'classnames';
 import WixComponent from '../../BaseComponents/WixComponent';
 import tpaStyleInjector from '../TpaStyleInjector';
 
-let styles = { locals: {} };
+let styles = {locals: {}};
 try {
   styles = require('!css-loader?modules&camelCase&localIdentName="[path][name]__[local]__[hash:base64:5]"!sass-loader!./Input.scss');
 } catch (e) {
@@ -29,12 +29,12 @@ class Input extends WixComponent {
   }
 
   get errorClassName() {
-    return this.props.errorClassName || styles.locals['error'];
+    return this.props.errorClassName || styles.locals.error;
   }
 
   render() {
     const errorClassName = this.props.error === true ? this.errorClassName : '';
-    return (<input className={classNames(styles.locals['input'], this.props.inputClassName, errorClassName)} {...this.props} />);
+    return (<input className={classNames(styles.locals.error, this.props.inputClassName, errorClassName)} {...this.props}/>);
   }
 }
 
