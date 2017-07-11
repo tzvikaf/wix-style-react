@@ -43,6 +43,12 @@ describe('LanguagePicker', () => {
     expect(stub.calledWithMatch(`Invalid Prop children was given. Validation failed on child number 0`)).toBeTruthy();
   });
 
+  it('should have a divider between every language', () => {
+    const {dropdownLayoutDriver} = createDriver(languagePicker());
+    expect(dropdownLayoutDriver.optionsLength()).toBe(3);
+    expect(dropdownLayoutDriver.isOptionADivider(1)).toBe(true);
+  });
+
   describe('testkit', () => {
     it('should exist', () => {
       const div = document.createElement('div');

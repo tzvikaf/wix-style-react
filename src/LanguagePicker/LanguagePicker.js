@@ -5,10 +5,26 @@ import {Languages} from '../Icons/dist';
 import ButtonWithOptions from '../ButtonWithOptions/ButtonWithOptions';
 
 export default class LanguagePicker extends WixComponent {
+  createDividedChildren() {
+    const dividerChild = React.cloneElement(
+      this.props.children[0], {
+        children: '-',
+        languageKey: '-'
+      });
+
+    const dividedChildren = [...this.props.children];
+    dividedChildren.forEach((_, index) => dividedChildren.splice((index * 2) + 1, 0, dividerChild));
+    dividedChildren.pop();
+
+    return dividedChildren;
+  }
+
   createButtonWithOptionsOptions() {
-    return React.Children.map(this.props.children, languagepickerOption => {
-      const {languageKey} = languagepickerOption.props;
-      const languageName = languagepickerOption.props.children;
+    const dividedChildren = this.createDividedChildren();
+
+    return dividedChildren.map(languagePickerOption => {
+      const {languageKey} = languagePickerOption.props;
+      const languageName = languagePickerOption.props.children;
 
       return (
         <ButtonWithOptions.Option key={languageKey} id={languageKey}>

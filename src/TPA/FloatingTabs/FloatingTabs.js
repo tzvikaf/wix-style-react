@@ -77,7 +77,6 @@ class FloatingTabs extends WixComponent {
         >{child}</div>);
     });
   }
-
   render() {
     return (
       <div className={styles.locals['wix-style-react-floating-tabs']}>
