@@ -23,7 +23,18 @@ export default function WixStyleDecorator(storyFn) {
         .replace(/"{{ color-9 }}"/g, '#95814C')
         .replace(/{{ color-9 }}/g, '#95814C')
         .replace(/"{{ color-10 }}"/g, '#7B6732')
-        .replace(/{{ color-10 }"/g, '#7B6732');
+        .replace(/{{ color-10 }}/g, '#7B6732')
+        .replace(/{{ color-11 }}/g, 'gray')
+        .replace(/{{ color-12 }}/g, 'green')
+        .replace(/{{ color-13 }}/g, 'blue')
+        .replace(/{{ color-14 }}/g, 'orangered')
+        .replace(/{{ color-14 }}/g, 'purple')
+        .replace(/"{{ color-10 }}"/g, '#7B6732')
+        .replace(/"{{ color-11 }}"/g, 'gray')
+        .replace(/"{{ color-12 }}"/g, 'green')
+        .replace(/"{{ color-13 }}"/g, 'blue')
+        .replace(/"{{ color-14 }}"/g, 'orangered')
+        .replace(/"{{ color-14 }}"/g, 'purple');
     });
   });
 

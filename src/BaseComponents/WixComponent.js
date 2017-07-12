@@ -29,6 +29,11 @@ class WixComponent extends React.Component {
     return [ReactDOM.findDOMNode(this)];
   }
 
+  setStyles(styles, typography = {}){
+    this.styles = Object.assign({}, styles, this.props.styles);
+    this.typography = this.props.styles || typography;
+  }
+
   _onMouseEventsHandler(e) {
     if (!this.checkIfEventOnElements(e, this.componentElements())) {
       this.onClickOutside(e);

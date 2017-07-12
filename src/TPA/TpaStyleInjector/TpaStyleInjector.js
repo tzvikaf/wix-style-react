@@ -22,7 +22,7 @@ function tpaStyleInjector(Component, styles) {
     }
 
     render() {
-      return <Component {...this.props}/>;
+      return <Component {...this.props} injectedStyles={(styles && styles.locals) ? Object.assign({}, styles.locals) : {}}/>;
     }
   }
 
