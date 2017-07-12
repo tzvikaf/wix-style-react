@@ -11,27 +11,27 @@ $easeInOutQuint: cubic-bezier(0.86, 0, 0.07, 1);
 // Duration
 ///////////
 
-.micro {
+.timing-micro {
   transition-duration: .12s
 }
 
 ;
-.small {
+.timing-small {
   transition-duration: .15s
 }
 
 ;
-.medium {
+.timing-medium {
   transition-duration: .2s
 }
 
 ;
-.large {
+.timing-large {
   transition-duration: .3s
 }
 
 ;
-.debug {
+.timing-debug {
   transition-duration: 10s
 }
 
@@ -41,11 +41,11 @@ $easeInOutQuint: cubic-bezier(0.86, 0, 0.07, 1);
 /////////////////
 
 @mixin timingFunction() {
-  .micro, .small {
+  .timing-micro, .timing-small {
     transition-timing-function: $easeOutCubic;
   }
 ;
-  .medium, .large {
+  .timing-medium, .timing-large {
     transition-timing-function: $easeOutQuint;
   }
 ;
@@ -108,16 +108,16 @@ $sequence-delay-max-child: 100;
 
 @mixin opacityEnter() {
   .opacity {
-    &.micro {
+    &.timing-micro {
       opacity: .9;
     }
-    &.small, &.medium {
+    &.timing-small, &.timing-medium {
       opacity: .5;
     }
-    &.large {
+    &.timing-large {
       opacity: .66;
     }
-    &.debug {
+    &.timing-debug {
       opacity: 0;
     }
   }
@@ -125,7 +125,7 @@ $sequence-delay-max-child: 100;
 
 @mixin opacityEnterActive() {
   .opacity {
-    &.micro, &.small, &.medium, &.large, &.debug {
+    &.timing-micro, &.timing-small, &.timing-medium, &.timing-large, &.timing-debug {
       opacity: 1;
     }
   }
@@ -148,15 +148,15 @@ $sequence-delay-max-child: 100;
 
 @mixin scaleMinimum() {
   .scale {
-    &.micro, &.large {
+    &.timing-micro, &.timing-large {
       transform: scale(0.9);
     }
   ;
-    &.small, &.medium {
+    &.timing-small, &.timing-medium {
       transform: scale(0.75);
     }
   ;
-    &.debug {
+    &.timing-debug {
       transform: scale(0);
     }
   ;
@@ -165,7 +165,7 @@ $sequence-delay-max-child: 100;
 
 @mixin scaleMaximum() {
   .scale {
-    &.micro, &.small, &.medium, &.large, &.debug {
+    &.timing-micro, &.timing-small, &.timing-medium, &.timing-large, &.timing-debug {
       transform: scale(1);
     }
   ;
@@ -246,7 +246,7 @@ $sequence-delay-max-child: 100;
     @include translateHide();
   }
 
-  .debug .translate {
+  .timing-debug .translate {
     transition-duration: 10s;
   }
 }
@@ -265,7 +265,7 @@ $sequence-delay-max-child: 100;
     @include translateShow();
   }
 
-  .debug .translate {
+  .timing-debug .translate {
     transition-duration: 10s;
   }
 }

@@ -21,9 +21,9 @@ class AnimatedExample extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      opacity: false,
+      opacity: true,
       scale: false,
-      height: true,
+      height: false,
       width: false,
       translate: false,
       sequenceDelay: true,
@@ -141,22 +141,25 @@ class AnimatedExample extends React.Component {
                 {this.state.sequenceDelay ? ' sequenceDelay' : ''}{this.state.sequenceDelay && this.state.reverse ? '="reverse"' : ''}
                 &gt;&lt;/Animator&gt;</pre>
               <br />
-              <Animator opacity={this.state.opacity}
-                        scale={this.state.scale}
-                        height={this.state.height}
-                        width={this.state.width}
-                        translate={this.state.translate ? {
-                            to: this.state.direction,
-                            size: this.state.translateSize
-                          } : false}
-                        sequenceDelay={this.getSequenceDelayValue()}
-                        timing={this.state.timing === 'none' ? false : this.state.timing}>
-                {this.state.show && <MockDiv>Some Content in Here</MockDiv>}
-                {this.state.show && <MockDiv>Some Content in Here</MockDiv>}
-                {this.state.show && <MockDiv>Some Content in Here</MockDiv>}
-                {this.state.show && <MockDiv>Some Content in Here</MockDiv>}
-                {this.state.show && <MockDiv>Some Content in Here</MockDiv>}
-              </Animator>
+              <div style={{width: '200px'}}>
+                <Animator opacity={this.state.opacity}
+                          scale={this.state.scale}
+                          height={this.state.height}
+                          width={this.state.width}
+                          translate={this.state.translate ? {
+                              to: this.state.direction,
+                              size: this.state.translateSize
+                            } : false}
+                          sequenceDelay={this.getSequenceDelayValue()}
+                          timing={this.state.timing === 'none' ? false : this.state.timing}>
+                  {this.state.show && <MockDiv>Some Content in Here</MockDiv>}
+                  {this.state.show && <MockDiv>Some Content in Here</MockDiv>}
+                  {this.state.show && <MockDiv>Some Content in Here</MockDiv>}
+                  {this.state.show && <MockDiv>Some Content in Here</MockDiv>}
+                  {this.state.show && <MockDiv>Some Content in Here</MockDiv>}
+                </Animator>
+              </div>
+
             </Col>
           </Row>
         </Container>
