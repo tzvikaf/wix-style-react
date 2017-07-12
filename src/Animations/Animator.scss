@@ -96,7 +96,6 @@ $sequence-delay-max-child: 100;
     &.childSequenceDelay-#{$i} {
 
       //animation: shuki #{$delay}s;
-
       .child {
         transition-delay: $delay;
       }
@@ -303,7 +302,6 @@ $sequence-delay-max-child: 100;
   }
 };
 
-
 // Minimum Maximum Summary
 //////////////////////////
 
@@ -368,4 +366,5 @@ $sequence-delay-max-child: 100;
 
 .animate-out .leave-active {
   @include translateOutLeaveActive();
+
 }

@@ -151,3 +151,6 @@ export const tpaFloatingTabsTestkitFactory = testkitFactoryCreator(tpaFloatingTa
 
 import tpaInputDriverFactory from '../src/TPA/Input/Input.driver';
 export const tpaInputTestkitFactory = testkitFactoryCreator(tpaInputDriverFactory);
+
+import tpaLabelDriverFactory from '../src/TPA/Label/Label.driver';
+export const tpaLabelTestkitFactory = testkitFactoryCreator(tpaLabelDriverFactory);
