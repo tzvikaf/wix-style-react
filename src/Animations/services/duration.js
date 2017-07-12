@@ -38,7 +38,7 @@ class Duration {
 
   calculateTiming() {
     const {timing, translate} = this.props;
-    return timing || translate ? this.durationMap[timing] : this.defaults.duration;
+    return timing && !translate ? this.durationMap[timing] : this.defaults.duration;
   }
 
   get(props) {

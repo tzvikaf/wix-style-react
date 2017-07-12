@@ -73,7 +73,7 @@ class CssClass {
 
   getSequenceIndex(props) {
     const {index, sequenceDelay, childrenLength} = props;
-    return sequenceDelay === 'reverse' ? childrenLength - index - 1 : index;
+    return sequenceDelay === 'reverse' ? childrenLength - index : index + 1;
   }
 
   getClassFromProp([propName, propValue], props) {
@@ -99,7 +99,7 @@ class CssClass {
 
   getChild(props /* Child props */) {
     return {
-      layer1: this.getClassForLayer(props, this.layer1),
+      layer1: this.getClassForLayer(props, this.layer1, props.translate ? ['translate-wrapper'] : []),
       layer2: this.getClassForLayer(props, this.layer2, ['child']),
       layer3: this.getClassForLayer(props, this.layer3)
     };

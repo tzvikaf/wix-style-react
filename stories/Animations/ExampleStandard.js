@@ -21,7 +21,7 @@ class AnimatedExample extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      opacity: false,
+      opacity: true,
       scale: false,
       height: false,
       width: false,
