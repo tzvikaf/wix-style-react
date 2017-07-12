@@ -1,11 +1,12 @@
 import css from './../Animator.scss';
+import toPairs from 'lodash.topairs';
 
 class CssClass {
 
   constructor() {
     this.childCssProps = ['opacity', 'scale', 'height', 'width', 'timing'];
     this.parentCssProps = ['sequenceDelay'];
-    this.baseCss = Object.entries({child: true});
+    this.baseCss = toPairs({child: true});
   }
 
   filter(list, key) {
@@ -19,7 +20,7 @@ class CssClass {
   }
 
   getCssList(props, cssProps) {
-    return Object.entries(props)
+    return toPairs(props)
       .filter(([key]) => this.filter(cssProps, key));
   }
 
