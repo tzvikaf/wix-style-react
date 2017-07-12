@@ -1,7 +1,6 @@
 import css from './../Animator.scss';
 import toPairs from 'lodash.topairs';
 
-
 /*
  *
  * React Element Structure
@@ -47,7 +46,12 @@ class CssClass {
         return ['sequenceDelay', `childSequenceDelay-${this.getSequenceIndex(props)}`];
       },
       translate: ({to = 'TOP', size = 100}) => {
-        return ['translate', `translate-${to.toLowerCase()}`, `translate-${size}`];
+        size = typeof size === 'number' ? {in: size, out: size} : size;
+        const list = ['translate', `translate-${to.toLowerCase()}`, `translate-${size.in}`];
+        if (size.in !== size.out) {
+          list.push(`translate-out-${size.out}`);
+        }
+        return list;
       }
     };
 
@@ -77,19 +81,23 @@ class CssClass {
     return typeof classGetter === 'function' ? classGetter(propValue, props) : propName;
   }
 
-  getClassForLayer(props, layer, baseClassNames = []) {
-    const list = this
-      .getCssList(props, layer)
-      .map(propDetails => this.getClassFromProp(propDetails, props))
-      .concat(baseClassNames);
-
+  getClassString(list) {
     return this
       .flattenArray(list)
       .map(item => css[item])
       .join(' ');
   }
 
-  getChild(props) {
+  getClassForLayer(props, layer, baseClassNames = []) {
+    const list = this
+      .getCssList(props, layer)
+      .map(propDetails => this.getClassFromProp(propDetails, props))
+      .concat(baseClassNames);
+
+    return this.getClassString(list);
+  }
+
+  getChild(props /* Child props */) {
     return {
       layer1: this.getClassForLayer(props, this.layer1),
       layer2: this.getClassForLayer(props, this.layer2, ['child']),
@@ -97,8 +105,8 @@ class CssClass {
     };
   }
 
-  getParent() {
-    return '';
+  getParent(props /* Parent props */) {
+    return this.getClassString([props.children[0] ? 'animate-in' : 'animate-out']);
   }
 
 }
