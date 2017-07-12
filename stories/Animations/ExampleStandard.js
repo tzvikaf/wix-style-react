@@ -21,9 +21,9 @@ class AnimatedExample extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      opacity: true,
+      opacity: false,
       scale: false,
-      height: false,
+      height: true,
       width: false,
       translate: false,
       sequenceDelay: true,
@@ -31,7 +31,7 @@ class AnimatedExample extends React.Component {
       translateSize: 100,
       direction: 'left',
       timing: 'large',
-      show: false
+      show: true
     };
 
     this.options = [

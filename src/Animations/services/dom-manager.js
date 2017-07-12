@@ -5,13 +5,13 @@ class DomManager {
   ref;
   props;
   requiredDimensionsProps;
-  defaultDimension;
+  defaultStyle;
 
   constructor(ref, props) {
     this.ref = ref;
     this.props = props;
     this.requiredDimensionsProps = ['height', 'width'];
-    this.defaultDimension = {
+    this.defaultStyle = {
       height: 'inherit',
       width: 'inherit'
     };
@@ -33,8 +33,12 @@ class DomManager {
     };
   }
 
+  getDefaultStyle() {
+    return this.defaultStyle;
+  }
+
   getStyle() {
-    return this.isRequired() ? this.getDimensions() : this.defaultDimension;
+    return this.isRequired() ? this.getDimensions() : this.defaultStyle;
   }
 }
 

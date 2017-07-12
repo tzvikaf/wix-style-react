@@ -6,6 +6,7 @@ class CssClass {
   constructor() {
     this.childCssProps = ['opacity', 'scale', 'height', 'width', 'timing'];
     this.parentCssProps = ['sequenceDelay'];
+    this.childWrapperProps = ['height', 'width', 'child']; //TBD!!!
     this.baseCss = toPairs({child: true});
   }
 

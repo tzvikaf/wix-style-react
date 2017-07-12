@@ -41,7 +41,13 @@ class Animator extends Component {
             transitionLeaveTimeout={duration}
             transitionName={this.transitionName}
             >
-            {!!child && <Child index={index} childrenLength={childrenLength} {...this.props}>{child}</Child>}
+            {!!child && <Child
+              index={index}
+              childrenLength={childrenLength}
+              duration={duration}
+              {...this.props}
+              >{child}</Child>
+            }
           </ReactCSSTransitionGroup>
         )}
       </div>
