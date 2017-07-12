@@ -26,21 +26,21 @@ class AnimatedExample extends React.Component {
       height: false,
       width: false,
       translate: true,
-      sequenceDelay: true,
-      reverse: false,
+      sequence: true,
+      sequenceOption: 'flip',
       translateSizeIn: 100,
-      translateSizeOut: 20,
+      translateSizeOut: 100,
       direction: 'LEFT',
       timing: 'large',
       show: true
     };
 
     this.options = [
-      {id: 'micro', value: 'Micro'},
-      {id: 'small', value: 'Small'},
-      {id: 'medium', value: 'Medium'},
-      {id: 'large', value: 'Large'},
-      {id: 'debug', value: 'Debug'},
+      {id: 'micro', value: 'Micro - 120ms'},
+      {id: 'small', value: 'Small - 150ms'},
+      {id: 'medium', value: 'Medium - 200ms'},
+      {id: 'large', value: 'Large - 300ms'},
+      {id: 'debug', value: 'Debug - 10000ms'},
       {id: 'none', value: 'None'}
     ];
 
@@ -49,7 +49,14 @@ class AnimatedExample extends React.Component {
       {id: 'TOP', value: 'Top'},
       {id: 'BOTTOM', value: 'Bottom'},
       {id: 'LEFT', value: 'Left'},
-      {id: 'RIGHT', value: 'Right'},
+      {id: 'RIGHT', value: 'Right'}
+    ];
+
+    this.sequenceOptions = [
+      {id: 'default', value: 'Default (Leave empty)'},
+      {id: 'flip', value: 'Flip'},
+      {id: 'reverse', value: 'Reverse'},
+      {id: 'reverse-flip', value: 'Reverse Flip'}
     ]
 
   }
@@ -63,11 +70,11 @@ class AnimatedExample extends React.Component {
     )
   }
 
-  getSequenceDelayValue() {
-    if (!this.state.sequenceDelay) {
+  getSequenceValue() {
+    if (!this.state.sequence) {
       return false;
     }
-    return this.state.reverse ? 'reverse' : true;
+    return this.state.sequenceOption !== 'default' ? this.state.sequenceOption : true;
   }
 
   buildTranslateString() {
@@ -104,12 +111,12 @@ class AnimatedExample extends React.Component {
               <Row>
                 {this.myToggle('scale')}
               </Row>
-              <Row>
+              {false && <Row>
                 {this.myToggle('height')}
-              </Row>
-              <Row>
+              </Row>}
+              {false && <Row>
                 {this.myToggle('width')}
-              </Row>
+              </Row>}
               <Row>
                 {this.myToggle('translate')}
               </Row>
@@ -141,9 +148,13 @@ class AnimatedExample extends React.Component {
                 </Col>
               </Row>}
               <Row>
-                {this.myToggle('sequenceDelay')}
-                {this.state.sequenceDelay && <span><ToggleSwitch checked={this.state.reverse}
-                                                                 onChange={() => this.setState({reverse: !this.state.reverse})}/>Reverse Sequence</span> }
+                {this.myToggle('sequence')}
+                Sequence Options
+                {this.state.sequence && <Dropdown
+                  selectedId={this.state.sequenceOption}
+                  onSelect={option => this.setState({sequenceOption: option.id})}
+                  options={this.sequenceOptions}
+                />}
               </Row>
               <Row>
                 Timing
@@ -162,7 +173,7 @@ class AnimatedExample extends React.Component {
                 {this.state.height ? ' height' : ''}
                 {this.state.width ? ' width' : ''}
                 {this.state.translate ? this.buildTranslateString() : ''}
-                {this.state.sequenceDelay ? ' sequenceDelay' : ''}{this.state.sequenceDelay && this.state.reverse ? '="reverse"' : ''}
+                {this.state.sequence ? ' sequence' : ''}{this.state.sequence && this.state.sequenceOption !== 'default' ? `="${this.state.sequenceOption}"` : ''}
                 &gt;&lt;/Animator&gt;</pre>
               <br />
               <div style={{width: '200px'}}>
@@ -171,7 +182,7 @@ class AnimatedExample extends React.Component {
                           height={this.state.height}
                           width={this.state.width}
                           translate={this.state.translate ? this.buildTranslateObject() : false}
-                          sequenceDelay={this.getSequenceDelayValue()}
+                          sequence={this.getSequenceValue()}
                           timing={this.state.timing === 'none' ? false : this.state.timing}>
                   {this.state.show && <MockDiv>Some Content in Here</MockDiv>}
                   {this.state.show && <MockDiv>Some Content in Here</MockDiv>}

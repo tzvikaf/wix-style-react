@@ -13,7 +13,7 @@ class Duration {
 
     this.defaults = {
       duration: 300,
-      sequenceDelayDuration: 80
+      sequenceDuration: 80
     };
 
     this.validAnimationProps = ['opacity', 'scale', 'height', 'translate', 'width'];
@@ -28,12 +28,12 @@ class Duration {
   }
 
   isAnimation() {
-    const {timing, sequenceDelay, children} = this.props;
-    return timing && sequenceDelay && this.isPropsToAnimate() && this.isMoreThanOneChild(children);
+    const {timing, sequence, children} = this.props;
+    return timing && sequence && this.isPropsToAnimate() && this.isMoreThanOneChild(children);
   }
 
   calculateDelay() {
-    return (this.props.children.length - 1) * this.defaults.sequenceDelayDuration;
+    return (this.props.children.length - 1) * this.defaults.sequenceDuration;
   }
 
   calculateTiming() {
@@ -44,8 +44,8 @@ class Duration {
   get(props) {
     this.props = props;
     const duration = this.isPropsToAnimate() ? this.calculateTiming() : 0;
-    const sequenceDelayDuration = this.isAnimation() ? this.calculateDelay() : 0;
-    return duration + sequenceDelayDuration;
+    const sequenceDuration = this.isAnimation() ? this.calculateDelay() : 0;
+    return duration + sequenceDuration;
   }
 }
 
