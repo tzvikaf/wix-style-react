@@ -16,13 +16,13 @@ describe('Label', () => {
     expect(labelTestkit.exists()).toBeTruthy();
   });
 
-it('should contain passed text', () => {
+  it('should contain passed text', () => {
     const div = document.createElement('div');
     const dataHook = 'Label-hook';
     const wrapper = div.appendChild(ReactTestUtils.renderIntoDocument(
       <div>
         <Label dataHook={dataHook}>
-            some text
+          some text
         </Label>
       </div>
     ));
@@ -36,7 +36,7 @@ it('should contain passed text', () => {
     const wrapper = div.appendChild(ReactTestUtils.renderIntoDocument(
       <div>
         <Label dataHook={dataHook}>
-            <span>some text</span>
+          <span>some text</span>
         </Label>
       </div>
     ));
@@ -44,13 +44,13 @@ it('should contain passed text', () => {
     expect(labelTestkit.getContent()).toEqual('<span>some text</span>');
   });
 
-it('should contain passed dom element', () => {
+  it('should contain passed dom element', () => {
     const div = document.createElement('div');
     const dataHook = 'Label-hook';
     const wrapper = div.appendChild(ReactTestUtils.renderIntoDocument(
       <div>
         <Label for="some-id" dataHook={dataHook}>
-            <span>some text</span>
+          <span>some text</span>
         </Label>
       </div>
     ));
@@ -63,7 +63,7 @@ it('should contain passed dom element', () => {
     const wrapper = div.appendChild(ReactTestUtils.renderIntoDocument(
       <div>
         <Label for="some-id" dataHook={dataHook}>
-            <span>some text</span>
+          <span>some text</span>
         </Label>
       </div>
     ));
@@ -77,7 +77,7 @@ it('should contain passed dom element', () => {
     const wrapper = div.appendChild(ReactTestUtils.renderIntoDocument(
       <div>
         <Label for="some-id" labelClassName="customLabelStyle" dataHook={dataHook}>
-            <span>some text</span>
+          <span>some text</span>
         </Label>
       </div>
     ));
