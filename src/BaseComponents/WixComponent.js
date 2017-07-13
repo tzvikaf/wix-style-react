@@ -30,7 +30,11 @@ class WixComponent extends React.Component {
   }
 
   setStyles(styles, typography = {}) {
-    this.styles = Object.assign({}, styles, this.props.styles || {});
+    if (this.props.styles) {
+      this.styles = Object.assign({}, styles, this.props.styles);
+    } else {
+      this.styles = styles;
+    }
     this.typography = this.props.styles || typography;
   }
 
