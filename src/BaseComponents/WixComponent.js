@@ -31,7 +31,7 @@ class WixComponent extends React.Component {
 
   setStyles(styles, typography = {}) {
     if (this.props.styles) {
-      this.styles = Object.assign({}, styles, this.props.styles);
+      this.styles = this.props.styles;
     } else {
       this.styles = styles;
     }
@@ -60,7 +60,7 @@ class WixComponent extends React.Component {
   }
 
   componentDidMount() {
-    const {dataHook} = this.props;
+    const { dataHook } = this.props;
     if (dataHook) {
       this._addDataHook(dataHook);
     }

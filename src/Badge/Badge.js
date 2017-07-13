@@ -4,7 +4,7 @@ import classnames from 'classnames';
 import {node, oneOf, string} from 'prop-types';
 
 import typography, {convertFromUxLangToCss} from '../Typography';
-import _styles from './Badge.scss';
+import badgeStyles from './Badge.scss';
 
 /**
  * General purpose badge component to indicate important (or not so) things
@@ -12,7 +12,7 @@ import _styles from './Badge.scss';
 class Badge extends WixComponent {
   constructor(props) {
     super(props);
-    this.setStyles(_styles, typography);
+    this.setStyles(badgeStyles, typography);
   }
 
   render() {
@@ -66,3 +66,4 @@ Badge.defaultProps = {
 Badge.displayName = 'Badge';
 
 export default Badge;
+
