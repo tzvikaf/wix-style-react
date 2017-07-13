@@ -20,7 +20,8 @@ class Duration {
   }
 
   isMoreThanOneChild() {
-    return this.props.children.length > 1;
+    const {children} = this.props;
+    return children && children.length > 1;
   }
 
   isPropsToAnimate() {

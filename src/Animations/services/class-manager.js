@@ -115,9 +115,9 @@ class CssClass {
 
   getParent(props /* Parent props */) {
 
-    const {sequence} = props;
+    const {sequence, children} = props;
 
-    const classNames = [props.children[0] ? 'animate-in' : 'animate-out'];
+    const classNames = [children && children[0] ? 'animate-in' : 'animate-out'];
 
     if (sequence) {
       classNames.push(typeof sequence === 'string' ? `sequence-${sequence}` : 'sequence-default');

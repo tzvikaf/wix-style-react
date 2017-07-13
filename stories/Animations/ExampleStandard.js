@@ -11,7 +11,7 @@ const createSizeArray = (size) => {
 }
 
 const MockDiv = ({children, height = '40px', width = '100px', background = 'beige'}) => {
-  return (<div style={{height, width, background, overflow: 'hidden'}}>{children}</div>);
+  return (<div style={{background, overflow: 'hidden'}}>{children}</div>);
 }
 
 class AnimatedExample extends React.Component {
@@ -27,10 +27,10 @@ class AnimatedExample extends React.Component {
       width: false,
       translate: true,
       sequence: true,
-      sequenceOption: 'flip',
+      sequenceOption: 'default',
       translateSizeIn: 100,
       translateSizeOut: 100,
-      direction: 'LEFT',
+      direction: 'left',
       timing: 'large',
       show: true
     };
@@ -46,10 +46,10 @@ class AnimatedExample extends React.Component {
 
     this.sizeOptions = createSizeArray(10);
     this.directionOptions = [
-      {id: 'TOP', value: 'Top'},
-      {id: 'BOTTOM', value: 'Bottom'},
-      {id: 'LEFT', value: 'Left'},
-      {id: 'RIGHT', value: 'Right'}
+      {id: 'top', value: 'Top'},
+      {id: 'bottom', value: 'Bottom'},
+      {id: 'left', value: 'Left'},
+      {id: 'right', value: 'Right'}
     ];
 
     this.sequenceOptions = [
@@ -191,7 +191,12 @@ class AnimatedExample extends React.Component {
                   {this.state.show && <MockDiv>Some Content in Here</MockDiv>}
                 </Animator>
               </div>
-
+            </Col>
+          </Row>
+          <Row>
+            <Col span={12}>
+              Rules:
+              1. Translate - The height and width belongs to the parent and not the child so it translates according to them
             </Col>
           </Row>
         </Container>
