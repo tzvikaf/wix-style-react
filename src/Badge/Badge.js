@@ -1,28 +1,29 @@
 import React from 'react';
 import WixComponent from '../BaseComponents/WixComponent';
 import classnames from 'classnames';
-import { node, oneOf, string } from 'prop-types';
+import {node, oneOf, string} from 'prop-types';
 
-import typography, { convertFromUxLangToCss } from '../Typography';
+import typography, {convertFromUxLangToCss} from '../Typography';
 import _styles from './Badge.scss';
 
 /**
-  * General purpose badge component to indicate important (or not so) things
-  */
+ * General purpose badge component to indicate important (or not so) things
+ */
 class Badge extends WixComponent {
   constructor(props) {
     super(props);
     this.setStyles(_styles, typography);
   }
+
   render() {
-    const { children, type, appearance, alignment, dataHook } = this.props;
-    const { styles, typography } = this;
+    const {children, type, appearance, alignment, dataHook} = this.props;
+    const {styles, typography} = this;
     const className = classnames(
       styles.badge,
       styles[type],
       styles[alignment],
       typography[convertFromUxLangToCss(appearance)
-      ]);
+        ]);
 
     return (
       <span className={className} data-hook={dataHook}>
@@ -30,7 +31,7 @@ class Badge extends WixComponent {
       </span>
     );
   }
-};
+}
 
 Badge.propTypes = {
   /** node to render into badge */

@@ -29,8 +29,8 @@ class WixComponent extends React.Component {
     return [ReactDOM.findDOMNode(this)];
   }
 
-  setStyles(styles, typography = {}){
-    this.styles = Object.assign({}, styles, this.props.styles);
+  setStyles(styles, typography = {}) {
+    this.styles = Object.assign({}, styles, this.props.styles || {});
     this.typography = this.props.styles || typography;
   }
 
@@ -76,7 +76,8 @@ class WixComponent extends React.Component {
 }
 
 WixComponent.propTypes = {
-  dataHook: PropTypes.string
+  dataHook: PropTypes.string,
+  styles: PropTypes.string
 };
 
 export default WixComponent;
