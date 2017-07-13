@@ -22,6 +22,10 @@ $grid-row-margin-bottom: 30px;
 	.row {
     margin-bottom: $grid-row-margin-bottom;
 	}
+
+  >div>span:last-child .row:last-child {
+    margin-bottom: 0;
+  }
 }
 .flex-container {
 	display: flex;
@@ -31,10 +35,6 @@ $grid-row-margin-bottom: 30px;
 
 	min-width: $main-container-min-width;
 	max-width: $main-container-max-width;
-
-  >div>span:last-child .row {
-    margin-bottom: 0;
-  }
 }
 
 .stretch_vertically_row {
