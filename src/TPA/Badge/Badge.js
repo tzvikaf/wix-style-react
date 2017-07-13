@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import tpaStyleInjector from '../TpaStyleInjector';
-import { string, any } from 'prop-types';
+import {string, any} from 'prop-types';
 import WixStyleBadge from '../../Badge';
 
 
-let badgeStyles = { locals: {} };
+let badgeStyles = {locals: {}};
 try {
   badgeStyles = require(`!css-loader?modules&camelCase&localIdentName="[path][name]__[local]__[hash:base64:5]"!sass-loader!./Badge.scss`);
 } catch (e) {
@@ -23,6 +23,7 @@ class Badge extends Component {
     alignmentMiddleClassName: string,
     children: any
   };
+
   extendStyles() {
     const {
       primaryClassName,

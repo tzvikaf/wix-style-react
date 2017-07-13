@@ -60,7 +60,7 @@ class WixComponent extends React.Component {
   }
 
   componentDidMount() {
-    const { dataHook } = this.props;
+    const {dataHook} = this.props;
     if (dataHook) {
       this._addDataHook(dataHook);
     }
