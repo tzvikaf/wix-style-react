@@ -1,5 +1,31 @@
-// Defaults
-///////////
+// HTML/REACT Structure
+///////////////////////
+
+/*
+ *
+ * React Element Structure
+ * <Animate>
+ *   <ChildAnimate>
+ *     {children}
+ *   </ChildAnimate>
+ * </Animate>
+ *
+ *
+ * HTML Structure
+ *                     Animation Classes
+ *                     -----------------
+ * <div class="        ...    Parent classes   ...  ">  <--- Animator
+ *   <div class="      ...Child layer 1 classes...  ">  <--- ChildAnimate: layer 1
+ *     <div class="    ...Child layer 2 classes...  ">  <--- ChildAnimate: layer 2
+ *       <div class="  ...Child layer 2 classes...  ">  <--- ChildAnimate: layer 3
+ *         {children}                                   <--- Content from the outside world
+ *       </div>
+ *     </div>
+ *   </div>
+ * </div>
+ *
+ * */
+
 
 // Cubic Bezier
 ///////////////
@@ -7,7 +33,6 @@
 $easeOutQuint: cubic-bezier(0.23, 1, 0.32, 1);
 $easeOutCubic: cubic-bezier(0.215, 0.61, 0.355, 1);
 $easeInOutQuint: cubic-bezier(0.86, 0, 0.07, 1);
-
 
 // Duration
 ///////////
@@ -19,31 +44,29 @@ $timing-large: .3s;
 $timing-debug: 100s;
 $timing-translate: $timing-large;
 
-.timing-micro {
-  transition-duration: $timing-micro
-}
+@mixin timing() {
+  .timing-micro {
+    transition-duration: $timing-micro
+  }
 
-;
-.timing-small {
-  transition-duration: $timing-small
-}
+  .timing-small {
+    transition-duration: $timing-small
+  }
 
-;
-.timing-medium {
-  transition-duration: $timing-medium
-}
+  .timing-medium {
+    transition-duration: $timing-medium
+  }
 
-;
-.timing-large {
-  transition-duration: $timing-large
-}
 
-;
-.timing-debug {
-  transition-duration: $timing-debug
-}
+  .timing-large {
+    transition-duration: $timing-large
+  }
 
-;
+
+  .timing-debug {
+    transition-duration: $timing-debug
+  }
+}
 
 // TimingFunction
 /////////////////
@@ -52,11 +75,10 @@ $timing-translate: $timing-large;
   .timing-micro, .timing-small {
     transition-timing-function: $easeOutCubic;
   }
-;
+
   .timing-medium, .timing-large {
     transition-timing-function: $easeOutQuint;
   }
-;
 }
 
 // Sequence Delay
@@ -66,9 +88,15 @@ $sequence-delay-duration: .08s;
 $sequence-delay-max-child: 100;
 
 @keyframes hide-animation-hack {
-  0% { opacity: 1 }
-  99% { opacity: 1 }
-  100% { opacity: 0 }
+  0% {
+    opacity: 1
+  }
+  99% {
+    opacity: 1
+  }
+  100% {
+    opacity: 0
+  }
 }
 
 @mixin delayEnterBuilder($prefix: '') {
@@ -114,9 +142,15 @@ $sequence-delay-max-child: 100;
       &:not(.translate-wrapper) {
         animation: hide-animation-hack ($delay + $timing-large) forwards;
 
-        &.timing-micro { animation-duration: $delay + $timing-micro}
-        &.timing-small { animation-duration: $delay + $timing-small}
-        &.timing-medium { animation-duration: $delay + $timing-medium}
+        &.timing-micro {
+          animation-duration: $delay + $timing-micro
+        }
+        &.timing-small {
+          animation-duration: $delay + $timing-small
+        }
+        &.timing-medium {
+          animation-duration: $delay + $timing-medium
+        }
       }
 
       .child {
@@ -146,37 +180,6 @@ $sequence-delay-max-child: 100;
 
 @mixin delayLeaveFlip() {
   @include delayLeaveBuilder('-reverse');
-}
-
-.sequence-default, .sequence-flip {
-  .enter {
-    @include delayEnter()
-  }
-}
-
-.sequence-reverse, .sequence-reverse-flip {
-  .enter {
-    @include delayEnterFlip()
-  }
-}
-
-
-.sequence-default, .sequence-reverse-flip  {
-  .leave {
-    @include delayLeave()
-  }
-}
-
-.sequence-flip, .sequence-reverse {
-  .leave {
-    @include delayLeaveFlip()
-  }
-}
-
-.sequence-default, .sequence-flip, .sequence-reverse, .sequence-reverse-flip {
-  .enter-active {
-    @include delayEnterActive();
-  }
 }
 
 // Opacity
@@ -227,15 +230,15 @@ $sequence-delay-max-child: 100;
     &.timing-micro, &.timing-large {
       transform: scale(0.9);
     }
-  ;
+
     &.timing-small, &.timing-medium {
       transform: scale(0.75);
     }
-  ;
+
     &.timing-debug {
       transform: scale(0);
     }
-  ;
+
   }
 }
 
@@ -244,7 +247,6 @@ $sequence-delay-max-child: 100;
     &.timing-micro, &.timing-small, &.timing-medium, &.timing-large, &.timing-debug {
       transform: scale(1);
     }
-  ;
   }
 }
 
@@ -364,14 +366,16 @@ $sequence-delay-max-child: 100;
   .translate {
     @include translateHideOut();
   }
-};
+}
+
 
 @mixin translateOutLeaveActive() {
   .translate {
     @include translateHideOut();
   }
-};
+}
 
+;
 
 // Minimum Maximum Summary
 //////////////////////////
@@ -388,9 +392,14 @@ $sequence-delay-max-child: 100;
   @include widthMaximum();
 }
 
-
 // Animation classes
 ////////////////////
+
+// animation classes
+
+.enter, .leave {
+  @include timing();
+}
 
 .enter {
   transition-property: all;
@@ -420,18 +429,44 @@ $sequence-delay-max-child: 100;
   @include minimum();
 }
 
+// animation classes wrapped by animate-out
+
 .animate-out .enter {
   @include translateOutEnter();
 }
 
-.animate-out .enter-active {
-
-}
-
-.animate-out .leave {
-
-}
-
 .animate-out .leave-active {
   @include translateOutLeaveActive();
+}
+
+// animation classes wrapped by different sequence variations
+
+.sequence-default, .sequence-flip {
+  .enter {
+    @include delayEnter()
+  }
+}
+
+.sequence-reverse, .sequence-reverse-flip {
+  .enter {
+    @include delayEnterFlip()
+  }
+}
+
+.sequence-default, .sequence-reverse-flip {
+  .leave {
+    @include delayLeave()
+  }
+}
+
+.sequence-flip, .sequence-reverse {
+  .leave {
+    @include delayLeaveFlip()
+  }
+}
+
+.sequence-default, .sequence-flip, .sequence-reverse, .sequence-reverse-flip {
+  .enter-active {
+    @include delayEnterActive();
+  }
 }

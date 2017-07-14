@@ -22,7 +22,7 @@ class AnimatedExample extends React.Component {
     super(props);
     this.state = {
       opacity: true,
-      scale: false,
+      scale: true,
       height: false,
       width: false,
       translate: true,
@@ -111,9 +111,9 @@ class AnimatedExample extends React.Component {
               <Row>
                 {this.myToggle('scale')}
               </Row>
-              {false && <Row>
+              <Row>
                 {this.myToggle('height')}
-              </Row>}
+              </Row>
               {false && <Row>
                 {this.myToggle('width')}
               </Row>}
@@ -184,11 +184,11 @@ class AnimatedExample extends React.Component {
                           translate={this.state.translate ? this.buildTranslateObject() : false}
                           sequence={this.getSequenceValue()}
                           timing={this.state.timing === 'none' ? false : this.state.timing}>
-                  {this.state.show && <MockDiv>Some Content in Here</MockDiv>}
-                  {this.state.show && <MockDiv>Some Content in Here</MockDiv>}
-                  {this.state.show && <MockDiv>Some Content in Here</MockDiv>}
-                  {this.state.show && <MockDiv>Some Content in Here</MockDiv>}
-                  {this.state.show && <MockDiv>Some Content in Here</MockDiv>}
+                  {this.state.show && <MockDiv><div>Some Content in Here</div><div>Some Content in Here</div><div>Some Content in Here</div></MockDiv>}
+                  {this.state.show && <MockDiv><div>Some Content in Here</div><div>Some Content in Here</div><div>Some Content in Here</div></MockDiv>}
+                  {this.state.show && <MockDiv><div>Some Content in Here</div><div>Some Content in Here</div><div>Some Content in Here</div></MockDiv>}
+                  {this.state.show && <MockDiv><div>Some Content in Here</div><div>Some Content in Here</div><div>Some Content in Here</div></MockDiv>}
+                  {this.state.show && <MockDiv><div>Some Content in Here</div><div>Some Content in Here</div><div>Some Content in Here</div></MockDiv>}
                 </Animator>
               </div>
             </Col>
