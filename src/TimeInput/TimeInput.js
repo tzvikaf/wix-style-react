@@ -16,14 +16,16 @@ export default class extends Component {
     rtl: PropTypes.bool,
     style: PropTypes.object,
     disableAmPm: PropTypes.bool,
-    dataHook: PropTypes.string
+    dataHook: PropTypes.string,
+    disabled: PropTypes.bool,
   }
 
   static defaultProps = {
     defaultValue: moment(),
     onChange: () => {},
     style: {},
-    disableAmPm: false
+    disableAmPm: false,
+    disabled: false,
   }
 
   constructor(props) {
@@ -138,7 +140,7 @@ export default class extends Component {
   }
 
   handleAmPmClick = () =>
-    this.updateDate({am: !this.state.am})
+    !this.props.disabled && this.updateDate({am: !this.state.am})
 
   handleFocus = input =>
     this.setState({focus: true, lastFocus: input})
@@ -184,7 +186,12 @@ export default class extends Component {
             {this.state.am ? 'am' : 'pm'}
           </span>
         }
-        <Input.Ticker onUp={this.handlePlus} onDown={this.handleMinus}/>
+        <Input.Ticker
+          upDisabled={this.props.disabled}
+          downDisabled={this.props.disabled}
+          onUp={this.handlePlus}
+          onDown={this.handleMinus}
+          />
       </Input.Group>
     );
 
@@ -198,18 +205,21 @@ export default class extends Component {
           onBlur={this.handleInputBlur}
           suffix={suffix}
           dataHook="time-input"
+          disabled={this.props.disabled}
           />
       </div>
     );
   }
 
   render() {
-    const {style, dataHook, rtl} = this.props;
+    const {style, dataHook, rtl, disabled} = this.props;
     const {focus, hover} = this.state;
 
     return (
       <div
-        className={styles.wrapper}
+        className={classNames(styles.wrapper, {
+          [styles.disabled]: disabled
+        })}
         style={style}
         data-hook={dataHook}
         >

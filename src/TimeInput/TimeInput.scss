@@ -42,6 +42,12 @@
     &:hover { color: $B10; }
 }
 
+.disabled .ampm {
+    cursor: default;
+    color: $D10;
+    &:hover { color: $D10; }
+}
+
 .input {
     cursor: pointer;
 }
