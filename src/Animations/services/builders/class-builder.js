@@ -10,11 +10,13 @@ const classMap = {
   child: () => 'child',
   opacity: opacity => opacity && 'opacity',
   scale: scale => scale && 'scale',
+  height: height => height && 'height',
   timing: timing => timing && `timing-${timing}`,
   translateWrapper: translate => translate && `translate-wrapper`,
   sequence: (sequence, ...args) => sequence && getSequence(sequence, ...args),
   sequenceWrapper: sequence => sequence && `sequence-${sequence}`,
-  translate: translate => translate && getTranslate(translate)
+  translate: translate => translate && getTranslate(translate),
+  className: className => className && className
 
 };
 
@@ -26,13 +28,15 @@ const removeWrapperString = str => {
 class ClassBuilder {
 
   names;
+  classNames;
   data;
   constructor(data) {
     this.names = [];
+    this.classNames = [];
     this.data = data || {};
   }
 
-  with(nameOrNames) {
+  withName(nameOrNames) {
     nameOrNames && convertToArray(nameOrNames)
       .forEach(name => this.names.push(name));
     return this;
@@ -40,7 +44,17 @@ class ClassBuilder {
 
   getFromMap(name, ...args) {
     const prop = this.data[removeWrapperString(name)];
-    return this.with(classMap[name](prop, ...args));
+    return this.withName(classMap[name](prop, ...args));
+  }
+
+  withClassName() {
+    this.classNames.push(this.data.className);
+    return this;
+  }
+
+  withAppearanceState(appears) {
+    this.names.push(appears ? 'animate-in' : 'animate-out');
+    return this;
   }
 
   withChild() {
@@ -53,6 +67,10 @@ class ClassBuilder {
 
   withScale() {
     return this.getFromMap('scale');
+  }
+
+  withHeight() {
+    return this.getFromMap('height');
   }
 
   withTiming() {
@@ -77,7 +95,8 @@ class ClassBuilder {
 
   build() {
     return flattenArray(this.names)
-      .map(item => css[item])
+      .map(name => css[name])
+      .concat(this.classNames)
       .join(' ');
   }
 

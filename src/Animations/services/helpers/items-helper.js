@@ -10,8 +10,7 @@ class Items {
 
   getList() {
     const {children} = this;
-    const items = children ? children : [];
-    return Array.isArray(items) ? items : [items];
+    return Array.isArray(children) ? children : [children];
   }
 
   isMoreThanOne() {

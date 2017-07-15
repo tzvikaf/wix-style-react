@@ -28,12 +28,14 @@ const getTranslate = ({size, to}) => {
 
 
 const propsMap = {
-  timing: (...args) => getDataOrDefault(timings, ...args),
-  sequence: (...args) => getDataOrDefault(sequences, ...args),
+  timing: (value, name) => getDataOrDefault(timings, value, name),
+  sequence: (value, name) => value && getDataOrDefault(sequences, value, name),
   children: children => children,
-  opacity: () => true,
-  scale: () => true,
-  translate: value => getTranslate(value)
+  opacity: (opacity) => !!opacity,
+  scale: (scale) => !!scale,
+  height: (height) => !!height,
+  translate: translate => translate && getTranslate(translate),
+  className: className => className
 };
 
 class PropsHelper {
@@ -47,7 +49,7 @@ class PropsHelper {
   getProp(name) {
     const value = this.props[name];
     const getData = propsMap[name];
-    return !!value && getData && getData(value, name);
+    return getData && getData(value, name);
   }
 
   getProps(names) {
