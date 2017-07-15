@@ -2,8 +2,10 @@ class Item {
 
   index;
   numberOfChildren;
+  item;
 
-  constructor(index, numberOfChildren) {
+  constructor(item, index, numberOfChildren) {
+    this.item = item;
     this.index = index;
     this.numberOfChildren = numberOfChildren;
   }
@@ -14,6 +16,25 @@ class Item {
 
   getReversePosition() {
     return this.numberOfChildren - this.index;
+  }
+
+  createChildContentProps(props) {
+    const newProps = Object.assign({}, props);
+    delete newProps.childClassName;
+    delete newProps.childStyle;
+    return newProps;
+  }
+
+  getContentProps() {
+    const {type, props} = this.item;
+    const sonOfChild = this.item.props ? this.item.props.children : this.item;
+    const newProps = this.createChildContentProps(props);
+
+    return {
+      type: type || 'div',
+      newProps,
+      sonOfChild
+    };
   }
 }
 

@@ -2,7 +2,7 @@ import PropsHelper from './props-helper';
 import Items from './items-helper';
 import ClassBuilder from '../builders/class-builder';
 import DurationBuilder from '../builders/duration-builder';
-import {transitionName} from '../constants/constants';
+import {transitionClassNames} from '../constants/constants';
 
 class ParentHelper {
 
@@ -39,10 +39,10 @@ class ParentHelper {
   getClass() {
     const {sequence, className} = this.data;
 
-    return new ClassBuilder({sequence, className})
+    return new ClassBuilder({sequence})
       .withAppearanceState(this.items.isExist())
       .withSequenceWrapper()
-      .withClassName()
+      .withClassName(className)
       .build();
   }
 
@@ -54,7 +54,7 @@ class ParentHelper {
       enter: !!duration,
       exit: !!duration,
       timeout: duration,
-      classNames: transitionName
+      classNames: transitionClassNames
     };
   }
 

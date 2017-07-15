@@ -10,8 +10,13 @@ class Animator extends Component {
 
   items;
 
-  createChildHelper(index) {
-    return new ChildHelper(this.props, index, this.items.getLength());
+  createChildHelper(item, index) {
+    return new ChildHelper({
+      props: this.props,
+      item,
+      index,
+      numberOfChildren: this.items.getLength()
+    });
   }
 
   render() {
@@ -21,7 +26,7 @@ class Animator extends Component {
       <TransitionGroup className={helper.getClass()}>
         {this.items.getList().map((item, index) =>
           <CSSTransition key={index} {...helper.getTransitionGroupProps()}>
-            <Child helper={this.createChildHelper(index)}>{item}</Child>
+            <Child {...item.props} helper={this.createChildHelper(item, index)}>{item}</Child>
           </CSSTransition>
         )}
       </TransitionGroup>

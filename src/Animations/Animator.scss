@@ -473,9 +473,11 @@ $sequence-delay-max-child: 100;
   }
 }
 
-.shuki {
-  width: 50px;
-  height: 50px;
+.shuki-inner {
+  border: 1px solid black;
+}
+
+.shuki-child {
   flex-grow:1;
 }
 

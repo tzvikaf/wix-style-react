@@ -47,8 +47,10 @@ class ClassBuilder {
     return this.withName(classMap[name](prop, ...args));
   }
 
-  withClassName() {
-    this.classNames.push(this.data.className);
+  withClassName(className) {
+    if (className) {
+      this.classNames.push(className);
+    }
     return this;
   }
 

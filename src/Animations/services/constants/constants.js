@@ -46,8 +46,8 @@ const propsDefault = {
 };
 
 const animationProps = ['opacity', 'scale', 'height', 'translate', 'width'];
-const childProps = ['sequence', 'timing', ...animationProps];
-const transitionName = {
+const validChildProps = ['sequence', 'timing', ...animationProps];
+const transitionClassNames = {
   enter: css.enter,
   enterActive: css.enterActive,
   exit: css.leave,
@@ -58,11 +58,11 @@ export {
   translateMap,
   propsDefault,
   animationProps,
-  childProps,
+  validChildProps,
   timings,
   sequences,
   directions,
   percentages,
-  transitionName,
+  transitionClassNames,
   timingMap
 };
