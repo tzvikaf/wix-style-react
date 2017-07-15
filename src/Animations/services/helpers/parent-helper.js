@@ -13,7 +13,6 @@ class ParentHelper {
   constructor(props) {
     const propsHelper = new PropsHelper(props);
     this.data = propsHelper.getProps(['children', 'sequence', 'timing', 'translate', 'className']);
-    console.log('className is', this.data.className);
     this.items = new Items(this.data.children);
     this.isAnimate = propsHelper.hasAnimationProps();
     this.isSequence = this.data.sequence && this.isAnimate && this.items.isMoreThanOne();
@@ -52,12 +51,11 @@ class ParentHelper {
     const duration = this.getDuration();
 
     return {
-      transitionEnter: !!duration,
-      transitionLeave: !!duration,
-      transitionEnterTimeout: duration,
-      transitionLeaveTimeout: duration,
-      transitionName: transitionName
-    }
+      enter: !!duration,
+      exit: !!duration,
+      timeout: duration,
+      classNames: transitionName
+    };
   }
 
 }

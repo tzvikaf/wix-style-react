@@ -11,7 +11,7 @@ const getDataOrDefault = (arr, value, name) => {
   return arr.indexOf(value) > -1 ? value : propsDefault[name];
 };
 
-const getSize = (size, mode) => {
+const getSize = (size = {in: 100, out: 100}, mode) => {
   size = typeof size === 'number' ? size : size[mode];
   return getDataOrDefault(percentages, size, 'size');
 };
@@ -31,9 +31,9 @@ const propsMap = {
   timing: (value, name) => getDataOrDefault(timings, value, name),
   sequence: (value, name) => value && getDataOrDefault(sequences, value, name),
   children: children => children,
-  opacity: (opacity) => !!opacity,
-  scale: (scale) => !!scale,
-  height: (height) => !!height,
+  opacity: opacity => !!opacity,
+  scale: scale => !!scale,
+  height: height => !!height,
   translate: translate => translate && getTranslate(translate),
   className: className => className
 };

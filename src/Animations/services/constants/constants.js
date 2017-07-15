@@ -50,8 +50,8 @@ const childProps = ['sequence', 'timing', ...animationProps];
 const transitionName = {
   enter: css.enter,
   enterActive: css.enterActive,
-  leave: css.leave,
-  leaveActive: css.leaveActive
+  exit: css.leave,
+  exitActive: css.leaveActive
 };
 
 export {

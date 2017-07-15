@@ -187,6 +187,8 @@ class AnimatedExample extends React.Component {
                           timing={this.state.timing === 'large' ? false : this.state.timing}>
                   {this.state.show && <MockDiv><div>Some Content in Here</div><div>Some Content in Here</div><div>Some Content in Here</div></MockDiv>}
                   {this.state.show && <MockDiv><div>Some Content in Here</div><div>Some Content in Here</div><div>Some Content in Here</div></MockDiv>}
+                  {this.state.show && <MockDiv><div>Some Content in Here</div><div>Some Content in Here</div><div>Some Content in Here</div></MockDiv>}
+                  {this.state.show && <MockDiv><div>Some Content in Here</div><div>Some Content in Here</div><div>Some Content in Here</div></MockDiv>}
                 </Animator>
               </div>
             </Col>

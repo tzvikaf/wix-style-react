@@ -10,7 +10,8 @@ class Items {
 
   getList() {
     const {children} = this;
-    return Array.isArray(children) ? children : [children];
+    const shuki = Array.isArray(children) ? children : [children];
+    return shuki.filter(shuki => !!shuki);
   }
 
   isMoreThanOne() {

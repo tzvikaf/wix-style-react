@@ -1,6 +1,7 @@
 import React, {Children} from 'react';
 import PropTypes from 'prop-types';
-import ReactCSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
+import TransitionGroup from 'react-transition-group/TransitionGroup';
+import CSSTransition from 'react-transition-group/CSSTransition';
 import classNames from 'classnames';
 import css from './Notification.scss';
 import WixComponent from '../BaseComponents/WixComponent';
@@ -186,19 +187,24 @@ class Notification extends WixComponent {
   render() {
     return (
       <div className={css.notificationComponent}>
-        <ReactCSSTransitionGroup
-          component={FirstChild}
-          transitionName={{
-            enter: css.notificationAnimationEnter,
-            enterActive: css.notificationAnimationEnterActive,
-            leave: css.notificationAnimationLeave,
-            leaveActive: css.notificationAnimationLeaveActive,
-          }}
-          transitionEnterTimeout={animationsTimeouts.enter}
-          transitionLeaveTimeout={animationsTimeouts.leave}
-          >
-          {this.shouldShowNotification() ? this.renderNotification() : null}
-        </ReactCSSTransitionGroup>
+        <FirstChild>
+          <TransitionGroup>
+            {this.shouldShowNotification() && [this.renderNotification()].map((item, index) =>
+              <CSSTransition
+                key={index}
+                classNames={{
+                  enter: css.notificationAnimationEnter,
+                  enterActive: css.notificationAnimationEnterActive,
+                  exit: css.notificationAnimationLeave,
+                  exitActive: css.notificationAnimationLeaveActive,
+                }}
+                timeout={{enter: animationsTimeouts.enter, exit: animationsTimeouts.leave}}
+                >
+                {item}
+              </CSSTransition>
+            )}
+          </TransitionGroup>
+        </FirstChild>
       </div>
     );
   }

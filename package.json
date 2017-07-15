@@ -128,7 +128,7 @@
     "react-modal": "^1.6.5",
     "react-onclickoutside": "^5.7.1",
     "react-remarkable": "^1.1.1",
-    "react-transition-group": "^1.2.0",
+    "react-transition-group": "^2.1.0",
     "slate": "^0.20.3"
   },
   "jest": {
