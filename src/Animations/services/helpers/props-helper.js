@@ -3,6 +3,7 @@ import {
   sequences,
   directions,
   percentages,
+  debugModes,
   propsDefault,
   animationProps
 } from '../constants/constants';
@@ -35,7 +36,8 @@ const propsMap = {
   scale: scale => !!scale,
   height: height => !!height,
   translate: translate => translate && getTranslate(translate),
-  className: className => className
+  className: className => className,
+  debug: (value, name) => getDataOrDefault(debugModes, value, name)
 };
 
 class PropsHelper {

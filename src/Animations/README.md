@@ -4,17 +4,18 @@
 
 ## Properties
 
-# Animator Props
+# Props of Animator Component
 | propName | propType | defaultValue | Valid Values | description |
 |----------|----------|--------------|-------------|-----|
-| timing | string | large | micro, small, medium, large, debug | Sets the duration. Debug = 10000ms |
+| timing | string | large | micro, small, medium, large | Sets the duration |
 | opacity | boolean | - | - | Sets Opacity |
 | scale | boolean | - | - | Sets Scale |
 | translate | translate Object | - | -| The items te animate. examples: translate / translate="left" / translate={to: 'left', size: 50} / translate={to: 'left', size: {in: 50, out: 20}}|
 | sequence | string | - | default, flip, reverse, reverse-flip | Set a delay between appearance of children. See Sequence table for more details|
 | className | string | - | - | The class will be added as a **direct parent class** for all the children it will have|
+| debug | string | - | enter, entering, leave, leaving | Emulates the real animation classes without the need to animate. Just leave your element visible and add these classes to debug different stages. enter: 'enter', entering: 'enter enter-active', leave: 'leave', leaving: 'leave leave-active' |
 
-# Children of Animator Props
+# Props of Children of Animator Component
 
 | propName | propType | defaultValue | Valid Values | description |
 |----------|----------|--------------|-------------|-----|

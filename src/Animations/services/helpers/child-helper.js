@@ -31,6 +31,7 @@ class ChildHelper {
 
   getLayer2() {
     return new ClassBuilder(this.data)
+      .withDebug()
       .withChild()
       .withOpacity()
       .withScale()

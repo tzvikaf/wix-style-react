@@ -27,6 +27,7 @@ class AnimatedExample extends React.Component {
       width: false,
       translate: true,
       sequence: true,
+      debug: 'none',
       sequenceOption: 'default',
       translateSizeIn: 100,
       translateSizeOut: 100,
@@ -57,6 +58,14 @@ class AnimatedExample extends React.Component {
       {id: 'flip', value: 'Flip'},
       {id: 'reverse', value: 'Reverse'},
       {id: 'reverse-flip', value: 'Reverse Flip'}
+    ]
+
+    this.debugOptions = [
+      {id: 'none', value: 'None'},
+      {id: 'enter', value: 'Enter Stage'},
+      {id: 'entering', value: 'Entering Stage'},
+      {id: 'leave', value: 'Leave Stage'},
+      {id: 'leaving', value: 'Leaving Stage'},
     ]
 
   }
@@ -164,6 +173,14 @@ class AnimatedExample extends React.Component {
                   options={this.options}
                 />
               </Row>
+              <Row>
+                Debug
+                <Dropdown
+                  selectedId="none"
+                  onSelect={option => this.setState({debug: option.id})}
+                  options={this.debugOptions}
+                />
+              </Row>
             </Col>
             <Col span="8">
               <pre>&lt;Animator
@@ -181,6 +198,7 @@ class AnimatedExample extends React.Component {
                           scale={this.state.scale}
                           height={this.state.height}
                           width={this.state.width}
+                          debug={this.state.debug === 'none' ? false : this.state.debug}
                           translate={this.state.translate ? this.buildTranslateObject() : false}
                           sequence={this.getSequenceValue()}
                           timing={this.state.timing === 'large' ? false : this.state.timing}>

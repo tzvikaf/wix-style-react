@@ -24,6 +24,10 @@ class ShowHideControls extends React.Component {
   }
 
   componentDidMount() {
+
+    if (!this.props.interval) {
+      return;
+    }
     const intervalId = setInterval(() => {
       this.toggle();
     }, 2000);

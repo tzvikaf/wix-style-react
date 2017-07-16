@@ -41,7 +41,6 @@ $timing-micro: .12s;
 $timing-small: .15s;
 $timing-medium: .2s;
 $timing-large: .3s;
-$timing-debug: 100s;
 $timing-translate: $timing-large;
 
 @mixin timing() {
@@ -62,10 +61,6 @@ $timing-translate: $timing-large;
     transition-duration: $timing-large
   }
 
-
-  .timing-debug {
-    transition-duration: $timing-debug
-  }
 }
 
 // TimingFunction
@@ -196,15 +191,12 @@ $sequence-delay-max-child: 100;
     &.timing-large {
       opacity: .66;
     }
-    &.timing-debug {
-      opacity: 0;
-    }
   }
 }
 
 @mixin opacityEnterActive() {
   .opacity {
-    &.timing-micro, &.timing-small, &.timing-medium, &.timing-large, &.timing-debug {
+    &.timing-micro, &.timing-small, &.timing-medium, &.timing-large {
       opacity: 1;
     }
   }
@@ -235,16 +227,12 @@ $sequence-delay-max-child: 100;
       transform: scale(0.75);
     }
 
-    &.timing-debug {
-      transform: scale(0);
-    }
-
   }
 }
 
 @mixin scaleMaximum() {
   .scale {
-    &.timing-micro, &.timing-small, &.timing-medium, &.timing-large, &.timing-debug {
+    &.timing-micro, &.timing-small, &.timing-medium, &.timing-large {
       transform: scale(1);
     }
   }
@@ -255,7 +243,6 @@ $sequence-delay-max-child: 100;
 
 @mixin heightMinimum() {
   .height {
-    color: blue;
     overflow: hidden;
     max-height: 0;
   }
@@ -263,7 +250,6 @@ $sequence-delay-max-child: 100;
 
 @mixin heightMaximum() {
   .height {
-    color: red;
     overflow: hidden;
     max-height: 100%;
   }
@@ -333,10 +319,6 @@ $sequence-delay-max-child: 100;
     transition-timing-function: $easeOutCubic;
     @include translateHide();
   }
-
-  .timing-debug .translate {
-    transition-duration: 10s;
-  }
 }
 
 @mixin translateEnterActive() {
@@ -351,10 +333,6 @@ $sequence-delay-max-child: 100;
     transition-duration: .3s;
     transition-timing-function: $easeInOutQuint;
     @include translateShow();
-  }
-
-  .timing-debug .translate {
-    transition-duration: 10s;
   }
 }
 
