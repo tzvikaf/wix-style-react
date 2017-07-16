@@ -22,6 +22,7 @@ class Item {
     const newProps = Object.assign({}, props);
     delete newProps.childClassName;
     delete newProps.childStyle;
+    delete newProps.debug;
     return newProps;
   }
 
