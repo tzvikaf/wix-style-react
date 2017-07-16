@@ -30,7 +30,7 @@ class ShowHideControls extends React.Component {
     }
     const intervalId = setInterval(() => {
       this.toggle();
-    }, 2000);
+    }, 5000);
 
     this.setState({intervalId});
   }
@@ -44,10 +44,12 @@ class ShowHideControls extends React.Component {
     return (
       <Container>
         <Row>
-          <Col span="1"><ToggleSwitch checked={this.state.show}
+          <Col span="2">
+            Show / Hide
+            <ToggleSwitch checked={this.state.show}
                                       onChange={() => this.onChange()}/>
           </Col>
-          <Col span="11">
+          <Col span="10">
             {React.createElement(children.type, {...children.props, show: this.state.show}, children)}
           </Col>
         </Row>

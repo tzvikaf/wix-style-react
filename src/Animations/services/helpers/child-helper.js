@@ -24,6 +24,7 @@ class ChildHelper {
     const {index, reverseIndex} = this;
     return new ClassBuilder(this.data)
       .withTranslateWrapper()
+      .withDebug()
       .withClassName(this.childProps.childClassName)
       .withSequence(index, reverseIndex)
       .build();
@@ -31,7 +32,6 @@ class ChildHelper {
 
   getLayer2() {
     return new ClassBuilder(this.data)
-      .withDebug()
       .withChild()
       .withOpacity()
       .withScale()

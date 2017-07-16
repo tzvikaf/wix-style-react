@@ -276,7 +276,7 @@ $sequence-delay-max-child: 100;
 ////////////
 
 @mixin createTranslateAnimations($prefix: '') {
-  @for $i from 1 through 10 {
+  @for $i from 0 through 10 {
     $size: $i * 10%;
     &.translate#{$prefix}-#{$i * 10} {
       &.translate-top {
@@ -449,16 +449,4 @@ $sequence-delay-max-child: 100;
   .enter-active {
     @include delayEnterActive();
   }
-}
-
-.shuki-inner {
-  border: 1px solid black;
-}
-
-.shuki-child {
-  flex-grow:1;
-}
-
-.shuki-wrapper {
-  display: flex;
 }

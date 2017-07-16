@@ -28,14 +28,14 @@
 | propName | propType | defaultValue | Valid Values | description |
 |----------|----------|--------------|-------------|-----|
 | to | string | top | top, bottom, left, right | Sets the direction **TO APPEAR** |
-| size | number or size Object | 100 | 10, 20, 30, 40, 50, 60, 70, 80, 90, 100 | Sets the size of the translation in percentage |
+| size | number or size Object | 100 | 0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100 | Sets the size of the translation in percentage |
 
 # Size Object
 
 | propName | propType | defaultValue | Valid Values | description |
 |----------|----------|--------------|-------------|-----|
-| in | number | 100 | 10, 20, 30, 40, 50, 60, 70, 80, 90, 100 | Sets the size of the translation in percentage for **APPEAR** |
-| out | number | 100 | 10, 20, 30, 40, 50, 60, 70, 80, 90, 100 | Sets the size of the translation in percentage for **DISAPPEAR** |
+| in | number | 100 | 0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100 | Sets the size of the translation in percentage for **APPEAR** |
+| out | number | 100 | 0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100 | Sets the size of the translation in percentage for **DISAPPEAR** |
 
 # Sequence Table
 

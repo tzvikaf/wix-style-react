@@ -4,10 +4,10 @@ import {Container, Row, Col} from '../../src/Grid';
 import ToggleSwitch from '../../src/ToggleSwitch';
 import Dropdown from '../../src/Dropdown';
 import Animator from '../../src/Animations/Animator';
-import css from '../../src/Animations/Animator.scss';
+import * as css from './Example.scss';
 
 const createSizeArray = (size) => {
-  return new Array(size + 1).fill(0).map((element, id) => ({id: id * 10, value: id * 10})).splice(1, size + 1);
+  return new Array(size + 1).fill(0).map((element, id) => ({id: id * 10, value: id * 10}));
 }
 
 const MockDiv = ({children, height = '40px', width = '100px'}) => {
@@ -120,9 +120,9 @@ class AnimatedExample extends React.Component {
               <Row>
                 {this.myToggle('scale')}
               </Row>
-              <Row>
+              {false &&<Row>
                 {this.myToggle('height')}
-              </Row>
+              </Row>}
               {false && <Row>
                 {this.myToggle('width')}
               </Row>}
@@ -191,6 +191,7 @@ class AnimatedExample extends React.Component {
                 {this.state.width ? ' width' : ''}
                 {this.state.translate ? this.buildTranslateString() : ''}
                 {this.state.sequence ? ' sequence' : ''}{this.state.sequence && this.state.sequenceOption !== 'default' ? `="${this.state.sequenceOption}"` : ''}
+                {this.state.debug !== 'none' ? ` debug="${this.state.debug}"` : ''}
                 &gt;&lt;/Animator&gt;</pre>
               <br />
                 <Animator opacity={this.state.opacity}
