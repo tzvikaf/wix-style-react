@@ -339,6 +339,7 @@ $timing-translate: $timing-large;
   @include opacityLeave();
   @include translateLeave();
   @include maximum();
+  @include delayLeave();
 }
 
 .leave-active {
