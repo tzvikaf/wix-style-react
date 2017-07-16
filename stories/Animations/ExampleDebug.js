@@ -11,7 +11,6 @@ class ExampleDebug extends React.Component {
 
   constructor(props) {
     super(props);
-    this.sizes = [0, 10, 30, 40, 50, 60, 70, 80, 90, 100];
 
     this.state = {
       debug: false
@@ -43,7 +42,6 @@ class ExampleDebug extends React.Component {
               <Animator translate="left" scale debug={this.state.debug}>
                 <div className={css.basicDiv}>{this.state.debug ? ` emulates the ${this.state.debug} phase` : '<--- Waiting for you to choose a debug phase'}</div>
               </Animator>
-
             </div>
           </Col>
         </Row>

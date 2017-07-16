@@ -17,7 +17,7 @@ const ExampleTranslateSize = () => {
         <Col span="10">
           <div className={css.basicWrapper} style={{height: '70px', border: '1px solid black'}}>
             {sizes.map(size =>
-              (<Animator opacity translate={{to: 'top', size: size}} debug="enter">
+              (<Animator translate={{to: 'top', size: size}} debug="enter">
                 <div className={css.basicDiv}>{size}%</div>
               </Animator>)
             )}

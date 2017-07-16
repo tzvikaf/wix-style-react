@@ -9,24 +9,25 @@ class ChildHelper {
   index;
   reverseIndex;
   childProps;
+  numberOfChildren;
 
   constructor({props, index, item, numberOfChildren}) {
 
     this.childProps = item.props || {};
     const propsHelper = new PropsHelper(props);
     this.data = propsHelper.getProps(validChildProps);
+    this.numberOfChildren = numberOfChildren;
     this.item = new Item(item, index, numberOfChildren);
     this.index = this.item.getPosition();
     this.reverseIndex = this.item.getReversePosition();
   }
 
   getClassLayer1() {
-    const {index, reverseIndex} = this;
     return new ClassBuilder(this.data)
       .withTranslateWrapper()
       .withDebug()
       .withClassName(this.childProps.childClassName)
-      .withSequence(index, reverseIndex)
+      .withSequence()
       .build();
   }
 
@@ -58,7 +59,7 @@ class ChildHelper {
     return this.childProps.childStyle || {};
   }
 
-  getStyle() {
+  getStyle(phase) {
 
     const delayStyle = {
       style1: {},
@@ -67,8 +68,11 @@ class ChildHelper {
     };
 
     if (this.data.sequence) {
-      const animationDuration = `${new DurationBuilder(this.data).getChildDelay(this.index) / 1000}s`;
-      const transitionDelay = `${(this.index - 1) * 0.08}s`;
+
+      const durationBuilder = new DurationBuilder(this.data);
+      const {transition, animation} = durationBuilder.getChild(this.index, this.data.sequence, this.numberOfChildren, phase);
+      const animationDuration = `${animation / 1000}s`;
+      const transitionDelay = `${transition / 1000}s`;
       delayStyle.style1 = {
         animationDuration,
         transitionDelay
