@@ -79,9 +79,6 @@ $timing-translate: $timing-large;
 // Sequence Delay
 /////////////////
 
-$sequence-delay-duration: .08s;
-$sequence-delay-max-child: 20;
-
 @keyframes hide-animation-hack {
   0% {
     opacity: 1
@@ -94,88 +91,35 @@ $sequence-delay-max-child: 20;
   }
 }
 
-@mixin delayEnterBuilder($prefix: '') {
-  @for $i from 1 through $sequence-delay-max-child {
-    &.child-sequence#{$prefix}-#{$i} {
-      $delay: ($i - 1) * $sequence-delay-duration;
-      transition-property: opacity;
-      transition-duration: 0s;
-      transition-timing-function: linear;
-      transition-delay: $delay;
-      opacity: 0;
-
-      .child {
-        transition-delay: $delay;
-      }
-
-      .translate {
-        transition-delay: $delay;
-      }
-
-    }
-
+@mixin delayEnter() {
+  &.child-sequence {
+    transition-property: opacity;
+    transition-duration: 0s;
+    transition-timing-function: linear;
+    opacity: 0;
   }
 }
 
 @mixin delayEnterActive() {
-  @for $i from 1 through $sequence-delay-max-child {
-    &.child-sequence-#{$i} {
-      opacity: 1;
-    }
+  &.child-sequence {
+    opacity: 1;
   }
 }
 
-@mixin delayLeaveBuilder($prefix: '') {
-  @for $i from 1 through $sequence-delay-max-child {
-    $delay: ($i - 1) * $sequence-delay-duration;
-    &.child-sequence#{$prefix}-#{$i} {
-
-      &.translate-wrapper {
-        animation: hide-animation-hack ($delay + $timing-translate) forwards;
-      }
-
-      &:not(.translate-wrapper) {
-        animation: hide-animation-hack ($delay + $timing-large) forwards;
-
-        &.timing-micro {
-          animation-duration: $delay + $timing-micro
-        }
-        &.timing-small {
-          animation-duration: $delay + $timing-small
-        }
-        &.timing-medium {
-          animation-duration: $delay + $timing-medium
-        }
-      }
-
-      .child {
-        transition-delay: $delay;
-      }
-
-      .translate {
-        transition-delay: $delay;
-      }
-
-    }
-
-  }
-}
-
-@mixin delayEnter() {
-  @include delayEnterBuilder();
-}
-
-@mixin delayEnterFlip() {
-  @include delayEnterBuilder('-reverse');
-}
+//@mixin delayEnterFlip() {
+//  @include delayEnterBuilder('-reverse');
+//}
 
 @mixin delayLeave() {
-  @include delayLeaveBuilder();
+  &.child-sequence {
+    animation-name: hide-animation-hack;
+    animation-fill-mode: forwards;
+  }
 }
 
-@mixin delayLeaveFlip() {
-  @include delayLeaveBuilder('-reverse');
-}
+//@mixin delayLeaveFlip() {
+//  @include delayLeaveBuilder('-reverse');
+//}
 
 // Opacity
 //////////
@@ -429,7 +373,7 @@ $sequence-delay-max-child: 20;
 
 .sequence-reverse, .sequence-reverse-flip {
   .enter {
-    @include delayEnterFlip()
+    //@include delayEnterFlip()
   }
 }
 
@@ -439,11 +383,11 @@ $sequence-delay-max-child: 20;
   }
 }
 
-.sequence-flip, .sequence-reverse {
-  .leave {
-    @include delayLeaveFlip()
-  }
-}
+//.sequence-flip, .sequence-reverse {
+//  .leave {
+//    @include delayLeaveFlip()
+//  }
+//}
 
 .sequence-default, .sequence-flip, .sequence-reverse, .sequence-reverse-flip {
   .enter-active {

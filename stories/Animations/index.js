@@ -16,6 +16,9 @@ import ExampleTranslateRaw from '!raw-loader!./ExampleTranslate';
 import ExampleTranslateSize from './ExampleTranslateSize';
 import ExampleTranslateSizeRaw from '!raw-loader!./ExampleTranslateSize';
 
+import ExampleMockServer from './ExampleMockServer';
+import ExampleMockServerRaw from '!raw-loader!./ExampleMockServer';
+
 import ExampleTranslateDirection from './ExampleTranslateDirection';
 import ExampleTranslateDirectionRaw from '!raw-loader!./ExampleTranslateDirection';
 
@@ -76,11 +79,15 @@ storiesOf('Common', module)
         <ExampleSequence/>
       </CodeExample>
 
-      <CodeExample title="Debug - Emulates animation stages" code={ExampleDebugRaw}>
+      <CodeExample title="Data from server scenario example" code={ExampleMockServerRaw}>
+        <ExampleMockServer/>
+      </CodeExample>
+
+      <CodeExample title="Debug - Emulates animation stages - Inspect element in devtools to see class changes" code={ExampleDebugRaw}>
         <ExampleDebug/>
       </CodeExample>
 
-      <CodeExample title="Debugging Example - Examine the 'enter' mode before 'entering'" code={ExampleDebugTranslateSizeRaw}>
+      <CodeExample title="Debugging Example - Examine the 'enter' mode before 'entering' on translate and opacity animation" code={ExampleDebugTranslateSizeRaw}>
         <ExampleDebugTranslateSize/>
       </CodeExample>
 

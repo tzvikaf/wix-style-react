@@ -12,13 +12,15 @@ Content.propTypes = {
 };
 
 class AnimatorChild extends Component {
+
   render() {
     const {children, helper} = this.props;
     const {layer1, layer2, layer3} = helper.getClass();
+    const {style1, style2, style3} = helper.getStyle();
     return (
-      <div className={layer1} style={helper.getStyle()}>
-        <div className={layer2}>
-          <div className={layer3}>
+      <div className={layer1} style={style1}>
+        <div className={layer2} style={style2}>
+          <div className={layer3} style={style3}>
             <Content {...helper.getContentProps()}>{children}</Content>
           </div>
         </div>

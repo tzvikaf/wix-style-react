@@ -4,10 +4,14 @@ const getSequenceDuration = numberOfChildren => {
   return (numberOfChildren - 1) * propsDefault.sequenceDelay;
 };
 
-const getAnimationDuration = (timing, isTranslate) => {
-  const duration = timingMap[timing];
-  return isTranslate ? propsDefault.duration : duration;
+const getDurationFromTiming = timing => {
+  return timingMap[timing];
 };
+
+const getAnimationDuration = (timing, isTranslate) => {
+  return isTranslate ? propsDefault.duration : getDurationFromTiming(timing);
+};
+
 
 class DurationBuilder {
 
@@ -22,6 +26,11 @@ class DurationBuilder {
     const animationDuration = isAnimate ? getAnimationDuration(timing, translate) : 0;
     const sequenceDuration = isSequence ? getSequenceDuration(numberOfChildren) : 0;
     return animationDuration + sequenceDuration;
+  }
+
+  getChildDelay(index) {
+    const {timing, translate} = this.data;
+    return getAnimationDuration(timing, translate) + (80 * (index - 1));
   }
 }
 

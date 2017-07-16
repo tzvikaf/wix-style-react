@@ -26,7 +26,7 @@ class Animator extends Component {
       <TransitionGroup className={helper.getClass()}>
         {this.items.getList().map((item, index) =>
           <CSSTransition key={index} {...helper.getTransitionGroupProps()}>
-            <Child {...item.props} helper={this.createChildHelper(item, index)}>{item}</Child>
+            <Child {...item.props} helper={this.createChildHelper(item, index)} exist={this.exist}>{item}</Child>
           </CSSTransition>
         )}
       </TransitionGroup>
