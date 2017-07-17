@@ -1,0 +1,14 @@
+$slide-animation-time: 0.3s;
+
+.enterActive-base {
+  transform: translate(0%);
+  transition: transform $slide-animation-time ease-in-out;
+}
+
+.leave-base {
+  transform: translate(0%);
+}
+
+.leaveActive-base {
+  transition: transform $slide-animation-time ease-in-out;
+}

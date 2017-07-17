@@ -1,8 +1,30 @@
+$easeOutQuint: cubic-bezier(0.23, 1, 0.32, 1);
+$easeOutCubic: cubic-bezier(0.215, 0.61, 0.355, 1);
+
+.drillViewContainerWrapper {
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+
 .drillViewContainer {
   position: relative;
-  overflow: hidden;
   display: flex;
   flex-grow: 1;
+  position: relative;
+  transform: translate(0, 0);
+  transition: transform .3s $easeOutCubic;
+  &.second-menu {
+    transform: translate(-100%, 0);
+  }
+}
+
+.drillViewContainer2 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 220px;
 }
 
 .drillViewPanel {
@@ -24,4 +46,18 @@
   display: flex;
   flex-direction: column;
   flex: 1;
+}
+
+.drillViewPanelInner {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.index-one {
+  z-index: 1;
+}
+
+.index-two {
+  z-index: 2;
 }
