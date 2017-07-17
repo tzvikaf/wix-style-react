@@ -1,9 +1,5 @@
 import React, {Component} from 'react';
-<<<<<<< HEAD
 import {node, object, any} from 'prop-types';
-=======
-import {oneOf, node, string, object, any} from 'prop-types';
->>>>>>> master
 
 const Content = ({type, newProps, sonOfChild}) => {
   return React.createElement(type, newProps, sonOfChild);
