@@ -14,8 +14,8 @@ const ExampleMockServer = ({show}) => {
         {!show && 'The casual spinner...'}
       </Animator>
       <Animator opacity sequence translate="top" className={css.flexParent}>
-        {items.map(item =>
-          show && <div className={css.basicDiv}>item</div>
+        {items.map((item, index) =>
+          show && <div key={index} className={css.basicDiv}>item</div>
         )}
       </Animator>
     </div>

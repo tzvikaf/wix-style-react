@@ -13,11 +13,11 @@ class ExampleSequence extends React.Component {
     super(props);
 
     this.state = {
-      sequenceType: true
+      sequenceType: 'default'
     };
 
     this.options = [
-      {id: true, value: 'Default (Leave empty)'},
+      {id: 'default', value: 'Default (Leave empty)'},
       {id: 'flip', value: 'Flip'},
       {id: 'reverse', value: 'Reverse'},
       {id: 'reverse-flip', value: 'Reverse Flip'}

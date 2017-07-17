@@ -10,14 +10,6 @@ class Item {
     this.numberOfChildren = numberOfChildren;
   }
 
-  getPosition() {
-    return this.index + 1;
-  }
-
-  getReversePosition() {
-    return this.numberOfChildren - this.index;
-  }
-
   createChildContentProps(props) {
     const newProps = Object.assign({}, props);
     delete newProps.childClassName;

@@ -11,8 +11,8 @@ const ExampleTranslateSize = ({show}) => {
 
   return (
     <div className={css.basicWrapper} style={{height: '70px', border: '1px solid black'}}>
-      {sizes.map(size =>
-        (<Animator opacity translate={{to: 'top', size: size}}>
+      {sizes.map((size, index) =>
+        (<Animator key={index} opacity translate={{to: 'top', size: size}}>
             {show && <div className={css.basicDiv}>{size}</div>}
         </Animator>)
       )}

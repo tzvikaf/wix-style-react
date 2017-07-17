@@ -1,38 +1,39 @@
-import PropsHelper from './props-helper';
 import Item from './item-helper';
 import ClassBuilder from '../builders/class-builder';
-import {validChildProps} from '../constants/constants';
-import DurationBuilder from '../builders/duration-builder';
+import StyleBuilder from '../builders/style-builder';
+import shouldFlipAnimation from './should-flip-animation';
+
 class ChildHelper {
 
-  data;
+  propsHelper;
+  itemsLength;
+  time;
+  props;
   index;
-  reverseIndex;
-  childProps;
-  numberOfChildren;
+  item;
+  sequenceName;
 
-  constructor({props, index, item, numberOfChildren}) {
-
-    this.childProps = item.props || {};
-    const propsHelper = new PropsHelper(props);
-    this.data = propsHelper.getProps(validChildProps);
-    this.numberOfChildren = numberOfChildren;
-    this.item = new Item(item, index, numberOfChildren);
-    this.index = this.item.getPosition();
-    this.reverseIndex = this.item.getReversePosition();
+  constructor({propsHelper, itemsLength, index, time, item}) {
+    this.props = item.props || {};
+    this.propsHelper = propsHelper;
+    this.itemsLength = itemsLength;
+    this.time = time;
+    this.item = new Item(item);
+    this.index = index;
+    this.sequenceName = this.propsHelper.getSequenceName();
   }
 
   getClassLayer1() {
-    return new ClassBuilder(this.data)
+    return new ClassBuilder(this.propsHelper.getAll())
       .withTranslateWrapper()
       .withDebug()
-      .withClassName(this.childProps.childClassName)
+      .withClassName(this.props.childClassName)
       .withSequence()
       .build();
   }
 
   getClassLayer2() {
-    return new ClassBuilder(this.data)
+    return new ClassBuilder(this.propsHelper.getAll())
       .withChild()
       .withOpacity()
       .withScale()
@@ -42,7 +43,7 @@ class ChildHelper {
   }
 
   getClassLayer3() {
-    return new ClassBuilder(this.data)
+    return new ClassBuilder(this.propsHelper.getAll())
       .withTranslate()
       .build();
   }
@@ -55,44 +56,31 @@ class ChildHelper {
     };
   }
 
-  getChildStyle() {
-    return this.childProps.childStyle || {};
-  }
-
   getStyle(phase) {
 
-    const delayStyle = {
-      style1: {},
-      style2: {},
-      style3: {}
-    };
+    const style1 = new StyleBuilder(this.propsHelper).with(this.props.childStyle || {});
+    const style2 = new StyleBuilder(this.propsHelper);
+    const style3 = new StyleBuilder(this.propsHelper);
 
-    if (this.data.sequence) {
+    if (this.sequenceName) {
+      const shouldFlip = shouldFlipAnimation(this.sequenceName, phase);
+      const index = shouldFlip ? this.itemsLength - this.index : this.index;
+      const duration = this.time.getDurationInPosition(index);
+      const delay = this.time.getDelayInPosition(index);
 
-      const durationBuilder = new DurationBuilder(this.data);
-      const {transition, animation} = durationBuilder.getChild(this.index, this.data.sequence, this.numberOfChildren, phase);
-      const animationDuration = `${animation / 1000}s`;
-      const transitionDelay = `${transition / 1000}s`;
-      delayStyle.style1 = {
-        animationDuration,
-        transitionDelay
-      };
-
-      delayStyle.style2 = {
-        transitionDelay
-      };
-
-
-      delayStyle.style3 = {
-        transitionDelay
-      };
-
+      style1
+        .withTransitionDelay(delay)
+        .withAnimationDelay(duration);
+      style2
+        .withTransitionDelay(delay);
+      style3
+        .withTransitionDelay(delay);
     }
 
     return {
-      style1: Object.assign({}, delayStyle.style1, this.getChildStyle()),
-      style2: delayStyle.style2,
-      style3: delayStyle.style3
+      style1: style1.build(),
+      style2: style2.build(),
+      style3: style3.build()
     };
   }
 
