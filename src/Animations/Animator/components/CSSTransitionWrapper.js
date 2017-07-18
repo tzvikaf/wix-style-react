@@ -25,7 +25,20 @@ class CSSTransitionWrapper extends React.Component {
     };
   }
 
-  updateTransitionState(update) {
+  componentWillReceiveProps(props) {
+    const {debug} = props.animatorProps;
+    if (debug) {
+      if (debug === 'enter' || debug === 'entering') {
+        this.updateTransitionState({enter: true});
+      } else if (debug === 'leaving') {
+        this.updateTransitionState({exit: true});
+      } else {
+        this.updateTransitionState();
+      }
+    }
+  }
+
+  updateTransitionState(update = {}) {
     this.setState({
       transition: Object.assign({}, this.transitionDefault, update)
     });
@@ -33,11 +46,11 @@ class CSSTransitionWrapper extends React.Component {
 
   onEnter() {
     this.setSequenceIndex('enter');
-    this.updateTransitionState({enter: true, entered: false});
+    this.updateTransitionState({enter: true});
   }
 
   onEntered() {
-    this.updateTransitionState({enter: false, entered: true});
+    this.updateTransitionState({entered: true});
   }
 
   onExit() {
