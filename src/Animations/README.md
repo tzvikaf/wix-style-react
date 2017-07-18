@@ -27,15 +27,23 @@
 
 | propName | propType | defaultValue | Valid Values | description |
 |----------|----------|--------------|-------------|-----|
-| to | string | top | top, bottom, left, right | Sets the direction **TO APPEAR** |
-| size | number or size Object | 100 | 0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100 | Sets the size of the translation in percentage |
+| to | string or Position Object | top | top, bottom, left, right | Sets the direction **TO APPEAR** |
+| size | number or size Object | 100% | any value that translate can take: px, %, em and such. a number param will be converted to % | Sets the size of the translation |
+
+# Position Object
+
+| propName | propType | defaultValue | Valid Values | description |
+|----------|----------|--------------|-------------|-----|
+| in | string | top | top, left, right, bottom | Sets the size of the translation in percentage for **APPEAR** |
+| out | string | top | top, left, right, bottom | Sets the size of the translation in percentage for **DISAPPEAR** |
+
 
 # Size Object
 
 | propName | propType | defaultValue | Valid Values | description |
 |----------|----------|--------------|-------------|-----|
-| in | number | 100 | 0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100 | Sets the size of the translation in percentage for **APPEAR** |
-| out | number | 100 | 0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100 | Sets the size of the translation in percentage for **DISAPPEAR** |
+| in | number | 100% | any value that translate can take: px, %, em and such. a number param will be converted to % | Sets the size of the translation for **APPEAR** |
+| out | number | 100% | any value that translate can take: px, %, em and such. a number param will be converted to % | Sets the size of the translation for **DISAPPEAR** |
 
 # Sequence Table
 

@@ -55,7 +55,7 @@ storiesOf('Common', module)
         <ExampleOpacityAndScale/>
       </CodeExample>
 
-      <CodeExample title="Translate Animation - All 4 syntax are equivalent" code={ExampleTranslateRaw}>
+      <CodeExample title="Translate Animation - All of these can work" code={ExampleTranslateRaw}>
         <ExampleTranslate/>
       </CodeExample>
 

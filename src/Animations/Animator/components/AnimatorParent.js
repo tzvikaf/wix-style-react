@@ -10,10 +10,8 @@ class AnimatorParent extends Component {
   animatorProps;
 
   getClass() {
-    const {sequence, className, children} = this.animatorProps;
+    const {className} = this.animatorProps;
     return new ClassBuilder()
-      .withAppearanceState(!!children.length)
-      .withSequenceWrapper(sequence)
       .withClassName(className)
       .build();
   }

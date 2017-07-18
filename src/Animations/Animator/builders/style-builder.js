@@ -2,6 +2,15 @@ const css = {
   convertTime: time => time ? `${time / 1000}s` : ''
 };
 
+const translateTemplates = {
+  top: size => `translate(0, ${size})`,
+  bottom: size => `translate(0, -${size})`,
+  left: size => `translate(${size}, 0)`,
+  right: size => `translate(-${size}, 0)`
+};
+
+const getTranslate = (translate, inOrOut) => translateTemplates[translate.to[inOrOut]](translate.size[inOrOut]);
+
 class StyleBuilder {
 
   styles;
@@ -24,6 +33,12 @@ class StyleBuilder {
   withAnimationDelay(duration) {
     return this.with(duration && {
       animationDuration: css.convertTime(duration)
+    });
+  }
+
+  withTranslate(translate, inOrOut) {
+    return this.with(translate && {
+      transform: getTranslate(translate, inOrOut)
     });
   }
 

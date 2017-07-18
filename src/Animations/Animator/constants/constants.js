@@ -1,4 +1,4 @@
-import css from '../../Animator.scss';
+import css from '../Animator.scss';
 
 const top = 'top';
 const bottom = 'bottom';

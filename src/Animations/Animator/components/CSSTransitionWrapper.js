@@ -8,20 +8,41 @@ import shouldFlipAnimation from '../helpers/should-flip-animation';
 
 class CSSTransitionWrapper extends React.Component {
 
+  transitionDefault;
+
   constructor(props) {
     super(props);
 
-    this.state = {
-      sequenceIndex: 0
+    this.transitionDefault = {
+      enter: false,
+      entered: false,
+      exit: false
     };
+
+    this.state = {
+      sequenceIndex: 0,
+      transition: this.transitionDefault
+    };
+  }
+
+  updateTransitionState(update) {
+    this.setState({
+      transition: Object.assign({}, this.transitionDefault, update)
+    });
   }
 
   onEnter() {
     this.setSequenceIndex('enter');
+    this.updateTransitionState({enter: true, entered: false});
+  }
+
+  onEntered() {
+    this.updateTransitionState({enter: false, entered: true});
   }
 
   onExit() {
     this.setSequenceIndex('exit');
+    this.updateTransitionState({exit: true});
   }
 
   getTransitionProps() {
@@ -53,9 +74,10 @@ class CSSTransitionWrapper extends React.Component {
         {...this.props}
         {...this.getTransitionProps()}
         onEnter={() => this.onEnter()}
+        onEntered={() => this.onEntered()}
         onExit={() => this.onExit()}
         >
-        <Child sequenceIndex={sequenceIndex} animatorProps={animatorProps}>{children}</Child>
+        <Child transition={this.state.transition} sequenceIndex={sequenceIndex} animatorProps={animatorProps}>{children}</Child>
       </CSSTransition>
     );
   }

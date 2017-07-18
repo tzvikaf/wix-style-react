@@ -12,7 +12,6 @@ class AnimatorChild extends Component {
     return {
       class1: new ClassBuilder()
         .withChildLayer(1)
-        .withTranslateWrapper(translate)
         .withDebug(debug)
         .withClassName(this.props.childClassName)
         .withSequence(sequence)
@@ -22,6 +21,7 @@ class AnimatorChild extends Component {
         .withOpacity(opacity)
         .withScale(scale)
         .withHeight(height)
+        .withTranslateWrapper(translate)
         .withTiming(timing)
         .build(),
       class3: new ClassBuilder()
@@ -32,14 +32,15 @@ class AnimatorChild extends Component {
   }
 
   getStyles() {
-    const {childStyle, animatorProps, sequenceIndex} = this.props;
+    const {enter} = this.props.transition;
+    const {animatorProps, sequenceIndex} = this.props;
+    const {translate} = animatorProps;
     const time = new ChildTime(animatorProps, sequenceIndex);
     const delay = time.getDelay();
     const duration = time.getDuration();
 
-    return {
+    return this.isStyles() ? {
       style1: new StyleBuilder()
-        .with(childStyle)
         .withTransitionDelay(delay)
         .withAnimationDelay(duration)
         .build(),
@@ -48,16 +49,27 @@ class AnimatorChild extends Component {
         .build(),
       style3: new StyleBuilder()
         .withTransitionDelay(delay)
-        .build(),
-    };
+        .withTranslate(translate, enter ? 'in' : 'out')
+        .build()
+    } : {};
+  }
+
+  getChildStyle() {
+    const {childStyle} = this.props;
+    return new StyleBuilder().with(childStyle).build();
+  }
+
+  isStyles() {
+    const {enter, entered, exit} = this.props.transition;
+    return (enter && !entered) || exit;
   }
 
   render() {
     const {children} = this.props;
     const {class1, class2, class3} = this.getClasses();
-    const {style1, style2, style3} = this.getStyles();
+    const {style1 = {}, style2 = {}, style3 = {}} = this.getStyles();
     return (
-      <div className={class1} style={style1}>
+      <div className={class1} style={Object.assign({}, style1, this.getChildStyle())}>
         <div className={class2} style={style2}>
           <div className={class3} style={style3}>
             <AnimatorContent>{children}</AnimatorContent>
@@ -71,10 +83,10 @@ class AnimatorChild extends Component {
 AnimatorChild.propTypes = {
   children: node,
   animatorProps: object,
-  helper: object,
   childClassName: any,
   childStyle: any,
-  sequenceIndex: number
+  sequenceIndex: number,
+  transition: object
 };
 
 export default AnimatorChild;

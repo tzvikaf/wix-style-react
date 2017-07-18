@@ -1,5 +1,4 @@
-import css from '../../Animator.scss';
-import getTranslate from '../props/prop-translate';
+import css from '../Animator.scss';
 
 const flattenArray = arr => [].concat.apply([], arr);
 
@@ -20,10 +19,9 @@ const classMap = {
   scale: scale => scale && 'scale',
   height: height => height && 'height',
   timing: timing => timing && `timing-${timing}`,
-  translateWrapper: translate => translate && `translate-wrapper`,
   sequence: sequence => sequence && 'child-sequence',
-  sequenceWrapper: sequence => sequence && `sequence-${sequence}`,
-  translate: translate => translate && getTranslate(translate),
+  translate: translate => translate && 'translate',
+  translateWrapper: translate => translate && 'translate-wrapper',
   className: className => className && className,
   debug: mode => mode && debugMap[mode]
 
@@ -56,11 +54,6 @@ class ClassBuilder {
     return this;
   }
 
-  withAppearanceState(appears) {
-    this.names.push(appears ? 'animate-in' : 'animate-out');
-    return this;
-  }
-
   withChildLayer(number) {
     return this.getValue(`child${number}`, number);
   }
@@ -85,20 +78,16 @@ class ClassBuilder {
     return this.getValue('timing', timing);
   }
 
-  withTranslateWrapper(translate) {
-    return this.getValue('translateWrapper', translate);
-  }
-
   withSequence(sequence) {
     return this.getValue('sequence', sequence);
   }
 
-  withSequenceWrapper(sequence) {
-    return this.getValue('sequenceWrapper', sequence);
-  }
-
   withTranslate(translate) {
     return this.getValue('translate', translate);
+  }
+
+  withTranslateWrapper(translate) {
+    return this.getValue('translateWrapper', translate);
   }
 
   build() {

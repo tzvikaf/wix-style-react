@@ -53,20 +53,23 @@ $timing-translate: $timing-large;
 
 @mixin timing() {
   .timing-micro {
-    transition-duration: $timing-micro
+    transition-duration: $timing-micro;
   }
 
   .timing-small {
-    transition-duration: $timing-small
+    transition-duration: $timing-small;
   }
 
   .timing-medium {
-    transition-duration: $timing-medium
+    transition-duration: $timing-medium;
   }
 
-
   .timing-large {
-    transition-duration: $timing-large
+    transition-duration: $timing-large;
+  }
+
+  .translate-wrapper {
+    transition-duration: $timing-translate;
   }
 
 }
@@ -219,55 +222,17 @@ $timing-translate: $timing-large;
 // Translate
 ////////////
 
-@mixin createTranslateAnimations($prefix: '') {
-  @for $i from 0 through 10 {
-    $size: $i * 10%;
-    &.translate#{$prefix}-#{$i * 10} {
-      &.translate-top {
-        transform: translate(0, $size);
-      }
-
-      &.translate-bottom {
-        transform: translate(0, -$size);
-      }
-
-      &.translate-left {
-        transform: translate($size, 0);
-      }
-
-      &.translate-right {
-        transform: translate(-$size, 0);
-      }
-    }
-  }
-}
-
-@mixin translateShow() {
-  &:not(.enter):not(.leave) {
-    transform: translate(0, 0);
-  }
-}
-
-@mixin translateHide() {
-  @include createTranslateAnimations();
-}
-
-@mixin translateHideOut() {
-  @include createTranslateAnimations('-out');
-}
-
 @mixin translateEnter() {
   .translate {
     transition-property: all;
     transition-duration: .3s;
     transition-timing-function: $easeOutCubic;
-    @include translateHide();
   }
 }
 
 @mixin translateEnterActive() {
   .translate {
-    @include translateShow();
+    transform: translate(0, 0) !important;
   }
 }
 
@@ -276,30 +241,9 @@ $timing-translate: $timing-large;
     transition-property: all;
     transition-duration: .3s;
     transition-timing-function: $easeInOutQuint;
-    @include translateShow();
+    transform: translate(0, 0);
   }
 }
-
-@mixin translateLeaveActive() {
-  .translate {
-    @include translateHide();
-  }
-}
-
-@mixin translateOutEnter() {
-  .translate {
-    @include translateHideOut();
-  }
-}
-
-
-@mixin translateOutLeaveActive() {
-  .translate {
-    @include translateHideOut();
-  }
-}
-
-;
 
 // Minimum Maximum Summary
 //////////////////////////
@@ -319,7 +263,6 @@ $timing-translate: $timing-large;
 // Animation classes
 ////////////////////
 
-// animation classes
 
 .enter, .leave {
   @include timing();
@@ -352,16 +295,5 @@ $timing-translate: $timing-large;
 
 .leave-active {
   @include opacityLeaveActive();
-  @include translateLeaveActive();
   @include minimum();
-}
-
-// animation classes wrapped by animate-out
-
-.animate-out .enter {
-  @include translateOutEnter();
-}
-
-.animate-out .leave-active {
-  @include translateOutLeaveActive();
 }
