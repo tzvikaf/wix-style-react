@@ -79,7 +79,7 @@ storiesOf('Common', module)
         <ExampleSequence/>
       </CodeExample>
 
-      <CodeExample title="Data from server scenario example" code={ExampleMockServerRaw}>
+      <CodeExample title="Data from server scenario example - Flaky and BUGGY!!" code={ExampleMockServerRaw}>
         <ExampleMockServer/>
       </CodeExample>
 

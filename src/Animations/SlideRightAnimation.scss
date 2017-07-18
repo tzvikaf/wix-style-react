@@ -1,0 +1,18 @@
+@import 'SlideAnimation';
+
+.enter, .exit {
+  transform: translate(-100%);
+}
+
+.enter.enterActive, .exit.exitActive {
+  @extend .enterActive-base;
+}
+
+.leave {
+  @extend .leave-base;
+}
+
+.leave.leaveActive {
+  @extend .leaveActive-base;
+  transform: translate(100%);
+}

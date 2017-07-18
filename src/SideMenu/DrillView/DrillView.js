@@ -2,8 +2,13 @@ import React, {Children} from 'react';
 import WixComponent from '../../BaseComponents/WixComponent';
 import {string, node, bool} from 'prop-types';
 import SideMenu from '../core/SideMenu';
-import SlideAnimation, {SlideDirection} from '../../Animations/SlideAnimation';
+import Animator from '../../Animations/Animator';
 import styles from './DrillView.scss';
+
+const SlideDirection = {
+  left: 'left',
+  right: 'right'
+};
 
 class SideMenuDrill extends WixComponent {
   constructor(props) {
@@ -14,7 +19,7 @@ class SideMenuDrill extends WixComponent {
       currentMenuId: this.props.menuKey,
       previousMenuId: null,
       showMenuA: true,
-      slideDirection: SlideDirection.left
+      slideDirection: SlideDirection.right
     };
 
     this.processChildren({props: this.props}, state);
@@ -176,7 +181,7 @@ class SideMenuDrill extends WixComponent {
 
   renderMenu(menu) {
     return (
-      <div className={styles.drillViewPanel}>
+      <div childClassName={styles.drillViewPanel} className={styles.drillViewPanelInner}>
         {this.renderNavigation(menu)}
       </div>
     );
@@ -192,13 +197,15 @@ class SideMenuDrill extends WixComponent {
 
     return (
       <SideMenu dataHook="drill-view" inFlex={this.props.inFlex}>
-        <div className={styles.drillViewContainer}>
-          <SlideAnimation direction={this.state.slideDirection} animateAppear={false}>
-            { showMenuA ? this.renderMenu(menuA) : null }
-          </SlideAnimation>
-          <SlideAnimation direction={this.state.slideDirection} animateAppear={false}>
-            { !showMenuA ? this.renderMenu(menuB) : null }
-          </SlideAnimation>
+        <div className={styles.drillViewContainerWrapper}>
+          <div className={`${styles.drillViewContainer} ${!showMenuA && styles.secondMenu}`}>
+            <Animator opacity className={styles.drillViewContainer}>
+              { showMenuA ? this.renderMenu(menuA) : null }
+            </Animator>
+            <Animator opacity className={styles.drillViewContainer2}>
+              { !showMenuA ? this.renderMenu(menuB) : null }
+            </Animator>
+          </div>
         </div>
       </SideMenu>
     );

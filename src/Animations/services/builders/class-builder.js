@@ -13,7 +13,9 @@ const debugMap = {
 };
 
 const classMap = {
-  child: () => 'child',
+  child1: () => 'child-layer-1',
+  child2: () => 'child-layer-2',
+  child3: () => 'child-layer-3',
   opacity: opacity => opacity && 'opacity',
   scale: scale => scale && 'scale',
   height: height => height && 'height',
@@ -66,12 +68,12 @@ class ClassBuilder {
     return this;
   }
 
-  withDebug() {
-    return this.getFromMap('debug');
+  withChildLayer(number) {
+    return this.getFromMap(`child${number}`);
   }
 
-  withChild() {
-    return this.getFromMap('child');
+  withDebug() {
+    return this.getFromMap('debug');
   }
 
   withOpacity() {

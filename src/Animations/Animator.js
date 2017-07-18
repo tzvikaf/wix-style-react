@@ -19,11 +19,10 @@ class Animator extends Component {
   render() {
     const helper = new ParentHelper(this.props);
     const className = helper.getClass();
-    const items = helper.getItemsList();
     const cssTransitionProps = helper.getTransitionGroupProps();
     return (
       <TransitionGroup className={className}>
-        {items.map((item, index) =>
+        {React.Children.toArray(this.props.children).map((item, index) =>
           <CSSTransition
             key={index}
             {...cssTransitionProps}

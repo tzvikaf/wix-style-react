@@ -86,7 +86,7 @@ class ExampleStandard extends Component {
             </div>
           </div>
           {
-            this.state.notification.type === LOCAL_NOTIFICATION ?
+            this.state.notification.type !== GLOBAL_NOTIFICATION ?
               <div className={styles.option}>
                 <Label>Timeout in ms (for local notifications)</Label>
                 <div className={styles.column}>
