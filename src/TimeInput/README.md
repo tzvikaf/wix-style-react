@@ -10,3 +10,4 @@
 | onChange | func | - | - | Called upon blur |
 | rtl | bool | - | - | Display in RTL |
 | disableAmPm | bool | - | - | 24h mode |
+| disabled | bool | false | false | Is disabled |

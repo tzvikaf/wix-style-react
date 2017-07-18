@@ -1,8 +1,10 @@
 # Label component
 
+> General Label for TPA
+
 ## Properties
 
 | propName | propType | defaultValue | isRequired | description |
 |----------|----------|--------------|------------|-------------|
-| appearance | string | T1.1 | - | The typography type of the label, can be one of the `T#`'s.
-| for | string | - | - | The input id to associate it with. |
+|for       |string    |-             |true        |Input element id
+|labelClassName | string | - | - |Class name to override label style

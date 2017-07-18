@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {Range} from 'rc-slider';
-import uniqueId from 'lodash.uniqueid';
+import uniqueId from 'lodash/uniqueId';
 import SliderHandle from './SliderHandle';
 import classNames from 'classnames';
 import './Slider.scss';

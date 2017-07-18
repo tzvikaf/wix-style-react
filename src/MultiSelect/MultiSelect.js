@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import InputWithOptions from '../InputWithOptions/InputWithOptions';
 import InputWithTags from './InputWithTags';
-import last from 'lodash.last';
-import difference from 'lodash.difference';
-import uniqueId from 'lodash.uniqueid';
-import remove from 'lodash.remove';
+import last from 'lodash/last';
+import difference from 'lodash/difference';
+import uniqueId from 'lodash/uniqueId';
+import remove from 'lodash/remove';
 
 class MultiSelect extends InputWithOptions {
 

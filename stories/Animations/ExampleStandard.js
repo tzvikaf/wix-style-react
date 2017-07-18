@@ -4,10 +4,14 @@ import {Container, Row, Col} from '../../src/Grid';
 import ToggleSwitch from '../../src/ToggleSwitch';
 import Dropdown from '../../src/Dropdown';
 import Animator from '../../src/Animations/Animator';
-
+import * as css from './Example.scss';
 
 const createSizeArray = (size) => {
-  return new Array(size + 1).fill(0).map((element, id) => ({id: id * 10, value: id* 10})).splice(1, size + 1);
+  return new Array(size + 1).fill(0).map((element, id) => ({id: id * 10, value: id * 10}));
+}
+
+const MockDiv = ({children, height = '40px', width = '100px'}) => {
+  return (<div className={css.shukiInner} style={{overflow: 'hidden'}}>{children}</div>);
 }
 
 class AnimatedExample extends React.Component {
@@ -17,31 +21,51 @@ class AnimatedExample extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showComponents: true,
-      opacity: true,
-      scale: false,
-      sequenceDelay: true,
-      translate: false,
-      translateSize: 100,
-      direction: 'left',
+      opacity: false,
+      scale: true,
+      height: false,
+      width: false,
+      translate: true,
+      sequence: true,
+      debug: 'none',
+      sequenceOption: 'default',
+      translateSizeIn: 100,
+      translateSizeOut: 100,
+      direction: 'top',
       timing: 'large',
-      show: false
+      show: true
     };
 
     this.options = [
-      {id: 'micro', value: 'Micro'},
-      {id: 'small', value: 'Small'},
-      {id: 'medium', value: 'Medium'},
-      {id: 'large', value: 'Large'},
+      {id: 'micro', value: 'Micro - 120ms'},
+      {id: 'small', value: 'Small - 150ms'},
+      {id: 'medium', value: 'Medium - 200ms'},
+      {id: 'large', value: 'Large - 300ms'},
+      {id: 'debug', value: 'Debug - 10000ms'},
       {id: 'none', value: 'None'}
     ];
 
     this.sizeOptions = createSizeArray(10);
     this.directionOptions = [
-      {id: 'TOP', value: 'Top'},
-      {id: 'BOTTOM', value: 'Bottom'},
-      {id: 'LEFT', value: 'Left'},
-      {id: 'RIGHT', value: 'Right'},
+      {id: 'top', value: 'Top'},
+      {id: 'bottom', value: 'Bottom'},
+      {id: 'left', value: 'Left'},
+      {id: 'right', value: 'Right'}
+    ];
+
+    this.sequenceOptions = [
+      {id: 'default', value: 'Default (Leave empty)'},
+      {id: 'flip', value: 'Flip'},
+      {id: 'reverse', value: 'Reverse'},
+      {id: 'reverse-flip', value: 'Reverse Flip'}
+    ]
+
+    this.debugOptions = [
+      {id: 'none', value: 'None'},
+      {id: 'enter', value: 'Enter Stage'},
+      {id: 'entering', value: 'Entering Stage'},
+      {id: 'leave', value: 'Leave Stage'},
+      {id: 'leaving', value: 'Leaving Stage'},
     ]
 
   }
@@ -53,6 +77,30 @@ class AnimatedExample extends React.Component {
         {option}
       </div>
     )
+  }
+
+  getSequenceValue() {
+    if (!this.state.sequence) {
+      return false;
+    }
+    return this.state.sequenceOption !== 'default' ? this.state.sequenceOption : true;
+  }
+
+  buildTranslateString() {
+    const {translateSizeIn, translateSizeOut} = this.state;
+    let size = translateSizeIn === translateSizeOut ? `{size: ${translateSizeIn}}` : `{size: {in: ${translateSizeIn}, out: ${translateSizeOut}`;
+
+    return ` translate={${size}, to: "${this.state.direction}"}}`;
+  }
+
+  buildTranslateObject() {
+
+    const {translateSizeIn, translateSizeOut, direction} = this.state;
+
+    return {
+      to: direction,
+      size: translateSizeIn === translateSizeOut ? translateSizeIn : {in: translateSizeIn, out: translateSizeOut}
+    }
   }
 
   render() {
@@ -72,6 +120,12 @@ class AnimatedExample extends React.Component {
               <Row>
                 {this.myToggle('scale')}
               </Row>
+              {false &&<Row>
+                {this.myToggle('height')}
+              </Row>}
+              {false && <Row>
+                {this.myToggle('width')}
+              </Row>}
               <Row>
                 {this.myToggle('translate')}
               </Row>
@@ -80,24 +134,36 @@ class AnimatedExample extends React.Component {
                   Translate Options
                 </Col>
                 <Col span="6">
-                  Size
+                  Size In
                   <Dropdown
-                    selectedId={100}
-                    onSelect={option => this.setState({translateSize: option.id})}
+                    selectedId={this.state.translateSizeIn}
+                    onSelect={option => this.setState({translateSizeIn: option.id})}
+                    options={this.sizeOptions}
+                  />
+                  Size Out
+                  <Dropdown
+                    selectedId={this.state.translateSizeOut}
+                    onSelect={option => this.setState({translateSizeOut: option.id})}
                     options={this.sizeOptions}
                   />
                 </Col>
                 <Col span="6">
-                  Direction
+                  Direction To Show
                   <Dropdown
-                    selectedId="TOP"
+                    selectedId={this.state.direction}
                     onSelect={option => this.setState({direction: option.id})}
                     options={this.directionOptions}
                   />
                 </Col>
               </Row>}
               <Row>
-                {this.myToggle('sequenceDelay')}
+                {this.myToggle('sequence')}
+                Sequence Options
+                {this.state.sequence && <Dropdown
+                  selectedId={this.state.sequenceOption}
+                  onSelect={option => this.setState({sequenceOption: option.id})}
+                  options={this.sequenceOptions}
+                />}
               </Row>
               <Row>
                 Timing
@@ -107,23 +173,48 @@ class AnimatedExample extends React.Component {
                   options={this.options}
                 />
               </Row>
+              <Row>
+                Debug
+                <Dropdown
+                  selectedId="none"
+                  onSelect={option => this.setState({debug: option.id})}
+                  options={this.debugOptions}
+                />
+              </Row>
             </Col>
             <Col span="8">
-              <pre>&lt;Animator{this.state.timing ? ` timing="${this.state.timing}"` : ''}{this.state.opacity ? ' opacity' : ''}{this.state.scale ? ' scale' : ''}{this.state.translate ? ` translate={{size: ${this.state.translateSize}, to: "${this.state.direction}"}}` : ''}{this.state.sequenceDelay ? ' sequenceDelay' : ''}&gt;&lt;
-                /Animator&gt;</pre>
+              <pre>&lt;Animator
+                {this.state.timing !== 'large' ? ` timing="${this.state.timing}"` : ''}
+                {this.state.opacity ? ' opacity' : ''}
+                {this.state.scale ? ' scale' : ''}
+                {this.state.height ? ' height' : ''}
+                {this.state.width ? ' width' : ''}
+                {this.state.translate ? this.buildTranslateString() : ''}
+                {this.state.sequence ? ' sequence' : ''}{this.state.sequence && this.state.sequenceOption !== 'default' ? `="${this.state.sequenceOption}"` : ''}
+                {this.state.debug !== 'none' ? ` debug="${this.state.debug}"` : ''}
+                &gt;&lt;/Animator&gt;</pre>
               <br />
-              <div style={{width: '70px'}}>
                 <Animator opacity={this.state.opacity}
+                          className={css.shukiWrapper}
                           scale={this.state.scale}
-                          translate={this.state.translate ? {to: this.state.direction, size: this.state.translateSize} : false}
-                          sequenceDelay={this.state.sequenceDelay}
-                          timing={this.state.timing === 'none' ? false : this.state.timing}>
-                  {this.state.show && <div>The content!!</div>}
-                  {this.state.show && <div>The content!!</div>}
-                  {this.state.show && <div>The content!!</div>}
-                  {this.state.show && <div>The content!!</div>}
+                          height={this.state.height}
+                          width={this.state.width}
+                          debug={this.state.debug === 'none' ? false : this.state.debug}
+                          translate={this.state.translate ? this.buildTranslateObject() : false}
+                          sequence={this.getSequenceValue()}
+                          timing={this.state.timing === 'large' ? false : this.state.timing}>
+                  {this.state.show && <MockDiv childStyle={{flexGrow: 2}} childClassName={css.shukiChild}><div>Some Content in Here</div><div>Some Content in Here</div><div>Some Content in Here</div></MockDiv>}
+                  {this.state.show && <MockDiv childStyle={{flexGrow: 2}} childClassName={css.shukiChild}><div>Some Content in Here</div><div>Some Content in Here</div><div>Some Content in Here</div></MockDiv>}
+                  {this.state.show && <MockDiv childStyle={{flexGrow: 2}} childClassName={css.shukiChild}><div>Some Content in Here</div><div>Some Content in Here</div><div>Some Content in Here</div></MockDiv>}
+                  {this.state.show && <MockDiv childStyle={{flexGrow: 2}} childClassName={css.shukiChild}><div>Some Content in Here</div><div>Some Content in Here</div><div>Some Content in Here</div></MockDiv>}
+                  {this.state.show && <MockDiv childStyle={{flexGrow: 2}} childClassName={css.shukiChild}><div>Some Content in Here</div><div>Some Content in Here</div><div>Some Content in Here</div></MockDiv>}
                 </Animator>
-              </div>
+            </Col>
+          </Row>
+          <Row>
+            <Col span={12}>
+              Rules:
+              1. Translate - The height and width belongs to the parent and not the child so it translates according to them
             </Col>
           </Row>
         </Container>

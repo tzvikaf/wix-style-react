@@ -3,11 +3,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import WixComponent from '../BaseComponents/WixComponent';
-import isEqual from 'lodash.isequal';
-import isobject from 'lodash.isobject';
-import trim from 'lodash.trim';
-import isstring from 'lodash.isstring';
-import has from 'lodash.has';
+import isEqual from 'lodash/isEqual';
+import isobject from 'lodash/isObject';
+import trim from 'lodash/trim';
+import isstring from 'lodash/isString';
+import has from 'lodash/has';
 
 const modulu = (n, m) => {
   const remain = n % m;

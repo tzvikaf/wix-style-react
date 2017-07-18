@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Tag from '../Tag/Tag';
 import Input from '../Input';
 import styles from './InputWithTags.scss';
-import omit from 'lodash.omit';
+import omit from 'lodash/omit';
 import classNames from 'classnames';
 
 class InputWithTags extends React.Component {

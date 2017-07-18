@@ -1,24 +1,30 @@
 import React, {Component} from 'react';
-import CssClass from './services/css-class';
-import {node, object, oneOfType, bool} from 'prop-types';
+import {node, object, any} from 'prop-types';
+
+const Content = ({type, newProps, sonOfChild}) => {
+  return React.createElement(type, newProps, sonOfChild);
+};
+
+Content.propTypes = {
+  type: any,
+  newProps: object,
+  sonOfChild: node,
+};
 
 class AnimatorChild extends Component {
-  constructor(props) {
-    super(props);
-    this.cssClass = new CssClass();
-  }
-
-  wrapWithSequence(node) {
-    return <div className={this.cssClass.getChildSequence(this.props)}>{node}</div>;
-  }
 
   render() {
+    const {children, helper} = this.props;
+    const {layer1, layer2, layer3} = helper.getClass();
+    const {style1, style2, style3} = helper.getStyle(this.props.animationPhase.get());
 
-    const {children, translate} = this.props;
-
-    return this.wrapWithSequence(
-      <div className={this.cssClass.getChild(this.props)}>
-        {translate ? <div className={this.cssClass.getChildTranslate(this.props)}>{children}</div> : children}
+    return (
+      <div className={layer1} style={style1}>
+        <div className={layer2} style={style2}>
+          <div className={layer3} style={style3}>
+            <Content {...helper.getContentProps()}>{children}</Content>
+          </div>
+        </div>
       </div>
     );
   }
@@ -26,7 +32,8 @@ class AnimatorChild extends Component {
 
 AnimatorChild.propTypes = {
   children: node,
-  translate: oneOfType([object, bool]),
+  helper: object,
+  animationPhase: any
 };
 
 export default AnimatorChild;

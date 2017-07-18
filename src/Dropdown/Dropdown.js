@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import isundefined from 'lodash.isundefined';
+import isundefined from 'lodash/isUndefined';
 import InputWithOptions from '../InputWithOptions/InputWithOptions';
 import styles from './Dropdown.scss';
 

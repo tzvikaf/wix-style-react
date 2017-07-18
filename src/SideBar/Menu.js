@@ -3,7 +3,7 @@ import blueStyle from './MenuBlue.scss';
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import findIndex from 'lodash.findindex';
+import findIndex from 'lodash/findIndex';
 
 class Menu extends React.Component {
 

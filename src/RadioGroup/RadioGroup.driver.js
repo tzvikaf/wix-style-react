@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactTestUtils from 'react-dom/test-utils';
-import toArray from 'lodash.toarray';
+import toArray from 'lodash/toArray';
 
 const radioGroupDriverFactory = ({element, wrapper, component}) => {
   const isClassExists = (element, className) => !!element && element.className.indexOf(className) !== -1;

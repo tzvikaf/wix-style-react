@@ -8,6 +8,8 @@ import ExampleUncontrolled from './ExampleUncontrolled';
 import ExampleUncontrolledRaw from '!raw-loader!./ExampleUncontrolled';
 import ExampleUncontrolled24h from './ExampleUncontrolled24h';
 import ExampleUncontrolledRaw24h from '!raw-loader!./ExampleUncontrolled24h';
+import ExampleDisabled from './ExampleDisabled';
+import ExampleDisabledRaw from '!raw-loader!./ExampleDisabled';
 import moment from 'moment';
 
 storiesOf('Core', module)
@@ -22,7 +24,11 @@ storiesOf('Core', module)
       </CodeExample>
 
       <CodeExample title="Uncontrolled input 24h" code={ExampleUncontrolledRaw24h}>
-          <ExampleUncontrolled24h startTime={moment('2016-04-03 13:42')}/>
+        <ExampleUncontrolled24h startTime={moment('2016-04-03 13:42')}/>
+      </CodeExample>
+
+      <CodeExample title="Disabled input" code={ExampleDisabledRaw}>
+        <ExampleDisabled startTime={moment('2016-04-03 13:42')}/>
       </CodeExample>
     </div>
   ));

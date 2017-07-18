@@ -32,7 +32,7 @@ class ExampleGridAnimation extends React.Component {
   }
 
   render() {
-    return  <div data-hook="card-example" className={styles.exampleContainer} style={{height: 970}}>
+    return  <div data-hook="card-example" className={styles.exampleContainer} style={{height: 1094}}>
       <div className={styles.actions}>
         <ToggleSwitch checked={this.state.show} onChange={() => this.setState({show: !this.state.show})}/> Show/Hide grid container
       </div>

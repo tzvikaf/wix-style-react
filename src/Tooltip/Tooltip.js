@@ -12,13 +12,6 @@ const renderSubtreeIntoContainer = ReactDOM.unstable_renderSubtreeIntoContainer;
 
 class Tooltip extends WixComponent {
 
-  constructor(params) {
-    super(params);
-    console.warn('wix-style-react/Tooltip is deprecated and will be removed, please use wix-style-react/Backoffice/Tooltip instead. ' +
-      'for drivers use import {backofficeTooltipTestkitFactory} from \'wix-style-react/dist/testkit\' ' +
-      'or import {backofficeTooltipTestkitFactory} from \'wix-style-react/dist/testkit/enzyme\'');
-  }
-
   componentElements() {
     const elements = super.componentElements();
     return this._mountNode ? elements.concat(this._mountNode) : elements;

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import WixComponent from '../BaseComponents/WixComponent';
-import omit from 'lodash.omit';
+import omit from 'lodash/omit';
 import DropdownLayout from '../DropdownLayout/DropdownLayout';
 import Button from '../Button';
 

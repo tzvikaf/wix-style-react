@@ -5,6 +5,7 @@ import Readme from '../../README.md';
 import TestsReadme from '../../TESTS.md';
 import Contribution from '../../CONTRIBUTION.md';
 import TPA from '../../src/TPA/README.md';
+import AutoDocsReadme from '../../docs/AutoDocs.md';
 
 storiesOf('Introduction', {})
   .add('Getting started', () => (
@@ -22,5 +23,9 @@ storiesOf('Introduction', {})
   )).add('TPA', () => (
     <div>
       <Markdown source={TPA}/>
+    </div>
+  )).add('AutoDocs', () => (
+    <div>
+      <Markdown source={AutoDocsReadme}/>
     </div>
   ));

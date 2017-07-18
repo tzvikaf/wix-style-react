@@ -2,7 +2,7 @@ import React from 'react';
 import ReactTestUtils from 'react-dom/test-utils';
 import ReactDOM from 'react-dom';
 import Tooltip from './Tooltip';
-import last from 'lodash.last';
+import last from 'lodash/last';
 
 const arrowDirectionToPlacement = {
   top: 'bottom',
@@ -12,11 +12,6 @@ const arrowDirectionToPlacement = {
 };
 
 const tooltipDriverFactory = ({element, wrapper}) => {
-
-  console.warn('wix-style-react/Tooltip is deprecated and will be removed, please use wix-style-react/Backoffice/Tooltip instead. ' +
-    'for drivers use import {backofficeTooltipTestkitFactory} from \'wix-style-react/dist/testkit\' ' +
-    'or import {backofficeTooltipTestkitFactory} from \'wix-style-react/dist/testkit/enzyme\'');
-
   return {
     isShown: () => !!document.body.querySelector('.tooltip'),
     focus: () => ReactTestUtils.Simulate.focus(element),

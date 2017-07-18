@@ -1,66 +1,47 @@
 import React, {Component} from 'react';
-import css from './Animator.scss';
-import {bool, node, string, object, oneOfType} from 'prop-types';
-import ReactCSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
-import CssClass from './services/css-class';
-import Duration from './services/duration';
+import {bool, node, string, oneOfType, any} from 'prop-types';
+import TransitionGroup from 'react-transition-group/TransitionGroup';
+import CSSTransition from 'react-transition-group/CSSTransition';
 import Child from './animator-child';
+import ParentHelper from './services/helpers/parent-helper';
+import animationPhase from './services/animation-phase';
 
 class Animator extends Component {
 
-  transitionName;
-  children;
+  onEnter() {
+    animationPhase.set('enter');
+  }
 
-  constructor(props) {
-    super(props);
-    this.duration = new Duration();
-    this.cssClass = new CssClass();
-
-    this.transitionName = {
-      enter: css.enter,
-      enterActive: css.enterActive,
-      leave: css.leave,
-      leaveActive: css.leaveActive
-    };
-
+  onExit() {
+    animationPhase.set('exit');
   }
 
   render() {
-    const {children = []} = this.props;
-    this.children = Array.isArray(children) ? children : [children];
-    const duration = this.duration.get(this.props);
-    const childrenLength = this.children.length;
+    const helper = new ParentHelper(this.props);
+    const className = helper.getClass();
+    const items = helper.getItemsList();
+    const cssTransitionProps = helper.getTransitionGroupProps();
     return (
-      <div className={this.cssClass.getParent(this.props)}>
-        {this.children.map((child, index) =>
-          <ReactCSSTransitionGroup
+      <TransitionGroup className={className}>
+        {items.map((item, index) =>
+          <CSSTransition
             key={index}
-            transitionEnter={!!duration}
-            transitionLeave={!!duration}
-            transitionEnterTimeout={duration}
-            transitionLeaveTimeout={duration}
-            transitionName={this.transitionName}
+            {...cssTransitionProps}
+            onEnter={() => this.onEnter()}
+            onExit={() => this.onExit()}
             >
-            {!!child && <Child index={index} childrenLength={childrenLength} {...this.props}>{child}</Child>}
-          </ReactCSSTransitionGroup>
+            <Child helper={helper.getChildHelper(index, item)} animationPhase={animationPhase}>{item}</Child>
+          </CSSTransition>
         )}
-      </div>
+      </TransitionGroup>
     );
   }
 }
 
 Animator.propTypes = {
-  timing: string,
-  sequenceDelay: bool,
-  translate: oneOfType([object, bool]),
+  sequence: oneOfType([bool, string]),
+  translate: any,
   children: node
 };
-//
-// FadeAnimation.defaultProps = {
-//   animateAppear: true,
-//   animateEnter: true,
-//   animateLeave: true,
-//   children: null
-// };
-//
+
 export default Animator;

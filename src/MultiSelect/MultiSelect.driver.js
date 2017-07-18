@@ -2,7 +2,7 @@ import React from 'react';
 import ReactTestUtils from 'react-dom/test-utils';
 import inputWithOptionsDriverFactory from '../InputWithOptions/InputWithOptions.driver';
 import ReactDOM from 'react-dom';
-import initial from 'lodash.initial';
+import initial from 'lodash/initial';
 
 const multiSelectDriverFactory = ({element, wrapper, component}) => {
 

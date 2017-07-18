@@ -8,10 +8,10 @@ import WixComponent from '../../../src/BaseComponents/WixComponent';
 class LinkHeader extends WixComponent {
 
   static propTypes = {
-    title: string.isRequired,
+    title: node.isRequired,
     linkTitle: string.isRequired,
     linkTo: string.isRequired,
-    subtitle: string,
+    subtitle: node,
     tooltip: node,
     withoutDivider: bool
   };
