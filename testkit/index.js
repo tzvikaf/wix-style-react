@@ -138,8 +138,6 @@ export const sideMenuTestkitFactory = testkitFactoryCreator(sideMenuDriverFactor
 import sideMenuDrillDriverFactory from '../src/SideMenu/DrillView/DrillView.driver';
 export const sideMenuDrillTestkitFactory = testkitFactoryCreator(sideMenuDrillDriverFactory);
 
-export {toastTestkitFactory} from '../src/Toast/testkit/Toast';
-
 import tpaButtonDriverFactory from '../src/TPA/Button/Button.driver';
 export const tpaButtonTestkitFactory = testkitFactoryCreator(tpaButtonDriverFactory);
 

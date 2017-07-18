@@ -123,8 +123,6 @@ export const filePickerTestkitFactory = enzymeTestkitFactoryCreator(filePickerDr
 import timeInputDriverFactory from '../src/TimeInput/TimeInput.driver';
 export const timeInputTestkitFactory = enzymeTestkitFactoryCreator(timeInputDriverFactory);
 
-export {toastTestkitFactory} from '../src/Toast/testkit/Toast.enzyme';
-
 import {sliderDriverFactory} from '../src/Slider/testkit/Slider';
 export const sliderTestkitFactory = enzymeTestkitFactoryCreator(sliderDriverFactory);
 
