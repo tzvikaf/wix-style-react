@@ -29,11 +29,6 @@ const classMap = {
 
 };
 
-const removeWrapperString = str => {
-  const index = str.search('Wrapper');
-  return index > -1 ? str.slice(0, index) : str;
-};
-
 class ClassBuilder {
 
   names;
@@ -50,10 +45,8 @@ class ClassBuilder {
       .forEach(name => this.names.push(name));
     return this;
   }
-
-  getFromMap(name, ...args) {
-    const prop = this.data[removeWrapperString(name)];
-    return this.withName(classMap[name](prop, ...args));
+  getValue(name, value) {
+    return this.withName(classMap[name](value));
   }
 
   withClassName(className) {
@@ -69,43 +62,43 @@ class ClassBuilder {
   }
 
   withChildLayer(number) {
-    return this.getFromMap(`child${number}`);
+    return this.getValue(`child${number}`, number);
   }
 
-  withDebug() {
-    return this.getFromMap('debug');
+  withDebug(debug) {
+    return this.getValue('debug', debug);
   }
 
-  withOpacity() {
-    return this.getFromMap('opacity');
+  withOpacity(opacity) {
+    return this.getValue('opacity', opacity);
   }
 
-  withScale() {
-    return this.getFromMap('scale');
+  withScale(scale) {
+    return this.getValue('scale', scale);
   }
 
-  withHeight() {
-    return this.getFromMap('height');
+  withHeight(height) {
+    return this.getValue('height', height);
   }
 
-  withTiming() {
-    return this.getFromMap('timing');
+  withTiming(timing) {
+    return this.getValue('timing', timing);
   }
 
-  withTranslateWrapper() {
-    return this.getFromMap('translateWrapper');
+  withTranslateWrapper(translate) {
+    return this.getValue('translateWrapper', translate);
   }
 
-  withSequence() {
-    return this.getFromMap('sequence');
+  withSequence(sequence) {
+    return this.getValue('sequence', sequence);
   }
 
-  withSequenceWrapper() {
-    return this.getFromMap('sequenceWrapper');
+  withSequenceWrapper(sequence) {
+    return this.getValue('sequenceWrapper', sequence);
   }
 
-  withTranslate() {
-    return this.getFromMap('translate');
+  withTranslate(translate) {
+    return this.getValue('translate', translate);
   }
 
   build() {

@@ -5,11 +5,9 @@ const css = {
 class StyleBuilder {
 
   styles;
-  hasSequence;
 
-  constructor(propHelper) {
+  constructor() {
     this.styles = {};
-    this.hasSequence = propHelper.hasSequence();
   }
 
   with(styles) {
@@ -18,13 +16,13 @@ class StyleBuilder {
   }
 
   withTransitionDelay(duration) {
-    return this.with(this.hasSequence && {
+    return this.with(duration && {
       transitionDelay: css.convertTime(duration)
     });
   }
 
   withAnimationDelay(duration) {
-    return this.with(this.hasSequence && {
+    return this.with(duration && {
       animationDuration: css.convertTime(duration)
     });
   }

@@ -1,3 +1,5 @@
+import React from 'react';
+
 import {
   timings,
   sequences,
@@ -5,7 +7,6 @@ import {
   percentages,
   debugModes,
   propsDefault,
-  animationProps
 } from '../constants/constants';
 
 const getDataOrDefault = (arr, value, name) => {
@@ -36,7 +37,7 @@ const getTranslate = translate => {
 const propsMap = {
   timing: (value, name) => getDataOrDefault(timings, value, name),
   sequence: (value, name) => value && getDataOrDefault(sequences, value, name),
-  children: children => children,
+  children: children => React.Children.toArray(children),
   opacity: opacity => !!opacity,
   scale: scale => !!scale,
   height: height => !!height,
@@ -54,39 +55,6 @@ const getData = props => Object.keys(propsMap).reduce((data, propName) => {
   return ({[propName]: getPropData(propName, props[propName]), ...data});
 }, {});
 
-class PropsHelper {
+const formatProps = props => getData(props);
 
-  props;
-  data;
-
-  constructor(props) {
-    this.props = props;
-    this.data = getData(props);
-  }
-
-  getProps(names) {
-    return names.reduce((data, name) => ({[name]: this.data[name], ...data}), {});
-  }
-
-  getAll() {
-    return this.data;
-  }
-
-  getChildren() {
-    return this.data.children;
-  }
-
-  isAnimation() {
-    return !!animationProps.find(p => !!this.props[p]);
-  }
-
-  hasSequence() {
-    return !!this.data.sequence;
-  }
-
-  getSequenceName() {
-    return this.data.sequence;
-  }
-}
-
-export default PropsHelper;
+export default formatProps;
