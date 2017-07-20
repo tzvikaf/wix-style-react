@@ -9,6 +9,9 @@ import ExampleGridStandardRaw from '!raw-loader!./ExampleGridStandard';
 import ExampleRowWithEqualHeight from './ExampleRowWithEqualHeight';
 import ExampleRowWithEqualHeightRaw from '!raw-loader!./ExampleRowWithEqualHeight';
 
+import ExampleCollapseableHeaders from './ExampleGridCollapsableHeaders';
+import ExampleCollapseableHeadersRaw from '!raw-loader!./ExampleGridCollapsableHeaders';
+
 import ExampleGridRTL from './ExampleGridRTL';
 import ExampleGridRTLRaw from '!raw-loader!./ExampleGridRTL';
 
@@ -52,5 +55,8 @@ storiesOf('Common', module)
         <ExampleGridRTL/>
       </CodeExample>
 
+      <CodeExample title="Cards with collpased header" code={ExampleCollapseableHeadersRaw}>
+        <ExampleCollapseableHeaders/>
+      </CodeExample>
     </div>
   ));

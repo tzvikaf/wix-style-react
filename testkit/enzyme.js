@@ -105,6 +105,9 @@ export const buttonHeaderTestkitFactory = enzymeTestkitFactoryCreator(buttonHead
 import linkHeaderDriverFactory from '../src/Card/LinkHeader/LinkHeader.driver';
 export const linkHeaderTestkitFactory = enzymeTestkitFactoryCreator(linkHeaderDriverFactory);
 
+import collapsedHeaderDriverFactory from '../src/Card/CollapsedHeader/CollapsedHeader.driver';
+export const collapsedHeaderTestkitFactory = enzymeTestkitFactoryCreator(collapsedHeaderDriverFactory);
+
 import headerDriverFactory from '../src/Card/Header/Header.driver';
 export const headerTestkitFactory = enzymeTestkitFactoryCreator(headerDriverFactory);
 

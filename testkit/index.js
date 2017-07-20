@@ -105,6 +105,9 @@ export const buttonHeaderTestkitFactory = testkitFactoryCreator(buttonHeaderDriv
 import linkHeaderDriverFactory from '../src/Card/LinkHeader/LinkHeader.driver';
 export const linkHeaderTestkitFactory = testkitFactoryCreator(linkHeaderDriverFactory);
 
+import collapsedHeaderDriverFactory from '../src/Card/CollapsedHeader/CollapsedHeader.driver';
+export const collapsedHeaderTestkitFactory = testkitFactoryCreator(collapsedHeaderDriverFactory);
+
 import headerDriverFactory from '../src/Card/Header/Header.driver';
 export const headerTestkitFactory = testkitFactoryCreator(headerDriverFactory);
 

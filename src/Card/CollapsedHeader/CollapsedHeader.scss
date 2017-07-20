@@ -1,0 +1,28 @@
+@import '../../Typography/Typography.scss';
+@import '../Header/Header.scss';
+
+.headerOnlyTitle {
+  @extend .header;
+  display: flex;
+  justify-content: space-between;
+
+  .button {
+    position: relative;
+    text-align: right;
+    right: -23px;
+    margin-bottom: -12px;
+    top: -4px;
+  }
+}
+
+.headerTitleSubtitle {
+  @extend .headerOnlyTitle;
+
+  .button {
+    top: 7px;
+  }
+
+  .collapsedSwitch {
+    top: 7px;
+  }
+}
