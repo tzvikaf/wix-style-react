@@ -159,7 +159,8 @@ class DropdownLayout extends WixComponent {
                   idx,
                   selected: option.id === selectedId,
                   hovered: idx === this.state.hovered,
-                  disabled: option.disabled,
+                  disabled: option.disabled || option.title,
+                  title: option.title,
                   overrideStyle: option.overrideStyle
                 }))
             ))}
@@ -175,7 +176,7 @@ class DropdownLayout extends WixComponent {
     return (<div key={idx} className={styles.divider}/>);
   }
 
-  renderItem({option, idx, selected, hovered, disabled, overrideStyle}) {
+  renderItem({option, idx, selected, hovered, disabled, title, overrideStyle}) {
     const optionClassName = classNames({
       [styles.option]: !overrideStyle,
       [styles.selected]: selected && !overrideStyle,
@@ -183,6 +184,7 @@ class DropdownLayout extends WixComponent {
       [styles.hovered]: hovered && !overrideStyle,
       wixstylereactHovered: hovered && overrideStyle, //global class for items that use the overrideStyle
       [styles.disabled]: disabled,
+      [styles.title]: title,
     });
     return (
       <div
@@ -226,7 +228,7 @@ class DropdownLayout extends WixComponent {
   }
 
   isSelectableOption(option) {
-    return option.value !== '-' && !option.disabled;
+    return option.value !== '-' && !option.disabled && !option.title;
   }
 }
 

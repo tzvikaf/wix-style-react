@@ -27,4 +27,5 @@
 | id | string or number | - | + | The id of the option, should be unique |
 | value | string or node | - | + | Can be a text or a react elements, if text is '-', a divider will render at that position. |
 | disabled | bool | false | - | Whether this option is disabled or not |
+| title | bool | false | - | Whether this option is a title or not |
 | overrideStyle | bool | false | - | When this is on, no external style will be added to this option, only the internal node style, for further information see the examples |
