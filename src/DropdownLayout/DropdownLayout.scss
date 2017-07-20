@@ -1,4 +1,5 @@
 @import "../common.scss";
+@import '../Typography/Typography.scss';
 
 $option_height: 35px;
 $content_container_height: 260px;
@@ -121,13 +122,10 @@ $top-arrow-size: 8px;
 }
 
 .title {
-  background: $B60;
-  color: $D10;
-  text-transform: uppercase;
-  line-height: 30px;
-  height: 30px;
-  font-size: 12px;
-  min-height: 30px;
+  @extend .h4;
+  background: $D70;
+  color: $D20;
+  font-size: 10px;
 }
 
 :global(.rtl) .option {
