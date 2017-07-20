@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import {node, object, any, number} from 'prop-types';
 import AnimatorContent from './AnimatorContent';
 import ClassBuilder from '../builders/class-builder';
-import AnimatorChildStyle from '../helpers/animation-child-styles';
+import AnimatorChildStyle from '../helpers/animator-child-styles';
+import AnimatorChildClasses from '../helpers/animator-child-classes';
 
 class AnimatorChild extends Component {
 
@@ -35,8 +36,8 @@ class AnimatorChild extends Component {
 
   render() {
     const {children} = this.props;
-    const {class1, class2, class3} = this.getClasses();
     const [style1, style2, style3] = new AnimatorChildStyle(this.props).get();
+    const [class1, class2, class3] = new AnimatorChildClasses(this.props).get();
 
     return (
       <div className={class1} style={style1}>

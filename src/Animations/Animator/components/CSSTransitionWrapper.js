@@ -100,7 +100,7 @@ class CSSTransitionWrapper extends React.Component {
   }
 
   setDimension(node) {
-    const {offsetHeight: height, scrollWidth: width} = node.children[0].children[0];
+    const {scrollHeight: height, scrollWidth: width} = node.children[0].children[0];
     const dimensions = {height, width};
     this.setState({dimensions});
   }

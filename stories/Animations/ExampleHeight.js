@@ -10,7 +10,7 @@ const HeightExample = ({show}) => {
     <div style={{height: 'auto', border: '1px solid black', padding: '10px 20px 20px'}}>
       <div>I am some casual text here</div>
       <Animator opacity height>
-        {show && <div className={css.basicDiv}>I am animating Height </div>}
+        {show && <div style={{fontSize: '40px', border: '1px solid purple', padding: '20px'}}>I am animating Height (No Height specified!!)</div>}
       </Animator>
     </div>
   )

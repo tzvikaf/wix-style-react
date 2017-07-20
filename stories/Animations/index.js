@@ -65,9 +65,9 @@ storiesOf('Common', module)
         <ExampleHeight/>
       </CodeExample>
 
-      {/*<CodeExample title="Width Animation" code={ExampleWidthRaw}>*/}
-        {/*<ExampleWidth/>*/}
-      {/*</CodeExample>*/}
+      <CodeExample title="Width Animation" code={ExampleWidthRaw}>
+        <ExampleWidth/>
+      </CodeExample>
 
       <CodeExample title="Translate Animation - All of these can work" code={ExampleTranslateRaw}>
         <ExampleTranslate/>
@@ -93,7 +93,7 @@ storiesOf('Common', module)
         <ExampleSequence/>
       </CodeExample>
 
-      <CodeExample title="Data from server scenario example - Flaky and BUGGY!!" code={ExampleMockServerRaw}>
+      <CodeExample title="Combination of 2 animations - flaky and requires a setTimeout" code={ExampleMockServerRaw}>
         <ExampleMockServer/>
       </CodeExample>
 
