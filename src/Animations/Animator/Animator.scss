@@ -26,7 +26,6 @@
  *
  * */
 
-
 // Cubic Bezier
 ///////////////
 
@@ -188,36 +187,59 @@ $timing-translate: $timing-large;
 // Height
 /////////
 
-@mixin heightMinimum() {
+@mixin heightEnter() {
   .height {
     overflow: hidden;
-    max-height: 0;
   }
 }
 
-@mixin heightMaximum() {
+@mixin heightLeave() {
   .height {
     overflow: hidden;
-    max-height: 100%;
   }
 }
 
 // Width
 /////////
 
-@mixin widthMinimum() {
-  .width {
-    overflow: hidden;
-    max-width: 0;
-  }
-}
-
-@mixin widthMaximum() {
-  .width {
-    overflow: hidden;
-    max-width: 100%;
-  }
-}
+//@keyframes dimensions-enter-active-hack {
+//  0% {
+//    visibility: hidden;
+//    color: red;
+//  }
+//  50% {
+//    color: blue;
+//    visibility: visible;
+//  }
+//  100% {
+//    color: green;
+//    visibility: visible;
+//  }
+//}
+//
+//@mixin widthEnter() {
+//  .width {
+//    //animation-name: dimensions-enter-active-hack;
+//    //overflow: hidden;
+//    //visibility: hidden;
+//  }
+//}
+//
+//@mixin widthEnterActive() {
+//  .width {
+//    //transition: visibility .01s linear .1s, width .3s linear;
+//    //visibility: visible;
+//    ////animation-name: dimensions-enter-active-hack;
+//    ////animation-fill-mode: forwards;
+//    //width: 0;
+//  }
+//}
+//
+//@mixin widthLeave() {
+//  .width {
+//    //overflow: hidden;
+//  }
+//}
 
 // Translate
 ////////////
@@ -250,19 +272,14 @@ $timing-translate: $timing-large;
 
 @mixin minimum() {
   @include scaleMinimum();
-  @include heightMinimum();
-  @include widthMinimum();
 }
 
 @mixin maximum() {
   @include scaleMaximum();
-  @include heightMaximum();
-  @include widthMaximum();
 }
 
 // Animation classes
 ////////////////////
-
 
 .enter, .leave {
   @include timing();
@@ -275,6 +292,7 @@ $timing-translate: $timing-large;
   @include translateEnter();
   @include minimum();
   @include delayEnter();
+  @include heightEnter();
 }
 
 .enter-active {
@@ -291,6 +309,7 @@ $timing-translate: $timing-large;
   @include translateLeave();
   @include maximum();
   @include delayLeave();
+  @include heightLeave();
 }
 
 .leave-active {

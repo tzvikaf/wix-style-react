@@ -18,13 +18,13 @@ const classMap = {
   opacity: opacity => opacity && 'opacity',
   scale: scale => scale && 'scale',
   height: height => height && 'height',
+  width: width => width && 'width',
   timing: timing => timing && `timing-${timing}`,
   sequence: sequence => sequence && 'child-sequence',
   translate: translate => translate && 'translate',
   translateWrapper: translate => translate && 'translate-wrapper',
   className: className => className && className,
   debug: mode => mode && debugMap[mode]
-
 };
 
 class ClassBuilder {
@@ -72,6 +72,10 @@ class ClassBuilder {
 
   withHeight(height) {
     return this.getValue('height', height);
+  }
+
+  withWidth(width) {
+    return this.getValue('width', width);
   }
 
   withTiming(timing) {

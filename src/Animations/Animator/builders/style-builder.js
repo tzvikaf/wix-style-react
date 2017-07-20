@@ -1,5 +1,6 @@
 const css = {
-  convertTime: time => time ? `${time / 1000}s` : ''
+  convertTime: time => time ? `${time / 1000}s` : '',
+  convertSize: size => size ? `${size}px` : '0'
 };
 
 const translateTemplates = {
@@ -39,6 +40,24 @@ class StyleBuilder {
   withTranslate(translate, inOrOut) {
     return this.with(translate && {
       transform: getTranslate(translate, inOrOut)
+    });
+  }
+
+  withHeight(height, size) {
+    return this.with(height && {
+      maxHeight: css.convertSize(size)
+    });
+  }
+
+  withWidth(width, size) {
+    return this.with(width && {
+      maxWidth: css.convertSize(size)
+    });
+  }
+
+  withNoWidth(width) {
+    return this.with(width && {
+      maxWidth: css.convertSize(0)
     });
   }
 

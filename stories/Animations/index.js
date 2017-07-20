@@ -10,6 +10,12 @@ import ExampleOpacityRaw from '!raw-loader!./ExampleOpacity';
 import ExampleOpacityAndScale from './ExampleOpacityAndScale';
 import ExampleOpacityAndScaleRaw from '!raw-loader!./ExampleOpacityAndScale';
 
+import ExampleHeight from './ExampleHeight';
+import ExampleHeightRaw from '!raw-loader!./ExampleHeight';
+
+import ExampleWidth from './ExampleWidth';
+import ExampleWidthRaw from '!raw-loader!./ExampleWidth';
+
 import ExampleTranslate from './ExampleTranslate';
 import ExampleTranslateRaw from '!raw-loader!./ExampleTranslate';
 
@@ -54,6 +60,14 @@ storiesOf('Common', module)
       <CodeExample title="Opacity and Scale Animation" code={ExampleOpacityAndScaleRaw}>
         <ExampleOpacityAndScale/>
       </CodeExample>
+
+      <CodeExample title="Height Animation (and also opacity)" code={ExampleHeightRaw}>
+        <ExampleHeight/>
+      </CodeExample>
+
+      {/*<CodeExample title="Width Animation" code={ExampleWidthRaw}>*/}
+        {/*<ExampleWidth/>*/}
+      {/*</CodeExample>*/}
 
       <CodeExample title="Translate Animation - All of these can work" code={ExampleTranslateRaw}>
         <ExampleTranslate/>

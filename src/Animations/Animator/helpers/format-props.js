@@ -19,6 +19,7 @@ const propsMap = {
   opacity: opacity => !!opacity,
   scale: scale => !!scale,
   height: height => !!height,
+  width: width => !!width,
   translate: translate => translate && initTranslateProp(translate),
   className: className => className,
   debug: (value, name) => getDataOrDefault(debugModes, value, name)
