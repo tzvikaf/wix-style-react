@@ -24,7 +24,7 @@ class AnimatorChild extends Component {
     if (this.isDimensionAnimation()) {
       const layer3 = ReactDOM.findDOMNode(this.refs.layer3);
       this.node = layer3.children[0] ? layer3.children[0] : layer3;
-      this.setDimensions(); //required in case appear:false
+      // this.setDimensions(); //required in case appear:false
     }
   }
 

@@ -105,13 +105,13 @@
     "rc-slider": "^8.0.2",
     "react-autosuggest": "^7.0.1",
     "react-collapse": "^2.3.3",
-    "react-height": "^2.1.1",
     "react-datepicker": "^0.48.0",
+    "react-height": "^2.1.1",
     "react-modal": "^1.6.5",
     "react-motion": "^0.4.7",
     "react-onclickoutside": "^5.7.1",
     "react-remarkable": "^1.1.1",
-    "react-transition-group": "^2.1.0",
+    "react-transition-group": "^2.2.0",
     "slate": "^0.20.3"
   },
   "jest": {

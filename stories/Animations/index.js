@@ -40,9 +40,6 @@ import ExampleSequenceRaw from '!raw-loader!./ExampleSequence';
 import ExampleDebug from './ExampleDebug';
 import ExampleDebugRaw from '!raw-loader!./ExampleDebug';
 
-import ExampleDebugTranslateSize from './ExampleDebugTranslateSize';
-import ExampleDebugTranslateSizeRaw from '!raw-loader!./ExampleDebugTranslateSize';
-
 import ExampleStandard from './ExampleStandard';
 import ExampleStandardRaw from '!raw-loader!./ExampleStandard';
 
@@ -99,10 +96,6 @@ storiesOf('Common', module)
 
       <CodeExample title="Debug - Emulates animation stages - Inspect element in devtools to see class changes" code={ExampleDebugRaw}>
         <ExampleDebug/>
-      </CodeExample>
-
-      <CodeExample title="Debugging Example - Examine the 'enter' mode before 'entering' on translate and opacity animation" code={ExampleDebugTranslateSizeRaw}>
-        <ExampleDebugTranslateSize/>
       </CodeExample>
 
       <CodeExample title="Playground" code={ExampleStandardRaw}>

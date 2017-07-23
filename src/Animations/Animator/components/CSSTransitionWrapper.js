@@ -29,17 +29,19 @@ class CSSTransitionWrapper extends React.Component {
   componentWillReceiveProps(props) {
     const {debug} = props.animatorProps;
     if (debug) {
-      if (debug === 'enter') {
-        this.updateTransitionState({enter: true});
-      } else if (debug === 'entering') {
-        this.updateTransitionState({enter: true, entering: true});
-      } else if (debug === 'leave') {
-        this.updateTransitionState({exit: true});
-      } else if (debug === 'leaving') {
-        this.updateTransitionState({exit: true, exiting: true});
-      } else {
-        this.updateTransitionState();
-      }
+      this.setDebug(debug);
+    }
+  }
+
+  setDebug(debug) {
+    if (debug === 'enter') {
+      this.onEnter();
+    } else if (debug === 'entering') {
+      this.onEntering();
+    } else if (debug === 'leave') {
+      this.onExit();
+    } else if (debug === 'leaving') {
+      this.onExiting();
     }
   }
 
