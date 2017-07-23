@@ -93,7 +93,7 @@ storiesOf('Common', module)
         <ExampleSequence/>
       </CodeExample>
 
-      <CodeExample title="Combination of 2 animations - flaky and requires a setTimeout" code={ExampleMockServerRaw}>
+      <CodeExample title="Combination of 2 Animators" code={ExampleMockServerRaw}>
         <ExampleMockServer/>
       </CodeExample>
 

@@ -15,7 +15,7 @@ class ExampleMockServer extends React.Component {
     this.state = {
       items: [],
       isLoader: !props.show
-    }
+    };
 
     this.to = {in: 'top', out: 'bottom'};
   }
@@ -23,7 +23,7 @@ class ExampleMockServer extends React.Component {
   componentWillReceiveProps({show}) {
     if (show) {
       this.setState({
-        items: new Array(5).fill(1).map((_, index) => <Item key={index} />)
+        items: new Array(5).fill(1).map((_, index) => <Item key={index}/>)
       });
     } else {
       this.setState({
@@ -31,9 +31,7 @@ class ExampleMockServer extends React.Component {
       })
     }
 
-    setTimeout(() => {
-      this.setState({isLoader: !show})
-    }, 0);
+    this.setState({isLoader: !show})
   }
 
   render() {
@@ -42,16 +40,17 @@ class ExampleMockServer extends React.Component {
 
     return (
       <div style={{height: '70px', display: 'flex'}}>
-          <Animator opacity sequence translate={{to}} className={`${css.flexParent}`}>
-            {this.state.isLoader && <div style={{fontSize: '25px', textAlign: 'center'}}>Loading....</div>}
-          </Animator>
-          <Animator opacity sequence translate={{to}} className={`${css.flexParent} ${css.absolute}`}>
+        <Animator opacity sequence translate={{to}} className={`${css.flexParent}`}>
+          {this.state.isLoader && <div style={{fontSize: '25px', textAlign: 'center'}}>Loading....</div>}
+        </Animator>
+        <Animator opacity sequence translate={{to}} className={`${css.flexParent} ${css.absolute}`}>
           {this.state.items}
-          </Animator>
+        </Animator>
       </div>
     )
   }
-};
+}
+;
 
 export default () =>
   <AnimationTemplate>

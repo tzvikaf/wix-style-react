@@ -12,12 +12,12 @@ class AnimationChildStyles {
   props;
   animatorProps;
 
-  constructor(props) {
+  constructor(props, dimensions) {
 
     this.props = props;
     this.animatorProps = this.props.animatorProps;
 
-    const {animatorProps, sequenceIndex, dimensions} = props;
+    const {animatorProps, sequenceIndex} = props;
 
     this.dimensions = {
       height: dimensions.height,

@@ -8,19 +8,21 @@
 | propName | propType | defaultValue | Valid Values | description |
 |----------|----------|--------------|-------------|-----|
 | timing | string | large | micro, small, medium, large | Sets the duration |
-| opacity | boolean | - | - | Sets Opacity |
-| scale | boolean | - | - | Sets Scale |
-| translate | translate Object | - | -| The items te animate. examples: translate / translate="left" / translate={to: 'left', size: 50} / translate={to: 'left', size: {in: 50, out: 20}}|
-| sequence | string | - | default, flip, reverse, reverse-flip | Set a delay between appearance of children. See Sequence table for more details|
-| className | string | - | - | The class will be added as a **direct parent class** for all the children it will have|
-| debug | string | - | enter, entering, leave, leaving | Emulates the real animation classes without the need to animate. Just leave your element visible and add these classes to debug different stages. enter: 'enter', entering: 'enter enter-active', leave: 'leave', leaving: 'leave leave-active' |
+| opacity | boolean | false | - | Sets Opacity |
+| scale | boolean | false | - | Sets Scale |
+| translate | translate Object | false | -| Sets translate. examples: translate / translate="left" / translate={to: 'left', size: 50} / translate={to: 'left', size: {in: 50, out: 20}}|
+| height | boolean or number | false | - | Sets the height. if set to 'true' then Animator will calculate the height on the go. if sets to a number Animator will set the height in pixels with this number. It is more recommended to set a fixed number if you know it|
+| width | boolean or number | false | - | Sets the width. if set to 'true' then Animator will calculate the width on the go. if sets to a number Animator will set the width in pixels with this number. It is more recommended to set a fixed number if you know it|
+| sequence | string | false | default, flip, reverse, reverse-flip | Set a delay between appearance of children. See Sequence table for more details|
+| className | string | false | - | The class will be added as a **direct parent class** for all the children it will have|
+| debug | string | false | enter, entering, leave, leaving | Emulates the real animation classes and styles without the need to animate. Just leave your element visible and add to debug different stages. enter: 'enter', entering: 'enter enter-active', leave: 'leave', leaving: 'leave leave-active' |
 
 # Props of Children of Animator Component
 
 | propName | propType | defaultValue | Valid Values | description |
 |----------|----------|--------------|-------------|-----|
-| childClassName | string | - | - | This class will be the child of the **Animator className props** and is designed for layout purposes such as adding 'flex-grow:1' and such. **DO NOT** put your main design here. use **className** instead for it |
-| childStyle | string | - | - | Same as class, designed only to interact with the **className prop** you provided to the Animator Component|
+| childClassName | string | false | - | This class will be the child of the **Animator className prop** and is designed for layout purposes such as adding 'flex-grow:1' and such. **DO NOT** put your main design here, keep the styling of this class to a minimum. use regular **className** for your design |
+| childStyle | string | false | - | Same as childClassName, designed only to interact as a child with the **Animator className prop** that you have provided to the Animator Component|
 
 
 # Translate Object

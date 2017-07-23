@@ -16,18 +16,13 @@ class CSSTransitionWrapper extends React.Component {
     this.transitionDefault = {
       enter: false,
       entering: false,
-      entered: false,
       exit: false,
       exiting: false
     };
 
     this.state = {
       sequenceIndex: 0,
-      transition: this.transitionDefault,
-      dimensions: {
-        height: 0,
-        width: 0
-      }
+      transition: this.transitionDefault
     };
   }
 
@@ -59,17 +54,15 @@ class CSSTransitionWrapper extends React.Component {
     this.updateTransitionState({enter: true});
   }
 
-  onEntering(node) {
-    this.setDimension(node);
+  onEntering() {
     this.updateTransitionState({enter: true, entering: true});
   }
 
   onEntered() {
-    this.updateTransitionState({entered: true});
+    this.updateTransitionState();
   }
 
-  onExit(node) {
-    this.setDimension(node);
+  onExit() {
     this.setSequenceIndex('exit');
     this.updateTransitionState({exit: true});
   }
@@ -85,6 +78,7 @@ class CSSTransitionWrapper extends React.Component {
     return {
       enter: !!duration,
       exit: !!duration,
+      appear: !!duration,
       timeout: duration,
       classNames: transitionClassNames
     };
@@ -99,12 +93,6 @@ class CSSTransitionWrapper extends React.Component {
     });
   }
 
-  setDimension(node) {
-    const {scrollHeight: height, scrollWidth: width} = node.children[0].children[0];
-    const dimensions = {height, width};
-    this.setState({dimensions});
-  }
-
   render() {
     const {children, animatorProps} = this.props;
     const {sequenceIndex} = this.state;
@@ -113,13 +101,12 @@ class CSSTransitionWrapper extends React.Component {
         {...this.props}
         {...this.getTransitionProps()}
         onEnter={() => this.onEnter()}
-        onEntering={node => this.onEntering(node)}
+        onEntering={() => this.onEntering()}
         onEntered={() => this.onEntered()}
-        onExit={node => this.onExit(node)}
+        onExit={() => this.onExit()}
         onExiting={() => this.onExiting()}
         >
         <Child
-          dimensions={this.state.dimensions}
           transition={this.state.transition}
           sequenceIndex={sequenceIndex}
           animatorProps={animatorProps}
