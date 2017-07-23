@@ -62,7 +62,6 @@
     "babel-runtime": "^6.6.1",
     "copy-to-clipboard": "^3.0.5",
     "enzyme": "^2.3.0",
-    "eslint-plugin-lodash": "^2.4.4",
     "eslint-plugin-react": "^6.8.0",
     "eyes.it": "^2.0.0",
     "gh-pages-auto-release": "^1.1.2",
@@ -132,11 +131,7 @@
     "env": {
       "jest": true
     },
-    "plugins": [
-      "lodash"
-    ],
     "rules": {
-      "lodash/import-scope": 2,
       "react/jsx-handler-names": 0,
       "react/no-find-dom-node": 0,
       "react/no-string-refs": 0,
