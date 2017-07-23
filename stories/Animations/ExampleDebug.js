@@ -1,6 +1,6 @@
 import React from 'react';
 import {Button} from 'wix-style-react/Backoffice';
-import Animator from '../../src/Animations/Animator';
+import Animator from '../../src/Animator';
 import {Container, Row, Col} from '../../src/Grid';
 import * as css from './Example.scss';
 import Dropdown from '../../src/Dropdown';

@@ -3,7 +3,7 @@ import {Button} from 'wix-style-react/Backoffice';
 import {Container, Row, Col} from '../../src/Grid';
 import ToggleSwitch from '../../src/ToggleSwitch';
 import Dropdown from '../../src/Dropdown';
-import Animator from '../../src/Animations/Animator';
+import Animator from '../../src/Animator';
 import * as css from './Example.scss';
 
 const createSizeArray = (size) => {

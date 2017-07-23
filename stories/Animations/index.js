@@ -2,7 +2,7 @@ import React from 'react';
 import {storiesOf} from '@storybook/react';
 import Markdown from '../utils/Components/Markdown';
 import CodeExample from '../utils/Components/CodeExample';
-import Readme from '../../src/Animations/README.md';
+import Readme from '../../src/Animator/README.md';
 
 import ExampleOpacity from './ExampleOpacity';
 import ExampleOpacityRaw from '!raw-loader!./ExampleOpacity';
