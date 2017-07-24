@@ -19,7 +19,7 @@ export default class Form extends Component {
     super(props);
     this.state = {
       buttonValue: 0,
-      checkboxValue: false,
+      checkboxValue: false
     };
   }
 
@@ -29,6 +29,8 @@ export default class Form extends Component {
     label: PropTypes.object,
     fieldInput: PropTypes.object,
     selectionInput: PropTypes.object,
+    firstButtonLabel: PropTypes.string,
+    secondButtonLabel: PropTypes.string
   };
 
   componentDidUpdate(props) {
@@ -65,8 +67,8 @@ export default class Form extends Component {
             value={this.state.buttonValue}
             onChange={value => this.setState({buttonValue: value})}
             >
-            <RadioGroup.Radio value={1} disabled={this.props.disabled}>On</RadioGroup.Radio>
-            <RadioGroup.Radio value={0} disabled={this.props.disabled}>Off</RadioGroup.Radio>
+            <RadioGroup.Radio value={1} disabled={this.props.disabled}>{this.props.firstButtonLabel}</RadioGroup.Radio>
+            <RadioGroup.Radio value={0} disabled={this.props.disabled}>{this.props.secondButtonLabel}</RadioGroup.Radio>
           </RadioGroup>
         );
         break;
