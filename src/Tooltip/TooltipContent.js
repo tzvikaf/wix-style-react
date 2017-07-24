@@ -57,7 +57,7 @@ class TooltipContent extends Component {
   static defaultProps = {
     theme: 'light',
     arrowPlacement: 'bottom',
-    maxWidth: '1200px',
+    maxWidth: '378px',
     size: 'normal',
     textAlign: 'center',
   };
@@ -75,13 +75,14 @@ class TooltipContent extends Component {
       bounce,
       size,
       textAlign,
+      maxWidth
     } = this.props;
 
     return (
       <div className={styles.root} style={style} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
         <div className={styles.fadeIn}>
           <div className={classnames({[styles[`bounce-on-${arrowPlacement}`]]: bounce})}>
-            <div ref={ref => this.tooltip = ref} className={classnames(styles.tooltip, styles[theme], styles[size])} style={{maxWidth: this.props.maxWidth, textAlign}}>
+            <div ref={ref => this.tooltip = ref} className={classnames(styles.tooltip, styles[theme], styles[size])} style={{maxWidth, textAlign}}>
               <div>{children}</div>
               <div className={classnames(styles.arrow, styles[arrowPlacement])} style={arrowStyle}/>
             </div>

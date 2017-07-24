@@ -21,8 +21,8 @@ import ExampleHorizontalRaw from '!raw-loader!./ExampleHorizontal';
 import ExampleControlled from './ExampleControlled';
 import ExampleControlledRaw from '!raw-loader!./ExampleControlled';
 
-storiesOf('Core', module)
-  .add('RadioGroup', () => (
+storiesOf('4. Selection', module)
+  .add('4.3 Radio Button Group', () => (
     <TabbedView tabs={['API Documentation', 'TestKits Documentation']}>
       <div>
         <AutoDocs source={RadioGroupSource}/>

@@ -83,7 +83,7 @@ class Tooltip extends WixComponent {
     showDelay: 200,
     hideDelay: 500,
     zIndex: 2000,
-    maxWidth: '1200px',
+    maxWidth: '378px',
     onClickOutside: null,
     onShow: null,
     active: false,

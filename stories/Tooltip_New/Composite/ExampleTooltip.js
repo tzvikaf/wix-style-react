@@ -13,6 +13,7 @@ class ExampleTooltip extends Component {
     type: 'default',
     text: 'Tooltip appears on hover',
     size: 'normal',
+    maxWidth: '',
     onShow:() => console.log('text printed'),
     onShowText: 'onShow console print'
   };
@@ -71,6 +72,17 @@ class ExampleTooltip extends Component {
               />
             </div>
           </div>
+
+          <div className={styles.option}>
+            <Label>Max Width</Label>
+            <div className={styles.flex}>
+              <Input
+                size="small"
+                value={this.state.maxWidth}
+                onChange={e => this.setState({maxWidth: e.target.value})}
+              />
+            </div>
+          </div>
         </div>
 
         <div className={styles[this.state.theme === 'whiteblue' ? 'output-lightblue' : 'output']}>
@@ -81,6 +93,7 @@ class ExampleTooltip extends Component {
     					type="tooltip"
               onChange={this.props.onChange}
               size={this.state.size}
+              maxWidth={this.state.maxWidth}
               onShow={() => console.log(this.state.onShowText)}
                 />
           </div>

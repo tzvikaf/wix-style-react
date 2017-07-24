@@ -208,6 +208,25 @@ describe('Tooltip', () => {
     });
   });
 
+  describe('max-width attribute', () => {
+    it('should set default max-width 378', () => {
+      const driver = createDriver(<Tooltip {..._props}>{children}</Tooltip>);
+      driver.mouseEnter();
+      return resolveIn(30).then(() => {
+        expect(driver.getMaxWidth()).toBe('378px');
+      });
+    });
+
+    it('should set custom max-width', () => {
+      const props = {..._props, maxWidth: '400px'};
+      const driver = createDriver(<Tooltip {...props}>{children}</Tooltip>);
+      driver.mouseEnter();
+      return resolveIn(30).then(() => {
+        expect(driver.getMaxWidth()).toBe('400px');
+      });
+    });
+  });
+
   describe('testkit', () => {
     it('should exist', () => {
       const div = document.createElement('div');

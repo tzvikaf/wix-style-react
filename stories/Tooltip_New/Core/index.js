@@ -4,8 +4,8 @@ import {storiesOf} from '@storybook/react';
 import Markdown from '../../utils/Components/Markdown';
 import CodeExample from '../../utils/Components/CodeExample';
 import TabbedView from '../../utils/Components/TabbedView';
-import ReadmeTestKit from '../../../src/Backoffice/Tooltip/README.TESTKIT.md';
-import Readme from '../../../src/Backoffice/Tooltip/README.md';
+import ReadmeTestKit from '../../../src/Tooltip/README.TESTKIT.md';
+import Readme from '../../../src/Tooltip/README.md';
 
 import ExamplePlacement from './ExamplePlacement';
 import ExamplePlacementRaw from '!raw-loader!./ExamplePlacement';

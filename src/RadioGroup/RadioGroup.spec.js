@@ -108,6 +108,13 @@ describe('RadioGroup', () => {
     });
   });
 
+  describe('line-height attribute', () => {
+    it('should be 24px', () => {
+      const driver = createDriver(elementToRender());
+      expect(driver.lineHeight()).toBe('24px');
+    });
+  });
+
   describe('testkit', () => {
     it('should exist', () => {
       expect(isTestkitExists(<RadioGroup/>, radioGroupTestkitFactory)).toBe(true);

@@ -9,7 +9,7 @@ import Readme from '../../src/Modal/README.md';
 import ExampleControlled from './ExampleControlled';
 import ExampleControlledRaw from '!raw-loader!./ExampleControlled';
 
-storiesOf('Core', module)
+storiesOf('9. Modals', module)
   .add('Modal', () => (
     <TabbedView tabs={['API', 'TestKits']}>
       <div>
