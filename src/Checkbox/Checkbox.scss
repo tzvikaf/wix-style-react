@@ -115,6 +115,11 @@
 
 /* Dsiabled State */
 
+.wrapper.disabled {
+    pointer-events: none;
+    cursor: default;
+}
+
 .wrapper.disabled .checkbox, .wrapper.disabled:hover .checkbox, .wrapper.disabled.hover .checkbox,
 .wrapper.disabled.active .checkbox, .wrapper.disabled:active .checkbox {
     border-color: $GR20;
