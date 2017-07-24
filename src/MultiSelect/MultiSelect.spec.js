@@ -81,6 +81,13 @@ describe('multiSelect', () => {
     expect(inputDriver.isFocus()).toBeTruthy();
   });
 
+  it('should check that wrapper has focus when the input element does', () => {
+    const {driver, inputDriver} = createDriver(<MultiSelect options={options}/>);
+    driver.clickOnInputWrapper();
+    expect(inputDriver.isFocus()).toBeTruthy();
+    expect(driver.inputWrapperHasFocus()).toBeTruthy();
+  });
+
   it('should contain specific tags', () => {
     const tags = [{id: 'Alabama', label: 'Alabama'}, {id: 'Alaska', label: 'Alaska'}];
 

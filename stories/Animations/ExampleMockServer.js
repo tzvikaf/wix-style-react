@@ -1,51 +1,50 @@
 import React from 'react';
 import {Button} from 'wix-style-react/Backoffice';
-import Animator from '../../src/Animations/Animator';
+import Animator from '../../src/Animator';
 import * as css from './Example.scss';
 import AnimationTemplate from './AnimationTemplate';
 
-const Item = () => 'I am an item from the Server';
+const Item = () => <div className={css.basicDiv}>I am an Item</div>;
+
 class ExampleMockServer extends React.Component {
+
+  to;
 
   constructor(props) {
     super(props);
     this.state = {
-      items: []
-    }
+      items: [],
+      isLoader: !props.show
+    };
+
+    this.to = {in: 'top', out: 'bottom'};
   }
 
   componentWillReceiveProps({show}) {
-    this.state.items.splice(0, this.state.items.length);
     if (show) {
-
-      setTimeout(() => {
-        this.state.items.push({content: 'Some Item', index: 0});
-        this.state.items.push({content: 'Some Item', index: 1});
-        this.state.items.push({content: 'Some Item', index: 2});
-        this.state.items.push({content: 'Some Item', index: 3});
-        this.state.items.push({content: 'Some Item', index: 4});
-        this.setState({
-          items: this.state.items
-        });
-      }, 300);
+      this.setState({
+        items: new Array(5).fill(1).map((_, index) => <Item key={index}/>)
+      });
     } else {
-      setTimeout(() => {
-        this.state.items.push({content: 'Loading...', index: 15});
-        this.setState({
-          items: this.state.items
-        });
-      }, 300);
+      this.setState({
+        items: []
+      })
     }
+
+    this.setState({isLoader: !show})
   }
 
   render() {
+
+    const {to} = this;
+
     return (
-      <div className={css.basicWrapper}>
-        <Animator opacity sequence translate="top" className={css.flexParent}>
-          {this.state.items.map((item, index) =>
-            <div key={index} className={css.basicDiv}
-                 childStyle={item.childStyle && item.childStyle}>{item.content}</div>
-          )}
+      <div style={{height: '70px', display: 'flex'}}>
+        <Animator opacity sequence translate={{to}} className={`${css.flexParent}`}>
+          {this.state.isLoader && <div style={{fontSize: '25px', textAlign: 'center'}}>Loading....</div>}
+        </Animator>
+        <Animator opacity sequence translate={{to}} className={`${css.flexParent} ${css.absolute}`}>
+          {this.state.items}
         </Animator>
       </div>
     )

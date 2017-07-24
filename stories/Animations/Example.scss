@@ -7,7 +7,7 @@
 
 .basic-wrapper {
   display: flex;
-  height: 30px;
+  height: 35px;
 }
 
 .flex-parent {
@@ -38,4 +38,26 @@
 
 .absolute {
   position: absolute;
+}
+
+.enter {
+  transform: translate(100px, 0);
+  transition: all 1s linear;
+  opacity: 0;
+}
+
+.enter-active {
+  transform: translate(0, 0);
+  opacity: 1
+}
+
+.leave {
+  transform: translate(0, 0);
+  transition: all 1s linear;
+  opacity: 1
+}
+
+.leave-active {
+  transform: translate(100px, 0);
+  opacity: 0;
 }

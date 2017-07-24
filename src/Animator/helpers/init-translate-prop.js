@@ -33,8 +33,9 @@ const getSizeObject = size => {
 };
 
 const initTranslateProp = translate => {
-
-  if (typeof translate === 'string') {
+  if (typeof translate === 'boolean') {
+    translate = {to: {in: 'top', out: 'top'}, size: defaultSize};
+  } else if (typeof translate === 'string') {
     translate = {to: {in: translate, out: translate}, size: defaultSize};
   } else {
     const {to, size} = translate;

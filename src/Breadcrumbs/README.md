@@ -6,6 +6,7 @@
 | id | string or number| - | + | Specifies the item id |
 | link | string | - | - | Optional link to be called on click |
 | value | string or node | - | + | Value to be shown on breadcrumb |
+| disabled | boolean | false | - | True if this value is disabled |
 | customElement | element | - | - | A custom item which will be rendered |
 
 ## Breadcrumbs Path Factory

@@ -1,6 +1,6 @@
 import React from 'react';
 import {Button} from 'wix-style-react/Backoffice';
-import Animator from '../../src/Animations/Animator';
+import Animator from '../../src/Animator';
 import {Container, Row, Col} from '../../src/Grid';
 import * as css from './Example.scss';
 import Dropdown from '../../src/Dropdown';
@@ -39,7 +39,7 @@ class ExampleDebug extends React.Component {
           </Col>
           <Col span="10">
             <div className={css.basicWrapper}>
-              <Animator translate="left" scale debug={this.state.debug}>
+              <Animator translate scale opacity debug={this.state.debug}>
                 <div className={css.basicDiv}>{this.state.debug ? ` emulates the ${this.state.debug} phase` : '<--- Waiting for you to choose a debug phase'}</div>
               </Animator>
             </div>

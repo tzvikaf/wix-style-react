@@ -3,7 +3,7 @@ import styles from './Grid.scss';
 import Card from '../Card';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import Animator from '../Animations/Animator';
+import Animator from '../Animator';
 
 class Container extends Component {
 
