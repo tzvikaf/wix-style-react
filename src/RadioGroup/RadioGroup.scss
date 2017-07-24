@@ -118,6 +118,7 @@
     background: transparent;
     outline: 0;
     height: 24px;
+    min-width: 24px;
     border-radius: 4px;
     color: $B10;
     margin-right:7px;
@@ -141,14 +142,21 @@
         color: $D50;
       }
     }
+
     &.checked {
+      cursor: initial;
       background: $B10;
       color: $D80;
     }
 
-    &:hover {
+    &:hover:not(.checked) {
+      cursor: pointer;
       background: $B20;
       color: $D80;
     }
+  }
+
+  &:last-child button {
+    margin-right: 0;
   }
 }
