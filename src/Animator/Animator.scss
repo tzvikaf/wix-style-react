@@ -41,6 +41,22 @@ $easeInOutQuint: cubic-bezier(0.86, 0, 0.07, 1);
   width: 100%;
 }
 
+@mixin layer3Enter() {
+  .child-layer-3 {
+    transition-property: all;
+    transition-duration: .3s;
+    transition-timing-function: $easeOutCubic;
+  }
+}
+
+@mixin layer3Leave() {
+  .child-layer-3 {
+    transition-property: all;
+    transition-duration: .3s;
+    transition-timing-function: $easeInOutQuint;
+  }
+}
+
 // Duration
 ///////////
 
@@ -193,13 +209,6 @@ $timing-translate: $timing-large;
 // Translate
 ////////////
 
-@mixin translateEnter() {
-  .translate {
-    transition-property: all;
-    transition-duration: .3s;
-    transition-timing-function: $easeOutCubic;
-  }
-}
 
 @mixin translateEnterActive() {
   .translate {
@@ -209,9 +218,6 @@ $timing-translate: $timing-large;
 
 @mixin translateLeave() {
   .translate {
-    transition-property: all;
-    transition-duration: .3s;
-    transition-timing-function: $easeInOutQuint;
     transform: translate(0, 0);
   }
 }
@@ -225,9 +231,9 @@ $timing-translate: $timing-large;
 
 .enter {
   transition-property: all;
+  @include layer3Enter();
   @include timingFunction();
   @include opacityEnter();
-  @include translateEnter();
   @include delayEnter();
   @include heightEnter();
   @include widthEnter();
@@ -241,6 +247,7 @@ $timing-translate: $timing-large;
 
 .leave {
   transition-property: all;
+  @include layer3Leave();
   @include timingFunction();
   @include opacityLeave();
   @include translateLeave();
