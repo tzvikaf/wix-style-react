@@ -168,7 +168,7 @@ class Tooltip extends WixComponent {
   }
 
   render() {
-    const child = this.props.children;
+    const child = Array.isArray(this.props.children) ? this.props.children[0] : this.props.children;
     if (child) {
       return cloneElement(child, {
         ref: ref => this._childNode = ReactDOM.findDOMNode(ref),

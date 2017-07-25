@@ -11,7 +11,7 @@ const SubMenu = ({children, title, isOpen, isActive, onSelectHandler, onBackHand
   if (!isOpen) {
 
     return (
-      <NavigationLink isActive={isActive} onClick={onSelectHandler} badge={badge} withArrow data-hook={linkDataHook}>
+      <NavigationLink isActive={isActive} onClick={onSelectHandler} badge={badge} withArrow={!badge} data-hook={linkDataHook}>
         {title}
       </NavigationLink>
     );

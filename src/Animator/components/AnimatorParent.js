@@ -2,29 +2,20 @@ import React, {Component} from 'react';
 import {bool, node, string, oneOfType, any} from 'prop-types';
 import TransitionGroup from 'react-transition-group/TransitionGroup';
 import formatProps from '../helpers/format-props';
-import ClassBuilder from '../builders/class-builder';
 import CSSTransitionWrapper from './CSSTransitionWrapper';
 
 class AnimatorParent extends Component {
 
   animatorProps;
 
-  getClass() {
-    const {className} = this.animatorProps;
-    return new ClassBuilder()
-      .withClassName(className)
-      .build();
-  }
-
   render() {
+    const {className, dataHook} = this.props;
     this.animatorProps = formatProps(this.props);
-    const {children} = this.animatorProps;
-
     return (
-      <TransitionGroup className={this.getClass()}>
-        {children.map((item, index) =>
+      <TransitionGroup data-hook={dataHook} className={className}>
+        {this.animatorProps.children.map((item, index) =>
           <CSSTransitionWrapper
-            key={index}
+            key={item.key || index}
             index={index}
             {...item.props}
             animatorProps={this.animatorProps}
@@ -40,7 +31,9 @@ class AnimatorParent extends Component {
 AnimatorParent.propTypes = {
   sequence: oneOfType([bool, string]),
   translate: any,
-  children: node
+  children: node,
+  className: any,
+  dataHook: any
 };
 
 export default AnimatorParent;

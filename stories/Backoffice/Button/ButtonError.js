@@ -20,7 +20,8 @@ class ButtonError extends Component {
   state = {
     disabled: false,
     theme: 'fullred',
-    text: 'Click On Me'
+    text: 'Click On Me',
+    height: 'medium'
   };
 
   render() {
@@ -82,6 +83,21 @@ class ButtonError extends Component {
             </div>
           </div>
 
+          <div className={styles.option}>
+            <Label>Size</Label>
+            <div className={styles.flex}>
+              <RadioGroup
+                display="horizontal"
+                value={this.state.height}
+                onChange={height => this.setState({height})}
+              >
+                <RadioGroup.Radio value="small">Small</RadioGroup.Radio>
+                <RadioGroup.Radio value="medium">Regular</RadioGroup.Radio>
+                <RadioGroup.Radio value="large">Large</RadioGroup.Radio>
+                <RadioGroup.Radio value="x-large">x-large</RadioGroup.Radio>
+              </RadioGroup>
+            </div>
+          </div>
         </div>
 
         <div className={styles.output}>

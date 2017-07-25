@@ -38,6 +38,8 @@ class CSSTransitionWrapper extends React.Component {
       this.onEnter();
     } else if (debug === 'entering') {
       this.onEntering();
+    } else if (debug === 'entered') {
+      this.onEntered();
     } else if (debug === 'leave') {
       this.onExit();
     } else if (debug === 'leaving') {
@@ -45,32 +47,51 @@ class CSSTransitionWrapper extends React.Component {
     }
   }
 
-  updateTransitionState(update = {}) {
+  updateTransitionState(phase) {
+    let update;
+    switch (phase) {
+      case 'enter':
+        update = {enter: true};
+        break;
+      case 'entering':
+        update = {enter: true, entering: true};
+        break;
+      case 'exit':
+        update = {exit: true};
+        break;
+      case 'exiting':
+        update = {exit: true, exiting: true};
+        break;
+      default:
+        update = {};
+        break;
+    }
+
     this.setState({
       transition: Object.assign({}, this.transitionDefault, update)
     });
   }
 
   onEnter() {
-    this.setSequenceIndex('enter');
-    this.updateTransitionState({enter: true});
+    this.updateTransitionState('enter');
+    this.setSequenceIndex();
   }
 
   onEntering() {
-    this.updateTransitionState({enter: true, entering: true});
+    this.updateTransitionState('entering');
   }
 
   onEntered() {
-    this.updateTransitionState();
+    this.updateTransitionState('entered');
   }
 
   onExit() {
-    this.setSequenceIndex('exit');
-    this.updateTransitionState({exit: true});
+    this.updateTransitionState('exit');
+    this.setSequenceIndex();
   }
 
   onExiting() {
-    this.updateTransitionState({exit: true, exiting: true});
+    this.updateTransitionState('exiting');
   }
 
   getTransitionProps() {
@@ -86,13 +107,15 @@ class CSSTransitionWrapper extends React.Component {
     };
   }
 
-  setSequenceIndex(phase) {
-    const index = this.props.index + 1;
+  setSequenceIndex() {
     const {children, sequence} = this.props.animatorProps;
-    const reverseIndex = children.length - this.props.index;
-    this.setState({
-      sequenceIndex: shouldFlipAnimation(sequence, phase) ? reverseIndex : index
-    });
+    if (sequence) {
+      const index = this.props.index + 1;
+      const reverseIndex = children.length - this.props.index;
+      this.setState({
+        sequenceIndex: shouldFlipAnimation(sequence, this.state.transition) ? reverseIndex : index
+      });
+    }
   }
 
   render() {

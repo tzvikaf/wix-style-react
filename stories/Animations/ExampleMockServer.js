@@ -36,14 +36,10 @@ class ExampleMockServer extends React.Component {
 
   render() {
 
-    const {to} = this;
-
     return (
       <div style={{height: '70px', display: 'flex'}}>
-        <Animator opacity sequence translate={{to}} className={`${css.flexParent}`}>
-          {this.state.isLoader && <div style={{fontSize: '25px', textAlign: 'center'}}>Loading....</div>}
-        </Animator>
-        <Animator opacity sequence translate={{to}} className={`${css.flexParent} ${css.absolute}`}>
+        <Animator opacity sequence translate={{to:{in: 'top', out: 'bottom'}}} className={`${css.flexParent}`}>
+          {this.state.isLoader && <div key={99999} childStyle={{position: 'absolute'}} style={{fontSize: '25px', textAlign: 'center'}}>Loading....</div>}
           {this.state.items}
         </Animator>
       </div>

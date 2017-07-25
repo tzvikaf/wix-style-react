@@ -82,7 +82,7 @@ storiesOf('Common', module)
         <ExampleTiming/>
       </CodeExample>
 
-      <CodeExample title="Adding Custom Classes" code={ExampleClassesRaw}>
+      <CodeExample title="Adding Custom Classes & Styles" code={ExampleClassesRaw}>
         <ExampleClasses/>
       </CodeExample>
 
@@ -90,11 +90,11 @@ storiesOf('Common', module)
         <ExampleSequence/>
       </CodeExample>
 
-      <CodeExample title="Combination of 2 Animators" code={ExampleMockServerRaw}>
+      <CodeExample title="Combination of both mount and unmount in the same Animator (requires to set unique 'key' prop for every child" code={ExampleMockServerRaw}>
         <ExampleMockServer/>
       </CodeExample>
 
-      <CodeExample title="Debug - Emulates animation stages - Inspect element in devtools to see class changes" code={ExampleDebugRaw}>
+      <CodeExample title="Debug - Emulates animation stages - Inspect element in devtools to see class & Style changes" code={ExampleDebugRaw}>
         <ExampleDebug/>
       </CodeExample>
 

@@ -11,30 +11,35 @@ $main-container-min-width: 894px;
 $main-container-max-width: 1254px;
 $grid-row-margin-bottom: 30px;
 
-.container {
+.container, .wixContainer {
 	padding: 0;
 	width: 100%;
+	min-width: $main-container-min-width;
+	max-width: $main-container-max-width;
 
 	* {
 		box-sizing: border-box;
 	}
 
 	.row {
-    margin-bottom: $grid-row-margin-bottom;
+		margin-bottom: $grid-row-margin-bottom;
 	}
-
-  >div>span:last-child .row:last-child {
-    margin-bottom: 0;
-  }
 }
+
+.container {
+	.row:last-child {
+		margin-bottom: 0;
+	}
+}
+
 .flex-container {
 	display: flex;
 }
-.wixContainer {
-	@extend .container;
 
-	min-width: $main-container-min-width;
-	max-width: $main-container-max-width;
+.wixContainer {
+	>div>span:last-child .row:last-child {
+		margin-bottom: 0;
+	}
 }
 
 .stretch_vertically_row {

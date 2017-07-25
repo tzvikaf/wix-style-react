@@ -24,11 +24,16 @@ const items = [
     { type: 'link', to: '//wix.com', title: 'link #2_1' },
     { type: 'link', to: '//wix.com', title: 'link #2_2' },
     { type: 'link', to: '//wix.com', title: 'link #2_3' },
-    { type: 'menu', title: 'Sub Menu #3', items: [
-      { type: 'link', to: '//wix.com', title: 'link #3_1' },
-      { type: 'link', to: '//wix.com', title: 'link #3_2' },
-      { type: 'link', to: '//wix.com', title: 'link #3_3' }
+    { type: 'menu', title: 'Sub Menu #2-3', items: [
+      { type: 'link', to: '//wix.com', title: 'link #2-3_1' },
+      { type: 'link', to: '//wix.com', title: 'link #2-3_2' },
+      { type: 'link', to: '//wix.com', title: 'link #2-3_3' }
     ] }
+  ] },
+  { type: 'menu', title: 'Sub Menu #3', items: [
+    { type: 'link', to: '//wix.com', title: 'link #3_1' },
+    { type: 'link', to: '//wix.com', title: 'link #3_2' },
+    { type: 'link', to: '//wix.com', title: 'link #3_3' }
   ] }
 ];
 
@@ -61,25 +66,28 @@ class ExampleSideMenuDrill extends React.Component {
   renderLink(link) {
     const {badge, badgeTooltip} = link;
     const badgeElement = badge && <SideMenu.NavigationBadge />;
-    const element = badgeTooltip ?
-      <Tooltip placement="right" alignment="center" content="Hi there!">
+    const badgeElementWithTooltip = badgeTooltip ?
+      <Tooltip moveBy={{ x: -23, y: 0 }}  placement="right" alignment="center" content="Hi there!">
         {badgeElement}
       </Tooltip> : badgeElement;
     return (
-      <SideMenuDrill.Link key={link.title} isActive={link.isActive} badge={element}>
-        <a href={link.to} onClick={e => this.onMenuSelected(e, link)}>
-          {link.title}
-        </a>
-      </SideMenuDrill.Link>
+
+       <SideMenuDrill.Link key={link.title} isActive={link.isActive}>
+         <a href={link.to} onClick={e => this.onMenuSelected(e, link)}>
+           {link.title}
+           {badgeElementWithTooltip}
+         </a>
+       </SideMenuDrill.Link>
+
     );
   }
 
   renderMenu(menu) {
     const showCategory = menu.title !== 'Sub Menu #3';
     const {badge, badgeTooltip} = menu;
-    const badgeElement = badge && <SideMenu.NavigationBadge inline />;
+    const badgeElement = badge && <SideMenu.NavigationBadge />;
     const element = badgeTooltip ?
-      <Tooltip placement="right" alignment="center" content="Hi there!">
+      <Tooltip moveBy={{ x: -23, y: 0 }} placement="right" alignment="center" content="Hi there!">
         {badgeElement}
       </Tooltip> : badgeElement;
 

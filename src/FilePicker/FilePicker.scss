@@ -1,5 +1,14 @@
 @import '../common.scss';
 
+.container {
+  &:hover {
+    svg {
+      border-radius: 50%;
+      background: $B40;
+    }
+  }
+}
+
 .header {
   display: block;
   margin-bottom: 13px;
@@ -45,6 +54,7 @@
   color: $B10;
   padding-top: 3px;
 }
+
 
 .error {
   font-family: $FontLight;
