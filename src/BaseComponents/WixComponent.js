@@ -71,7 +71,7 @@ class WixComponent extends React.Component {
   }
 
   componentWillUnmount() {
-    if (this._boundEvents) {
+    if (this._boundEvents && typeof document !== 'undefined') {
       this._boundEvents.forEach(eventName => {
         document.removeEventListener(eventName, this._onMouseEventsHandler, true);
       });

@@ -41,7 +41,7 @@ class CollapsedHeader extends WixComponent {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.collapsed && nextProps.collapsed !== this.state.isCollapsed) {
+    if (this.props.collapsed !== nextProps.collapsed && nextProps.collapsed !== this.state.isCollapsed) {
       this.setState({isCollapsed: nextProps.collapsed});
     }
   }

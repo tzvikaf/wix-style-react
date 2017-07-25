@@ -13,26 +13,38 @@ class InputWithTags extends React.Component {
     this.blur = this.blur.bind(this);
     this.select = this.select.bind(this);
 
-    this.state = {inputValue: ''};
+    this.state = {inputValue: '', inputHasFocus: false};
   }
 
   componentDidMount() {
     this.props.autoFocus && this.props.onFocus();
   }
 
+  handleInputFocus() {
+    this.input.focus();
+    this.setState({inputHasFocus: true});
+  }
+
+  handleInputBlur() {
+    this.setState({inputHasFocus: false});
+  }
+
   render() {
     const {tags, onRemoveTag, placeholder, error, disabled, ...inputProps} = this.props;
+    const hasFocus = this.state.inputHasFocus;
 
     const className = classNames({
       [styles.tagsContainer]: true,
       [styles.disabled]: disabled,
       [styles.error]: error,
+      [styles.hasFocus]: hasFocus
     });
 
     const desiredProps = omit(inputProps, ['onManuallyInput', 'inputElement', 'closeOnSelect', 'predicate', 'menuArrow', 'onClickOutside', 'fixedHeader', 'fixedFooter', 'dataHook']);
     const fontSize = (desiredProps.size && desiredProps.size === 'small') ? '14px' : '16px';
+
     return (
-      <div className={className} onClick={() => this.input.focus()}>
+      <div className={className} onClick={() => this.handleInputFocus()}>
 
         {tags.map(({label, ...rest}) => <Tag key={rest.id} disabled={disabled} onRemove={onRemoveTag} {...rest}>{label}</Tag>)}
         <span className={styles.input} data-hook="inner-input-with-tags">
@@ -42,6 +54,7 @@ class InputWithTags extends React.Component {
 
           <Input
             ref={input => this.input = input}
+            onBlur={() => this.handleInputBlur()}
             placeholder={tags.length === 0 ? placeholder : ''}
             {...desiredProps}
             disabled={disabled}

@@ -1,6 +1,6 @@
 import React from 'react';
 import {Button} from 'wix-style-react/Backoffice';
-import Animator from '../../src/Animations/Animator';
+import Animator from '../../src/Animator';
 import * as css from './Example.scss';
 import AnimationTemplate from './AnimationTemplate';
 

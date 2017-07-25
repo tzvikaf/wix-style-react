@@ -1,7 +1,7 @@
 @import '../common.scss';
 
 @mixin breadcrumbsHover($hoverTextColor, $hoverBackgroundColor) {
-  .item:not(.active):hover {
+  .item:not(.active):not(.disabled):hover {
     border-radius: 100px;
     color: $hoverTextColor;
     background-color: $hoverBackgroundColor;
@@ -37,8 +37,12 @@
   @include breadcrumbsHover($D60, transparentize($D80, .9));
 }
 
-.item:not(.active) {
+.item:not(.disabled):not(.active) {
   cursor: pointer;
+}
+
+.disabled {
+  tab-index: -1;
 }
 
 .itemContainer {
@@ -58,7 +62,10 @@
   background: transparent;
   border: 0;
   padding: 0;
-  cursor: pointer;
+
+  &:not(.disabled) {
+    cursor: pointer;
+  }
 }
 
 .link {

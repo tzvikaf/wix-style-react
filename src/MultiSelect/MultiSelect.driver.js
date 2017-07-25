@@ -9,10 +9,12 @@ const multiSelectDriverFactory = ({element, wrapper, component}) => {
   const {driver, inputDriver, dropdownLayoutDriver} = inputWithOptionsDriverFactory({element, wrapper});
 
   const inputWrapper = driver.inputWrapper().childNodes[0];
+
   const tags = initial(inputWrapper.childNodes);
 
   const multiSelectDriver = Object.assign(driver, {
     clickOnInputWrapper: () => ReactTestUtils.Simulate.click(inputWrapper),
+    inputWrapperHasFocus: () => inputWrapper.classList.contains('hasFocus'),
     numberOfTags: () => tags.length,
     getTagLabelAt: index => tags[index].textContent,
     setProps: props => {

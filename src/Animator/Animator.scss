@@ -160,30 +160,6 @@ $timing-translate: $timing-large;
   }
 }
 
-// Scale
-////////
-
-@mixin scaleMinimum() {
-  .scale {
-    &.timing-micro, &.timing-large {
-      transform: scale(0.9);
-    }
-
-    &.timing-small, &.timing-medium {
-      transform: scale(0.75);
-    }
-
-  }
-}
-
-@mixin scaleMaximum() {
-  .scale {
-    &.timing-micro, &.timing-small, &.timing-medium, &.timing-large {
-      transform: scale(1);
-    }
-  }
-}
-
 // Height
 /////////
 
@@ -202,44 +178,17 @@ $timing-translate: $timing-large;
 // Width
 /////////
 
-//@keyframes dimensions-enter-active-hack {
-//  0% {
-//    visibility: hidden;
-//    color: red;
-//  }
-//  50% {
-//    color: blue;
-//    visibility: visible;
-//  }
-//  100% {
-//    color: green;
-//    visibility: visible;
-//  }
-//}
-//
-//@mixin widthEnter() {
-//  .width {
-//    //animation-name: dimensions-enter-active-hack;
-//    //overflow: hidden;
-//    //visibility: hidden;
-//  }
-//}
-//
-//@mixin widthEnterActive() {
-//  .width {
-//    //transition: visibility .01s linear .1s, width .3s linear;
-//    //visibility: visible;
-//    ////animation-name: dimensions-enter-active-hack;
-//    ////animation-fill-mode: forwards;
-//    //width: 0;
-//  }
-//}
-//
-//@mixin widthLeave() {
-//  .width {
-//    //overflow: hidden;
-//  }
-//}
+@mixin widthEnter() {
+  .width {
+    overflow: hidden;
+  }
+}
+
+@mixin widthLeave() {
+  .width {
+    overflow: hidden;
+  }
+}
 
 // Translate
 ////////////
@@ -267,17 +216,6 @@ $timing-translate: $timing-large;
   }
 }
 
-// Minimum Maximum Summary
-//////////////////////////
-
-@mixin minimum() {
-  @include scaleMinimum();
-}
-
-@mixin maximum() {
-  @include scaleMaximum();
-}
-
 // Animation classes
 ////////////////////
 
@@ -290,15 +228,14 @@ $timing-translate: $timing-large;
   @include timingFunction();
   @include opacityEnter();
   @include translateEnter();
-  @include minimum();
   @include delayEnter();
   @include heightEnter();
+  @include widthEnter();
 }
 
 .enter-active {
   @include opacityEnterActive();
   @include translateEnterActive();
-  @include maximum();
   @include delayEnterActive();
 }
 
@@ -307,12 +244,11 @@ $timing-translate: $timing-large;
   @include timingFunction();
   @include opacityLeave();
   @include translateLeave();
-  @include maximum();
   @include delayLeave();
   @include heightLeave();
+  @include widthLeave();
 }
 
 .leave-active {
   @include opacityLeaveActive();
-  @include minimum();
 }

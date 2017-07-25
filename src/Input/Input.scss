@@ -385,7 +385,7 @@ $material-gap: 8px;
 }
 
 .menu-arrow {
-    padding: 0 $gap;
+    padding: 0 $double-gap;
     path { fill: $B10; }
 
     &[disabled] {

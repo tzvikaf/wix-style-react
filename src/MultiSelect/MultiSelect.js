@@ -60,6 +60,7 @@ class MultiSelect extends InputWithOptions {
 
   onKeyDown(event) {
     const {tags, value, onRemoveTag} = this.props;
+
     if (tags.length > 0 && (event.key === 'Delete' || event.key === 'Backspace') && value.length === 0) {
       onRemoveTag(last(tags).id);
     }
@@ -67,6 +68,16 @@ class MultiSelect extends InputWithOptions {
     if (event.key === 'Tab' || event.key === 'Escape') {
       this.clearInput();
       super.hideOptions();
+    }
+
+    if (event.key === 'Enter' && value.length > 0) {
+      const unselectedOptions = this.getUnselectedOptions();
+      const visibleOptions = unselectedOptions.filter(this.props.predicate);
+      const maybeNearestOption = visibleOptions[0];
+
+      if (maybeNearestOption) {
+        this.onSelect(maybeNearestOption);
+      }
     }
 
     if (this.props.onKeyDown) {
