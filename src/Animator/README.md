@@ -16,6 +16,7 @@
 | sequence | string | false | default, flip, reverse, reverse-flip | Set a delay between appearance of children. See Sequence table for more details|
 | className | string | false | - | The class will be added as a **direct parent class** for all the children it will have|
 | debug | string | false | enter, entering, leave, leaving | Emulates the real animation classes and styles without the need to animate. Just leave your element visible and add to debug different stages. enter: 'enter', entering: 'enter enter-active', leave: 'leave', leaving: 'leave leave-active' |
+| dataHook | string | - | - | will convert to data-hook |
 
 # Props of Children of Animator Component
 
