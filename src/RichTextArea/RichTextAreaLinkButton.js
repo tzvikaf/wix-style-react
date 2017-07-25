@@ -42,6 +42,7 @@ class RichTextAreaLinkButton extends Component {
 
     return (
       <Tooltip
+        appendToParent
         content={this.getTooltipContent(isSelectionExpanded)}
         overlay=""
         alignment="center"

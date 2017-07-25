@@ -23,7 +23,6 @@ const propsMap = {
   height: height => !!height && height,
   width: width => !!width && width,
   translate: translate => translate && initTranslateProp(translate),
-  className: className => className,
   debug: (value, name) => getDataOrDefault(debugModes, value, name)
 };
 

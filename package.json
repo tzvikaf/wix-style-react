@@ -73,7 +73,6 @@
     "sinon": "^1.17.6",
     "svg2react-icon": "^1.0.0",
     "wait-for-cond": "^1.0.3",
-    "webpack": "^3.0.0",
     "yoshi": "latest"
   },
   "peerDependencies": {

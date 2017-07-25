@@ -1,10 +1,10 @@
-const shouldFlipAnimation = (sequence, phase) => {
+const shouldFlipAnimation = (sequence, {enter, exit}) => {
   let isFlip = !!sequence;
-  if (phase === 'enter') {
+  if (enter) {
     if ((sequence === 'default') || (sequence === 'flip')) {
       isFlip = false;
     }
-  } else if (phase === 'exit') {
+  } else if (exit) {
     if ((sequence === 'default') || (sequence === 'reverse-flip')) {
       isFlip = false;
     }
