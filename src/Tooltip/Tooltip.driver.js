@@ -36,8 +36,8 @@ const tooltipDriverFactory = ({element, wrapper}) => {
       return content.innerHTML;
     },
     getMaxWidth: () => {
-      let content = document.body.querySelector('.tooltip');
-      let values = content.style._values;
+      const content = document.body.querySelector('.tooltip');
+      const values = content.style._values;
       return values['max-width'];
     },
     setProps: props => {

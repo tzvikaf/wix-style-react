@@ -81,7 +81,7 @@ class Tooltip extends WixComponent {
     showTrigger: 'mouseenter',
     hideTrigger: 'mouseleave',
     showDelay: 200,
-    hideDelay: 500,
+    hideDelay: 0,
     zIndex: 2000,
     maxWidth: '378px',
     onClickOutside: null,

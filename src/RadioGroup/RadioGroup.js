@@ -18,8 +18,7 @@ class RadioGroup extends WixComponent {
 
   render() {
     const {onChange, disabled, disabledRadios, value, vAlign, display, type, spacing, lineHeight} = this.props;
-    const style = {lineHeight: lineHeight,
-                   marginBottom: display === 'vertical' && spacing};
+    const style = {lineHeight, marginBottom: display === 'vertical' && spacing};
 
     return (
       <div className={styles[display]}>

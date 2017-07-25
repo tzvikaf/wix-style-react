@@ -9,44 +9,37 @@ const buttons = {
   bold: {
     icon: Bold,
     tooltipText: 'Bold',
-    iconWidth: 11,
-    iconHeight: 14,
+    size: 30
   },
   italic: {
     icon: Italic,
     tooltipText: 'Italic',
-    iconWidth: 8,
-    iconHeight: 14,
+    size: 30
   },
   underline: {
     icon: Underline,
     tooltipText: 'Underline',
-    iconWidth: 15,
-    iconHeight: 15,
+    size: 30
   },
   'unordered-list': {
     icon: UnorderedList,
     tooltipText: 'Bulletted list',
-    iconWidth: 15,
-    iconHeight: 15,
+    size: 30
   },
   'ordered-list': {
     icon: OrderedList,
     tooltipText: 'Numbered list',
-    iconWidth: 15,
-    iconHeight: 16,
+    size: 30
   },
   link: {
     icon: Link,
     tooltipText: 'Link',
-    iconWidth: 15,
-    iconHeight: 16,
+    size: 30
   },
   image: {
     icon: Image,
     tooltipText: 'Image',
-    iconWidth: 15,
-    iconHeight: 16
+    size: 30
   }
 };
 
@@ -89,8 +82,8 @@ class RichTextAreaButton extends Component {
   }
 
   renderIcon() {
-    const {icon: Icon, iconWidth, iconHeight} = buttons[this.props.type];
-    return <Icon width={`${iconWidth}px`} height={`${iconHeight}px`}/>;
+    const {icon: Icon, size} = buttons[this.props.type];
+    return <Icon size={`${size}px`}/>;
   }
 }
 
