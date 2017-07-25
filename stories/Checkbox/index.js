@@ -21,8 +21,8 @@ import ExampleRtlRaw from '!raw-loader!./ExampleRtl';
 import ExampleControlled from './ExampleControlled';
 import ExampleControlledRaw from '!raw-loader!./ExampleControlled';
 
-storiesOf('Core', module)
-  .add('Checkbox', () => (
+storiesOf('4. Selection', module)
+  .add('4.2 Checkbox', () => (
     <TabbedView tabs={['API', 'TestKits']}>
       <div>
         <AutoDocs source={CheckboxSource}/>
