@@ -13,6 +13,7 @@ function loadStories() {
   require('../stories/Badge');
   require('../stories/ButtonLayout');
   require('../stories/ButtonSelection');
+  require('../stories/Checkbox');
   require('../stories/DataTable');
   require('../stories/DatePicker');
   require('../stories/Dropdown');
@@ -68,7 +69,7 @@ function loadStories() {
   require('../stories/Range');
   require('../stories/AutoCompleteComposite');
   require('../stories/ButtonWithOptions');
-  require('../stories/Checkbox');
+  require('../stories/Checkbox/CheckboxStory');
   require('../stories/GoogleAddressInputWithLabel');
   require('../stories/Backoffice/Button/CompositeStory');
   require('../stories/Breadcrubms/CompositeStory');
