@@ -4,6 +4,7 @@ import uniqueId from 'lodash/uniqueId';
 import RadioButton from './RadioButton/RadioButton';
 import styles from './RadioGroup.scss';
 import WixComponent from '../BaseComponents/WixComponent';
+import classNames from 'classnames';
 
 /**
  * component for easy radio group creation.
@@ -21,7 +22,7 @@ class RadioGroup extends WixComponent {
     const style = {marginBottom: display === 'vertical' && spacing};
 
     return (
-      <div className={styles[display]}>
+      <div className={classNames(styles[display], {[styles.buttonType]: type === 'button'})}>
         {React.Children.map(this.props.children, radio => (
           <RadioGroup.Radio
             dataHook={radio.props.dataHook}
@@ -33,6 +34,7 @@ class RadioGroup extends WixComponent {
             disabled={disabled || disabledRadios.indexOf(radio.props.value) !== -1}
             checked={radio.props.value === value}
             style={style}
+            icon={radio.props.icon}
             >
             {radio.props.children}
           </RadioGroup.Radio>
