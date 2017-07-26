@@ -132,6 +132,6 @@
 }
 
 /* Error State */
-.wrapper.disabled {
+.wrapper.hasError .checkbox {
     border-color: $R10;
 }

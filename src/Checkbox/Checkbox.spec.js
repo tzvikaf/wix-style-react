@@ -27,7 +27,7 @@ describe('Checkbox', () => {
   });
 
   it('should have an error state', () => {
-    const driver = createDriver(<Checkbox error={true}/>);
+    const driver = createDriver(<Checkbox hasError={true}/>);
     expect(driver.hasError()).toBeTruthy();
   });
 

@@ -20,7 +20,8 @@ class CheckboxInteractiveExample extends Component {
     label: 'Check me out!',
     showLabel: true,
     checked: false,
-    indeterminate: false
+    indeterminate: false,
+    hasError: false
   }
 
   render() {
@@ -57,6 +58,15 @@ class CheckboxInteractiveExample extends Component {
               onChange={() => this.setState({checked: !this.state.checked})}
               >
             Checked
+            </Checkbox>
+          </div>
+
+          <div className={styles.option}>
+            <Checkbox
+              checked={this.state.hasError}
+              onChange={() => this.setState({hasError: !this.state.hasError})}
+              >
+            Error
             </Checkbox>
           </div>
         </div>

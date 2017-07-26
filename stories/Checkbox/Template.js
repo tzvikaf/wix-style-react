@@ -22,6 +22,7 @@ export class Form extends Component {
         checked={this.props.checked}
         indeterminate={this.props.indeterminate}
         disabled={this.props.disabled}
+        hasError={this.props.hasError}
         >
         {maybeLabel}
       </Checkbox>
@@ -40,6 +41,7 @@ Form.propTypes = {
   disabled: PropTypes.bool.isRequired,
   label: PropTypes.string,
   showLabel: PropTypes.bool,
+  hasError: PropTypes.bool
 };
 
 export default Form;
