@@ -30,15 +30,15 @@ class AnimatorChildClasses {
 
   getSecondLayer() {
 
-    const {translate, opacity, scale, height, timing, width} = this.props.animatorProps;
+    const {translate, opacity, scale, timing, height, width} = this.props.animatorProps;
 
     return new ClassBuilder()
       .withChildLayer(2)
       .withOpacity(opacity)
       .withScale(scale)
+      .withTranslateWrapper(translate)
       .withHeight(height)
       .withWidth(width)
-      .withTranslateWrapper(translate)
       .withTiming(timing)
       .build();
   }

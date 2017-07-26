@@ -153,6 +153,15 @@ describe('DropdownLayout', () => {
     expect(driver.isOptionSelected(0)).toBeTruthy();
   });
 
+  it('should remember the selected option when getting re-opened after got closed', () => {
+    const selectedId = 1;
+    const driver = createDriver(<DropdownLayout visible options={options} selectedId={selectedId}/>);
+    expect(driver.isOptionSelected(selectedId)).toBeTruthy();
+    driver.setProps({visible: false});
+    driver.setProps({visible: true});
+    expect(driver.isOptionSelected(selectedId)).toBeTruthy();
+  });
+
   it('should hover when mouse enter and unhover when mouse leave when overrideStyle is true', () => {
     const options = [
       {id: 0, value: 'Option 1', overrideStyle: true},

@@ -11,11 +11,12 @@ $main-container-min-width: 894px;
 $main-container-max-width: 1254px;
 $grid-row-margin-bottom: 30px;
 
-.container, .wixContainer {
+// Note: container is used by Card.Container
+.container,
+.raw-container,
+.wixContainer {
 	padding: 0;
 	width: 100%;
-	min-width: $main-container-min-width;
-	max-width: $main-container-max-width;
 
 	* {
 		box-sizing: border-box;
@@ -26,7 +27,13 @@ $grid-row-margin-bottom: 30px;
 	}
 }
 
-.container {
+.raw-container,
+.wixContainer {
+	min-width: $main-container-min-width;
+	max-width: $main-container-max-width;
+}
+
+.raw-container {
 	.row:last-child {
 		margin-bottom: 0;
 	}

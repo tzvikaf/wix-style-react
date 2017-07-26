@@ -130,3 +130,8 @@
 .wrapper.disabled.checked.active .checkbox, .wrapper.disabled.checked:active .checkbox {
     background-color: $GR20;
 }
+
+/* Error State */
+.wrapper.hasError .checkbox {
+    border-color: $R10;
+}

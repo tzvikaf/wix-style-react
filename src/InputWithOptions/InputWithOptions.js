@@ -159,7 +159,9 @@ class InputWithOptions extends WixComponent {
   }
 
   _onKeyDown(event) {
-    this.setState({isEditing: true});
+    if (event.key !== 'ArrowDown' && event.key !== 'ArrowUp') {
+      this.setState({isEditing: true});
+    }
     if (!this.dropdownLayout._onKeyDown(event)) {
       switch (event.key) {
         case 'Enter':

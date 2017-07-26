@@ -1,6 +1,19 @@
 @import '../common.scss';
 
+$width: 300px;
+$content-width: $width - 50px;
+
 .container {
+  max-width: $width;
+
+  span {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: $content-width;
+  }
+
   &:hover {
     svg {
       border-radius: 50%;
@@ -10,7 +23,7 @@
 }
 
 .header {
-  display: block;
+  max-width: $width;
   margin-bottom: 13px;
   font-family: $FontMedium;
   font-size: 16px;
@@ -25,14 +38,12 @@
 }
 
 .cta {
-  display: block;
   font-family: $FontRoman;
   font-size: 20px;
   color: $B10;
 }
 
 .info {
-  display: block;
   font-family: $FontLight;
   font-size: 16px;
   color: $D30;
@@ -54,7 +65,6 @@
   color: $B10;
   padding-top: 3px;
 }
-
 
 .error {
   font-family: $FontLight;

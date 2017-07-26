@@ -23,6 +23,7 @@ class DropdownLayout extends WixComponent {
 
     this.state = {
       hovered: NOT_HOVERED_INDEX,
+      selectedId: props.selectedId
     };
 
     this._onSelect = this._onSelect.bind(this);
@@ -47,6 +48,7 @@ class DropdownLayout extends WixComponent {
 
   _onSelect(index) {
     const {options, onSelect, selectedId} = this.props;
+    this.setState({selectedId: options[index] ? options[index].id : undefined});
     options[index] && onSelect && onSelect(options[index], options[index].id === selectedId);
     return !!onSelect && options[index];
   }
@@ -136,7 +138,7 @@ class DropdownLayout extends WixComponent {
   }
 
   render() {
-    const {options, visible, dropDirectionUp, selectedId, tabIndex, fixedHeader, fixedFooter, withArrow} = this.props;
+    const {options, visible, dropDirectionUp, tabIndex, fixedHeader, fixedFooter, withArrow} = this.props;
 
     const contentContainerClassName = classNames({
       [styles.contentContainer]: true,
@@ -157,7 +159,7 @@ class DropdownLayout extends WixComponent {
                 (this.renderItem({
                   option,
                   idx,
-                  selected: option.id === selectedId,
+                  selected: option.id === this.state.selectedId,
                   hovered: idx === this.state.hovered,
                   disabled: option.disabled || option.title,
                   title: option.title,
@@ -211,7 +213,15 @@ class DropdownLayout extends WixComponent {
 
   componentWillReceiveProps(nextProps) {
     if (this.props.visible !== nextProps.visible) {
-      this.setState({hovered: NOT_HOVERED_INDEX});
+      if (nextProps.visible) {
+        this.setState({hovered: this.state.selectedId || NOT_HOVERED_INDEX});
+      } else {
+        this.setState({hovered: NOT_HOVERED_INDEX});
+      }
+    }
+
+    if (this.props.selectedId !== nextProps.selectedId) {
+      this.setState({selectedId: nextProps.selectedId});
     }
 
     if (!isEqual(this.props.options, nextProps.options)) {

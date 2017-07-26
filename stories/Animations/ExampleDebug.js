@@ -44,7 +44,7 @@ class ExampleDebug extends React.Component {
                 <div className={css.basicDiv}>{this.state.debug ? ` emulates the ${this.state.debug} phase` : '<--- Waiting for you to choose a debug phase'}</div>
               </Animator>
               <Animator opacity scale>
-                {this.state.debug === 'leaving' && <div style={{fontSize: '16px', width: '300px'}}>{`<----`} Because it is debug mode the Element is only hiding but did not unmount. you can still see it in the devtools</div>}
+                {this.state.debug === 'leaving' && <div style={{fontSize: '16px', width: '300px', position: 'absolute', top: '32px'}}>{`<----`} Because it is debug mode the Element is only hiding but did not unmount. you can still see it in the devtools</div>}
               </Animator>
             </div>
           </Col>

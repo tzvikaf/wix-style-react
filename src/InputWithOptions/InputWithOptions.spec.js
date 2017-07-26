@@ -69,6 +69,21 @@ const runInputWithOptionsTest = driverFactory => {
       expect(dropdownLayoutDriver.isShown()).toBeFalsy();
     });
 
+    it('should start keyboard navigation from last selected option when re-opening the dropdown layout', () => {
+      const {driver, dropdownLayoutDriver} = createDriver(<InputWithOptions options={options} selectedId={1}/>);
+      driver.focus();
+
+      dropdownLayoutDriver.clickAtOption(1);
+      driver.outsideClick();
+      driver.focus();
+
+      expect(dropdownLayoutDriver.isOptionSelected(1)).toBeTruthy();
+      expect(dropdownLayoutDriver.isOptionHovered(1)).toBeTruthy();
+
+      driver.pressDownKey(); // going to skip disabled option at index 2
+      expect(dropdownLayoutDriver.isOptionHovered(3)).toBeTruthy();
+    });
+
     it('should call onManuallyInput on enter key press with a trimed value', () => {
       const onManuallyInput = jest.fn();
       const {driver, inputDriver} = createDriver(<InputWithOptions options={options} onManuallyInput={onManuallyInput}/>);
