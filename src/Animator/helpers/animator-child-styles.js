@@ -51,29 +51,9 @@ class AnimationChildStyles {
 
   getSecondLayer() {
 
-    const {scale} = this.animatorProps;
-
-    const startStyles = () => new StyleBuilder().withTransitionDelay(this.delay).build();
-
-    const hideScale = () => new StyleBuilder().withScale(scale).build();
-
-    const showScale = () => new StyleBuilder().withScale(scale && 1).build();
-
-    return {
-      base: {},
-      enter: () => ({...startStyles(), ...hideScale()}),
-      entering: () => showScale(),
-      exit: () => ({...startStyles(), ...showScale()}),
-      exiting: () => hideScale()
-    };
-  }
-
-  getThirdLayer() {
-
-    const {translate} = this.animatorProps;
-
     const {height, width} = this.dimensions;
-    const {height: isHeight, width: isWidth} = this.animatorProps;
+
+    const {scale, height: isHeight, width: isWidth} = this.animatorProps;
 
     const startStyles = () => new StyleBuilder().withTransitionDelay(this.delay).build();
 
@@ -83,16 +63,35 @@ class AnimationChildStyles {
 
     const showDimensions = () => dimensionsStyles(height, width).build();
 
+    const hideScale = () => new StyleBuilder().withScale(scale).build();
+
+    const showScale = () => new StyleBuilder().withScale(scale && 1).build();
+
+    return {
+      base: {},
+      enter: () => ({...startStyles(), ...hideScale(), ...hideDimensions()}),
+      entering: () => ({...showScale(), ...showDimensions()}),
+      exit: () => ({...startStyles(), ...showScale(), ...showDimensions()}),
+      exiting: () => ({...hideScale(), ...hideDimensions()})
+    };
+  }
+
+  getThirdLayer() {
+
+    const {translate} = this.animatorProps;
+
+    const startStyles = () => new StyleBuilder().withTransitionDelay(this.delay).build();
+
     const translateOut = () => new StyleBuilder().withTranslate(translate, 'out').build();
 
     const translateIn = () => new StyleBuilder().withTranslate(translate, 'in').build();
 
     return {
       base: {},
-      enter: () => ({...startStyles(), ...translateIn(), ...hideDimensions()}),
-      entering: () => showDimensions(),
-      exit: () => ({...startStyles(), ...showDimensions()}),
-      exiting: () => ({...translateOut(), ...hideDimensions()})
+      enter: () => ({...startStyles(), ...translateIn()}),
+      entering: {},
+      exit: () => startStyles(),
+      exiting: () => translateOut()
     };
   }
 

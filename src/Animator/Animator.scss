@@ -43,17 +43,13 @@ $easeInOutQuint: cubic-bezier(0.86, 0, 0.07, 1);
 
 @mixin layer3Enter() {
   .child-layer-3 {
-    transition-property: all;
-    transition-duration: .3s;
-    transition-timing-function: $easeOutCubic;
+    transition: transform .3s $easeOutCubic;
   }
 }
 
 @mixin layer3Leave() {
   .child-layer-3 {
-    transition-property: all;
-    transition-duration: .3s;
-    transition-timing-function: $easeInOutQuint;
+    transition: transform .3s $easeInOutQuint;
   }
 }
 
