@@ -14,6 +14,7 @@ const checkboxDriverFactory = ({element, wrapper, component}) => {
     isChecked: () => isClassExists(element, 'checked'),
     isDisabled: () => isClassExists(element, 'disabled'),
     isIndeterminate: () => $(element).find('.indeterminate').length === 1,
+    hasError: () => isClassExists(element, 'hasError'),
     getLabel: () => element.textContent,
     setProps: props => {
       const ClonedWithProps = React.cloneElement(component, Object.assign({}, component.props, props), ...(component.props.children || []));

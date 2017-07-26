@@ -26,6 +26,11 @@ describe('Checkbox', () => {
     expect(driver.isDisabled()).toBeTruthy();
   });
 
+  it('should have an error state', () => {
+    const driver = createDriver(<Checkbox hasError={true}/>);
+    expect(driver.hasError()).toBeTruthy();
+  });
+
   it('should have a label', () => {
     const driver = createDriver(<Checkbox disabled={true}>Hey</Checkbox>);
     expect(driver.getLabel()).toBe('Hey');
