@@ -13,6 +13,9 @@ import ExampleOpacityAndScaleRaw from '!raw-loader!./ExampleOpacityAndScale';
 import ExampleHeight from './ExampleHeight';
 import ExampleHeightRaw from '!raw-loader!./ExampleHeight';
 
+import ExampleString from './ExampleString';
+import ExampleStringRaw from '!raw-loader!./ExampleString';
+
 import ExampleWidth from './ExampleWidth';
 import ExampleWidthRaw from '!raw-loader!./ExampleWidth';
 
@@ -40,6 +43,9 @@ import ExampleSequenceRaw from '!raw-loader!./ExampleSequence';
 import ExampleDebug from './ExampleDebug';
 import ExampleDebugRaw from '!raw-loader!./ExampleDebug';
 
+import ExampleByInProp from './ExampleByInProp';
+import ExampleByInPropRaw from '!raw-loader!./ExampleByInProp';
+
 import ExampleStandard from './ExampleStandard';
 import ExampleStandardRaw from '!raw-loader!./ExampleStandard';
 
@@ -56,6 +62,10 @@ storiesOf('Common', module)
 
       <CodeExample title="Opacity and Scale Animation" code={ExampleOpacityAndScaleRaw}>
         <ExampleOpacityAndScale/>
+      </CodeExample>
+
+      <CodeExample title="Animator can take a simple text" code={ExampleStringRaw}>
+        <ExampleString/>
       </CodeExample>
 
       <CodeExample title="Height Animation (and also opacity)" code={ExampleHeightRaw}>
@@ -92,6 +102,10 @@ storiesOf('Common', module)
 
       <CodeExample title="Combination of both mount and unmount in the same Animator (requires to set unique 'key' prop for every child" code={ExampleMockServerRaw}>
         <ExampleMockServer/>
+      </CodeExample>
+
+      <CodeExample title="Animating with 'in' prop when components exists by default" code={ExampleByInPropRaw}>
+        <ExampleByInProp/>
       </CodeExample>
 
       <CodeExample title="Debug - Emulates animation stages - Inspect element in devtools to see class & Style changes" code={ExampleDebugRaw}>

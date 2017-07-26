@@ -14,3 +14,5 @@
 | maxSize | number | 5MB | - | Max size of file allowed |
 | error | bool | false | - | should present error |
 | errorMessage | string | '' | - | error message to present |
+| id | string or number | random unique id | - | id for the filePicker |
+
