@@ -47,7 +47,7 @@ class FieldWithSelectionComposite extends WixComponent {
       <div className={styles.wrapper} >
         {label}
         <div className={classNames(inputsWrapperClassNames)}>
-          {React.cloneElement(textInput, {onFocus: this._onTextInputFocus, onBlur: this._onTextInputBlur, error: this.props.error, disabled: this.props.disabled})}
+          {React.cloneElement(textInput, {onFocus: this._onTextInputFocus, onBlur: this._onTextInputBlur, error: this.props.error, disabled: this.props.disabled, withSelection: true})}
           {React.cloneElement(selectionInput, {noBorder: true, noRightBorderRadius: true, disabled: this.props.disabled})}
         </div>
       </div>

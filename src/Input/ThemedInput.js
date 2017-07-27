@@ -22,6 +22,7 @@ class ThemedInput extends Input {
       noLeftBorderRadius,
       noRightBorderRadius,
       value,
+      withSelection
     } = this.props;
 
     const classes = {
@@ -42,7 +43,7 @@ class ThemedInput extends Input {
     }
     return (
       <div
-        className={classNames(classes, styles.root, styles[`theme-${theme}`], styles[`size-${size}`])}
+        className={classNames(classes, styles.root, styles[`theme-${theme}`], styles[`size-${size}${withSelection ? '-with-selection' : ''}`])}
         data-hook={dataHook}
         >
         {(theme === 'amaterial') && <label className={classNames(styles.materialTitle, Typography.t1_1)} htmlFor={id}>{title}</label>}

@@ -188,7 +188,8 @@ Input.defaultProps = {
   roundInput: false,
   textOverflow: 'clip',
   maxLength: 524288,
-  width: 'initial'
+  width: 'initial',
+  withSelection: false
 };
 
 Input.propTypes = {
@@ -237,7 +238,8 @@ Input.propTypes = {
   ariaDescribedby: PropTypes.string,
   ariaControls: PropTypes.string,
   tooltipPlacement: PropTypes.string,
-  onTooltipShow: PropTypes.func
+  onTooltipShow: PropTypes.func,
+  withSelection: PropTypes.bool
 };
 
 export default Input;

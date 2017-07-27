@@ -140,7 +140,7 @@ class ExampleStandard extends Component {
           </div>
 
           <div className={styles.option}>
-            <Label>Info Tooltip</Label>
+            <Label>Info</Label>
             <div className={styles.flex}>
               <Input
                 size="small"
