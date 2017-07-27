@@ -27,6 +27,7 @@ class RadioButton extends WixComponent {
 
     const buttonClasses = classNames({
       [styles.checked]: checked,
+      [styles.radioButton]: true
     });
 
     const {icon, children} = this.props;

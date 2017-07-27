@@ -107,7 +107,7 @@
    background-color: $GR30;
 }
 
-button {
+button.radioButton {
   width: 105px;
   height: 34px;
   display: flex;
@@ -116,7 +116,7 @@ button {
   border-radius: 5px;
   border: none;
   padding: 0;
-  cursor:pointer;
+  cursor: pointer;
   line-height: 0;
   background: $D80;
   outline: 0;
