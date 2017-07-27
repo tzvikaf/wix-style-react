@@ -30,7 +30,9 @@ export default class Form extends Component {
     fieldInput: PropTypes.object,
     selectionInput: PropTypes.object,
     firstButtonLabel: PropTypes.string,
-    secondButtonLabel: PropTypes.string
+    secondButtonLabel: PropTypes.string,
+    required: PropTypes.bool,
+    info: PropTypes.string
   };
 
   componentDidUpdate(props) {
@@ -75,7 +77,7 @@ export default class Form extends Component {
     }
 
     return (
-      <FieldWithSelection error={this.props.error} disabled={this.props.disabled}>
+      <FieldWithSelection error={this.props.error} disabled={this.props.disabled} required={this.props.required} info={this.props.info}>
         {this.props.withLabel ? <Label {...this.props.label}/> : null}
         <Input {...this.props.fieldInput}/>
         {selectionInput}

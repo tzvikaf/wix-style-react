@@ -39,7 +39,9 @@ class ExampleStandard extends Component {
       resizable: false
     },
     firstButtonLabel: 'Yes',
-    secondButtonLabel: 'No'
+    secondButtonLabel: 'No',
+    required: false,
+    info: ''
   };
 
   setComponentState(componentName, obj) {
@@ -123,6 +125,28 @@ class ExampleStandard extends Component {
                 <RadioGroup.Radio value={false}>False</RadioGroup.Radio>
                 <RadioGroup.Radio value={true}>True</RadioGroup.Radio>
               </RadioGroup>
+            </div>
+          </div>
+
+          <div className={styles.option}>
+            <div className={styles.flex}>
+              <div className={styles.paddRight}><Label>Required Field:</Label></div>
+              <ToggleSwitch
+                size="small"
+                checked={this.state.required}
+                onChange={() => this.setState({required: !this.state.required})}
+              />
+            </div>
+          </div>
+
+          <div className={styles.option}>
+            <Label>Info Tooltip</Label>
+            <div className={styles.flex}>
+              <Input
+                size="small"
+                value={this.state.info}
+                onChange={e => this.setState({info: e.target.value})}
+              />
             </div>
           </div>
         </div>

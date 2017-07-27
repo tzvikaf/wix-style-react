@@ -30,7 +30,8 @@ class ExampleStandard extends Component {
       size: 'normal',
       placeholder: 'Please type in your first name...'
     },
-    required: false
+    required: false,
+    info: ''
   }
 
   setComponentState(componentName, obj) {
@@ -106,6 +107,17 @@ class ExampleStandard extends Component {
                 checked={this.state.required}
                 onChange={() => this.setState({required: !this.state.required})}
                 />
+            </div>
+          </div>
+
+          <div className={styles.option}>
+            <Label>Info Tooltip</Label>
+            <div className={styles.flex}>
+              <Input
+                size="small"
+                value={this.state.info}
+                onChange={e => this.setState({info: e.target.value})}
+              />
             </div>
           </div>
 

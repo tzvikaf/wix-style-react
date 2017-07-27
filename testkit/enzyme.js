@@ -152,3 +152,6 @@ export const tpaTextLinkTestkitFactory = nativeEnzymeTestkitFactoryCreator(tpaTe
 
 import tpaFloatingTabsDriverFactory from '../src/TPA/FloatingTabs/FloatingTabs.driver';
 export const tpaFloatingTabsTestkitFactory = enzymeTestkitFactoryCreator(tpaFloatingTabsDriverFactory, true);
+
+import fieldLabelAttributesDriverFactory from '../src/FieldLabelAttributes/FieldLabelAttributes.driver';
+export const fieldLabelAttributesTestkitFactory = enzymeTestkitFactoryCreator(fieldLabelAttributesDriverFactory);
