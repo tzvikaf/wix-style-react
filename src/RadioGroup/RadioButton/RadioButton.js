@@ -29,19 +29,19 @@ class RadioButton extends WixComponent {
       [styles.checked]: checked,
     });
 
-    const {icon, children} = this.props
+    const {icon, children} = this.props;
     return (
         type === 'button' ? (
-            <button
-              className={buttonClasses}
-              checked={checked}
-              disabled={disabled}
-              id={this.id}
-              onClick={() => (!checked && !disabled) ? onChange(value) : null}
-              >
-              {icon ? <span>{icon}</span> : null}
-              {children ? <span>{children}</span> : null}
-            </button>
+          <button
+            className={buttonClasses}
+            checked={checked}
+            disabled={disabled}
+            id={this.id}
+            onClick={() => (!checked && !disabled) ? onChange(value) : null}
+            >
+            {icon ? <span>{icon}</span> : null}
+            {children ? <span>{children}</span> : null}
+          </button>
         ) : (
           <div className={styles.radioWrapper} style={style}>
             <input
