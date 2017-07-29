@@ -17,14 +17,15 @@ class AnimatorChildClasses {
 
   getFirstLayer() {
 
-    const {debug, sequence} = this.props.animatorProps;
-    const {childClassName} = this.props;
+    const {debug, sequence, delay, childClassName} = this.props.animatorProps;
+    const {animatorChildClassName} = this.props;
 
     return new ClassBuilder()
       .withChildLayer(1)
       .withDebug(debug)
       .withClassName(childClassName)
-      .withSequence(sequence)
+      .withClassName(animatorChildClassName)
+      .withSequence(sequence || delay)
       .build();
   }
 

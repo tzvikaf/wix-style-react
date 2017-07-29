@@ -20,8 +20,8 @@ class ExampleDebug extends React.Component {
       {id: 'enter', value: 'enter'},
       {id: 'entering', value: 'entering'},
       {id: 'entered', value: 'entered'},
-      {id: 'leave', value: 'leave'},
-      {id: 'leaving', value: 'leaving'}
+      {id: 'exit', value: 'exit'},
+      {id: 'exiting', value: 'exiting'}
     ];
   }
 
@@ -40,11 +40,11 @@ class ExampleDebug extends React.Component {
           </Col>
           <Col span="10">
             <div className={css.basicWrapper}>
-              <Animator translate scale opacity debug={this.state.debug}>
+              <Animator translate={{exit: 'bottom', enter: 'top'}} scale opacity debug={this.state.debug}>
                 <div className={css.basicDiv}>{this.state.debug ? ` emulates the ${this.state.debug} phase` : '<--- Waiting for you to choose a debug phase'}</div>
               </Animator>
               <Animator opacity scale>
-                {this.state.debug === 'leaving' && <div style={{fontSize: '16px', width: '300px', position: 'absolute', top: '32px'}}>{`<----`} Because it is debug mode the Element is only hiding but did not unmount. you can still see it in the devtools</div>}
+                {this.state.debug === 'exiting' && <div style={{fontSize: '16px', width: '300px', position: 'absolute', top: '32px'}}>{`<----`} Because it is debug mode the Element is only hiding but did not unmount. you can still see it in the devtools</div>}
               </Animator>
             </div>
           </Col>

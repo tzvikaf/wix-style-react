@@ -24,7 +24,7 @@ class AnimationChildStyles {
       width: dimensions.width
     };
 
-    const time = new ChildTime(animatorProps, sequenceIndex);
+    const time = new ChildTime(animatorProps, this.props.transition, sequenceIndex);
     this.delay = time.getDelay();
     this.duration = time.getDuration();
 
@@ -40,7 +40,7 @@ class AnimationChildStyles {
     const startStyles = () => new StyleBuilder().withTransitionDelay(this.delay).withAnimationDelay(this.duration).build();
 
     return {
-      base: this.props.childStyle,
+      base: {...this.props.animatorProps.childStyle, ...this.props.animatorChildStyle},
       enter: startStyles,
       entering: () => ({}),
       exit: startStyles,

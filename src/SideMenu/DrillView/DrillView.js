@@ -181,7 +181,7 @@ class SideMenuDrill extends WixComponent {
 
   renderMenu(menu) {
     return (
-      <div childClassName={styles.drillViewPanel} className={styles.drillViewPanelInner}>
+      <div animatorChildClassName={styles.drillViewPanel} className={styles.drillViewPanelInner}>
         {this.renderNavigation(menu)}
       </div>
     );

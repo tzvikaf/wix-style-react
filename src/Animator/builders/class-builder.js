@@ -7,8 +7,8 @@ const convertToArray = value => Array.isArray(value) ? value : [value];
 const debugMap = {
   enter: 'enter',
   entering: ['enter', 'enter-active'],
-  leave: 'leave',
-  leaving: ['leave', 'leave-active']
+  exit: 'exit',
+  exiting: ['exit', 'exit-active']
 };
 
 const classMap = {

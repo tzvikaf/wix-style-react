@@ -54,7 +54,7 @@ class AnimatedExample extends React.Component {
     ];
 
     this.sequenceOptions = [
-      {id: 'default', value: 'Default (Leave empty)'},
+      {id: 'default', value: 'Default (exit empty)'},
       {id: 'flip', value: 'Flip'},
       {id: 'reverse', value: 'Reverse'},
       {id: 'reverse-flip', value: 'Reverse Flip'}
@@ -64,8 +64,8 @@ class AnimatedExample extends React.Component {
       {id: 'none', value: 'None'},
       {id: 'enter', value: 'Enter Stage'},
       {id: 'entering', value: 'Entering Stage'},
-      {id: 'leave', value: 'Leave Stage'},
-      {id: 'leaving', value: 'Leaving Stage'},
+      {id: 'exit', value: 'exit Stage'},
+      {id: 'exiting', value: 'exiting Stage'},
     ]
 
   }
@@ -203,11 +203,11 @@ class AnimatedExample extends React.Component {
                           translate={this.state.translate ? this.buildTranslateObject() : false}
                           sequence={this.getSequenceValue()}
                           timing={this.state.timing === 'large' ? false : this.state.timing}>
-                  {this.state.show && <MockDiv childStyle={{flexGrow: 2}} childClassName={css.shukiChild}><div>Some Content in Here</div><div>Some Content in Here</div><div>Some Content in Here</div></MockDiv>}
-                  {this.state.show && <MockDiv childStyle={{flexGrow: 2}} childClassName={css.shukiChild}><div>Some Content in Here</div><div>Some Content in Here</div><div>Some Content in Here</div></MockDiv>}
-                  {this.state.show && <MockDiv childStyle={{flexGrow: 2}} childClassName={css.shukiChild}><div>Some Content in Here</div><div>Some Content in Here</div><div>Some Content in Here</div></MockDiv>}
-                  {this.state.show && <MockDiv childStyle={{flexGrow: 2}} childClassName={css.shukiChild}><div>Some Content in Here</div><div>Some Content in Here</div><div>Some Content in Here</div></MockDiv>}
-                  {this.state.show && <MockDiv childStyle={{flexGrow: 2}} childClassName={css.shukiChild}><div>Some Content in Here</div><div>Some Content in Here</div><div>Some Content in Here</div></MockDiv>}
+                  {this.state.show && <MockDiv animatorChildStyle={{flexGrow: 2}} animatorChildClassName={css.shukiChild}><div>Some Content in Here</div><div>Some Content in Here</div><div>Some Content in Here</div></MockDiv>}
+                  {this.state.show && <MockDiv animatorChildStyle={{flexGrow: 2}} animatorChildClassName={css.shukiChild}><div>Some Content in Here</div><div>Some Content in Here</div><div>Some Content in Here</div></MockDiv>}
+                  {this.state.show && <MockDiv animatorChildStyle={{flexGrow: 2}} animatorChildClassName={css.shukiChild}><div>Some Content in Here</div><div>Some Content in Here</div><div>Some Content in Here</div></MockDiv>}
+                  {this.state.show && <MockDiv animatorChildStyle={{flexGrow: 2}} animatorChildClassName={css.shukiChild}><div>Some Content in Here</div><div>Some Content in Here</div><div>Some Content in Here</div></MockDiv>}
+                  {this.state.show && <MockDiv animatorChildStyle={{flexGrow: 2}} animatorChildClassName={css.shukiChild}><div>Some Content in Here</div><div>Some Content in Here</div><div>Some Content in Here</div></MockDiv>}
                 </Animator>
             </Col>
           </Row>

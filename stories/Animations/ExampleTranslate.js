@@ -9,25 +9,23 @@ const ExampleTranslate = ({show}) => {
   return (
     <div>
       <div className={css.basicWrapper}>
-        <Animator opacity translate="bottom">
-          {show && <div className={css.basicDiv}>translate="top" </div>}
+        <Animator show={show} opacity translate>
+          <div className={css.basicDiv}>translate</div>
         </Animator>
-        <Animator opacity translate={{to: 'right'}}>
-          {show && <div className={css.basicDiv}>{`translate={{to: 'right'}}`}</div>}
+        <Animator show={show} opacity translate="bottom">
+          <div className={css.basicDiv}>translate="bottom"</div>
         </Animator>
-        <Animator opacity translate={{to: 'left', size: '100vh'}}>
-          {show && <div className={css.basicDiv}>{`translate={{to: 'left', size: '100vh'}}`} </div>}
+        <Animator show={show} opacity translate={{enter: 'left', exit: 'right'}}>
+          <div className={css.basicDiv}>{`translate={{enter: 'left', exit: 'right'}}`}</div>
         </Animator>
-        <Animator opacity translate={{to: 'top', size: {in: '100%', out: '60px'}}}>
-          {show && <div className={css.basicDiv}>{`translate={{to: 'top', size: {in: '100%', out: '60px'}}}`} </div>}
+        <Animator show={show} opacity translate={{enter:{direction: 'right', size: '100%'}}}>
+          <div className={css.basicDiv}>{`translate={{enter:{direction: 'right', size: '100%'}}}`}</div>
         </Animator>
-      </div>
-      <div className={css.basicWrapper}>
-        <Animator opacity translate={{to: {in: 'top'}, size: '100px'}}>
-          {show && <div className={css.basicDiv}>{`translate={{to: {in: 'top'}, size: '100px'}}`} </div>}
+        <Animator show={show} opacity translate={{exit:{direction: 'left', size: '10vh'}}}>
+          <div className={css.basicDiv}>{`translate={{exit:{direction: 'left', size: '10vh'}}}`}</div>
         </Animator>
-        <Animator opacity translate={{to: {in: 'top', out: 'bottom'}, size: '100%'}}>
-          {show && <div className={css.basicDiv}>{`translate={{to: {in: 'top', out: 'bottom'}, size: '100%'}}`} </div>}
+        <Animator show={show} opacity translate={{enter:{direction: 'right', size: '100px'}, exit:{direction: 'left', size: '100px'}}}>
+          <div className={css.basicDiv}>{`translate={{enter:{direction: 'right', size: '100px'}, exit:{direction: 'left', size: '100px'}}}`}</div>
         </Animator>
       </div>
     </div>

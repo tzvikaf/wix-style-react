@@ -5,8 +5,8 @@ class AnimatorContent extends React.Component {
 
   cleanProps(props) {
     const newProps = Object.assign({}, props);
-    delete newProps.childClassName;
-    delete newProps.childStyle;
+    delete newProps.animatorChildClassName;
+    delete newProps.animatorChildStyle;
     return newProps;
   }
 

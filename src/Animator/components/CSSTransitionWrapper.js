@@ -40,9 +40,9 @@ class CSSTransitionWrapper extends React.Component {
       this.onEntering();
     } else if (debug === 'entered') {
       this.onEntered();
-    } else if (debug === 'leave') {
+    } else if (debug === 'exit') {
       this.onExit();
-    } else if (debug === 'leaving') {
+    } else if (debug === 'exiting') {
       this.onExiting();
     }
   }
@@ -96,14 +96,22 @@ class CSSTransitionWrapper extends React.Component {
 
   getTransitionProps() {
 
-    const duration = new Time(this.props.animatorProps).getTotalDuration();
+    const duration = new Time(this.props.animatorProps, this.state.transition).getTotalDuration();
+
+    const showByProp = {};
+    if (this.props.animatorProps.show !== undefined) {
+      showByProp.in = this.props.animatorProps.show;
+    }
 
     return {
       enter: !!duration,
       exit: !!duration,
       appear: !!duration,
       timeout: duration,
-      classNames: transitionClassNames
+      classNames: transitionClassNames,
+      mountOnEnter: true,
+      unmountOnExit: true,
+      ...showByProp
     };
   }
 

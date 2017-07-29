@@ -8,8 +8,8 @@ import AnimationTemplate from './AnimationTemplate';
 const ExampleString = ({show}) => {
   return (
     <div className={css.basicWrapper}>
-      <Animator opacity scale>
-        {show && 'I am a simple string'}
+      <Animator show={show} opacity scale>
+        I am a simple string
       </Animator>
     </div>
   )

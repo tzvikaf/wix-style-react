@@ -47,7 +47,7 @@ $easeInOutQuint: cubic-bezier(0.86, 0, 0.07, 1);
   }
 }
 
-@mixin layer3Leave() {
+@mixin layer3Exit() {
   .child-layer-3 {
     transition: transform .3s $easeInOutQuint;
   }
@@ -128,7 +128,7 @@ $timing-translate: $timing-large;
   }
 }
 
-@mixin delayLeave() {
+@mixin delayExit() {
   &.child-sequence {
     animation-name: hide-animation-hack;
     animation-fill-mode: forwards;
@@ -160,13 +160,13 @@ $timing-translate: $timing-large;
   }
 }
 
-@mixin opacityLeave() {
+@mixin opacityExit() {
   .opacity {
     opacity: 1;
   }
 }
 
-@mixin opacityLeaveActive() {
+@mixin opacityExitActive() {
   .opacity {
     opacity: 0;
   }
@@ -181,7 +181,7 @@ $timing-translate: $timing-large;
   }
 }
 
-@mixin heightLeave() {
+@mixin heightExit() {
   .height {
     overflow: hidden;
   }
@@ -196,7 +196,7 @@ $timing-translate: $timing-large;
   }
 }
 
-@mixin widthLeave() {
+@mixin widthExit() {
   .width {
     overflow: hidden;
   }
@@ -212,7 +212,7 @@ $timing-translate: $timing-large;
   }
 }
 
-@mixin translateLeave() {
+@mixin translateExit() {
   .translate {
     transform: translate(0, 0);
   }
@@ -221,7 +221,7 @@ $timing-translate: $timing-large;
 // Animation classes
 ////////////////////
 
-.enter, .leave {
+.enter, .exit {
   @include timing();
 }
 
@@ -241,17 +241,17 @@ $timing-translate: $timing-large;
   @include delayEnterActive();
 }
 
-.leave {
+.exit {
   transition-property: all;
-  @include layer3Leave();
+  @include layer3Exit();
   @include timingFunction();
-  @include opacityLeave();
-  @include translateLeave();
-  @include delayLeave();
-  @include heightLeave();
-  @include widthLeave();
+  @include opacityExit();
+  @include translateExit();
+  @include delayExit();
+  @include heightExit();
+  @include widthExit();
 }
 
-.leave-active {
-  @include opacityLeaveActive();
+.exit-active {
+  @include opacityExitActive();
 }

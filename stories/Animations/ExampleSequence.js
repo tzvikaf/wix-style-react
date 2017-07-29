@@ -17,7 +17,7 @@ class ExampleSequence extends React.Component {
     };
 
     this.options = [
-      {id: 'default', value: 'Default (Leave empty)'},
+      {id: 'default', value: 'Default (exit empty)'},
       {id: 'flip', value: 'Flip'},
       {id: 'reverse', value: 'Reverse'},
       {id: 'reverse-flip', value: 'Reverse Flip'}
@@ -39,12 +39,12 @@ class ExampleSequence extends React.Component {
 
           </Col>
           <Col span="6">
-            <Animator opacity translate="top" sequence={this.state.sequenceType} className={css.flexParent}>
-              {show && <div className={css.basicDiv}>We</div>}
-              {show && <div className={css.basicDiv}>will</div>}
-              {show && <div className={css.basicDiv}>animate</div>}
-              {show && <div className={css.basicDiv}>in</div>}
-              {show && <div className={css.basicDiv}>sequence</div>}
+            <Animator show={show} opacity translate="top" sequence={this.state.sequenceType} className={css.flexParent}>
+              <div className={css.basicDiv}>We</div>
+              <div className={css.basicDiv}>will</div>
+              <div className={css.basicDiv}>animate</div>
+              <div className={css.basicDiv}>in</div>
+              <div className={css.basicDiv}>sequence</div>
             </Animator>
 
           </Col>

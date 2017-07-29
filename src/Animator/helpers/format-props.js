@@ -14,6 +14,16 @@ const getDataOrDefault = (arr, value, name) => {
 
 const getScale = (scale, timing) => ['micro', 'large'].indexOf(timing) > -1 ? 0.9 : 0.75;
 
+const getDelay = value => {
+
+  const delay = typeof value === 'object' ? value : {enter: value, exit: value};
+
+  return {
+    enter: delay.enter ? delay.enter : 0,
+    exit: delay.exit ? delay.exit : 0
+  };
+};
+
 const propsMap = {
   timing: (value, name) => getDataOrDefault(timings, value, name),
   sequence: (value, name) => value && getDataOrDefault(sequences, value, name),
@@ -23,7 +33,11 @@ const propsMap = {
   height: height => !!height && height,
   width: width => !!width && width,
   translate: translate => translate && initTranslateProp(translate),
-  debug: (value, name) => getDataOrDefault(debugModes, value, name)
+  debug: (value, name) => getDataOrDefault(debugModes, value, name),
+  delay: value => !!value && getDelay(value),
+  childStyle: value => !!value && value,
+  childClassName: value => !!value && value,
+  show: value => value
 };
 
 const getPropData = (name, value, props) => {

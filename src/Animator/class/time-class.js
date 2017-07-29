@@ -9,11 +9,27 @@ class Time {
   isAnimation;
   hasSequence;
   props;
+  isEnter;
+  isExit;
+  delay;
 
-  constructor(props) {
+  constructor(props, {enter, exit}) {
     this.isAnimation = !!animationProps.find(p => !!props[p]);
     this.hasSequence = !!props.sequence;
+    this.delay = props.delay;
     this.props = props;
+    this.isEnter = enter;
+    this.isExit = exit;
+  }
+
+  getTotalDelay() {
+    let delay = 0;
+    if (this.isEnter && this.delay.enter) {
+      delay = this.delay.enter;
+    } else if ((this.isExit && this.delay.exit)) {
+      delay = this.delay.exit;
+    }
+    return delay;
   }
 
   getSingleDuration() {
@@ -26,11 +42,11 @@ class Time {
 
   getDelayInPosition(index) {
     const {children} = this.props;
+    let duration = this.getTotalDelay();
     if (this.hasSequence && this.isAnimation && (children.length > 1)) {
-      return (index - 1) * propsDefault.sequenceDelay;
-    } else {
-      return 0;
+      duration = ((index - 1) * propsDefault.sequenceDelay) + duration;
     }
+    return duration;
   }
 
   getTotalDuration() {
@@ -44,18 +60,19 @@ class ChildTime extends Time {
 
   index;
 
-  constructor(props, index) {
-    super(props);
+  constructor(props, transition, index) {
+    super(props, transition);
     this.index = index;
   }
 
   getDelay() {
     const {children} = this.props;
+    let delay = this.getTotalDelay();
     if (this.hasSequence && this.isAnimation && (children.length > 1)) {
-      return (this.index - 1) * propsDefault.sequenceDelay;
-    } else {
-      return 0;
+      delay = ((this.index - 1) * propsDefault.sequenceDelay) + delay;
     }
+
+    return delay;
   }
   getDuration() {
     return this.getSingleDuration() + this.getDelayInPosition(this.index);

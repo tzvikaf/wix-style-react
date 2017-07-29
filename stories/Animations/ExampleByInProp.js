@@ -8,7 +8,7 @@ import AnimationTemplate from './AnimationTemplate';
 const ExampleInByProp = ({show}) => {
   return (
     <div className={css.basicWrapper}>
-      <Animator opacity translate sequence in={show} className={css.flexParent}>
+      <Animator opacity translate sequence show={show} className={css.flexParent}>
         <div className={css.basicDiv}>I exist!</div>
         <div className={css.basicDiv}>I exist!</div>
         <div className={css.basicDiv}>I exist!</div>

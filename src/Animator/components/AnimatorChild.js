@@ -62,8 +62,8 @@ class AnimatorChild extends Component {
 AnimatorChild.propTypes = {
   children: node,
   animatorProps: object,
-  childClassName: any,
-  childStyle: any,
+  animatorChildClassName: any,
+  animatorChildStyle: any,
   sequenceIndex: number,
   transition: object
 };

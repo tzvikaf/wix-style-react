@@ -32,7 +32,7 @@ class Container extends Component {
         <Animator
           opacity
           sequence
-          translate={{size: 10, to: 'top'}}
+          translate={{enter: {direction: 'top', size: '10%'}, exit: {direction: 'bottom', size: '10%'}}}
           timing="large"
           >
           {this.props.children}
