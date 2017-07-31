@@ -19,7 +19,7 @@
         padding: 0;
     }
 
-    &.icon-greybackground, &.icon-standard, &.icon-standardsecondary, &.icon-white, &.icon-whitesecondary {
+    &.icon-greybackground, &.icon-standard, &.icon-standardsecondary, &.icon-white, &.icon-whitesecondary, &.icon-emptyWhite {
         width: $height;
         height: $height;
         border-radius: $height / 2;
@@ -61,7 +61,7 @@
         padding: 0px 18px;
     }
 
-    &.icon-greybackground, &.icon-standard, &.icon-standardsecondary, &.icon-white, &.icon-whitesecondary {
+    &.icon-greybackground, &.icon-standard, &.icon-standardsecondary, &.icon-white, &.icon-whitesecondary, &.icon-emptyWhite {
         width: $height;
         height: $height;
         border-radius: $height / 2;
@@ -298,6 +298,19 @@
     border-color: $D80;
 }
 
+.icon-emptyWhite {
+    @extend .t1_3;
+    &.heightx-large {
+        font-size: 20px;
+    }
+    &.heightsmall {
+        @extend .t3_3;
+    }
+
+    background-color: transparent;
+    border-color: transparent;
+}
+
 .close-standard {
     background-color: transparent;
     border-color: transparent;
@@ -365,6 +378,11 @@
 .emptylogin:hover, .emptylogin.hover {
   background-color: #5babef;
   color: #fff;
+}
+
+.icon-emptyWhite:hover, .icon-emptyWhite.hover {
+    background-color: #fff;
+    border-color: #fff;
 }
 
 .icon-whitesecondary:hover, .icon-whitesecondary.hover,
@@ -450,6 +468,7 @@
 .icon-white:active, .icon-white.active,
 .whiteblueprimary:active, .whiteblueprimary.active,
 .icon-whitesecondary:active, .icon-whitesecondary.active,
+.icon-emptyWhite:active, .icon-emptyWhite.active,
 .whitebluesecondary:active, .whitebluesecondary.active {
     @extend .t1_3;
     &.heightx-large {
@@ -572,6 +591,7 @@
 .button.transparentblue.disabled,
 .button.whiteblue.disabled,
 .button.icon-whitesecondary.disabled,
+.button.icon-emptyWhite.disabled,
 .button.whitebluesecondary.disabled {
     @extend .t1_4;
     &.heightx-large {

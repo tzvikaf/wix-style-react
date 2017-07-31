@@ -50,6 +50,7 @@ class ButtonIcon extends Component {
                 <RadioGroup.Radio value="icon-standardsecondary">Standard Secondary</RadioGroup.Radio>
                 <RadioGroup.Radio value="icon-white">White Primary</RadioGroup.Radio>
                 <RadioGroup.Radio value="icon-whitesecondary">White Secondary</RadioGroup.Radio>
+                <RadioGroup.Radio value="icon-emptyWhite">Empty White</RadioGroup.Radio>
               </RadioGroup>
             </div>
           </div>
