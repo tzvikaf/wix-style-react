@@ -45,11 +45,19 @@ class ButtonIcon extends Component {
                 value={this.state.theme}
                 onChange={theme => this.setState({theme})}
               >
-                <RadioGroup.Radio value="icon-greybackground">Grey Background</RadioGroup.Radio>
                 <RadioGroup.Radio value="icon-standard">Standard Primary</RadioGroup.Radio>
                 <RadioGroup.Radio value="icon-standardsecondary">Standard Secondary</RadioGroup.Radio>
                 <RadioGroup.Radio value="icon-white">White Primary</RadioGroup.Radio>
                 <RadioGroup.Radio value="icon-whitesecondary">White Secondary</RadioGroup.Radio>
+              </RadioGroup>
+            </div>
+            <div className={styles.flex}>
+              <RadioGroup
+                display="horizontal"
+                value={this.state.theme}
+                onChange={theme => this.setState({theme})}
+              >
+                <RadioGroup.Radio value="icon-greybackground">Grey Background</RadioGroup.Radio>
                 <RadioGroup.Radio value="icon-emptyWhite">Empty White</RadioGroup.Radio>
               </RadioGroup>
             </div>
