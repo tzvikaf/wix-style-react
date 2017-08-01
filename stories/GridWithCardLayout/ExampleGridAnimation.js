@@ -8,6 +8,7 @@ import Label from '../../src/Label';
 import {Plus, ArrowDownThin} from 'wix-style-react/Icons';
 import Tooltip from '../../src/Tooltip';
 import ToggleSwitch from '../../src/ToggleSwitch';
+import Animator from '../../src/Animator';
 
 function renderStandardInput() {
   return (
@@ -32,191 +33,201 @@ class ExampleGridAnimation extends React.Component {
   }
 
   render() {
-    return  <div data-hook="card-example" className={styles.exampleContainer} style={{height: 1094}}>
+    return <div data-hook="card-example" className={styles.exampleContainer} style={{height: 1094}}>
       <div className={styles.actions}>
-        <ToggleSwitch checked={this.state.show} onChange={() => this.setState({show: !this.state.show})}/> Show/Hide grid container
+        <ToggleSwitch checked={this.state.show} onChange={() => this.setState({show: !this.state.show})}/> Show/Hide
+        grid container
       </div>
       <Container>
-        {this.state.show && <Row>
-          <Col span={4}>
-            <Card>
-              <Card.LinkHeader linkTo= 'http://www.wix.com/' linkTitle= 'Link to Wix' title= 'Card with link'/>
-              <Card.Content>
-                <Row>
-                  <Col span={12}>
-                    {renderStandardInput()}
-                  </Col>
-                </Row>
-              </Card.Content>
-            </Card>
-          </Col>
-          <Col span={4}>
-            <Card>
-              <Card.LinkHeader linkTo= 'http://www.wix.com/' linkTitle= 'Link to Wix' title= 'Card with link'/>
-              <Card.Content>
-                <Row>
-                  <Col span={12}>
-                    {renderStandardInput()}
-                  </Col>
-                </Row>
-              </Card.Content>
-            </Card>
-          </Col>
-          <Col span={4}>
-            <Card>
-              <Card.LinkHeader linkTo= 'http://www.wix.com/' linkTitle= 'Link to Wix' title= 'Card with link'/>
-              <Card.Content>
-                <Row>
-                  <Col span={12}>
-                    {renderStandardInput()}
-                  </Col>
-                </Row>
-              </Card.Content>
-            </Card>
-          </Col>
-        </Row>}
-        {this.state.show && <Row>
-          <Col span={3}>
-            <Card>
-              <Card.LinkHeader linkTo= 'http://www.wix.com/' linkTitle= 'Link to Wix' title= 'Card with link'/>
-              <Card.Content>
-                <Row>
-                  <Col span={12}>
-                    {renderStandardInput()}
-                  </Col>
-                </Row>
-              </Card.Content>
-            </Card>
-          </Col>
-          <Col span={3}>
-            <Card>
-              <Card.LinkHeader linkTo= 'http://www.wix.com/' linkTitle= 'Link to Wix' title= 'Card with link'/>
-              <Card.Content>
-                <Row>
-                  <Col span={12}>
-                    {renderStandardInput()}
-                  </Col>
-                </Row>
-              </Card.Content>
-            </Card>
-          </Col>
-          <Col span={3}>
-            <Card>
-              <Card.LinkHeader linkTo= 'http://www.wix.com/' linkTitle= 'Link to Wix' title= 'Card with link'/>
-              <Card.Content>
-                <Row>
-                  <Col span={12}>
-                    {renderStandardInput()}
-                  </Col>
-                </Row>
-              </Card.Content>
-            </Card>
-          </Col>
-          <Col span={3}>
-            <Card>
-              <Card.LinkHeader linkTo= 'http://www.wix.com/' linkTitle= 'Link to Wix' title= 'Card with link'/>
-              <Card.Content>
-                <Row>
-                  <Col span={12}>
-                    {renderStandardInput()}
-                  </Col>
-                </Row>
-              </Card.Content>
-            </Card>
-          </Col>
-        </Row>}
-        {this.state.show && <Row>
-          <Col span={4}>
-            <Card>
-              <Card.LinkHeader linkTo= 'http://www.wix.com/' linkTitle= 'Link to Wix' title= 'Card with link'/>
-              <Card.Content>
-                <Row>
-                  <Col span={12}>
-                    {renderStandardInput()}
-                  </Col>
-                </Row>
-              </Card.Content>
-            </Card>
-          </Col>
-          <Col span={4}>
-            <Card>
-              <Card.LinkHeader linkTo= 'http://www.wix.com/' linkTitle= 'Link to Wix' title= 'Card with link'/>
-              <Card.Content>
-                <Row>
-                  <Col span={12}>
-                    {renderStandardInput()}
-                  </Col>
-                </Row>
-              </Card.Content>
-            </Card>
-          </Col>
-          <Col span={4}>
-            <Card>
-              <Card.LinkHeader linkTo= 'http://www.wix.com/' linkTitle= 'Link to Wix' title= 'Card with link'/>
-              <Card.Content>
-                <Row>
-                  <Col span={12}>
-                    {renderStandardInput()}
-                  </Col>
-                </Row>
-              </Card.Content>
-            </Card>
-          </Col>
-        </Row>}
-        {this.state.show && <Row>
-          <Col span={3}>
-            <Card>
-              <Card.LinkHeader linkTo= 'http://www.wix.com/' linkTitle= 'Link to Wix' title= 'Card with link'/>
-              <Card.Content>
-                <Row>
-                  <Col span={12}>
-                    {renderStandardInput()}
-                  </Col>
-                </Row>
-              </Card.Content>
-            </Card>
-          </Col>
-          <Col span={3}>
-            <Card>
-              <Card.LinkHeader linkTo= 'http://www.wix.com/' linkTitle= 'Link to Wix' title= 'Card with link'/>
-              <Card.Content>
-                <Row>
-                  <Col span={12}>
-                    {renderStandardInput()}
-                  </Col>
-                </Row>
-              </Card.Content>
-            </Card>
-          </Col>
-          <Col span={3}>
-            <Card>
-              <Card.LinkHeader linkTo= 'http://www.wix.com/' linkTitle= 'Link to Wix' title= 'Card with link'/>
-              <Card.Content>
-                <Row>
-                  <Col span={12}>
-                    {renderStandardInput()}
-                  </Col>
-                </Row>
-              </Card.Content>
-            </Card>
-          </Col>
-          <Col span={3}>
-            <Card>
-              <Card.LinkHeader linkTo= 'http://www.wix.com/' linkTitle= 'Link to Wix' title= 'Card with link'/>
-              <Card.Content>
-                <Row>
-                  <Col span={12}>
-                    {renderStandardInput()}
-                  </Col>
-                </Row>
-              </Card.Content>
-            </Card>
-          </Col>
-        </Row>}
+        <Animator
+          opacity
+          sequence
+          show={this.state.show}
+          translate={{enter: {direction: 'top', size: '10%'}, exit: {direction: 'bottom', size: '10%'}}}
+          timing="large"
+        >
+          <Row>
+            <Col span={4}>
+              <Card>
+                <Card.LinkHeader linkTo='http://www.wix.com/' linkTitle='Link to Wix' title='Card with link'/>
+                <Card.Content>
+                  <Row>
+                    <Col span={12}>
+                      {renderStandardInput()}
+                    </Col>
+                  </Row>
+                </Card.Content>
+              </Card>
+            </Col>
+            <Col span={4}>
+              <Card>
+                <Card.LinkHeader linkTo='http://www.wix.com/' linkTitle='Link to Wix' title='Card with link'/>
+                <Card.Content>
+                  <Row>
+                    <Col span={12}>
+                      {renderStandardInput()}
+                    </Col>
+                  </Row>
+                </Card.Content>
+              </Card>
+            </Col>
+            <Col span={4}>
+              <Card>
+                <Card.LinkHeader linkTo='http://www.wix.com/' linkTitle='Link to Wix' title='Card with link'/>
+                <Card.Content>
+                  <Row>
+                    <Col span={12}>
+                      {renderStandardInput()}
+                    </Col>
+                  </Row>
+                </Card.Content>
+              </Card>
+            </Col>
+          </Row>
+          <Row>
+            <Col span={3}>
+              <Card>
+                <Card.LinkHeader linkTo='http://www.wix.com/' linkTitle='Link to Wix' title='Card with link'/>
+                <Card.Content>
+                  <Row>
+                    <Col span={12}>
+                      {renderStandardInput()}
+                    </Col>
+                  </Row>
+                </Card.Content>
+              </Card>
+            </Col>
+            <Col span={3}>
+              <Card>
+                <Card.LinkHeader linkTo='http://www.wix.com/' linkTitle='Link to Wix' title='Card with link'/>
+                <Card.Content>
+                  <Row>
+                    <Col span={12}>
+                      {renderStandardInput()}
+                    </Col>
+                  </Row>
+                </Card.Content>
+              </Card>
+            </Col>
+            <Col span={3}>
+              <Card>
+                <Card.LinkHeader linkTo='http://www.wix.com/' linkTitle='Link to Wix' title='Card with link'/>
+                <Card.Content>
+                  <Row>
+                    <Col span={12}>
+                      {renderStandardInput()}
+                    </Col>
+                  </Row>
+                </Card.Content>
+              </Card>
+            </Col>
+            <Col span={3}>
+              <Card>
+                <Card.LinkHeader linkTo='http://www.wix.com/' linkTitle='Link to Wix' title='Card with link'/>
+                <Card.Content>
+                  <Row>
+                    <Col span={12}>
+                      {renderStandardInput()}
+                    </Col>
+                  </Row>
+                </Card.Content>
+              </Card>
+            </Col>
+          </Row>
+          <Row>
+            <Col span={4}>
+              <Card>
+                <Card.LinkHeader linkTo='http://www.wix.com/' linkTitle='Link to Wix' title='Card with link'/>
+                <Card.Content>
+                  <Row>
+                    <Col span={12}>
+                      {renderStandardInput()}
+                    </Col>
+                  </Row>
+                </Card.Content>
+              </Card>
+            </Col>
+            <Col span={4}>
+              <Card>
+                <Card.LinkHeader linkTo='http://www.wix.com/' linkTitle='Link to Wix' title='Card with link'/>
+                <Card.Content>
+                  <Row>
+                    <Col span={12}>
+                      {renderStandardInput()}
+                    </Col>
+                  </Row>
+                </Card.Content>
+              </Card>
+            </Col>
+            <Col span={4}>
+              <Card>
+                <Card.LinkHeader linkTo='http://www.wix.com/' linkTitle='Link to Wix' title='Card with link'/>
+                <Card.Content>
+                  <Row>
+                    <Col span={12}>
+                      {renderStandardInput()}
+                    </Col>
+                  </Row>
+                </Card.Content>
+              </Card>
+            </Col>
+          </Row>
+          <Row>
+            <Col span={3}>
+              <Card>
+                <Card.LinkHeader linkTo='http://www.wix.com/' linkTitle='Link to Wix' title='Card with link'/>
+                <Card.Content>
+                  <Row>
+                    <Col span={12}>
+                      {renderStandardInput()}
+                    </Col>
+                  </Row>
+                </Card.Content>
+              </Card>
+            </Col>
+            <Col span={3}>
+              <Card>
+                <Card.LinkHeader linkTo='http://www.wix.com/' linkTitle='Link to Wix' title='Card with link'/>
+                <Card.Content>
+                  <Row>
+                    <Col span={12}>
+                      {renderStandardInput()}
+                    </Col>
+                  </Row>
+                </Card.Content>
+              </Card>
+            </Col>
+            <Col span={3}>
+              <Card>
+                <Card.LinkHeader linkTo='http://www.wix.com/' linkTitle='Link to Wix' title='Card with link'/>
+                <Card.Content>
+                  <Row>
+                    <Col span={12}>
+                      {renderStandardInput()}
+                    </Col>
+                  </Row>
+                </Card.Content>
+              </Card>
+            </Col>
+            <Col span={3}>
+              <Card>
+                <Card.LinkHeader linkTo='http://www.wix.com/' linkTitle='Link to Wix' title='Card with link'/>
+                <Card.Content>
+                  <Row>
+                    <Col span={12}>
+                      {renderStandardInput()}
+                    </Col>
+                  </Row>
+                </Card.Content>
+              </Card>
+            </Col>
+          </Row>
+        </Animator>
       </Container>
     </div>
   }
-};
+}
+;
 
 
 export default () =>
