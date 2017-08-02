@@ -78,9 +78,6 @@ function loadStories() {
 
   require('../stories/MessageBox');
   require('../stories/Modal');
-
-  // Animations
-  require('../stories/Animations');
 }
 
 configure(loadStories, module);

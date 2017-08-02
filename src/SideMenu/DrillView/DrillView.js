@@ -2,7 +2,7 @@ import React, {Children} from 'react';
 import WixComponent from '../../BaseComponents/WixComponent';
 import {string, node, bool} from 'prop-types';
 import SideMenu from '../core/SideMenu';
-import Animator from '../../Animator';
+import {Animator} from 'wix-animations';
 import styles from './DrillView.scss';
 
 const SlideDirection = {
