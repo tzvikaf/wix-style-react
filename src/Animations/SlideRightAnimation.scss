@@ -1,10 +1,10 @@
-@import 'SlideAnimation';
+@import './SlideAnimation';
 
-.enter, .exit {
+.enter, .appear {
   transform: translate(-100%);
 }
 
-.enter.enterActive, .exit.exitActive {
+.enter.enterActive, .appear.appearActive {
   @extend .enterActive-base;
 }
 

@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {node, bool, oneOf} from 'prop-types';
-import TransitionGroup from 'react-transition-group/TransitionGroup';
-import CSSTransition from 'react-transition-group/CSSTransition';
+import ReactCSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import slideLeft from './SlideLeftAnimation.scss';
 import slideRight from './SlideRightAnimation.scss';
 
@@ -12,27 +11,20 @@ export const SlideDirection = {
 
 class SlideAnimation extends Component {
   render() {
-    const {animateEnter, animateLeave, children, direction} = this.props;
-    const animationDuration = 3000; // Synced with SlideAnimation.scss file
+    const {animateAppear, animateEnter, animateLeave, children, direction} = this.props;
+    const animationDuration = 300; // Synced with SlideAnimation.scss file
     const transitionName = direction === SlideDirection.left ? slideLeft : slideRight;
-    let items = children ? children : [];
-    items = Array.isArray(items) ? items : [items];
-
     return (
-      <TransitionGroup>
-        {items.map((item, index) =>
-          <CSSTransition
-            key={index}
-            timeout={{
-              enter: animateEnter ? animationDuration : 0,
-              exit: animateLeave ? animationDuration : 0,
-              appear: 0
-            }}
-            classNames={transitionName}
-            >
-            {item}
-          </CSSTransition>)}
-      </TransitionGroup>
+      <ReactCSSTransitionGroup
+        transitionAppear={animateAppear}
+        transitionLeave={animateLeave}
+        transitionAppearTimeout={animateAppear ? animationDuration : 0}
+        transitionEnterTimeout={animateEnter ? animationDuration : 0}
+        transitionLeaveTimeout={animateLeave ? animationDuration : 0}
+        transitionName={transitionName}
+        >
+        {children}
+      </ReactCSSTransitionGroup>
     );
   }
 }
