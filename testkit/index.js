@@ -164,3 +164,6 @@ export const fieldLabelAttributesTestkitFactory = testkitFactoryCreator(fieldLab
 
 import popoverMenuDriverFactory from '../src/PopoverMenu/PopoverMenu.driver';
 export const popoverMenuTestkitFactory = testkitFactoryCreator(popoverMenuDriverFactory);
+
+import badgeDriverFactory from '../src/Badge/Badge.driver';
+export const badgeTestkitFactory = testkitFactoryCreator(badgeDriverFactory);
