@@ -4,6 +4,10 @@ You are more than welcome to contribute by creating pull-requests.
 
 See [Badge](https://github.com/wix/wix-style-react/blob/master/src/Badge/Badge.js) component for reference
 
+### UX
+
+For any questions regarding product design/UX please contact [Ben Benhorin](https://wix.slack.com/messages/@benb).
+
 ### Components design (in progress)
 
 * This library is using es6 + jsx
