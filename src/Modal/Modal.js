@@ -62,7 +62,7 @@ class Modal extends WixComponent {
         // Overriding defaults
         border: 'none',
         overflowY: props.scrollableContent ? 'auto' : 'initial',
-        overflowX: 'hidden',
+        overflowX: props.scrollableContent ? 'hidden' : 'initial',
         maxHeight,
         WebkitOverflowScrolling: 'touch',
         outline: 'none',
