@@ -51,7 +51,24 @@ const dropdownLayoutDriverFactory = ({element, wrapper, component}) => {
       const ClonedWithProps = React.cloneElement(component, Object.assign({}, component.props, props), ...(component.props.children || []));
       ReactDOM.render(<div ref={r => element = r}>{ClonedWithProps}</div>, wrapper);
     },
-    hasTopArrow: () => !!element.querySelector(`.${styles.arrow}`)
+    hasTopArrow: () => !!element.querySelector(`.${styles.arrow}`),
+    optionByHook: hook => {
+      const option = options.querySelector(`[data-hook=${hook}]`);
+      if (!option) {
+        throw `an option with data-hook ${hook} was not found`;
+      }
+      return {
+        mouseEnter: () => ReactTestUtils.Simulate.mouseEnter(option),
+        mouseLeave: () => ReactTestUtils.Simulate.mouseLeave(option),
+        isHovered: () => isClassExists(option, 'hovered'),
+        isOptionSelected: position => doIfOptionExists(position, isClassExists(optionAt(position), 'selected')),
+        isOptionHoveredWithGlobalClassName: position => doIfOptionExists(position, isClassExists(optionAt(position), 'wixstylereactHovered')),
+        isOptionSelectedWithGlobalClassName: position => doIfOptionExists(position, isClassExists(optionAt(position), 'wixstylereactSelected')),
+        optionContentAt: position => doIfOptionExists(position, optionAt(position).textContent),
+        click: () => ReactTestUtils.Simulate.click(option),
+        isOptionADivider: position => doIfOptionExists(position, isClassExists(optionAt(position), 'divider')),
+      };
+    }
   };
 };
 

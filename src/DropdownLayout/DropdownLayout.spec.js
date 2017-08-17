@@ -14,7 +14,7 @@ describe('DropdownLayout', () => {
     {id: 0, value: 'Option 1'},
     {id: 1, value: 'Option 2'},
     {id: 2, value: 'Option 3', disabled: true},
-    {id: 3, value: 'Option 4'},
+    {id: 3, value: 'Option 4', dataHook: 'option4'},
     {id: 'divider1', value: '-'},
     {id: 'element1', value: <span style={{color: 'brown'}}>Option 4</span>}
   ];
@@ -134,6 +134,13 @@ describe('DropdownLayout', () => {
     const driver = createDriver(<DropdownLayout visible options={options} onSelect={onSelect} selectedId={0}/>);
     driver.clickAtOption(0);
     expect(onSelect).toBeCalledWith(options[0], true);
+  });
+
+  it('should call onSelect with false value when clicking on a selected option by hook', () => {
+    const onSelect = jest.fn();
+    const driver = createDriver(<DropdownLayout visible options={options} onSelect={onSelect} selectedId={0}/>);
+    driver.clickAtOption('option4');
+    expect(onSelect).toBeCalledWith(options[3], false);
   });
 
   it('should call select when enter key is pressed', () => {

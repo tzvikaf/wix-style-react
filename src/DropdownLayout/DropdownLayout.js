@@ -168,7 +168,8 @@ class DropdownLayout extends WixComponent {
                   hovered: idx === this.state.hovered,
                   disabled: option.disabled || option.title,
                   title: option.title,
-                  overrideStyle: option.overrideStyle
+                  overrideStyle: option.overrideStyle,
+                  dataHook: option.dataHook
                 }))
             ))}
           </div>
@@ -183,7 +184,7 @@ class DropdownLayout extends WixComponent {
     return (<div key={idx} className={styles.divider}/>);
   }
 
-  renderItem({option, idx, selected, hovered, disabled, title, overrideStyle}) {
+  renderItem({option, idx, selected, hovered, disabled, title, overrideStyle, dataHook}) {
     const optionClassName = classNames({
       [styles.option]: !overrideStyle,
       [styles.selected]: selected && !overrideStyle,
@@ -200,6 +201,7 @@ class DropdownLayout extends WixComponent {
         key={idx}
         onMouseEnter={() => this._onMouseEnter(idx)}
         onMouseLeave={this._onMouseLeave}
+        data-hook={dataHook}
         >
         {option.value}
       </div>
@@ -262,7 +264,8 @@ DropdownLayout.propTypes = {
       PropTypes.string
     ]).isRequired,
     disabled: PropTypes.bool,
-    overrideStyle: PropTypes.bool
+    overrideStyle: PropTypes.bool,
+    dataHook: PropTypes.string
   })),
   selectedId: PropTypes.oneOfType([
     PropTypes.string,
