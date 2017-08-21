@@ -169,7 +169,7 @@ class DropdownLayout extends WixComponent {
                   disabled: option.disabled || option.title,
                   title: option.title,
                   overrideStyle: option.overrideStyle,
-                  dataHook: option.dataHook
+                  dataHook: `dropdown-item-${option.id}`
                 }))
             ))}
           </div>
@@ -264,8 +264,7 @@ DropdownLayout.propTypes = {
       PropTypes.string
     ]).isRequired,
     disabled: PropTypes.bool,
-    overrideStyle: PropTypes.bool,
-    dataHook: PropTypes.string
+    overrideStyle: PropTypes.bool
   })),
   selectedId: PropTypes.oneOfType([
     PropTypes.string,
