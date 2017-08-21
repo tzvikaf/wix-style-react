@@ -56,7 +56,12 @@ class TooltipContent extends Component {
      * Specifies if tooltip content should use bouncing animation.
      */
     bounce: PropTypes.bool,
-    size: PropTypes.oneOf(['normal', 'large'])
+    size: PropTypes.oneOf(['normal', 'large']),
+
+    /**
+     * Specifies the font color of the content of the tooltip
+     */
+    color: PropTypes.string,
   };
 
   static defaultProps = {
@@ -81,8 +86,13 @@ class TooltipContent extends Component {
       size,
       textAlign,
       maxWidth,
-      padding
+      padding,
+      color
     } = this.props;
+
+    if (color) {
+      styles[theme].color = color;
+    }
 
     return (
       <div className={styles.root} style={style} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
