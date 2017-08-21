@@ -61,12 +61,12 @@ const dropdownLayoutDriverFactory = ({element, wrapper, component}) => {
         mouseEnter: () => ReactTestUtils.Simulate.mouseEnter(option),
         mouseLeave: () => ReactTestUtils.Simulate.mouseLeave(option),
         isHovered: () => isClassExists(option, 'hovered'),
-        isOptionSelected: position => doIfOptionExists(position, isClassExists(optionAt(position), 'selected')),
-        isOptionHoveredWithGlobalClassName: position => doIfOptionExists(position, isClassExists(optionAt(position), 'wixstylereactHovered')),
-        isOptionSelectedWithGlobalClassName: position => doIfOptionExists(position, isClassExists(optionAt(position), 'wixstylereactSelected')),
-        optionContentAt: position => doIfOptionExists(position, optionAt(position).textContent),
+        isSelected: () => isClassExists(option, 'selected'),
+        isHoveredWithGlobalClassName: () => isClassExists(option, 'wixstylereactHovered'),
+        isSelectedWithGlobalClassName: () => isClassExists(option, 'wixstylereactSelected'),
+        content: () => option.textContent,
         click: () => ReactTestUtils.Simulate.click(option),
-        isOptionADivider: position => doIfOptionExists(position, isClassExists(optionAt(position), 'divider')),
+        isDivider: () => isClassExists(option, 'divider')
       };
     }
   };

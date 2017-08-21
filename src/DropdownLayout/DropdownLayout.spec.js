@@ -41,12 +41,13 @@ describe('DropdownLayout', () => {
     expect(driver.tabIndex()).toBe(1);
   });
 
-  it('should have an options', () => {
+  it('should have options', () => {
     const driver = createDriver(<DropdownLayout visible options={options}/>);
     expect(driver.optionsLength()).toBe(6);
 
     expect(driver.optionContentAt(0)).toBe('Option 1');
     expect(driver.isOptionADivider(4)).toBeTruthy();
+    expect(driver.optionByHook('dropdown-item-divider1').isDivider()).toBeTruthy();
     expect(driver.optionContentAt(5)).toBe('Option 4');
   });
 
@@ -61,6 +62,15 @@ describe('DropdownLayout', () => {
     expect(driver.isOptionHovered(0)).toBeTruthy();
     driver.mouseLeaveAtOption(0);
     expect(driver.isOptionHovered(0)).toBeFalsy();
+  });
+
+  it('should hover when mouse enter and unhover when mouse leave by data hook', () => {
+    const driver = createDriver(<DropdownLayout visible options={options}/>);
+    const option = driver.optionByHook('dropdown-item-0');
+    option.mouseEnter();
+    expect(option.isHovered()).toBeTruthy();
+    option.mouseLeave();
+    expect(option.isHovered()).toBeFalsy();
   });
 
   it('should not hover divider or a disabled item when mouse enter', () => {
@@ -139,7 +149,7 @@ describe('DropdownLayout', () => {
   it('should call onSelect with false value when clicking on a selected option by hook', () => {
     const onSelect = jest.fn();
     const driver = createDriver(<DropdownLayout visible options={options} onSelect={onSelect} selectedId={0}/>);
-    driver.clickAtOption('dropdown-item-3');
+    driver.optionByHook('dropdown-item-3').click();
     expect(onSelect).toBeCalledWith(options[3], false);
   });
 
@@ -163,6 +173,7 @@ describe('DropdownLayout', () => {
     const selectedId = 0;
     const driver = createDriver(<DropdownLayout visible options={options} selectedId={selectedId}/>);
     expect(driver.isOptionSelected(0)).toBeTruthy();
+    expect(driver.optionByHook('dropdown-item-0').isSelected()).toBeTruthy();
   });
 
   it('should remember the selected option when getting re-opened after got closed', () => {
@@ -183,8 +194,10 @@ describe('DropdownLayout', () => {
 
     driver.mouseEnterAtOption(0);
     expect(driver.isOptionHoveredWithGlobalClassName(0)).toBeTruthy();
+    expect(driver.optionByHook('dropdown-item-0').isHoveredWithGlobalClassName()).toBeTruthy();
     driver.mouseLeaveAtOption(0);
     expect(driver.isOptionHoveredWithGlobalClassName(0)).toBeFalsy();
+    expect(driver.optionByHook('dropdown-item-0').isHoveredWithGlobalClassName()).toBeFalsy();
   });
 
   it('should select the chosen value when overrideStyle is true', () => {
@@ -195,6 +208,7 @@ describe('DropdownLayout', () => {
     const driver = createDriver(<DropdownLayout visible options={options} selectedId={selectedId}/>);
 
     expect(driver.isOptionSelectedWithGlobalClassName(0)).toBeTruthy();
+    expect(driver.optionByHook('dropdown-item-0').isSelectedWithGlobalClassName()).toBeTruthy();
   });
 
   it('should not contain pointer arrow without the withArrow property', () => {
