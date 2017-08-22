@@ -62,6 +62,7 @@ class TooltipContent extends Component {
      * Specifies the font color of the content of the tooltip
      */
     color: PropTypes.string,
+    lineHeight: PropTypes.string,
   };
 
   static defaultProps = {
@@ -87,11 +88,16 @@ class TooltipContent extends Component {
       textAlign,
       maxWidth,
       padding,
-      color
+      color,
+      lineHeight,
     } = this.props;
 
     if (color) {
       styles[theme].color = color;
+    }
+
+    if (lineHeight) {
+      styles[theme].lineHeight = lineHeight;
     }
 
     return (

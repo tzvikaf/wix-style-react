@@ -26,3 +26,4 @@
 | zIndex          | number                                                        | 2000         | false      | z index of the tooltip |
 | textAlign       | string (right, left, center, justify, initial, inherit)       | center       | -          | alignment of the tooltip's text |
 | color       | string (color value)       |        | -          | override the theme text color of the tooltip |
+| lineHeight       | string (i.e. '20px')       |        | -          | override the theme text line height of the tooltip |
