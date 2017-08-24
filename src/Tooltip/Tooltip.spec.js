@@ -186,6 +186,15 @@ describe('Tooltip', () => {
     });
   });
 
+  it('should append to element selected', () => {
+    const el = document.createElement('div');
+    const driver = createDriver(<Tooltip {..._props} appendTo={el}>{children}</Tooltip>);
+    driver.mouseEnter();
+    return resolveIn(30).then(() => {
+      expect(el.childElementCount).toEqual(1);
+    });
+  });
+
   describe('placement attribute', () => {
     it('should be top by default', () => {
       const driver = createDriver(<Tooltip {...{..._props}}>{children}</Tooltip>);
