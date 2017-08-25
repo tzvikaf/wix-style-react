@@ -130,6 +130,13 @@
       "<rootDir>/node_modules/"
     ]
   },
+  "babel": {
+    "presets": [
+      "react",
+      "es2015",
+      "stage-0"
+    ]
+  },
   "eslintConfig": {
     "extends": "wix/react",
     "env": {
