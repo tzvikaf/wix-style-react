@@ -44,8 +44,12 @@ class InputWithTags extends React.Component {
     const fontSize = (desiredProps.size && desiredProps.size === 'small') ? '14px' : '16px';
 
     return (
-      <div className={className} onClick={() => this.handleInputFocus()}>
-
+      <div
+        className={className}
+        style={{maxHeight: this.props.maxHeight}}
+        onClick={() => this.handleInputFocus()}
+        data-hook={this.props.dataHook}
+        >
         {tags.map(({label, ...rest}) => <Tag key={rest.id} disabled={disabled} onRemove={onRemoveTag} {...rest}>{label}</Tag>)}
         <span className={styles.input} data-hook="inner-input-with-tags">
           <div className={styles.hiddenDiv} style={{fontSize}}>
@@ -86,7 +90,9 @@ class InputWithTags extends React.Component {
 InputWithTags.propTypes = {
   onRemoveTag: PropTypes.func,
   tags: PropTypes.array,
+  maxHeight: PropTypes.string,
   onKeyDown: PropTypes.func,
+  dataHook: PropTypes.string,
   placeholder: PropTypes.string,
   onFocus: PropTypes.func,
   autoFocus: PropTypes.bool,

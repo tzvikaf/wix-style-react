@@ -1,3 +1,4 @@
+import 'regenerator-runtime/runtime';
 import {protractorTestkitFactoryCreator} from '../src/test-common';
 /*eslint no-duplicate-imports: 0*/
 export {getStoryUrl, waitForVisibilityOf, scrollToElement} from '../src/test-common';
@@ -82,3 +83,6 @@ export const tpaTextLinkTestkitFactory = protractorTestkitFactoryCreator(tpaText
 
 import popoverMenuDriverFactory from '../src/PopoverMenu/PopoverMenu.protractor.driver';
 export const popoverMenuTestkitFactory = protractorTestkitFactoryCreator(popoverMenuDriverFactory);
+
+import multiSelectDriverFactory from '../src/MultiSelect/MultiSelect.protractor.driver';
+export const multiSelectTestkitFactory = protractorTestkitFactoryCreator(multiSelectDriverFactory);
