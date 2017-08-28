@@ -17,6 +17,7 @@ const dataTableDriverFactory = ({element, wrapper, component}) => {
     getRowsCount,
     getRowsWithClassCount: className => values(getRows()).filter(elem => elem.classList.contains(className)).length,
     getRowText: index => values(getRows()[index].querySelectorAll('td')).map(td => td.textContent),
+    getRowClasses: index => values(getRows()[index].classList),
     isRowClickable: index => getRows()[index].classList.contains('clickableDataRow'),
     getTitles: () => values(getHeader().querySelectorAll('th')).map(th => th.textContent),
     isDisplayingNothing: () => !!element,

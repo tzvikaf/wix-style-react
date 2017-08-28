@@ -9,6 +9,7 @@
 | getRowsCount | - | number | num of rows |
 | getRowsWithClassCount | string | number | num of rows with <arg> class name |
 | getRowText | number | string | get row index <arg> text |
+| getRowClasses | number | string | get row index <arg> classes |
 | isRowClickable | number | bool | true if row index <arg> is clickable |
 | getTitles | - | map | get map of all titles |
 | isDisplayingNothing | - | bool | true if displaying nothing |

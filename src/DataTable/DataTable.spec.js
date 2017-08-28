@@ -76,6 +76,12 @@ describe('Table', () => {
     expect(driver.getRowsWithClassCount(defaultProps.rowClass)).toBe(defaultProps.data.length);
   });
 
+  it('should get a row classes', () => {
+    const getDynamicClass = (rowData, rowNum) => rowNum === 1 ? 'rowNum1' : '';
+    const driver = createDriver(<DataTable {...defaultProps} dynamicRowClass={getDynamicClass}/>);
+    expect(driver.getRowClasses(1).sort()).toEqual(['class-name', 'rowNum1']);
+  });
+
   describe('clickableDataRow class', () => {
     it('should not assign the class to rows by default', () => {
       const props = {...defaultProps};
