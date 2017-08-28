@@ -5,11 +5,17 @@ import $ from 'jquery';
 
 const datePickerDriverFactory = ({element, wrapper, component}) => {
 
-    const getFirstAvailableOption = () => element.querySelector('[role="option"]:not([class*="outside-month"])')
+    const getFirstAvailableOption = () => element.querySelector('[role="option"]:not([class*="outside-month"])');
+    const getElementByDataHook = (dataHook) => element.querySelector(`[data-hook="${dataHook}"]`);
+    const getDatePickerInput = () => element.querySelector('input');
+    const getDatePickerInputValue = () => getDatePickerInput().value;
 
     return {
         exists: () => !!element,
-        getFirstAvailableOption
+        getFirstAvailableOption,
+        getElementByDataHook,
+        getDatePickerInput,
+        getDatePickerInputValue
     };
 };
 
