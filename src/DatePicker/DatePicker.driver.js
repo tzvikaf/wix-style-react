@@ -1,22 +1,22 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
 import ReactTestUtils from 'react-dom/test-utils';
-import $ from 'jquery';
 
-const datePickerDriverFactory = ({element, wrapper, component}) => {
+const datePickerDriverFactory = ({element}) => {
 
-    const getFirstAvailableOption = () => element.querySelector('[role="option"]:not([class*="outside-month"])');
-    const getElementByDataHook = (dataHook) => element.querySelector(`[data-hook="${dataHook}"]`);
-    const getDatePickerInput = () => element.querySelector('input');
-    const getDatePickerInputValue = () => getDatePickerInput().value;
+  const getDatePickerOption = (index = 0) => element.querySelectorAll('[role="option"]:not([class*="outside-month"])')[index];
+  const getElementByDataHook = dataHook => element.querySelector(`[data-hook="${dataHook}"]`);
+  const getDatePickerInput = () => element.querySelector('input');
+  const getDatePickerInputValue = () => getDatePickerInput().value;
+  const getDatePicker = () => element.querySelector('.react-datepicker');
 
-    return {
-        exists: () => !!element,
-        getFirstAvailableOption,
-        getElementByDataHook,
-        getDatePickerInput,
-        getDatePickerInputValue
-    };
+  return {
+    exists: () => !!element,
+    clickOn: element => ReactTestUtils.Simulate.click(element),
+    getDatePickerOption,
+    getElementByDataHook,
+    getDatePickerInput,
+    getDatePickerInputValue,
+    getDatePicker
+  };
 };
 
 export default datePickerDriverFactory;
