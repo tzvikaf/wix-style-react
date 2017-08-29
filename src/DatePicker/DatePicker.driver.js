@@ -1,21 +1,23 @@
 import ReactTestUtils from 'react-dom/test-utils';
+import inputDriverFactory from '../Input/Input.driver';
 
-const datePickerDriverFactory = ({element}) => {
+const datePickerDriverFactory = ({element, wrapper}) => {
 
-  const getDatePickerOption = (index = 0) => element.querySelectorAll('[role="option"]:not([class*="outside-month"])')[index];
-  const getElementByDataHook = dataHook => element.querySelector(`[data-hook="${dataHook}"]`);
-  const getDatePickerInput = () => element.querySelector('input');
-  const getDatePickerInputValue = () => getDatePickerInput().value;
-  const getDatePicker = () => element.querySelector('.react-datepicker');
+  const inputRoot = element && element.children[0].querySelector('.root');
+  const inputDriver = inputDriverFactory({element: inputRoot, wrapper});
+  const getCalendar = () => element.querySelector('.react-datepicker');
+  const getNthDay = n => element.querySelectorAll('[role="option"]:not([class*="outside-month"])')[n];
+
+  const calendarDriver = {
+    exists: () => !!element,
+    isVisible: () => !!getCalendar(),
+    getNthDay: (n = 0) => getNthDay(n),
+    triggerOnNthDay: ({n = 0, trigger, event}) => ReactTestUtils.Simulate[trigger](getNthDay(n), event)
+  };
 
   return {
-    exists: () => !!element,
-    clickOn: element => ReactTestUtils.Simulate.click(element),
-    getDatePickerOption,
-    getElementByDataHook,
-    getDatePickerInput,
-    getDatePickerInputValue,
-    getDatePicker
+    inputDriver,
+    calendarDriver
   };
 };
 

@@ -46,7 +46,8 @@ class ThemedInput extends Input {
         className={classNames(classes, styles.root, styles[`theme-${theme}`], styles[`size-${size}${withSelection ? '-with-selection' : ''}`])}
         data-hook={dataHook}
         >
-        {(theme === 'amaterial') && <label className={classNames(styles.materialTitle, Typography.t1_1)} htmlFor={id}>{title}</label>}
+        {(theme === 'amaterial') &&
+        <label className={classNames(styles.materialTitle, Typography.t1_1)} htmlFor={id}>{title}</label>}
         {super.render({placeholder})}
         {(theme === 'material') && <div className={`${styles.bar} ${styles.barBlack}`}/>}
         {(theme === 'amaterial') && <div className={`${styles.bar} ${styles.barBlue}`}/>}
