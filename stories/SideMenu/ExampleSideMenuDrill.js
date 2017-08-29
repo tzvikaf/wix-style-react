@@ -13,7 +13,7 @@ import {
 let counter = 3;
 
 const items = [
-  {type: 'link', to: '//wix.com', title: 'link #0_1'},
+  {type: 'link', to: '//wix.com', title: 'link #0_1', disabled: true},
   {type: 'link', to: '//wix.com', title: 'link #0_2', badge: true, badgeTooltip: true},
   {type: 'menu', title: 'Sub Menu #1', badge: true, badgeTooltip: true, items: [
     {type: 'link', to: '//wix.com', title: 'link #1_1'},
@@ -72,7 +72,7 @@ class ExampleSideMenuDrill extends React.Component {
       </Tooltip>) : badgeElement;
     return (
 
-      <SideMenuDrill.Link key={link.title} isActive={link.isActive}>
+      <SideMenuDrill.Link key={link.title} isActive={link.isActive} disabled={link.disabled}>
         <a href={link.to} onClick={e => this.onMenuSelected(e, link)}>
           {link.title}
           {badgeElementWithTooltip}

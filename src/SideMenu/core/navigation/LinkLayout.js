@@ -5,10 +5,10 @@ import styles from './styles.scss';
 
 const LinkLayout = ({children, isDiminishedHover, isActive, ...rest}) =>
   <span
-    className={classnames({
-      [styles.linkLayout]: true,
+    className={classnames(styles.linkLayout, {
       [styles.linkActive]: isActive,
-      [styles.linkDiminishedHover]: isDiminishedHover
+      [styles.linkDiminishedHover]: isDiminishedHover,
+      [styles.linkDisabled]: rest.disabled
     })}
     data-hook="menu-navigation-link-wrapper"
     {...rest}
