@@ -5,6 +5,7 @@ import Input from '../Input';
 import styles from './InputWithTags.scss';
 import omit from 'omit';
 import classNames from 'classnames';
+import isUndefined from 'lodash/isUndefined';
 
 class InputWithTags extends React.Component {
   constructor(props) {
@@ -37,7 +38,8 @@ class InputWithTags extends React.Component {
       [styles.tagsContainer]: true,
       [styles.disabled]: disabled,
       [styles.error]: error,
-      [styles.hasFocus]: hasFocus
+      [styles.hasFocus]: hasFocus,
+      [styles.hasMaxHeight]: !isUndefined(this.props.maxHeight)
     });
 
     const desiredProps = omit(['onManuallyInput', 'inputElement', 'closeOnSelect', 'predicate', 'menuArrow', 'onClickOutside', 'fixedHeader', 'fixedFooter', 'dataHook'], inputProps);
