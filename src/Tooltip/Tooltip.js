@@ -20,9 +20,8 @@ class Tooltip extends WixComponent {
   onClickOutside(e) {
     if (this.props.shouldCloseOnClickOutside) {
       this.hide();
-    } else if (this.props.onClickOutside) {
-      this.props.onClickOutside && this.props.onClickOutside(e);
     }
+    this.props.onClickOutside && this.props.onClickOutside(e);
   }
 
   static propTypes = {
