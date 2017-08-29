@@ -43,7 +43,7 @@ export default () =>
         <ControlledToggleSwitch
           dataHook="controlled-switch-x-small"
           size="x-small"
-        />
+          />
       </div>
     </div>
 

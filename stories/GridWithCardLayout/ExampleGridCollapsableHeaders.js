@@ -1,6 +1,6 @@
 import React from 'react';
-import {Container, Row, Col, Card} from '../../src/Grid'
-import styles from './ExampleGrid.scss'
+import {Container, Row, Col, Card} from '../../src/Grid';
+import styles from './ExampleGrid.scss';
 
 import TextField from '../../src/TextField';
 import Input from '../../src/Input';
@@ -11,7 +11,7 @@ function renderStandardInput() {
     <TextField>
       <Label
         for="textField"
-      >
+        >
         Text Field
       </Label>
       <Input
@@ -58,7 +58,7 @@ export default () =>
           <Row>
             <Col span={12}>
               <Card>
-                <Card.CollapsedHeader title='Card with collpaed header' subtitle="and subtitle, no divider" withoutDivider>
+                <Card.CollapsedHeader title="Card with collpaed header" subtitle="and subtitle, no divider" withoutDivider>
                   <Card.Content>
                     <Row>
                       <Col span={12}>

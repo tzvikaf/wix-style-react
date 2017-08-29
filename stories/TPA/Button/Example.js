@@ -14,22 +14,22 @@ function Example() {
     <div>
 
       <div className="ltr" style={style}>
-        Fill<br />
+        Fill<br/>
         <Button theme="fill">Fill</Button>
       </div>
 
       <div className="ltr" style={style}>
-        Outline<br />
+        Outline<br/>
         <Button theme="outline">Outline</Button>
       </div>
 
       <div className="ltr" style={style}>
-        Fill (Disabled)<br />
+        Fill (Disabled)<br/>
         <Button theme="fill" disabled>Fill (Disabled)</Button>
       </div>
 
       <div className="ltr" style={style}>
-        Custom<br />
+        Custom<br/>
         <Button className={styles.customButton}>Custom</Button>
       </div>
     </div>

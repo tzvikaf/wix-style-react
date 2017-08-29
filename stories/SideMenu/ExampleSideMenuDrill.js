@@ -13,28 +13,28 @@ import {
 let counter = 3;
 
 const items = [
-  { type: 'link', to: '//wix.com', title: 'link #0_1' },
-  { type: 'link', to: '//wix.com', title: 'link #0_2', badge: true, badgeTooltip: true},
-  { type: 'menu', title: 'Sub Menu #1', badge: true, badgeTooltip: true, items: [
-    { type: 'link', to: '//wix.com', title: 'link #1_1' },
-    { type: 'link', to: '//wix.com', title: 'link #1_2' },
-    { type: 'link', to: '//wix.com', title: 'link #1_3', badge: true }
-  ] },
-  { type: 'menu', title: 'Sub Menu #2', badge: true , items: [
-    { type: 'link', to: '//wix.com', title: 'link #2_1' },
-    { type: 'link', to: '//wix.com', title: 'link #2_2' },
-    { type: 'link', to: '//wix.com', title: 'link #2_3' },
-    { type: 'menu', title: 'Sub Menu #2-3', items: [
-      { type: 'link', to: '//wix.com', title: 'link #2-3_1' },
-      { type: 'link', to: '//wix.com', title: 'link #2-3_2' },
-      { type: 'link', to: '//wix.com', title: 'link #2-3_3' }
-    ] }
-  ] },
-  { type: 'menu', title: 'Sub Menu #3', items: [
-    { type: 'link', to: '//wix.com', title: 'link #3_1' },
-    { type: 'link', to: '//wix.com', title: 'link #3_2' },
-    { type: 'link', to: '//wix.com', title: 'link #3_3' }
-  ] }
+  {type: 'link', to: '//wix.com', title: 'link #0_1', disabled: true},
+  {type: 'link', to: '//wix.com', title: 'link #0_2', badge: true, badgeTooltip: true},
+  {type: 'menu', title: 'Sub Menu #1', badge: true, badgeTooltip: true, items: [
+    {type: 'link', to: '//wix.com', title: 'link #1_1'},
+    {type: 'link', to: '//wix.com', title: 'link #1_2'},
+    {type: 'link', to: '//wix.com', title: 'link #1_3', badge: true}
+  ]},
+  {type: 'menu', title: 'Sub Menu #2', badge: true, items: [
+    {type: 'link', to: '//wix.com', title: 'link #2_1'},
+    {type: 'link', to: '//wix.com', title: 'link #2_2'},
+    {type: 'link', to: '//wix.com', title: 'link #2_3'},
+    {type: 'menu', title: 'Sub Menu #2-3', items: [
+      {type: 'link', to: '//wix.com', title: 'link #2-3_1'},
+      {type: 'link', to: '//wix.com', title: 'link #2-3_2'},
+      {type: 'link', to: '//wix.com', title: 'link #2-3_3'}
+    ]}
+  ]},
+  {type: 'menu', title: 'Sub Menu #3', items: [
+    {type: 'link', to: '//wix.com', title: 'link #3_1'},
+    {type: 'link', to: '//wix.com', title: 'link #3_2'},
+    {type: 'link', to: '//wix.com', title: 'link #3_3'}
+  ]}
 ];
 
 class ExampleSideMenuDrill extends React.Component {
@@ -65,19 +65,19 @@ class ExampleSideMenuDrill extends React.Component {
 
   renderLink(link) {
     const {badge, badgeTooltip} = link;
-    const badgeElement = badge && <SideMenu.NavigationBadge />;
+    const badgeElement = badge && <SideMenu.NavigationBadge/>;
     const badgeElementWithTooltip = badgeTooltip ?
-      <Tooltip moveBy={{ x: -23, y: 0 }}  placement="right" alignment="center" content="Hi there!">
+      (<Tooltip moveBy={{x: -23, y: 0}} placement="right" alignment="center" content="Hi there!">
         {badgeElement}
-      </Tooltip> : badgeElement;
+      </Tooltip>) : badgeElement;
     return (
 
-       <SideMenuDrill.Link key={link.title} isActive={link.isActive}>
-         <a href={link.to} onClick={e => this.onMenuSelected(e, link)}>
-           {link.title}
-           {badgeElementWithTooltip}
-         </a>
-       </SideMenuDrill.Link>
+      <SideMenuDrill.Link key={link.title} isActive={link.isActive} disabled={link.disabled}>
+        <a href={link.to} onClick={e => this.onMenuSelected(e, link)}>
+          {link.title}
+          {badgeElementWithTooltip}
+        </a>
+      </SideMenuDrill.Link>
 
     );
   }
@@ -85,15 +85,17 @@ class ExampleSideMenuDrill extends React.Component {
   renderMenu(menu) {
     const showCategory = menu.title !== 'Sub Menu #3';
     const {badge, badgeTooltip} = menu;
-    const badgeElement = badge && <SideMenu.NavigationBadge />;
+    const badgeElement = badge && <SideMenu.NavigationBadge/>;
     const element = badgeTooltip ?
-      <Tooltip moveBy={{ x: -23, y: 0 }} placement="right" alignment="center" content="Hi there!">
+      (<Tooltip moveBy={{x: -23, y: 0}} placement="right" alignment="center" content="Hi there!">
         {badgeElement}
-      </Tooltip> : badgeElement;
+      </Tooltip>) : badgeElement;
 
     return (
-      <SideMenuDrill.SubMenu key={menu.title} menuKey={menu.title} title={menu.title} showCategory={showCategory}
-                             badge={element}>
+      <SideMenuDrill.SubMenu
+        key={menu.title} menuKey={menu.title} title={menu.title} showCategory={showCategory}
+        badge={element}
+        >
         <SideMenu.Header>
           <div onClick={() => console.log('Header clicked')}>
             <TrashIcon size="5em"/>
@@ -122,14 +124,14 @@ class ExampleSideMenuDrill extends React.Component {
   }
 
   addItem() {
-    const newItem = { type: 'link', to: '//wix.com', title: `link #0_${counter++}` };
+    const newItem = {type: 'link', to: '//wix.com', title: `link #0_${counter++}`};
     this.setState({
       items: [...this.state.items, newItem]
     });
   }
 
   render() {
-    const { items } = this.state;
+    const {items} = this.state;
 
     return (
       <div>

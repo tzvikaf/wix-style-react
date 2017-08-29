@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import Input from '../../../src/TPA/Input';
 import styles from './styles.scss';
 
@@ -8,7 +8,7 @@ const InputExample = () => {
       <Input dataHook="story-input" placeholder="Default place holder" type="number"/>
     </div>
   );
-}
+};
 
 export const InputValidationErrorExample = () => {
   return (

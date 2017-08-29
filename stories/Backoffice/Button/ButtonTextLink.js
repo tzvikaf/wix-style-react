@@ -50,7 +50,7 @@ class ButtonTextLink extends Component {
                 display="horizontal"
                 value={this.state.size}
                 onChange={size => this.setState({size})}
-              >
+                >
                 <RadioGroup.Radio value="small">Small</RadioGroup.Radio>
                 <RadioGroup.Radio value="medium">Medium</RadioGroup.Radio>
               </RadioGroup>
@@ -60,14 +60,14 @@ class ButtonTextLink extends Component {
           <div className={styles.option}>
             <Label>Background</Label>
             <div className={styles.flex}>
-              <Checkbox checked={this.state.darkBackground}  onChange={() => this.setState({darkBackground: !this.state.darkBackground})}>Dark background</Checkbox>
+              <Checkbox checked={this.state.darkBackground} onChange={() => this.setState({darkBackground: !this.state.darkBackground})}>Dark background</Checkbox>
             </div>
           </div>
 
           <div className={styles.option}>
             <Label>Underline</Label>
             <div className={styles.flex}>
-              <Checkbox checked={this.state.forceUnderline}  onChange={() => this.setState({forceUnderline: !this.state.forceUnderline})}>Dark background</Checkbox>
+              <Checkbox checked={this.state.forceUnderline} onChange={() => this.setState({forceUnderline: !this.state.forceUnderline})}>Dark background</Checkbox>
             </div>
           </div>
 

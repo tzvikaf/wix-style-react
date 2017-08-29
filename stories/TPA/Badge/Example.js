@@ -15,7 +15,7 @@ const Example = () => {
       <Badge type="danger">Danger</Badge>
     </div>
   );
-}
+};
 
 export const CustomExample = () => {
   return (
@@ -29,7 +29,7 @@ export const CustomExample = () => {
       <Badge type="danger">Danger</Badge>
     </div>
   );
-}
+};
 
 Example.displayName = 'Example';
 

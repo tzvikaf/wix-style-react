@@ -10,7 +10,7 @@ const mockDictionary = {
 export default class Example extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {languageKey: 'en'}
+    this.state = {languageKey: 'en'};
   }
   render() {
     return (

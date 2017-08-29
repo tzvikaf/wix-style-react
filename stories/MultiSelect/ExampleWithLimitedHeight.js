@@ -1,7 +1,7 @@
 import React from 'react';
 import MultiSelect from 'wix-style-react/MultiSelect';
 import styles from './ExampleStandard.scss';
-import isstring from 'lodash.isstring';
+import isString from 'lodash/isString';
 
 const options = [
   {value: 'Alabama', id: 'Alabama', tag: {label: 'Alabama'}},
@@ -20,7 +20,7 @@ const options = [
 
 const valueParser = option => option.tag ? option.tag.label : option.value;
 
-class ExampleStandard extends React.Component {
+class ExampleWithLimitedHeight extends React.Component {
   constructor(props) {
     super(props);
 
@@ -31,7 +31,7 @@ class ExampleStandard extends React.Component {
     };
   }
 
-  getValue = option => isstring(option.value) ? option.value : option.value.props.children[0].props.children;
+  getValue = option => isString(option.value) ? option.value : option.value.props.children[0].props.children;
 
   handleOnSelect = tags => Array.isArray(tags) ?
     this.setState({tags: [...this.state.tags, ...tags]}) :
@@ -48,7 +48,9 @@ class ExampleStandard extends React.Component {
       <div className="ltr">
         <div className={styles.main}>
           <MultiSelect
+            dataHook="multi-select"
             tags={this.state.tags}
+            maxHeight="60px"
             onSelect={this.handleOnSelect}
             onRemoveTag={this.handleOnRemoveTag}
             onChange={this.handleOnChange}
@@ -64,4 +66,4 @@ class ExampleStandard extends React.Component {
   }
 }
 
-export default ExampleStandard;
+export default ExampleWithLimitedHeight;

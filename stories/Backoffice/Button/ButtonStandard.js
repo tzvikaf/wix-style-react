@@ -36,7 +36,7 @@ class ButtonStandard extends Component {
                 display="horizontal"
                 value={this.state.theme}
                 onChange={theme => this.setState({theme})}
-              >
+                >
                 <RadioGroup.Radio value="fullblue">Primary</RadioGroup.Radio>
                 <RadioGroup.Radio value="transparentblue">Secondary</RadioGroup.Radio>
                 <RadioGroup.Radio value="whiteblue">Secondary on grey</RadioGroup.Radio>
@@ -51,7 +51,7 @@ class ButtonStandard extends Component {
                 size="small"
                 checked={this.state.disabled}
                 onChange={() => this.setState({disabled: !this.state.disabled})}
-              />
+                />
             </div>
           </div>
 
@@ -60,7 +60,7 @@ class ButtonStandard extends Component {
             <div className={styles.flex}>
               <IconChooser
                 onSelect={option => this.setState({prefixIcon: React.createElement(Icons[option.id])})}
-              />
+                />
             </div>
           </div>
 
@@ -69,7 +69,7 @@ class ButtonStandard extends Component {
             <div className={styles.flex}>
               <IconChooser
                 onSelect={option => this.setState({suffixIcon: React.createElement(Icons[option.id])})}
-              />
+                />
             </div>
           </div>
 
@@ -80,7 +80,7 @@ class ButtonStandard extends Component {
                 size="small"
                 value={this.state.text}
                 onChange={e => this.setState({text: e.target.value})}
-              />
+                />
             </div>
           </div>
 
@@ -91,7 +91,7 @@ class ButtonStandard extends Component {
                 display="horizontal"
                 value={this.state.height}
                 onChange={height => this.setState({height})}
-              >
+                >
                 <RadioGroup.Radio value="small">Small</RadioGroup.Radio>
                 <RadioGroup.Radio value="medium">Regular</RadioGroup.Radio>
                 <RadioGroup.Radio value="large">Large</RadioGroup.Radio>

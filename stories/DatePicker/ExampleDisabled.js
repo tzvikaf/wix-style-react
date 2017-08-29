@@ -18,7 +18,7 @@ class DisabledDatePicker extends React.Component {
         onChange={value => this.setState({value})}
         dateFormat="DD/MM/YYYY"
         disabled
-      />
+        />
     );
   }
 }

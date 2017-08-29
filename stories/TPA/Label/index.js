@@ -1,6 +1,6 @@
 import React from 'react';
 import {storiesOf} from '@storybook/react';
-import LabelExample,{CustomStyleLabelExample} from './LabelExample';
+import LabelExample, {CustomStyleLabelExample} from './LabelExample';
 import LabelExampleRaw from '!raw-loader!./LabelExample';
 import CodeExample from '../../utils/Components/CodeExample';
 import WixStyleDecorator from '../decorators/WixStyleDecorator';

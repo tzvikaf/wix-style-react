@@ -26,6 +26,9 @@
     "lint": "yoshi lint"
   },
   "yoshi": {
+    "features": {
+      "addStoriesToBaseGlob": true
+    },
     "entry": {
       "app": "index.js"
     },
@@ -71,6 +74,7 @@
     "react-element-to-jsx-string": "^6.0.0",
     "react-test-renderer": "^15.5.4",
     "react-test-utils": "0.0.1",
+    "regenerator-runtime": "^0.11.0",
     "sinon": "^1.17.6",
     "svg2react-icon": "^1.0.0",
     "wait-for-cond": "^1.0.3",

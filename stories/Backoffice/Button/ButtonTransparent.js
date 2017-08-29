@@ -35,7 +35,7 @@ class ButtonTransparent extends Component {
                 size="small"
                 checked={this.state.disabled}
                 onChange={() => this.setState({disabled: !this.state.disabled})}
-              />
+                />
             </div>
           </div>
 
@@ -44,7 +44,7 @@ class ButtonTransparent extends Component {
             <div className={styles.flex}>
               <IconChooser
                 onSelect={option => this.setState({prefixIcon: React.createElement(Icons[option.id])})}
-              />
+                />
             </div>
           </div>
 
@@ -53,7 +53,7 @@ class ButtonTransparent extends Component {
             <div className={styles.flex}>
               <IconChooser
                 onSelect={option => this.setState({suffixIcon: React.createElement(Icons[option.id])})}
-              />
+                />
             </div>
           </div>
 
@@ -64,7 +64,7 @@ class ButtonTransparent extends Component {
                 size="small"
                 value={this.state.text}
                 onChange={e => this.setState({text: e.target.value})}
-              />
+                />
             </div>
           </div>
 

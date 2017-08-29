@@ -53,9 +53,9 @@ class ControlledExample extends Component {
     return (
       <div>
         <div className={styles.buttons_holder}>
-          <div className={styles.button}><Button height="medium" suffixIcon={<ArrowDownThin />} onClick={onClick(1)} theme="fullblue">Click On Me</Button></div>
-          <div className={styles.button}><Button height="medium" suffixIcon={<ArrowDownThin />} onClick={onClick(2)} theme="fullblue">Click On Me Too</Button></div>
-          <div className={styles.button}><Button height="medium" suffixIcon={<ArrowDownThin />} onClick={onClick(3)} theme="fullblue">Click On Me Now</Button></div>
+          <div className={styles.button}><Button height="medium" suffixIcon={<ArrowDownThin/>} onClick={onClick(1)} theme="fullblue">Click On Me</Button></div>
+          <div className={styles.button}><Button height="medium" suffixIcon={<ArrowDownThin/>} onClick={onClick(2)} theme="fullblue">Click On Me Too</Button></div>
+          <div className={styles.button}><Button height="medium" suffixIcon={<ArrowDownThin/>} onClick={onClick(3)} theme="fullblue">Click On Me Now</Button></div>
         </div>
         <div className={`ltr ${styles.dropdown_a}`}>
           <DropdownLayout visible={this.state.visible === 1} options={options} maxHeightPixels={100} onClose={onClose} onClickOutside={onClose}/>

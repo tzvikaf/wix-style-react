@@ -118,7 +118,7 @@ class ExampleStandard extends Component {
                 size="small"
                 value={this.state.info}
                 onChange={e => this.setState({info: e.target.value})}
-              />
+                />
             </div>
           </div>
 
@@ -193,7 +193,7 @@ class ExampleStandard extends Component {
                 size="small"
                 checked={!this.state.input.disabled}
                 onChange={() => this.setComponentState('input', {disabled: !this.state.input.disabled})}
-              />&nbsp;{this.state.input.disabled? 'Disabled' : 'Enabled'}
+                />&nbsp;{this.state.input.disabled ? 'Disabled' : 'Enabled'}
             </div>
           </div>
 

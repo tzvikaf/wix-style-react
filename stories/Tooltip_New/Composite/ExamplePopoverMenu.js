@@ -108,7 +108,7 @@ class ExamplePopoverMenu extends Component {
                 size="small"
                 value={this.state.maxWidth}
                 onChange={e => this.setState({maxWidth: e.target.value})}
-              />
+                />
             </div>
           </div>
 
@@ -120,7 +120,7 @@ class ExamplePopoverMenu extends Component {
                 updateRowText={this.updateRowText}
                 addRow={this.addRow}
                 updateRowIcon={this.updateRowIcon}
-              />
+                />
             </div>
           </div>
 
@@ -135,7 +135,7 @@ class ExamplePopoverMenu extends Component {
               onChange={this.props.onChange}
               buttonTheme={this.state.buttonTheme}
               maxWidth={this.state.maxWidth}
-            />
+              />
           </div>
         </div>
       </form>

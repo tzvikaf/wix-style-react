@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import RadioGroup from '../../src/RadioGroup';
 import Label from '../../src/Label';
 import TextField from '../../src/TextField';
 import TextArea from '../../src/TextArea';
