@@ -4,7 +4,7 @@ import times from 'lodash/times';
 import {multiSelectTestkitFactory, getStoryUrl, waitForVisibilityOf} from '../../testkit/protractor';
 
 describe('MultiSelect', async () => {
-  const storyUrl = getStoryUrl('Core', 'MultiSelect');
+  const storyUrl = getStoryUrl('3. Inputs', '3.8 Tags');
 
   eyes.it('should add scroll if too high', async () => {
     const driver = multiSelectTestkitFactory({dataHook: 'multi-select'});
