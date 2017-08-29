@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import omit from 'omit';
-
 import Input from '../Input';
-
 import styles from './DatePickerInput.scss';
 
 export default class DatePickerInput extends Component {
@@ -14,7 +12,8 @@ export default class DatePickerInput extends Component {
     dateFormat: PropTypes.func,
     style: PropTypes.object,
     onEnterPressed: PropTypes.func,
-    customInput: PropTypes.node
+    customInput: PropTypes.node,
+    dataHook: PropTypes.string
   };
 
   static defaultProps = {
