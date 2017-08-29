@@ -34,6 +34,7 @@
 }
 
 .ampm {
+    margin-top: 1px;
     font-size: 14px;
     line-height: 14px;
     text-transform: uppercase;
@@ -44,8 +45,8 @@
 
 .disabled .ampm {
     cursor: default;
-    color: $D10;
-    &:hover { color: $D10; }
+    color: $D40;
+    &:hover { color: $D40; }
 }
 
 .input {
