@@ -13,15 +13,11 @@ const anchorStyle = {
 };
 
 class ControlledExample extends Component {
-  constructor() {
-    super();
-  }
-
   render() {
     return (
       <div style={style}>
         <ButtonLayout>
-          <a href="http://www.wix.com" target="_blank" style={anchorStyle}>
+          <a href="http://www.wix.com" target="_blank" rel="noopener noreferrer" style={anchorStyle}>
             Link Like Button
           </a>
         </ButtonLayout>

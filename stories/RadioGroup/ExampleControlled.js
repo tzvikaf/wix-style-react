@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import RadioGroup from 'wix-style-react/RadioGroup';
-import PenOutline from "../../src/Icons/dist/components/PenOutline";
-import Redo from "../../src/Icons/dist/components/Redo";
+import PenOutline from '../../src/Icons/dist/components/PenOutline';
+import Redo from '../../src/Icons/dist/components/Redo';
 
 const style = {
   display: 'inline-block',

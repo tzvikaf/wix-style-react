@@ -23,7 +23,7 @@ export class Form extends Component {
       iconSize = '12px';
     }
 
-    let icons = {};
+    const icons = {};
     if (this.props.prefixIcon) {
       icons.prefixIcon = this.props.prefixIcon;
     }
@@ -37,7 +37,8 @@ export class Form extends Component {
         disabled={this.props.disabled}
         height={this.props.height}
         theme={this.props.theme}
-        {...icons}>
+        {...icons}
+        >
         {this.props.iconOnly ? <Close size={iconSize}/> : this.props.text}
       </Button>
     );

@@ -105,7 +105,7 @@ class RichTextAreaCompositeExample extends Component {
                 size="small"
                 value={this.state.info}
                 onChange={e => this.setState({info: e.target.value})}
-              />
+                />
             </div>
           </div>
 

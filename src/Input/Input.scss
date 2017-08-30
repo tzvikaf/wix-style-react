@@ -29,6 +29,7 @@ $material-gap: 8px;
     border: 0;
     outline: 0;
     background: transparent;
+    @include BorderRadius(6px);
     @include FontRoman();
     @include Placeholder($paletteE6);
     @include Selection($paletteB4);
@@ -76,13 +77,13 @@ $material-gap: 8px;
 
 .roundInput {
     &.size-normal {
-        border-radius: 18px;
+        @include BorderRadius(18px);
     }
     &.size-small {
-        border-radius: 15px;
+        @include BorderRadius(15px);
     }
     &.size-large {
-        border-radius: 27px;
+        @include BorderRadius(27px);
     }
 }
 
@@ -90,7 +91,7 @@ $material-gap: 8px;
     &-small  { @include Size($height: 30px, $fontSize: 14px); }
     &-normal { @include Size($height: 36px, $fontSize: 16px); }
     &-normal-with-selection { @include Size($height: 34px, $fontSize: 16px); }
-    &-large  { @include Size($height: 54px, $fontSize: 16px); }
+    &-large  { @include Size($height: 60px, $fontSize: 22px); }
 }
 
 .theme {

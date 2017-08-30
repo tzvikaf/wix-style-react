@@ -6,9 +6,11 @@ import Readme from '../../src/MultiSelect/README.md';
 
 import ExampleStandard from './ExampleStandard';
 import ExampleStandardRaw from '!raw-loader!./ExampleStandard';
+import ExampleWithLimitedHeight from './ExampleWithLimitedHeight';
+import ExampleWithLimitedHeightRaw from '!raw-loader!./ExampleWithLimitedHeight';
 
-storiesOf('Core', module)
-  .add('MultiSelect', () => (
+storiesOf('3. Inputs', module)
+  .add('3.8 Tags', () => (
     <div>
       <Markdown source={Readme}/>
 
@@ -16,6 +18,10 @@ storiesOf('Core', module)
 
       <CodeExample title="Standard" code={ExampleStandardRaw}>
         <ExampleStandard/>
+      </CodeExample>
+
+      <CodeExample title="Limited height" code={ExampleWithLimitedHeightRaw}>
+        <ExampleWithLimitedHeight/>
       </CodeExample>
     </div>
   ));

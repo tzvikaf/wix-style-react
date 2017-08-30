@@ -36,7 +36,7 @@ class ButtonWhite extends Component {
                 display="horizontal"
                 value={this.state.theme}
                 onChange={theme => this.setState({theme})}
-              >
+                >
                 <RadioGroup.Radio value="whiteblueprimary">Primary</RadioGroup.Radio>
                 <RadioGroup.Radio value="whitebluesecondary">Secondary</RadioGroup.Radio>
               </RadioGroup>
@@ -50,7 +50,7 @@ class ButtonWhite extends Component {
                 size="small"
                 checked={this.state.disabled}
                 onChange={() => this.setState({disabled: !this.state.disabled})}
-              />
+                />
             </div>
           </div>
 
@@ -59,7 +59,7 @@ class ButtonWhite extends Component {
             <div className={styles.flex}>
               <IconChooser
                 onSelect={option => this.setState({prefixIcon: React.createElement(Icons[option.id])})}
-              />
+                />
             </div>
           </div>
 
@@ -68,7 +68,7 @@ class ButtonWhite extends Component {
             <div className={styles.flex}>
               <IconChooser
                 onSelect={option => this.setState({suffixIcon: React.createElement(Icons[option.id])})}
-              />
+                />
             </div>
           </div>
 
@@ -79,7 +79,7 @@ class ButtonWhite extends Component {
                 size="small"
                 value={this.state.text}
                 onChange={e => this.setState({text: e.target.value})}
-              />
+                />
             </div>
           </div>
 
@@ -90,7 +90,7 @@ class ButtonWhite extends Component {
                 display="horizontal"
                 value={this.state.height}
                 onChange={height => this.setState({height})}
-              >
+                >
                 <RadioGroup.Radio value="small">Small</RadioGroup.Radio>
                 <RadioGroup.Radio value="medium">Regular</RadioGroup.Radio>
                 <RadioGroup.Radio value="large">Large</RadioGroup.Radio>

@@ -22,6 +22,7 @@ const dataTableDriverFactory = ({element, wrapper, component}) => {
     getTitles: () => values(getHeader().querySelectorAll('th')).map(th => th.textContent),
     isDisplayingNothing: () => !!element,
     isDisplayingHeaderOnly: () => hasHeader() && getRowsCount() === 0,
+    isDisplayingHeader: () => hasHeader(),
     hasChildWithId: id => !!element.querySelector(`#${id}`),
     clickRow: (index, eventData) => ReactTestUtils.Simulate.click(getRow(index), eventData),
     mouseEnterRow: (index, eventData) => ReactTestUtils.Simulate.mouseEnter(getRow(index), eventData),

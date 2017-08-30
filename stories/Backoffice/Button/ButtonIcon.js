@@ -44,7 +44,7 @@ class ButtonIcon extends Component {
                 display="horizontal"
                 value={this.state.theme}
                 onChange={theme => this.setState({theme})}
-              >
+                >
                 <RadioGroup.Radio value="icon-greybackground">Grey Background</RadioGroup.Radio>
                 <RadioGroup.Radio value="icon-standard">Standard Primary</RadioGroup.Radio>
                 <RadioGroup.Radio value="icon-standardsecondary">Standard Secondary</RadioGroup.Radio>
@@ -61,7 +61,7 @@ class ButtonIcon extends Component {
                 size="small"
                 checked={this.state.disabled}
                 onChange={() => this.setState({disabled: !this.state.disabled})}
-              />
+                />
             </div>
           </div>
 
@@ -72,7 +72,7 @@ class ButtonIcon extends Component {
                 display="horizontal"
                 value={this.state.height}
                 onChange={height => this.setState({height})}
-              >
+                >
                 <RadioGroup.Radio value="small">Small</RadioGroup.Radio>
                 <RadioGroup.Radio value="medium">Regular</RadioGroup.Radio>
               </RadioGroup>

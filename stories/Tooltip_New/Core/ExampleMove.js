@@ -13,9 +13,10 @@ export default () =>
     showTrigger="custom"
     hideTrigger="custom"
     theme="dark"
-    moveBy={{ x: -40, y: 40 }}
+    moveBy={{x: -40, y: 40}}
     maxWidth="400px"
-    moveArrowTo={20}>
+    moveArrowTo={20}
+    >
     <div className={styles.box}>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit.

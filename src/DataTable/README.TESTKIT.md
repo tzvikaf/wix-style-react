@@ -15,6 +15,7 @@
 | isDisplayingNothing | - | bool | true if displaying nothing |
 | isDisplayingHeaderOnly | - | bool | true if displaying only headers |
 | hasChildWithId | string | bool | true if the element has a child with <arg> id |
+| isDisplayingHeader | -| bool | true if the element is displaying it's headers |
 | clickRow | (number, eventData) | - | click with <eventData> the row index <number> |
 | mouseEnterRow | (number, eventData) | - | mouse enter with <eventData> the row index <number> |
 | mouseLeaveRow | (number, eventData) | - | mouse leave with <eventData> the row index <number> |

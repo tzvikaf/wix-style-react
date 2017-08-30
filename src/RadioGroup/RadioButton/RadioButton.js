@@ -4,6 +4,7 @@ import uniqueId from 'lodash/uniqueId';
 import styles from '../RadioGroup.scss';
 import classNames from 'classnames';
 import WixComponent from '../../BaseComponents/WixComponent';
+import typography, {convertFromUxLangToCss} from '../../Typography';
 
 class RadioButton extends WixComponent {
   constructor(props) {
@@ -22,7 +23,8 @@ class RadioButton extends WixComponent {
 
     const labelClasses = classNames({
       [styles.vcenter]: vAlign === 'center',
-      [styles.vtop]: vAlign === 'top'
+      [styles.vtop]: vAlign === 'top',
+      [typography[convertFromUxLangToCss('T1.1')]]: true
     });
 
     const buttonClasses = classNames({

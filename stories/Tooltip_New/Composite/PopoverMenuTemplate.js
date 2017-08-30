@@ -17,7 +17,8 @@ class PopoverMenuTemplate extends Component {
     size: PopoverMenu.propTypes.size,
     placement: PopoverMenu.propTypes.placement,
     onChange: PropTypes.func,
-    maxWidth: PopoverMenu.propTypes.maxWidth
+    maxWidth: PopoverMenu.propTypes.maxWidth,
+    buttonTheme: PropTypes.any
   };
 
   componentDidUpdate(props) {

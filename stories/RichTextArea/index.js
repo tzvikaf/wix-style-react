@@ -14,7 +14,7 @@ storiesOf('Core', module)
       <div>
         <Markdown source={ReadMe}/>
         <InteractiveCodeExample title="Customize a <RichTextArea/>">
-          <RichTextAreaExample />
+          <RichTextAreaExample/>
         </InteractiveCodeExample>
       </div>
       <div>

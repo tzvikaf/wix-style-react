@@ -15,7 +15,7 @@ import ExampleDark from './ExampleDark';
 import ExampleDarkRaw from '!raw-loader!./ExampleDark';
 
 const exampleBackoffice =
-  <div>
+  (<div>
     <h1>Example</h1>
 
     <CodeExample title="Standard" code={ExampleStandardRaw}>
@@ -25,7 +25,7 @@ const exampleBackoffice =
     <CodeExample title="Dark" code={ExampleDarkRaw}>
       <ExampleDark/>
     </CodeExample>
-  </div>;
+  </div>);
 
 storiesOf('Backoffice', module)
   .add('TextLink', () => (

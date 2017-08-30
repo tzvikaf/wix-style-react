@@ -45,7 +45,7 @@ storiesOf('8. Notification Bars', module)
           <ExampleStandard theme="warning"/>
         </InteractiveCodeExample>
       </div>
-    )
+    );
   })
   .add('8.5 Premium', () => {
     return (

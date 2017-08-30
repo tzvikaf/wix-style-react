@@ -16,7 +16,7 @@ class IconChooser extends Component {
         onSelect={this.props.onSelect}
         placeholder={'Choose an icon'}
         valueParser={value => value.id}
-      />
+        />
     );
   }
 }

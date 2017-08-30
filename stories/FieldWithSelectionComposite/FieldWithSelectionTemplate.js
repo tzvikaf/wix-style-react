@@ -9,6 +9,8 @@ import Label from '../../src/Label';
 import Dropdown from '../../src/Dropdown';
 import RadioGroup from '../../src/RadioGroup';
 
+import typography, {convertFromUxLangToCss} from '../../src/Typography';
+
 const options = [
   {id: 1, value: '1'},
   {id: 2, value: '2'},
@@ -32,7 +34,9 @@ export default class Form extends Component {
     firstButtonLabel: PropTypes.string,
     secondButtonLabel: PropTypes.string,
     required: PropTypes.bool,
-    info: PropTypes.string
+    info: PropTypes.string,
+    error: PropTypes.Error,
+    disabled: PropTypes.bool
   };
 
   componentDidUpdate(props) {
@@ -44,17 +48,18 @@ export default class Form extends Component {
   }
 
   getComponent() {
-
     let selectionInput = '';
     switch (this.props.selectionInput) {
       case 'checkbox':
         selectionInput = (
           <Checkbox
-            size="large"
+            size="medium"
             checked={this.state.checkboxValue}
             onChange={e => this.setState({checkboxValue: e.target.checked})}
             >
-            Test
+            <span className={typography[convertFromUxLangToCss('T3.1')]}>
+              Test
+            </span>
           </Checkbox>
         );
         break;
@@ -74,6 +79,8 @@ export default class Form extends Component {
           </RadioGroup>
         );
         break;
+      default:
+        throw new Error('selectionInput type does not exist, please see FieldWithSelection component for more details');
     }
 
     return (
