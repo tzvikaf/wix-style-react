@@ -243,11 +243,12 @@ describe('DatePicker', () => {
     });
 
     it('should not give an ability to select past dates if it is specified in props', () => {
-      const date = new Date(2015, 9, 2);
+      const date = moment(new Date(2015, 9, 2));
       const {calendarDriver, inputDriver} = createDriver(
         <DatePicker
-          excludePastDates={true} onChange={onChange}
-          value={moment(date)}
+          onChange={onChange}
+          value={date}
+          excludePastDates
           />
       );
 
@@ -298,7 +299,7 @@ describe('DatePicker', () => {
         const {calendarDriver, inputDriver} = createDriver(
           <DatePicker
             onChange={onChange}
-            showYearDropdown={true}
+            showYearDropdown
             value={date}
             />
         );
