@@ -7,6 +7,7 @@ import applyPolyfills from './Polyfills';
 import {datePickerTestkitFactory} from '../../testkit/index';
 import {datePickerTestkitFactory as enzymeDatePickerTestkitFactory} from '../../testkit/enzyme';
 import datePickerDriverFactory from './DatePicker.driver';
+import Input from '../Input';
 import DatePicker from './DatePicker';
 
 describe('DatePicker', () => {
@@ -62,13 +63,32 @@ describe('DatePicker', () => {
       expect(inputDriver.getValue()).toBe('02/10/2017');
     });
 
-    it('should set placeholder from props if value is not set', () => {
+    it('should set placeholder from placeholderText property', () => {
       const {inputDriver} = createDriver(<DatePicker
         onChange={onChange}
         placeholderText={'Datepicker test placeholder'}
         />);
 
       expect(inputDriver.getPlaceholder()).toBe('Datepicker test placeholder');
+    });
+
+    it('should set placeholder from placeholder property for customInput', () => {
+      const {inputDriver} = createDriver(<DatePicker
+        onChange={onChange}
+        customInput={<Input placeholder={'Input test placeholder'}/>}
+        />);
+
+      expect(inputDriver.getPlaceholder()).toBe('Input test placeholder');
+    });
+
+    it('should set placeholder from placeholder property for customInput even if placeholderText property was specified', () => {
+      const {inputDriver} = createDriver(<DatePicker
+        onChange={onChange}
+        customInput={<Input placeholder={'customInputPlaceholder'}/>}
+        placeholderText={'textPlaceholder'}
+        />);
+
+      expect(inputDriver.getPlaceholder()).toBe('customInputPlaceholder');
     });
 
     it('should be readonly', () => {
@@ -104,14 +124,6 @@ describe('DatePicker', () => {
 
       expect(inputDriver.hasPrefix()).toBe(true);
     });
-
-    it('should show calendar on select with ArrowUp key', () => {
-      const value = moment(new Date(2017, 5, 2));
-      const {inputDriver, calendarDriver} = createDriver(<DatePicker value={value} onChange={onChange}/>);
-
-      inputDriver.trigger('keyDown', {key: 'ArrowUp'});
-      expect(calendarDriver.isVisible()).toBe(true);
-    });
   });
 
   describe('calendar', () => {
@@ -121,10 +133,56 @@ describe('DatePicker', () => {
       expect(calendarDriver.isVisible()).toBe(false);
     });
 
-    it('should be opened after click on datePickerInput', () => {
-      const {calendarDriver, inputDriver} = createDriver(<DatePicker onChange={onChange}/>);
+    describe('should be shown', () => {
+      it('on select with ArrowUp key', () => {
+        const value = moment(new Date(2017, 5, 2));
+        const {inputDriver, calendarDriver} = createDriver(<DatePicker value={value} onChange={onChange}/>);
+
+        inputDriver.trigger('keyDown', {key: 'ArrowUp'});
+        expect(calendarDriver.isVisible()).toBe(true);
+      });
+
+      it('on click on datePickerInput', () => {
+        const {calendarDriver, inputDriver} = createDriver(<DatePicker onChange={onChange}/>);
+
+        inputDriver.trigger('click');
+        expect(calendarDriver.isVisible()).toBe(true);
+      });
+    });
+
+    describe('should be closed', () => {
+      it('on select date with Enter key', () => {
+        const value = moment(new Date(2017, 5, 2));
+        const {inputDriver, calendarDriver} = createDriver(<DatePicker value={value} onChange={onChange}/>);
+
+        inputDriver.trigger('click');
+        inputDriver.trigger('keyDown', {key: 'ArrowRight'});
+        inputDriver.trigger('keyDown', {key: 'Enter'});
+
+        expect(calendarDriver.isVisible()).toBe(false);
+      });
+
+      it('on select date with click', () => {
+        const {inputDriver, calendarDriver} = createDriver(<DatePicker onChange={onChange}/>);
+
+        inputDriver.trigger('click');
+        calendarDriver.triggerOnNthDay({trigger: 'click'});
+
+        expect(calendarDriver.isVisible()).toBe(false);
+      });
+    });
+
+    it('should not close calendar on select when "shouldCloseOnSelect" property is false', () => {
+      const {inputDriver, calendarDriver} = createDriver(
+        <DatePicker
+          onChange={onChange}
+          shouldCloseOnSelect={false}
+        />
+      );
 
       inputDriver.trigger('click');
+      calendarDriver.triggerOnNthDay({trigger: 'click'});
+
       expect(calendarDriver.isVisible()).toBe(true);
     });
 
@@ -144,40 +202,6 @@ describe('DatePicker', () => {
 
       expect(onChange).toHaveBeenCalled();
       expect(newValue.diff(expectedValue)).toBe(0);
-    });
-
-    it('should close calendar on select with click', () => {
-      const {inputDriver, calendarDriver} = createDriver(<DatePicker onChange={onChange}/>);
-
-      inputDriver.trigger('click');
-      calendarDriver.triggerOnNthDay({trigger: 'click'});
-
-      expect(calendarDriver.isVisible()).toBe(false);
-    });
-
-    it('should close calendar on select with Enter key', () => {
-      const value = moment(new Date(2017, 5, 2));
-      const {inputDriver, calendarDriver} = createDriver(<DatePicker value={value} onChange={onChange}/>);
-
-      inputDriver.trigger('click');
-      inputDriver.trigger('keyDown', {key: 'ArrowRight'});
-      inputDriver.trigger('keyDown', {key: 'Enter'});
-
-      expect(calendarDriver.isVisible()).toBe(false);
-    });
-
-    it('should not close calendar on select', () => {
-      const {inputDriver, calendarDriver} = createDriver(
-        <DatePicker
-          onChange={onChange}
-          shouldCloseOnSelect={false}
-          />
-      );
-
-      inputDriver.trigger('click');
-      calendarDriver.triggerOnNthDay({trigger: 'click'});
-
-      expect(calendarDriver.isVisible()).toBe(true);
     });
 
     it('should not give an ability to select past dates if it is specified in props', () => {
