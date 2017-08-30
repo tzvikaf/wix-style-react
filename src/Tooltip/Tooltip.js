@@ -47,6 +47,10 @@ class Tooltip extends WixComponent {
      * Callback to be called when the tooltip has been shown
      */
     onShow: PropTypes.func,
+    /**
+     * Callback to be called when the tooltip has been hidden
+     */
+    onHide: PropTypes.func,
     zIndex: PropTypes.number,
 
     /**
@@ -93,6 +97,7 @@ class Tooltip extends WixComponent {
     maxWidth: '378px',
     onClickOutside: null,
     onShow: null,
+    onHide: null,
     active: false,
     theme: 'light',
     disabled: false,
@@ -265,7 +270,7 @@ class Tooltip extends WixComponent {
       clearTimeout(this._showTimeout);
       this._showTimeout = null;
     }
-
+    this.props.onHide && this.props.onHide();
     if (this._hideTimeout) {
       return;
     }

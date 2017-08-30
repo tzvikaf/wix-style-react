@@ -186,6 +186,23 @@ describe('Tooltip', () => {
     });
   });
 
+  it('should call onHide when tooltip is hidden', () => {
+    const onHide = jest.fn();
+    const driver = createDriver(<Tooltip {...{..._props, onHide}}>{children}</Tooltip>);
+
+    driver.mouseEnter();
+    resolveIn(30).then(() => {
+      expect(driver.isShown()).toBe(true);
+    });
+
+    driver.mouseLeave();
+
+    return resolveIn(30).then(() => {
+      expect(driver.isShown()).toBe(false);
+      expect(onHide).toHaveBeenCalled();
+    });
+  });
+
   it('should append to element selected', () => {
     const el = document.createElement('div');
     const driver = createDriver(<Tooltip {..._props} appendTo={el}>{children}</Tooltip>);
