@@ -177,7 +177,7 @@ describe('DatePicker', () => {
         <DatePicker
           onChange={onChange}
           shouldCloseOnSelect={false}
-        />
+          />
       );
 
       inputDriver.trigger('click');
