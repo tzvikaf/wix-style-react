@@ -258,6 +258,40 @@ describe('DatePicker', () => {
       expect(calendarDriver.isVisible()).toBe(true);
     });
 
+    it('should select previous month on previous month button click', () => {
+      const date = moment(new Date(2015, 9, 2));
+      const {calendarDriver, inputDriver} = createDriver(
+        <DatePicker
+          onChange={onChange}
+          value={date}
+          />
+      );
+
+      inputDriver.trigger('click');
+      calendarDriver.clickOnPrevMonthButton();
+      calendarDriver.clickOnNthDay();
+
+      const newDate = onChange.mock.calls[0][0];
+      expect(newDate.month()).toEqual(8);
+    });
+
+    it('should select previous month on next month button click', () => {
+      const date = moment(new Date(2015, 9, 2));
+      const {calendarDriver, inputDriver} = createDriver(
+        <DatePicker
+          onChange={onChange}
+          value={date}
+          />
+      );
+
+      inputDriver.trigger('click');
+      calendarDriver.clickOnNextMonthButton();
+      calendarDriver.clickOnNthDay();
+
+      const newDate = onChange.mock.calls[0][0];
+      expect(newDate.month()).toEqual(10);
+    });
+
     describe('with year dropdown', () => {
       it('should give a possibility to choose date from another year', () => {
         const date = moment(new Date(2015, 9, 2));
