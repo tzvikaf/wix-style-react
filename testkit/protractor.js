@@ -86,3 +86,6 @@ export const popoverMenuTestkitFactory = protractorTestkitFactoryCreator(popover
 
 import multiSelectDriverFactory from '../src/MultiSelect/MultiSelect.protractor.driver';
 export const multiSelectTestkitFactory = protractorTestkitFactoryCreator(multiSelectDriverFactory);
+
+import datePickerDriverFactory from '../src/DatePicker/DatePicker.protractor.driver';
+export const datePickerTestkitFactory = protractorTestkitFactoryCreator(datePickerDriverFactory);
