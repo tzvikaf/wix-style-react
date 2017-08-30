@@ -9,6 +9,8 @@ const datePickerDriverFactory = ({element, wrapper}) => {
   const getNthDay = n => element.querySelectorAll('[role="option"]:not([class*="outside-month"])')[n];
   const getYearDropdown = () => element.querySelector('[class$="year-read-view"]');
   const getNthYear = n => element.querySelectorAll('[class*="year-option"]')[n];
+  const getPrevMonthButton = () => element.querySelector('[class$="navigation--previous"]');
+  const getNextMonthButton = () => element.querySelector('[class$="navigation--next"]');
 
   const driver = {
     exists: () => !!element
@@ -19,6 +21,8 @@ const datePickerDriverFactory = ({element, wrapper}) => {
     clickOnNthDay: (n = 0) => ReactTestUtils.Simulate.click(getNthDay(n)),
     clickOnYearDropdown: () => ReactTestUtils.Simulate.click(getYearDropdown()),
     clickOnNthYear: (n = 1) => ReactTestUtils.Simulate.click(getNthYear(n)),
+    clickOnPrevMonthButton: () => ReactTestUtils.Simulate.click(getPrevMonthButton()),
+    clickOnNextMonthButton: () => ReactTestUtils.Simulate.click(getNextMonthButton())
   };
 
   return {
