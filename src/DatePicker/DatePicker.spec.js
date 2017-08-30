@@ -266,7 +266,7 @@ describe('DatePicker', () => {
             onChange={onChange}
             showYearDropdown={true}
             value={date}
-          />
+            />
         );
 
         inputDriver.trigger('click');
