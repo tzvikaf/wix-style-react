@@ -270,7 +270,7 @@ class Tooltip extends WixComponent {
       clearTimeout(this._showTimeout);
       this._showTimeout = null;
     }
-    this.props.onHide && this.props.onHide();
+
     if (this._hideTimeout) {
       return;
     }
@@ -279,6 +279,7 @@ class Tooltip extends WixComponent {
       this._hideTimeout = setTimeout(() => {
         if (this._mountNode) {
           ReactDOM.unmountComponentAtNode(this._mountNode);
+          this.props.onHide && this.props.onHide();
           this._getContainer() && this._getContainer().removeChild(this._mountNode);
           this._mountNode = null;
         }
