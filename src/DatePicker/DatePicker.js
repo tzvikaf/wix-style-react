@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import WixComponent from '../BaseComponents/WixComponent';
 import PropTypes from 'prop-types';
 import ReactDatepicker from 'react-datepicker';
