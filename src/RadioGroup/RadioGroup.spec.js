@@ -73,14 +73,14 @@ describe('RadioGroup', () => {
 
     it('should have a default vcenter class', () => {
       const driver = createDriver(elementToRender());
-      expect(driver.getClassOfLabelAt(0)).toBe('vcenter');
-      expect(driver.getClassOfLabelAt(1)).toBe('vcenter');
+      expect(driver.getClassOfLabelAt(0)).toBe('vcenter t1_1');
+      expect(driver.getClassOfLabelAt(1)).toBe('vcenter t1_1');
     });
 
     it('should have a vtop class', () => {
       const driver = createDriver(elementToRender({vAlign: 'top'}));
-      expect(driver.getClassOfLabelAt(0)).toBe('vtop');
-      expect(driver.getClassOfLabelAt(1)).toBe('vtop');
+      expect(driver.getClassOfLabelAt(0)).toBe('vtop t1_1');
+      expect(driver.getClassOfLabelAt(1)).toBe('vtop t1_1');
     });
   });
 

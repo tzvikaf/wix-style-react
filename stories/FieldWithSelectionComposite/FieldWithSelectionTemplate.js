@@ -9,6 +9,8 @@ import Label from '../../src/Label';
 import Dropdown from '../../src/Dropdown';
 import RadioGroup from '../../src/RadioGroup';
 
+import typography, {convertFromUxLangToCss} from '../../src/Typography';
+
 const options = [
   {id: 1, value: '1'},
   {id: 2, value: '2'},
@@ -51,11 +53,13 @@ export default class Form extends Component {
       case 'checkbox':
         selectionInput = (
           <Checkbox
-            size="large"
+            size="medium"
             checked={this.state.checkboxValue}
             onChange={e => this.setState({checkboxValue: e.target.checked})}
             >
-            Test
+            <span className={typography[convertFromUxLangToCss('T3.1')]}>
+              Test
+            </span>
           </Checkbox>
         );
         break;
