@@ -274,7 +274,6 @@ class Tooltip extends WixComponent {
     if (this._hideTimeout) {
       return;
     }
-
     if (this.state.visible) {
       this._hideTimeout = setTimeout(() => {
         if (this._mountNode) {
@@ -288,6 +287,8 @@ class Tooltip extends WixComponent {
           this.setState({visible: false});
         }
       }, this._unmounted ? 0 : this.props.hideDelay);
+    }else{
+      this.props.onHide && this.props.onHide();
     }
   }
 
