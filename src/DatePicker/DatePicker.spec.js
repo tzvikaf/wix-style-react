@@ -148,7 +148,7 @@ describe('DatePicker', () => {
       const {calendarDriver, inputDriver} = createDriver(<DatePicker value={value} onChange={onChange}/>);
 
       inputDriver.trigger('click');
-      calendarDriver.triggerOnNthDay({trigger: 'click'});
+      calendarDriver.clickOnNthDay();
 
       expect(onChange).not.toHaveBeenCalled();
     });
@@ -186,7 +186,7 @@ describe('DatePicker', () => {
         const {inputDriver, calendarDriver} = createDriver(<DatePicker onChange={onChange}/>);
 
         inputDriver.trigger('click');
-        calendarDriver.triggerOnNthDay({trigger: 'click'});
+        calendarDriver.clickOnNthDay();
 
         expect(calendarDriver.isVisible()).toBe(false);
       });
@@ -219,7 +219,7 @@ describe('DatePicker', () => {
       );
 
       inputDriver.trigger('click');
-      calendarDriver.triggerOnNthDay({trigger: 'click'});
+      calendarDriver.clickOnNthDay();
 
       expect(calendarDriver.isVisible()).toBe(true);
     });
@@ -234,7 +234,7 @@ describe('DatePicker', () => {
           />
       );
       inputDriver.trigger('click');
-      calendarDriver.triggerOnNthDay({trigger: 'click', n: 1});
+      calendarDriver.clickOnNthDay(1);
 
       const newValue = onChange.mock.calls[0][0];
 
@@ -252,10 +252,31 @@ describe('DatePicker', () => {
       );
 
       inputDriver.trigger('click');
-      calendarDriver.triggerOnNthDay({trigger: 'click'});
+      calendarDriver.clickOnNthDay();
 
       expect(onChange).not.toHaveBeenCalled();
       expect(calendarDriver.isVisible()).toBe(true);
+    });
+
+    describe('with year dropdown', () => {
+      it('should give a possibility to choose date from another year', () => {
+        const date = moment(new Date(2015, 9, 2));
+        const {calendarDriver, inputDriver} = createDriver(
+          <DatePicker
+            onChange={onChange}
+            showYearDropdown={true}
+            value={date}
+          />
+        );
+
+        inputDriver.trigger('click');
+        calendarDriver.clickOnYearDropdown();
+        calendarDriver.clickOnNthYear();
+        calendarDriver.clickOnNthDay();
+
+        const newDate = onChange.mock.calls[0][0];
+        expect(newDate.year()).not.toEqual(date.year());
+      });
     });
   });
 
