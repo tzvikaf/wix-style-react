@@ -2,10 +2,8 @@ import React, {cloneElement} from 'react';
 import PropTypes from 'prop-types';
 import WixComponent from '../BaseComponents/WixComponent';
 import ReactDOM from 'react-dom';
-
 import TooltipContent from './TooltipContent';
 import position from './TooltipPosition';
-
 import styles from './TooltipContent.scss';
 
 const renderSubtreeIntoContainer = ReactDOM.unstable_renderSubtreeIntoContainer;
@@ -288,7 +286,7 @@ class Tooltip extends WixComponent {
           this.setState({visible: false});
         }
       }, this._unmounted ? 0 : this.props.hideDelay);
-    }else{
+    } else {
       this.props.onHide && this.props.onHide();
     }
   }
