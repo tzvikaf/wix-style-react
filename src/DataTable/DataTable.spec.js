@@ -82,6 +82,11 @@ describe('Table', () => {
     expect(driver.getRowClasses(1).sort()).toEqual(['class-name', 'rowNum1']);
   });
 
+  it('should hide table header', () => {
+    const driver = createDriver(<DataTable {...defaultProps} hideHeader/>);
+    expect(driver.isDisplayingHeader()).toBe(false);
+  });
+
   describe('clickableDataRow class', () => {
     it('should not assign the class to rows by default', () => {
       const props = {...defaultProps};

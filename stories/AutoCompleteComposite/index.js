@@ -7,7 +7,7 @@ import Readme from '../../src/AutoCompleteComposite/README.md';
 import ExampleStandard from './ExampleStandard';
 
 storiesOf('4. Selection', module)
-  .add('4.1 AutoComplete', () => {
+  .add('4.1 Dropdown', () => {
     return (
       <div>
         <Markdown source={Readme}/>

@@ -9,8 +9,8 @@ import ExampleStandardRaw from '!raw-loader!./ExampleStandard';
 import ExampleWithLimitedHeight from './ExampleWithLimitedHeight';
 import ExampleWithLimitedHeightRaw from '!raw-loader!./ExampleWithLimitedHeight';
 
-storiesOf('Core', module)
-  .add('MultiSelect', () => (
+storiesOf('3. Inputs', module)
+  .add('3.8 Tags', () => (
     <div>
       <Markdown source={Readme}/>
 
