@@ -35,7 +35,7 @@ Form.propTypes = {
   size: PropTypes.string.isRequired,
   darkBackground: PropTypes.bool.isRequired,
   link: PropTypes.string.isRequired,
-  forceUnderline: PropTypes.bool.isRequired,
+  underlineStyle: PropTypes.string.isRequired,
   children: PropTypes.node,
   onChange: PropTypes.func.isRequired
 };
