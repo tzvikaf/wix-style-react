@@ -41,7 +41,8 @@
     "externalUnprocessedModules": [
       "get-own-enumerable-property-symbols",
       "stringify-object"
-    ]
+    ],
+    "exports": "wix-style-react"
   },
   "repository": {
     "type": "git",
