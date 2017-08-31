@@ -1,5 +1,5 @@
 import eyes from 'eyes.it';
-import {datePickerTestkitFactory, getStoryUrl, waitForVisibilityOf} from '../../testkit/protractor';
+import {datePickerTestkitFactory, getStoryUrl} from '../../testkit/protractor';
 
 describe('DatePicker', () => {
   const storyUrl = getStoryUrl('Core', 'DatePicker');
