@@ -10,7 +10,7 @@ describe('DatePicker', () => {
   });
 
   describe('default', () => {
-    driver = datePickerTestkitFactory({dataHook: 'datepicker-default'});
+    driver = datePickerTestkitFactory({dataHook: 'story-datepicker-default'});
 
     eyes.it('should show input', () => {
       const {input} = driver;

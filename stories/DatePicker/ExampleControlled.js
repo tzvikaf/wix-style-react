@@ -14,7 +14,7 @@ class ControlledDatePicker extends React.Component {
   render() {
     return (
       <DatePicker
-        dataHook={'datepicker-default'}
+        dataHook={'story-datepicker-default'}
         inputDataHook={'datepicker-input'}
         value={this.state.value}
         onChange={value => this.setState({value})}
