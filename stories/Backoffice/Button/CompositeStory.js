@@ -70,7 +70,7 @@ storiesOf('5. Buttons', module)
   .add('5.8 Text Link', () => (
     <div>
       <h1>Text Link</h1>
-      <InteractiveCodeExample title="Customize a <Button/>">
+      <InteractiveCodeExample title="Customize a <TextLink/>">
         <ButtonTextLink/>
       </InteractiveCodeExample>
     </div>

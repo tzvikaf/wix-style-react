@@ -19,7 +19,7 @@ export class Form extends Component {
         size={this.props.size}
         darkBackground={this.props.darkBackground}
         link={this.props.link}
-        forceUnderline={this.props.forceUnderline}
+        underlineStyle={this.props.underlineStyle}
         >
         {this.props.children}
       </TextLink>
