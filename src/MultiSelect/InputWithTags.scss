@@ -20,9 +20,12 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  overflow: none;
   color: $D30;
   font-size: 16px;
+  overflow-y: hidden;
+}
+
+.hasMaxHeight {
   overflow-y: scroll;
 }
 
