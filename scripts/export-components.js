@@ -1,7 +1,7 @@
 const path = require('path');
 const fs = require('fs');
 
-const componentsPath = path.resolve(__dirname, 'dist', 'src');
+const componentsPath = path.resolve(__dirname, '..', 'dist', 'src');
 
 fs
   .readdirSync(componentsPath)
@@ -17,7 +17,7 @@ fs
 
     return [
       `./${name}.js`,
-      `module.exports = require('./${componentPath}');`
+      `module.exports = require('./${componentPath}');\n`
     ];
   })
 
