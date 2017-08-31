@@ -7,17 +7,19 @@ class ControlledDatePicker extends React.Component {
     super(params);
 
     this.state = {
-      value: moment()
+      value: moment('01/09/2017')
     };
   }
 
   render() {
     return (
       <DatePicker
-        dataHook={'story-datepicker-default'}
+        dataHook={'story-datepicker-year-month-dropdown'}
         value={this.state.value}
         onChange={value => this.setState({value})}
         dateFormat="DD/MM/YYYY"
+        showYearDropdown
+        showMonthDropdown
         />
     );
   }

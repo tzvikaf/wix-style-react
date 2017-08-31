@@ -2,7 +2,7 @@ import React from 'react';
 import {DatePicker} from 'wix-style-react';
 import moment from 'moment';
 
-class ControlledDatePicker extends React.Component {
+class CloseOnSelectDatePicker extends React.Component {
   constructor(params) {
     super(params);
 
@@ -14,13 +14,14 @@ class ControlledDatePicker extends React.Component {
   render() {
     return (
       <DatePicker
-        dataHook={'story-datepicker-default'}
+        dataHook={'story-datepicker-should-close-on-select'}
         value={this.state.value}
         onChange={value => this.setState({value})}
         dateFormat="DD/MM/YYYY"
+        shouldCloseOnSelect={false}
         />
     );
   }
 }
 
-export default ControlledDatePicker;
+export default CloseOnSelectDatePicker;
