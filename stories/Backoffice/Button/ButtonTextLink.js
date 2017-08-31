@@ -19,7 +19,7 @@ class ButtonTextLink extends Component {
     size: 'medium',
     darkBackground: false,
     link: 'https://www.wix.com',
-    forceUnderline: false,
+    underlineStyle: 'hover',
     children: 'Click me'
   };
 
@@ -67,7 +67,15 @@ class ButtonTextLink extends Component {
           <div className={styles.option}>
             <Label>Underline</Label>
             <div className={styles.flex}>
-              <Checkbox checked={this.state.forceUnderline} onChange={() => this.setState({forceUnderline: !this.state.forceUnderline})}>Dark background</Checkbox>
+              <RadioGroup
+                display="horizontal"
+                value={this.state.underlineStyle}
+                onChange={underlineStyle => this.setState({underlineStyle})}
+                >
+                <RadioGroup.Radio value="always">Always</RadioGroup.Radio>
+                <RadioGroup.Radio value="hover">Hover</RadioGroup.Radio>
+                <RadioGroup.Radio value="never">Never</RadioGroup.Radio>
+              </RadioGroup>
             </div>
           </div>
 
