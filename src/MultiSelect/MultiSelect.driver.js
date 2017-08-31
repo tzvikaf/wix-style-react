@@ -17,6 +17,7 @@ const multiSelectDriverFactory = ({element, wrapper, component}) => {
     inputWrapperHasFocus: () => inputWrapper.classList.contains('hasFocus'),
     numberOfTags: () => tags.length,
     getTagLabelAt: index => tags[index].textContent,
+    pressCommaKey: () => inputDriver.keyDown(','),
     setProps: props => {
       const ClonedWithProps = React.cloneElement(component, Object.assign({}, component.props, props), ...(component.props.children || []));
       ReactDOM.render(<div ref={r => element = r}>{ClonedWithProps}</div>, wrapper);
