@@ -101,8 +101,8 @@ class MultiSelect extends InputWithOptions {
     }
 
     if (event.key === 'Enter' || event.key === 'Tab' || delimiters.includes(event.key)) {
-      this._onManuallyInput(this.state.inputValue);
       if (this.props.value.trim()) {
+        this._onManuallyInput(this.state.inputValue);
         const unselectedOptions = this.getUnselectedOptions();
         const visibleOptions = unselectedOptions.filter(this.props.predicate);
         const maybeNearestOption = visibleOptions[0];
