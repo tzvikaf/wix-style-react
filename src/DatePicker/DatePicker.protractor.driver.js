@@ -8,9 +8,9 @@ const datePickerDriverFactory = component => {
   const getNthMonth = n => component.$$('[class*="month-option"]').get(n);
 
   return {
-    input: {
+    inputDriver: {
       exists: () => getInput().isPresent(),
-      isDisplayed: () => getInput().isDisplayed(),
+      isVisible: () => getInput().isDisplayed(),
       click: () => getInput().click(),
       getValue: () => getInput().getAttribute('value'),
       pressEnterKey: () => getInput().sendKeys(protractor.Key.ENTER),
@@ -20,7 +20,7 @@ const datePickerDriverFactory = component => {
     },
     calendar: {
       exists: () => getCalendar().isPresent(),
-      isDisplayed: () => getCalendar().isDisplayed(),
+      isVisible: () => getCalendar().isDisplayed(),
       clickOnNthAvailableDay: (n = 0) => getNthAvailableDay(n).click(),
       openYearDropdownOptions: () => getYearDropdown().click(),
       clickOnNthYear: (n = 1) => getNthYear(n).click(),
