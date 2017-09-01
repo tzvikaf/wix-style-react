@@ -24,6 +24,10 @@ $calendarMargin: 15px;
 }
 :global(.react-datepicker__triangle) {
     border-bottom-color: $B10 !important;
+
+    &:before {
+      border-top-color: #efefef !important;
+    }
 }
 :global(.react-datepicker__day-names) {
     background-color: #fff;
@@ -51,6 +55,14 @@ $calendarMargin: 15px;
 :global(.react-datepicker__navigation--next) {
     background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOHB4IiBoZWlnaHQ9IjE0cHgiIHZpZXdCb3g9IjAgMCA4IDE0IiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPiA8IS0tIEdlbmVyYXRvcjogc2tldGNodG9vbCA0MS4yICgzNTM5NykgLSBodHRwOi8vd3d3LmJvaGVtaWFuY29kaW5nLmNvbS9za2V0Y2ggLS0+IDx0aXRsZT43ODQxOUY4RC0zMUY2LTQxMjktOTc1RC05MDdCNjQ0QjRBMEI8L3RpdGxlPiA8ZGVzYz5DcmVhdGVkIHdpdGggc2tldGNodG9vbC48L2Rlc2M+IDxkZWZzPjwvZGVmcz4gPGcgaWQ9IlN0eWxlZ3VpZGVzIiBzdHJva2U9Im5vbmUiIHN0cm9rZS13aWR0aD0iMSIgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj4gPGcgaWQ9IkNhbGVuZGFyIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMzcxLjAwMDAwMCwgLTI1Ny4wMDAwMDApIiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlPSIjRkZGRkZGIj4gPGcgaWQ9IkRhdGUtUGlja2VyLS8tU2luZ2xlLUNvbXBsZXgtMSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNzIuMDAwMDAwLCAyMjIuMDAwMDAwKSI+IDxwb2x5bGluZSBpZD0iYXJyb3ctcmlnaHQiIHBvaW50cz0iMzAwIDM2IDMwNiA0MiAzMDAgNDgiPjwvcG9seWxpbmU+IDwvZz4gPC9nPiA8L2c+IDwvc3ZnPg==');
 }
+:global(.react-datepicker__year-read-view--down-arrow),
+:global(.react-datepicker__month-read-view--down-arrow) {
+    border: none;
+    width: 10px;
+    height: 10px;
+    margin-left: 6px;
+    background: no-repeat url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMCIgaGVpZ2h0PSI2IiB2aWV3Qm94PSIwIDAgMTAgNiI+ICAgIDxwYXRoIGZpbGw9IiNGRkYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgZD0iTTEwIC43MDdMOS4yNzIgMCA0Ljk5OSA0LjE0Ni43MyAwIDAgLjcwNyA1IDUuNTZsNS00Ljg1MyIvPjwvc3ZnPg==');
+}
 :global(.react-datepicker__current-month) {
     color: #fff;
     font-weight: normal;
@@ -65,29 +77,57 @@ $calendarMargin: 15px;
     @include FontLight();
     margin: $cellMargin;
 }
-:global(.react-datepicker__year-read-view) {
-  color: $B10;
-  background-color: $B50;
+:global(.react-datepicker__header__dropdown) {
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    margin-top: -20px;
+    padding: 15px 0;
 }
-:global(.react-datepicker__year-dropdown-container) {
-   font-weight: bold;
-   font-size: 14px;
+:global(.react-datepicker__year-read-view),
+:global(.react-datepicker__month-read-view) {
+    visibility: visible !important;
 }
-:global(.react-datepicker__year-dropdown) {
+:global(.react-datepicker__year-dropdown-container),
+:global(.react-datepicker__month-dropdown-container) {
+    @include FontLight();
+    font-size: 16px;
+    line-height: 18px;
+    color: $D80;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin: 0 20px;
+}
+:global(.react-datepicker__year-dropdown),
+:global(.react-datepicker__month-dropdown) {
   color: $B10;
   border-radius: 8px;
   background-color: #fff;
+  width: auto;
+  left: auto;
+  top: 100%;
+  box-shadow: 0 6px 6px 0 rgba(22, 45, 61, 0.06), 0 0 18px 0 rgba(22, 45, 61, 0.12);
+  border: none;
 
   &--scrollable {
     height: 180px;
     overflow-y: scroll;
   }
  }
- :global(.react-datepicker__year-option) {
-  color: $B10;
+ :global(.react-datepicker__year-option),
+ :global(.react-datepicker__month-option) {
+  color: $D10;
+  padding: 6px 24px;
   &:hover {
-      background-color: $B50;
+      background-color: $B10;
+      color: $D80;
   }
+}
+:global(.react-datepicker__year-option),
+:global(.react-datepicker__month-option) {
+    width: auto;
 }
 :global(.react-datepicker__day) {
     @include FontLight();
@@ -119,4 +159,8 @@ $calendarMargin: 15px;
 :global(.react-datepicker__day--outside-month) {
     pointer-events: none;
     color: $D60;
+}
+:global(.react-datepicker__year-option--selected),
+:global(.react-datepicker__month-option--selected) {
+    left: 3px;
 }
