@@ -205,11 +205,13 @@ describe('multiSelect', () => {
     it('should exist', () => {
       const div = document.createElement('div');
       const dataHook = 'myDataHook';
-      const wrapper = div.appendChild(ReactTestUtils.renderIntoDocument(<div><MultiSelect dataHook={dataHook}/></div>));
+      const tags = [{id: 'Alabama', label: 'Alabama'}];
+      const wrapper = div.appendChild(ReactTestUtils.renderIntoDocument(<div><MultiSelect dataHook={dataHook} tags={tags}/></div>));
       const multiSelectTestkit = multiSelectTestkitFactory({wrapper, dataHook});
       expect(multiSelectTestkit.driver.exists()).toBeTruthy();
       expect(multiSelectTestkit.inputDriver.exists()).toBeTruthy();
       expect(multiSelectTestkit.dropdownLayoutDriver.exists()).toBeTruthy();
+      expect(multiSelectTestkit.driver.getTagDriverByTagId('Alabama').exists()).toBeTruthy();
     });
   });
 
