@@ -1,51 +1,35 @@
-import moment from 'moment';
+import ReactTestUtils from 'react-dom/test-utils';
+import inputDriverFactory from '../Input/Input.driver';
 
-function datePickerDriverFactory(component, wrapper = document.body) {
-  return {
-    getDatePickerPopup: () => wrapper.querySelector('.react-datepicker'),
-    navigateToNextMonth() {
-      this.getDatePickerPopup().querySelector('.react-datepicker__navigation--next').click();
-    },
-    navigateToPreviousMonth() {
-      this.getDatePickerPopup().querySelector('.react-datepicker__navigation--previous').click();
-    },
-    getCurrentMonth() {
-      const monthFieldContent = this.getDatePickerPopup()
-        .querySelector('.react-datepicker__current-month')
-        .textContent;
-      return moment(monthFieldContent, ['MMMM YYYY']);
-    },
-    getSelectedDate() {
-      return this.getDatePickerInput().value;
-    },
-    getDatePickerInput: () => component.querySelector('input'),
-    showDatePickerModal() {
-      this.getDatePickerInput().click();
-      if (!this.getDatePickerPopup()) {
-        throw new Error(
-          `In order to show modal, DatePicker requires an app to be mounted inside document.body`
-        );
-      }
-    },
-    pickDay(day) {
-      this.getDatePickerPopup().querySelector(`[aria-label='day-${day}']`).click();
-    },
-    selectDate(newDate) {
-      this.showDatePickerModal();
-      const currentMonth = this.getCurrentMonth();
-      const monthDiff = newDate.clone().startOf('month').diff(currentMonth, 'month');
+const datePickerDriverFactory = ({element, wrapper}) => {
 
-      for (let i = 0; i < Math.abs(monthDiff); i++) {
-        if (monthDiff > 0) {
-          this.navigateToNextMonth();
-        } else {
-          this.navigateToPreviousMonth();
-        }
-      }
+  const inputRoot = element && element.children[0].querySelector('.root');
+  const inputDriver = inputDriverFactory({element: inputRoot, wrapper});
+  const getCalendar = () => element.querySelector('.react-datepicker');
+  const getNthDay = n => element.querySelectorAll('[role="option"]:not([class*="outside-month"])')[n];
+  const getYearDropdown = () => element.querySelector('[class$="year-read-view"]');
+  const getNthYear = n => element.querySelectorAll('[class*="year-option"]')[n];
+  const getPrevMonthButton = () => element.querySelector('[class$="navigation--previous"]');
+  const getNextMonthButton = () => element.querySelector('[class$="navigation--next"]');
 
-      this.pickDay(newDate.date());
-    }
+  const driver = {
+    exists: () => !!element
   };
-}
 
-export {datePickerDriverFactory};
+  const calendarDriver = {
+    isVisible: () => !!getCalendar(),
+    clickOnNthDay: (n = 0) => ReactTestUtils.Simulate.click(getNthDay(n)),
+    clickOnYearDropdown: () => ReactTestUtils.Simulate.click(getYearDropdown()),
+    clickOnNthYear: (n = 1) => ReactTestUtils.Simulate.click(getNthYear(n)),
+    clickOnPrevMonthButton: () => ReactTestUtils.Simulate.click(getPrevMonthButton()),
+    clickOnNextMonthButton: () => ReactTestUtils.Simulate.click(getNextMonthButton())
+  };
+
+  return {
+    driver,
+    inputDriver,
+    calendarDriver
+  };
+};
+
+export default datePickerDriverFactory;

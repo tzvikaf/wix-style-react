@@ -14,8 +14,10 @@ class ExampleTooltip extends Component {
     type: 'default',
     text: 'Tooltip appears on hover',
     size: 'normal',
-    onShow: () => console.log('text printed'),
-    onShowText: 'onShow console print'
+    onShow: () => console.log('on show text printed'),
+    onHide: () => console.log('on hide text printed'),
+    onShowText: 'onShow console print',
+    onHideText: 'onHide console print'
   };
 
   render() {
@@ -83,6 +85,7 @@ class ExampleTooltip extends Component {
               onChange={this.props.onChange}
               size={this.state.size}
               onShow={() => console.log(this.state.onShowText)}
+              onHide={() => console.log(this.state.onHideText)}
               />
           </div>
         </div>

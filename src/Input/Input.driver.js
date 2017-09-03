@@ -37,6 +37,7 @@ const inputDriverFactory = ({element, wrapper, component}) => {
     hasError: () => element.classList.contains(styles.hasError),
     getTooltipElement: () => element,
     getTooltipDataHook: () => 'input-tooltip',
+    getDataHook: () => element.getAttribute('data-hook'),
     getUnit: () => element.querySelector(`.${styles.unit}`).textContent,
     hasMagnifyingGlass: () => !!element.querySelector(`.${styles.magnifyingGlass}`),
     hasMenuArrow: () => !!element.querySelector(`.${styles.menuArrow}`),

@@ -1,8 +1,6 @@
 import ReactTestUtils from 'react-dom/test-utils';
 
-const popoverMenuDriverFactory = ({element, wrapper}) => {
-  element = element || wrapper;
-
+const popoverMenuDriverFactory = ({element}) => {
   let menuItemDataHook;
   // before accessing menu methods one need to init driver with menu-item data hook
   const protect = fn => (...args) => {

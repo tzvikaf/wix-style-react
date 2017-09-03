@@ -15,8 +15,10 @@ class ExampleTooltip extends Component {
     text: 'Tooltip appears on hover',
     size: 'normal',
     maxWidth: '',
-    onShow: () => console.log('text printed'),
-    onShowText: 'onShow console print'
+    onShow: () => console.log('onShow triggered'),
+    onHide: () => console.log('onHide triggered'),
+    onShowText: 'onShow triggered',
+    onHideText: 'onHide triggered'
   };
 
   render() {
@@ -75,6 +77,17 @@ class ExampleTooltip extends Component {
           </div>
 
           <div className={styles.option}>
+            <Label>onHide print to console</Label>
+            <div className={styles.flex}>
+              <Input
+                size="small"
+                value={this.state.onHideText}
+                onChange={e => this.setState({onHideText: e.target.value})}
+                />
+            </div>
+          </div>
+
+          <div className={styles.option}>
             <Label>Max Width</Label>
             <div className={styles.flex}>
               <Input
@@ -96,6 +109,7 @@ class ExampleTooltip extends Component {
               size={this.state.size}
               maxWidth={this.state.maxWidth}
               onShow={() => console.log(this.state.onShowText)}
+              onHide={() => console.log(this.state.onHideText)}
               />
           </div>
         </div>

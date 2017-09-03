@@ -23,7 +23,10 @@
 | moveArrowTo     | Number                                                        |              |            | Allows to position the arrow relative to tooltip. Positive value calculates position from left/top. Negative one calculates position from right/bottom. |
 | onClickOutside  | func                                                          | null         | false      | Callback when cliking outside |
 | appendToParent  | bool                                                          | false        | false      | In some cases when you need a tooltip scroll with your element, you can append the tooltip to the direct parent, just don't forget to apply `relative`, `absolute` positioning. And be aware that some of your styles may leak into tooltip content. |
+| appendTo        | DOM Element                                                   |              | false      | Element to attach the tooltip to |
 | zIndex          | number                                                        | 2000         | false      | z index of the tooltip |
+| onShow          | function                                                        | null        | false    | triggered on show |
+| onHide          | function                                                        | null        | false    | triggered on hide|
 | textAlign       | string (right, left, center, justify, initial, inherit)       | center       | -          | alignment of the tooltip's text |
 | color       | string (color value)       |        | -          | override the theme text color of the tooltip |
 | lineHeight       | string (i.e. '20px')       |        | -          | override the theme text line height of the tooltip |
