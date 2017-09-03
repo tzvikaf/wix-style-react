@@ -11,8 +11,8 @@ const datePickerDriverFactory = component => {
     inputDriver: {
       exists: () => getInput().isPresent(),
       isVisible: () => getInput().isDisplayed(),
-      click: () => getInput().click(),
       getValue: () => getInput().getAttribute('value'),
+      click: () => getInput().click(),
       pressEnterKey: () => getInput().sendKeys(protractor.Key.ENTER),
       pressEscKey: () => getInput().sendKeys(protractor.Key.ESCAPE),
       pressTabKey: () => getInput().sendKeys(protractor.Key.TAB),
