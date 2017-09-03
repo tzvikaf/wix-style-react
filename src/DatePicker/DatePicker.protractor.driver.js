@@ -18,7 +18,7 @@ const datePickerDriverFactory = component => {
       pressTabKey: () => getInput().sendKeys(protractor.Key.TAB),
       pressArrowRightKey: () => getInput().sendKeys(protractor.Key.ARROW_RIGHT),
     },
-    calendar: {
+    calendarDriver: {
       exists: () => getCalendar().isPresent(),
       isVisible: () => getCalendar().isDisplayed(),
       clickOnNthAvailableDay: (n = 0) => getNthAvailableDay(n).click(),

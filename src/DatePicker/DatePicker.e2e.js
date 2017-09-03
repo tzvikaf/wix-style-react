@@ -10,21 +10,21 @@ describe('DatePicker', () => {
   });
 
   eyes.it('should not open calendar when disabled', () => {
-    const {inputDriver, calendar} = datePickerTestkitFactory({dataHook: 'story-datepicker-disabled'});
+    const {inputDriver, calendarDriver} = datePickerTestkitFactory({dataHook: 'story-datepicker-disabled'});
 
     inputDriver.click();
 
-    expect(calendar.exists()).toBe(false);
+    expect(calendarDriver.exists()).toBe(false);
   });
 
   eyes.it('should not close calendar on selecting date with click when shouldCloseOnSelect prop set to false', () => {
-    const {inputDriver, calendar} = datePickerTestkitFactory({dataHook: 'story-datepicker-should-close-on-select'});
+    const {inputDriver, calendarDriver} = datePickerTestkitFactory({dataHook: 'story-datepicker-should-close-on-select'});
 
     inputDriver.click();
-    calendar.clickOnNthAvailableDay(1);
+    calendarDriver.clickOnNthAvailableDay(1);
 
-    expect(calendar.exists()).toBe(true);
-    expect(calendar.isVisible()).toBe(true);
+    expect(calendarDriver.exists()).toBe(true);
+    expect(calendarDriver.isVisible()).toBe(true);
   });
 
   describe('default', () => {
@@ -37,41 +37,41 @@ describe('DatePicker', () => {
     });
 
     eyes.it('should open calendar when click on inputDriver', () => {
-      const {inputDriver, calendar} = testkit;
+      const {inputDriver, calendarDriver} = testkit;
 
       inputDriver.click();
 
-      expect(calendar.exists()).toBe(true);
-      expect(calendar.isVisible()).toBe(true);
+      expect(calendarDriver.exists()).toBe(true);
+      expect(calendarDriver.isVisible()).toBe(true);
     });
 
     eyes.it('should close calendar on selecting date with click', () => {
-      const {inputDriver, calendar} = testkit;
+      const {inputDriver, calendarDriver} = testkit;
 
       inputDriver.click();
-      calendar.clickOnNthAvailableDay(1);
+      calendarDriver.clickOnNthAvailableDay(1);
 
-      expect(calendar.exists()).toBe(false);
+      expect(calendarDriver.exists()).toBe(false);
     });
 
     eyes.it('should close calendar on Escape key', () => {
-      const {inputDriver, calendar} = testkit;
+      const {inputDriver, calendarDriver} = testkit;
 
       inputDriver.click();
-      expect(calendar.exists()).toBe(true);
+      expect(calendarDriver.exists()).toBe(true);
 
       inputDriver.pressEscKey();
-      expect(calendar.exists()).toBe(false);
+      expect(calendarDriver.exists()).toBe(false);
     });
 
     eyes.it('should close calendar on Tab key', () => {
-      const {inputDriver, calendar} = testkit;
+      const {inputDriver, calendarDriver} = testkit;
 
       inputDriver.click();
-      expect(calendar.exists()).toBe(true);
+      expect(calendarDriver.exists()).toBe(true);
 
       inputDriver.pressTabKey();
-      expect(calendar.exists()).toBe(false);
+      expect(calendarDriver.exists()).toBe(false);
     });
 
     eyes.it('should not change date', () => {
@@ -100,36 +100,36 @@ describe('DatePicker', () => {
     const testkit = datePickerTestkitFactory({dataHook: 'story-datepicker-year-month-dropdown'});
 
     eyes.it('should select 2027 year', () => {
-      const {inputDriver, calendar} = testkit;
+      const {inputDriver, calendarDriver} = testkit;
 
       inputDriver.click();
-      calendar.openYearDropdownOptions();
-      calendar.clickOnNthYear();
-      calendar.clickOnNthAvailableDay();
+      calendarDriver.openYearDropdownOptions();
+      calendarDriver.clickOnNthYear();
+      calendarDriver.clickOnNthAvailableDay();
 
       expect(inputDriver.getValue()).toBe('01/01/2027');
     });
 
     eyes.it('should select February', () => {
-      const {inputDriver, calendar} = testkit;
+      const {inputDriver, calendarDriver} = testkit;
 
       inputDriver.click();
-      calendar.openMonthDropdownOptions();
-      calendar.clickOnNthMonth(2);
-      calendar.clickOnNthAvailableDay();
+      calendarDriver.openMonthDropdownOptions();
+      calendarDriver.clickOnNthMonth(2);
+      calendarDriver.clickOnNthAvailableDay();
 
       expect(inputDriver.getValue()).toBe('01/02/2017');
     });
 
     eyes.it('should select January and 2027 year', () => {
-      const {inputDriver, calendar} = testkit;
+      const {inputDriver, calendarDriver} = testkit;
 
       inputDriver.click();
-      calendar.openYearDropdownOptions();
-      calendar.clickOnNthYear();
-      calendar.openMonthDropdownOptions();
-      calendar.clickOnNthMonth();
-      calendar.clickOnNthAvailableDay();
+      calendarDriver.openYearDropdownOptions();
+      calendarDriver.clickOnNthYear();
+      calendarDriver.openMonthDropdownOptions();
+      calendarDriver.clickOnNthMonth();
+      calendarDriver.clickOnNthAvailableDay();
 
       expect(inputDriver.getValue()).toBe('01/01/2027');
     });
