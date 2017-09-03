@@ -183,6 +183,7 @@ describe('Tooltip', () => {
     expect(onShow).not.toHaveBeenCalled();
     return resolveIn(30).then(() => {
       expect(onShow).toHaveBeenCalled();
+      expect(driver.isShown()).toBeTruthy();
     });
   });
 
@@ -191,16 +192,17 @@ describe('Tooltip', () => {
     const driver = createDriver(<Tooltip {...{..._props, onHide}}>{children}</Tooltip>);
 
     driver.mouseEnter();
-    resolveIn(30).then(() => {
-      expect(driver.isShown()).toBe(true);
-    });
-
-    driver.mouseLeave();
-
     return resolveIn(30).then(() => {
-      expect(driver.isShown()).toBe(false);
-      expect(onHide).toHaveBeenCalled();
+      expect(driver.isShown()).toBeTruthy();
+
+      driver.mouseLeave();
+
+      return resolveIn(30).then(() => {
+        expect(driver.isShown()).toBeFalsy();
+        expect(onHide).toHaveBeenCalled();
+      });
     });
+
   });
 
   it('should append to element selected', () => {

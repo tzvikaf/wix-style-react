@@ -286,8 +286,6 @@ class Tooltip extends WixComponent {
           this.setState({visible: false});
         }
       }, this._unmounted ? 0 : this.props.hideDelay);
-    } else {
-      this.props.onHide && this.props.onHide();
     }
   }
 
