@@ -72,8 +72,7 @@ describe('multiSelect', () => {
 
   it('should not loose Focus or close the list on selection with tab press', () => {
     const onSelect = jest.fn();
-    const {driver, inputDriver, dropdownLayoutDriver} = createDriver(<MultiSelect options={options}
-                                                                                  onSelect={onSelect}/>);
+    const {driver, inputDriver, dropdownLayoutDriver} = createDriver(<MultiSelect options={options} onSelect={onSelect}/>);
     driver.focus();
     driver.pressDownKey();
     driver.pressTabKey();
@@ -86,8 +85,7 @@ describe('multiSelect', () => {
     const onSelect = jest.fn();
     const onChange = jest.fn();
     const {driver, inputDriver, dropdownLayoutDriver} = createDriver(
-      <MultiSelect value={options[0].value} options={options} delimiters={[',']} onSelect={onSelect}
-                   onChange={onChange}/>
+      <MultiSelect value={options[0].value} options={options} delimiters={[',']} onSelect={onSelect} onChange={onChange}/>
     );
     driver.focus();
     inputDriver.trigger('keyDown', {key: ','});
@@ -101,8 +99,7 @@ describe('multiSelect', () => {
     const onSelect = jest.fn();
     const onChange = jest.fn();
     const {driver, inputDriver, dropdownLayoutDriver} = createDriver(
-      <MultiSelect value={options[0].value} options={options} delimiters={[';']} onSelect={onSelect}
-                   onChange={onChange}/>
+      <MultiSelect value={options[0].value} options={options} delimiters={[';']} onSelect={onSelect} onChange={onChange}/>
     );
     driver.focus();
     inputDriver.trigger('keyDown', {key: ';'});
@@ -182,8 +179,7 @@ describe('multiSelect', () => {
 
   it('should call onManuallyInput after delimiter is pressed and input is not empty', () => {
     const onManuallyInput = jest.fn();
-    const {driver, inputDriver} = createDriver(<MultiSelect options={options} onManuallyInput={onManuallyInput}
-                                                            value="custom value"/>);
+    const {driver, inputDriver} = createDriver(<MultiSelect options={options} onManuallyInput={onManuallyInput} value="custom value"/>);
 
     driver.focus();
     inputDriver.enterText('custom value');
@@ -197,7 +193,7 @@ describe('multiSelect', () => {
     const tagId = 'SweetHome';
     const tags = [{id: tagId, label: 'Alabama'}];
     const onRemoveTag = jest.fn();
-    const {driver} = createDriver(<MultiSelect autoFocus={true} tags={tags} onRemoveTag={onRemoveTag}/>);
+    const {driver} = createDriver(<MultiSelect autoFocus tags={tags} onRemoveTag={onRemoveTag}/>);
 
     const tagDriver = driver.getTagDriverByTagId(tagId);
     tagDriver.removeTag();
