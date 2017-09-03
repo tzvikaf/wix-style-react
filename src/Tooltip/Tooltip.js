@@ -2,10 +2,8 @@ import React, {cloneElement} from 'react';
 import PropTypes from 'prop-types';
 import WixComponent from '../BaseComponents/WixComponent';
 import ReactDOM from 'react-dom';
-
 import TooltipContent from './TooltipContent';
 import position from './TooltipPosition';
-
 import styles from './TooltipContent.scss';
 
 const renderSubtreeIntoContainer = ReactDOM.unstable_renderSubtreeIntoContainer;
@@ -48,6 +46,10 @@ class Tooltip extends WixComponent {
      * Callback to be called when the tooltip has been shown
      */
     onShow: PropTypes.func,
+    /**
+     * Callback to be called when the tooltip has been hidden
+     */
+    onHide: PropTypes.func,
     zIndex: PropTypes.number,
 
     /**
@@ -94,6 +96,7 @@ class Tooltip extends WixComponent {
     maxWidth: '378px',
     onClickOutside: null,
     onShow: null,
+    onHide: null,
     active: false,
     theme: 'light',
     disabled: false,
@@ -270,11 +273,11 @@ class Tooltip extends WixComponent {
     if (this._hideTimeout) {
       return;
     }
-
     if (this.state.visible) {
       this._hideTimeout = setTimeout(() => {
         if (this._mountNode) {
           ReactDOM.unmountComponentAtNode(this._mountNode);
+          this.props.onHide && this.props.onHide();
           this._getContainer() && this._getContainer().removeChild(this._mountNode);
           this._mountNode = null;
         }
