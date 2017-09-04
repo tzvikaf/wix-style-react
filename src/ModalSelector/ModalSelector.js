@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './ModalSelector.scss';
+// import styles from './ModalSelector.scss';
 import WixComponent from '../BaseComponents/WixComponent';
 import Modal from '../Modal/Modal';
+import Input from '../Input/Input';
 import MessageBoxFunctionalLayout from 'wix-style-react/MessageBox/MessageBoxFunctionalLayout';
+import {Search} from 'wix-style-react/Icons';
 
 class ModalSelector extends WixComponent {
   static propTypes = {
@@ -46,18 +48,28 @@ class ModalSelector extends WixComponent {
         isOpen={isOpen}
         onRequestClose={onRequestClose}
         contentLabel="Items Selection Modal"
-        scrollableContent={true}>
+        scrollableContent={true}
+        >
         <MessageBoxFunctionalLayout
-            theme="blue"
-            title="Choose Your Items"
-            confirmText="OK"
-            cancelText="Cancel"
-            onOk={onOk}
-            onCancel={onCancel}
-            >
-            MODAL SELECTOR CONSTANT CONTENT
-            {children}
-          </MessageBoxFunctionalLayout>
+          theme="blue"
+          title="Choose Your Items"
+          confirmText="OK"
+          cancelText="Cancel"
+          onOk={onOk}
+          onCancel={onCancel}
+          >
+          <Input
+            id="search-input"
+            maxLength={524288}
+            placeholder="Search..."
+            prefix={<Search/>}
+            size="normal"
+            textOverflow="clip"
+            theme="normal"
+            width="initial"
+            />
+          {children}
+        </MessageBoxFunctionalLayout>
       </Modal>
     );
   }

@@ -9,14 +9,14 @@ const modalSelectorDriverFactory = component => {
 
   return {
     inputDriver: {
-      exists: () => getInput().isPresent(),
-      isVisible: () => getInput().isDisplayed(),
-      getValue: () => getInput().getAttribute('value'),
-      click: () => getInput().click(),
-      pressEnterKey: () => getInput().sendKeys(protractor.Key.ENTER),
-      pressEscKey: () => getInput().sendKeys(protractor.Key.ESCAPE),
-      pressTabKey: () => getInput().sendKeys(protractor.Key.TAB),
-      pressArrowRightKey: () => getInput().sendKeys(protractor.Key.ARROW_RIGHT),
+      exists: () => getSearchInput().isPresent(),
+      isVisible: () => getSearchInput().isDisplayed(),
+      getValue: () => getSearchInput().getAttribute('value'),
+      click: () => getSearchInput().click(),
+      pressEnterKey: () => getSearchInput().sendKeys(protractor.Key.ENTER),
+      pressEscKey: () => getSearchInput().sendKeys(protractor.Key.ESCAPE),
+      pressTabKey: () => getSearchInput().sendKeys(protractor.Key.TAB),
+      pressArrowRightKey: () => getSearchInput().sendKeys(protractor.Key.ARROW_RIGHT),
     }
   };
 };

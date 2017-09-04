@@ -27,8 +27,7 @@ class ControlledModalSelector extends Component {
           onRequestClose={close}
           onOk={close}
           onCancel={close}
-          >
-        </ModalSelector>
+          />
       </div>
     );
   }
