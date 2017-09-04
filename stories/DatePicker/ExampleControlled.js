@@ -7,7 +7,7 @@ class ControlledDatePicker extends React.Component {
     super(params);
 
     this.state = {
-      value: moment()
+      value: moment('03/09/2017', 'DD/MM/YYYY')
     };
   }
 

@@ -75,7 +75,7 @@ describe('DatePicker', () => {
     });
 
     eyes.it('should not change date', () => {
-      const today = moment().format('DD/MM/YYYY');
+      const today = moment('03/09/2017', 'DD/MM/YYYY').format('DD/MM/YYYY');
       const {inputDriver} = testkit;
 
       inputDriver.click();
@@ -85,7 +85,7 @@ describe('DatePicker', () => {
     });
 
     eyes.it('should select next day date', () => {
-      const tomorrow = moment().add(1, 'days').format('DD/MM/YYYY');
+      const tomorrow = moment('03/09/2017', 'DD/MM/YYYY').add(1, 'days').format('DD/MM/YYYY');
       const {inputDriver} = testkit;
 
       inputDriver.click();
