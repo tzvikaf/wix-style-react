@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 // import styles from './ModalSelector.scss';
 import WixComponent from '../BaseComponents/WixComponent';
 import Modal from '../Modal/Modal';
-import Input from '../Input/Input';
 import Search from './Search';
 import MessageBoxFunctionalLayout from 'wix-style-react/MessageBox/MessageBoxFunctionalLayout';
 
