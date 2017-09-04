@@ -189,26 +189,42 @@ describe('multiSelect', () => {
     expect(onManuallyInput.mock.calls[0][0]).toBe('custom value');
   });
 
+  it('should call onRemoveTag when removing tags', () => {
+    const tagId = 'SweetHome';
+    const tags = [{id: tagId, label: 'Alabama'}];
+    const onRemoveTag = jest.fn();
+    const {driver} = createDriver(<MultiSelect autoFocus tags={tags} onRemoveTag={onRemoveTag}/>);
+
+    const tagDriver = driver.getTagDriverByTagId(tagId);
+    tagDriver.removeTag();
+
+    expect(onRemoveTag).toHaveBeenCalledWith(tagId);
+  });
+
   describe('testkit', () => {
     it('should exist', () => {
       const div = document.createElement('div');
       const dataHook = 'myDataHook';
-      const wrapper = div.appendChild(ReactTestUtils.renderIntoDocument(<div><MultiSelect dataHook={dataHook}/></div>));
+      const tags = [{id: 'Alabama', label: 'Alabama'}];
+      const wrapper = div.appendChild(ReactTestUtils.renderIntoDocument(<div><MultiSelect dataHook={dataHook} tags={tags}/></div>));
       const multiSelectTestkit = multiSelectTestkitFactory({wrapper, dataHook});
       expect(multiSelectTestkit.driver.exists()).toBeTruthy();
       expect(multiSelectTestkit.inputDriver.exists()).toBeTruthy();
       expect(multiSelectTestkit.dropdownLayoutDriver.exists()).toBeTruthy();
+      expect(multiSelectTestkit.driver.getTagDriverByTagId('Alabama').exists()).toBeTruthy();
     });
   });
 
   describe('enzyme testkit', () => {
     it('should exist', () => {
       const dataHook = 'myDataHook';
-      const wrapper = mount(<MultiSelect dataHook={dataHook}/>);
+      const tags = [{id: 'Alabama', label: 'Alabama'}];
+      const wrapper = mount(<MultiSelect dataHook={dataHook} tags={tags}/>);
       const multiSelectTestkit = enzymeMultiSelectTestkitFactory({wrapper, dataHook});
       expect(multiSelectTestkit.driver.exists()).toBeTruthy();
       expect(multiSelectTestkit.inputDriver.exists()).toBeTruthy();
       expect(multiSelectTestkit.dropdownLayoutDriver.exists()).toBeTruthy();
+      expect(multiSelectTestkit.driver.getTagDriverByTagId('Alabama').exists()).toBeTruthy();
     });
   });
 });
