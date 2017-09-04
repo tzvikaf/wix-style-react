@@ -79,6 +79,7 @@ function loadStories() {
 
   require('../stories/MessageBox');
   require('../stories/Modal');
+  require('../stories/ModalSelector');
 }
 
 configure(loadStories, module);

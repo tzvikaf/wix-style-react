@@ -120,6 +120,9 @@ export const messageBoxMarketerialLayoutTestkitFactory = testkitFactoryCreator(m
 import modalDriverFactory from '../src/Modal/Modal.driver';
 export const modalTestkitFactory = testkitFactoryCreator(modalDriverFactory);
 
+import modalSelectorDriverFactory from '../src/ModalSelector/ModalSelector.driver';
+export const modalSelectorTestkitFactory = testkitFactoryCreator(modalSelectorDriverFactory);
+
 import timeInputDriverFactory from '../src/TimeInput/TimeInput.driver';
 export const timeInputTestkitFactory = testkitFactoryCreator(timeInputDriverFactory);
 

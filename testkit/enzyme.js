@@ -120,6 +120,9 @@ export const richTextAreaTestkitFactory = enzymeTestkitFactoryCreator(richTextAr
 import modalDriverFactory from '../src/Modal/Modal.driver';
 export const modalTestkitFactory = enzymeTestkitFactoryCreator(modalDriverFactory);
 
+import modalSelectorDriverFactory from '../src/ModalSelector/ModalSelector.driver';
+export const modalSelectorTestkitFactory = enzymeTestkitFactoryCreator(modalSelectorDriverFactory);
+
 import filePickerDriverFactory from '../src/FilePicker/FilePicker.driver';
 export const filePickerTestkitFactory = enzymeTestkitFactoryCreator(filePickerDriverFactory);
 

@@ -89,3 +89,6 @@ export const multiSelectTestkitFactory = protractorTestkitFactoryCreator(multiSe
 
 import datePickerDriverFactory from '../src/DatePicker/DatePicker.protractor.driver';
 export const datePickerTestkitFactory = protractorTestkitFactoryCreator(datePickerDriverFactory);
+
+import modalSelectorDriverFactory from '../src/modalSelector/modalSelector.protractor.driver';
+export const modalSelectorTestkitFactory = protractorTestkitFactoryCreator(modalSelectorDriverFactory);
