@@ -1,16 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import styles from './ModalSelector.scss';
 import WixComponent from '../BaseComponents/WixComponent';
 import Modal from '../Modal/Modal';
 import Search from './Search';
-import MessageBoxFunctionalLayout from 'wix-style-react/MessageBox/MessageBoxFunctionalLayout';
+import MessageBoxFunctionalLayout from '../MessageBox/MessageBoxFunctionalLayout';
 
 
 class ModalSelector extends WixComponent {
   static propTypes = {
     isOpen: PropTypes.bool.isRequired,
-    onRequestClose: PropTypes.func,
+    onClose: PropTypes.func,
     onOk: PropTypes.func,
     onCancel: PropTypes.func
   }
@@ -18,7 +17,7 @@ class ModalSelector extends WixComponent {
   static defaultProps = {
     isOpen: false,
     onOk: () => { },
-    onRequestClose: () => { },
+    onClose: () => { },
     onCancel: () => { },
   }
 
@@ -26,7 +25,7 @@ class ModalSelector extends WixComponent {
     const {
       isOpen,
       onOk,
-      onRequestClose,
+      onClose,
       onCancel,
       children
     } = this.props;
@@ -34,7 +33,7 @@ class ModalSelector extends WixComponent {
     return (
       <Modal
         isOpen={isOpen}
-        onRequestClose={onRequestClose}
+        onRequestClose={onClose}
         contentLabel="Items Selection Modal"
         scrollableContent={true}
         >
@@ -45,6 +44,7 @@ class ModalSelector extends WixComponent {
           cancelText="Cancel"
           onOk={onOk}
           onCancel={onCancel}
+          onClose={onClose}
           >
           {children}
         </MessageBoxFunctionalLayout>

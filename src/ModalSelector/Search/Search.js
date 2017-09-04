@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import WixComponent from '../../BaseComponents/WixComponent';
 import Input from '../../Input';
 import styles from './Search.scss';
@@ -18,7 +18,7 @@ class Search extends WixComponent {
       <Input
         id="search-input"
         placeholder="Search..."
-        prefix = {
+        prefix={
           <div className={styles.search}>
             <Finder/>
           </div>
