@@ -1,6 +1,6 @@
-.input {
-  input {
-    font-size: 16px;
-    border: 1px solid blue;
-  }
+@import '../../common.scss';
+
+.search {
+  padding: 5px 10px 0;
+  color: $B10;
 }
