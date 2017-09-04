@@ -26,8 +26,9 @@ class ControlledModalSelector extends Component {
           isOpen={this.state.isOpen}
           onRequestClose={close}
           onOk={close}
-          onCancel={close}
-          />
+          onCancel={close}>
+          <ModalSelector.Search/>
+        </ModalSelector>
       </div>
     );
   }

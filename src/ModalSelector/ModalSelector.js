@@ -4,8 +4,9 @@ import PropTypes from 'prop-types';
 import WixComponent from '../BaseComponents/WixComponent';
 import Modal from '../Modal/Modal';
 import Input from '../Input/Input';
+import Search from './Search';
 import MessageBoxFunctionalLayout from 'wix-style-react/MessageBox/MessageBoxFunctionalLayout';
-import {Search} from 'wix-style-react/Icons';
+
 
 class ModalSelector extends WixComponent {
   static propTypes = {
@@ -13,18 +14,6 @@ class ModalSelector extends WixComponent {
     onRequestClose: PropTypes.func,
     onOk: PropTypes.func,
     onCancel: PropTypes.func
-    // contentLabel: PropTypes.string.isRequired,
-    // theme: PropTypes.oneOf(Object.keys(colors)),
-    // children: PropTypes.any,
-    // zIndex: PropTypes.number,
-    // shouldCloseOnOverlayClick: PropTypes.bool,
-    // onRequestClose: PropTypes.func,
-    // onAfterOpen: PropTypes.func,
-    // horizontalPosition: PropTypes.oneOf(Object.keys(positions)),
-    // verticalPosition: PropTypes.oneOf(Object.keys(positions)),
-    // closeTimeoutMS: PropTypes.number,
-    // scrollable: PropTypes.bool,
-    // scrollableContent: PropTypes.bool
   }
 
   static defaultProps = {
@@ -58,21 +47,13 @@ class ModalSelector extends WixComponent {
           onOk={onOk}
           onCancel={onCancel}
           >
-          <Input
-            id="search-input"
-            maxLength={524288}
-            placeholder="Search..."
-            prefix={<Search/>}
-            size="normal"
-            textOverflow="clip"
-            theme="normal"
-            width="initial"
-            />
           {children}
         </MessageBoxFunctionalLayout>
       </Modal>
     );
   }
 }
+
+ModalSelector.Search = Search;
 
 export default ModalSelector;
